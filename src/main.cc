@@ -28,18 +28,18 @@ using namespace std;
 // ошибка в передования показателях в функции (ышт)
 
 int main() {
-  int err = FAIL;
+  int err = -1;
   // Stack_t stack;
   Stack_t stack = {0};  // Правильно нужно сделать массивом)
   stack.size = 0;
   // *stack.data = 0;
-  char str [SIZE] = "2+1";
-  // std::string str = "2+1+x";  // -77.6904761904761905 Работает и так и char str [100]
+  // char str [SIZE] = "2+2";
+  std::string str = "x+2+1+x";  // -77.6904761904761905 Работает и так и char str [100]
                          // = "4.2001";
   std::string str_ch = "I";                  
   // char *str_ch = "I";
-  // std::string str_x = "-5"; 
-  char str_x[SIZE] = "-5";
+  std::string str_g = "0"; 
+  // char str_x[SIZE] = "-5";
 
 
   char str_v[SIZE];
@@ -68,7 +68,10 @@ int main() {
   double numb = 98;
   // stro[0] = numb;
   // int fun4 = s21_calc(str, str_x, stro);
-  s21_calc(str, str_x, stro);
+  int fun_res = s21_calc(str, str_g, stro);
+  cout << "Резульата работы ф-ии:  " << fun_res << endl;
+  // s21_calc(str, str_x, stro);
+  // number(str, stro);
   // s21_calc_o(str);
 
   // char val_v[3] ="pop";

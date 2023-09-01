@@ -27,12 +27,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <cstring>
-#include <iostream>
-#include <string>
-// #include <ostream>
-
+#include <string.h>
 // #include <credit.h>
 // #include <unistd.h>
 // #include <stdnoreturn.h>
@@ -41,7 +36,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Error code
 #define TRUE 0
-// #define FAIL -1
+#define FAIL -1
 #define ZERO -2
 #define EFUC -3  // неправильно введены значения в функциях
 
@@ -58,8 +53,6 @@
 #define SIZE 300
 #define SIZE_N 100
 
-using namespace std;
-
 /**
  * @brief           Структура стека для записи чисел и операторов
  *
@@ -75,7 +68,6 @@ typedef struct stack_tag {
   double number[STACK_MAX_SIZE];
   int pri[STACK_MAX_SIZE];  // prioritet
   char x[SIZE];
-  std::string g;
   size_t size;
   // double *x;
   // size_t top;
@@ -102,39 +94,28 @@ void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
 void printvalue_stack(char *value);
 void printstack(Stack_t *stack);
 
-int prev_next_ch(int flag, std::string str, int symbol, std::string value);
-// int prev_next_ch(int flag, char *str, int symbol, char *value);
-int number(std::string str, double *number);
-// int number(char *str, double *number);
+int prev_next_ch(int flag, char *str, int symbol, char *value);
+int number(char *str, double *number);
 
-int s21_calc(std::string str /*char *str*/, std::string str_g, double *result);
-// int s21_calc(/*std::string */ char *str, char *str_x, double *result);
-// int s21_calc_o(std::string str);
-
-// int parser(/*char *str*/, Stack_t *stack);
-int parser(std::string str, Stack_t *stack);
+int s21_calc(char *str, char *str_x, double *result);
+int parser(char *str, Stack_t *stack);
 int polish_notation(Stack_t *stack, Stack_t *polish);
 int matematika(Stack_t *polish, double *result);
 void matemat_res(Stack_t *number, double *res, int tmp);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Check functions
-int check_number(std::string str);
-// int check_number(char *str);
-int check_funcs(std::string str, int *count);
-// int check_funcs(char *str, int *count);
+int check_number(char *str);
+int check_funcs(char *str, int *count);
 int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Parsing
-int types(std::string str, int *lent, std::string value);
-// int types(char *str, int *lent, char *value);
+int types(char *str, int *lent, char *value);
 int pars_baskets(char *val, int tmp, int symbol);
 int unar_znak(char *val, int *tmp);
 
 // int parser_conditions(int *symbol, flags *fl);
 // int parser_check (flags *fl);
-// bool operator!=(const string &other){return (*this) != other;}/*const
-// noexcept*/; // {return compare(other) != 0;}
 
 #endif  // SRC_S21_calc_H

@@ -4,7 +4,7 @@ CCF=g++ #-g -fsanitize=address -lstdc++ -std=c++17 -Wextra -Wall -Werror
 CC=gcc #-g -fsanitize=address
 CFLAGS= #-g -fsanitize=address -Wextra -Wall -Werror
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
-CHECK_FLAGS= -lgtest -lgtest_main -lpthread
+CHECK_FLAGS=-lcheck -lm -lpthread
 ALL_FLAGS=$(CFLAGS) $(GCOV_FLAGS) $(CHECK_FLAGS)
 # OS=$(shell uname)
 BUILD=../build/
@@ -14,7 +14,7 @@ BUILD_QT=$(BUILD)s21_calculator/
 
 SRCS = s21_calc.cc 
 OBJS = $(SRCS:.c=.o) s21_calc.cc 
-OBJS2 = $(SRCS:.c=.o) mytest_calc.cc
+OBJS2 = $(SRCS:.c=.o) mytest_calc.c
 NAME = s21_calc
 NAME2 = test2
 REPORT_NAME = report
@@ -40,11 +40,10 @@ test: $(OBJS2)
 	$(CCF) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
 	 ./mytest_calc
 
-main: $(OBJS)	
-	make clean	
-	$(CCF) $(CHECK_FLAGS) $(OBJS_m) -o s21_calc_2.0
-	./s21_calc_2.0
-    CK_FORK=no leaks -exclude -s21_calc_2.0 --atExit -- ./s21_calc_2.0  | grep LEAK:	 
+main: $(OBJS)
+	$(CCF) $(CHECK_FLAGS) $(OBJS_m) -o list
+	./list
+    CK_FORK=no leaks -exclude -list --atExit -- ./list  | grep LEAK:	 
 
 install: 
 		rm -fr $(BUILD)

@@ -1,6 +1,14 @@
-#include "c_credit.h"
-#include "c_s21_calc.h"
+// #include "credit.h"
+#include "s21_calc.h"
 // #include "check_function.c"
+using namespace std;
+#include <string>
+#include <cstring>
+// #include <ostream>
+
+//g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
+
+
 // int *ptr = array;   // указатель ptr хранит адрес первого элемента массива
 // array
 //     ptr = ptr + 2;      // перемезаем указатель на 2 элемента вперед
@@ -19,23 +27,25 @@
 // Деление на 0;
 // ошибка в передования показателях в функции (ышт)
 
-void main() {
+int main() {
   int err = FAIL;
   // Stack_t stack;
   Stack_t stack = {0};  // Правильно нужно сделать массивом)
   stack.size = 0;
   // *stack.data = 0;
-  char *str = "2+1+x";  // -77.6904761904761905 Работает и так и char str [100]
-                        // = "4.2001";
-  char *str_ch = "I";
+  char str [SIZE] = "2+1";
+  // std::string str = "2+1+x";  // -77.6904761904761905 Работает и так и char str [100]
+                         // = "4.2001";
+  std::string str_ch = "I";                  
+  // char *str_ch = "I";
+  // std::string str_x = "-5"; 
   char str_x[SIZE] = "-5";
-  // double  str_x = 2.2;
-  // str_x = "2.2";
+
 
   char str_v[SIZE];
   str_ch = str_v;
-  char *val = "Yrr";
-  val = str_v;
+  // char *val = "Yrr";
+  // val = str_v;
   // str_ch [SIZE] = "4.2001";
 
   double *num;
@@ -53,10 +63,13 @@ void main() {
   count = &count_v;
   char tmp3;
   // *count = 1;
-
+  // double *stro;
   double stro[10] = {0};
-  double numb = 9;
-  stro[0] = numb;
+  double numb = 98;
+  // stro[0] = numb;
+  // int fun4 = s21_calc(str, str_x, stro);
+  s21_calc(str, str_x, stro);
+  // s21_calc_o(str);
 
   // char val_v[3] ="pop";
   // char *pval = &val_v[3];
@@ -177,12 +190,14 @@ str);
   // int fun = check_number(str);
   // int fun2 = number(str, num);
   // int fun3 = parser(str, &stack);
-  int fun4 = s21_calc(str, str_x, stro);
+  // int fun4 = s21_calc(str, str_x, stro);
   // // double test = pow(-3, 3);
   // printf("\nCheck_number - %d - {%s}  ----- %f\n", fun,  str, test);
   // printf("Number - %d  -- XXXX - %s\n", fun2, &stack.x);
   // printf("Парсер - %d  -- XXXX - %s\n", fun3, &stack.x);
-  printf("%s____ Calc - %d  -- XXXX - %s.... %f\n", str, fun4, &stack.x, *stro);
+  // printf("%s____ Calc - /*%d  -- XXXX - %s*/.... %f\n", str, /*&stack.x,*/ *stro);
 
+  // printf("%s____ Calc\n", str);
+  cout << "Дано: " << str << "  Result: " << *stro << endl;
   // printf("\natof - %f\n", atof(".2"));
 }

@@ -9,8 +9,7 @@
  *
  */
 
-#include "s21_calc.h"
-#include <algorithm>
+#include "c_s21_calc.h"
 
 /**
  * @brief           Определяет тип, приоритет операндов и операторов
@@ -22,9 +21,7 @@
  */
 
 // Returning the current value
-int types(std::string str, int *count, std::string valu) {
-  cout << "TYPES" << endl;
-  // int types(char *str, int *count, char *valu) {
+int types(char *str, int *count, char *valu) {
   int type = -1;
   int vr = *count;
   int len = 0;
@@ -76,11 +73,7 @@ int types(std::string str, int *count, std::string valu) {
   } else {
     type = -1;
   }
-  // strncpy(valu, &str[vr], len);
-  // std::copy(str[vr], +len, valu.begin());
-  valu = str.substr(vr, len);
-  cout<< "VALU 22" << valu <<endl;
-  // std::copy(source.begin(), source.end(), destination.begin());
+  strncpy(valu, &str[vr], len);
   valu[len] = '\0';
   vr += len;
   *count = vr - 1;
@@ -113,23 +106,12 @@ int intunar_znak(char *val, int *tmp) {
  * ошибки
  */
 
-int number(std::string str, double *number) {
-  // int number(char *str, double *number) {
-  int err = -1;
+int number(char *str, double *number) {
+  int err = FAIL;
   // printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
   if (check_number(str) == 0) {
-    double num; 
-    try {
-        num = std::stod(str); // Преобразование строки в double
-        // std::cout << "Число: " << number << std::endl;
-        err = TRUE;
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
-    } catch (const std::out_of_range& e) {
-        std::cerr << "Ошибка: Выход за пределы диапазона. " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "Неизвестная ошибка." << std::endl;
-    }
+    double num = atof(str);
+    err = TRUE;
     *number = num;
     // printf("!!!!!!!!!!!Number_func - %.8lf - %.8lf - {%s}\n", atof(str),
     //        *number, str);
@@ -145,8 +127,7 @@ int number(std::string str, double *number) {
  * ошибки
  */
 
-// int check_number(char *str) {
-  int check_number(std::string str) {
+int check_number(char *str) {
   // printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
   int err = TRUE;
   int count_p = 0;
@@ -156,25 +137,25 @@ int number(std::string str, double *number) {
     if (str[count] == 48) {
       if ((str[1] != 46 && str[1] != '\0' && str[0] == 48) ||
           (count_n == 0 && count > 1 && !count_p)) {
-        err = -1;
+        err = FAIL;
       }
       count_0++;
     } else if (str[count] == 45 && count == 0) {
       err = TRUE;
     } else if (str[count] == 48 && count_0 > 0 && count > 1 && count_p == 0) {
-      err = -1;
+      err = FAIL;
     } else if (str[count] > 48 && str[count] <= 57) {
       count_n++;
       err = TRUE;
     } else if (str[count] == 46) {
       count_p++;
       if (count_p > 1 || str[count + 1] == '\0') {
-        err = -1;
+        err = FAIL;
       }
     } else if (str[count] == 48 && count_0 > 0 && count_p == 1 && count > 1) {
       err = TRUE;
     } else {
-      err = -1;
+      err = FAIL;
     };
   }
   return err;
@@ -188,8 +169,7 @@ int number(std::string str, double *number) {
  * @return         - Вернет значение в зависимости от вида функции
  */
 
-int check_funcs(std::string str, int *count) {
-  // int check_funcs(char *str, int *count) {
+int check_funcs(char *str, int *count) {
   int res = -1;
   int vr = *count;
   if ((strncmp(&str[vr], "sin(", 4) == 0 || strncmp(&str[vr], "cos(", 4) == 0 ||
@@ -258,10 +238,9 @@ int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
  * ошибки
  */
 
-int prev_next_ch(int flag, std::string str, int symbol, std::string value) {
-  // int prev_next_ch(int flag, char *str, int symbol, char *value) {
+int prev_next_ch(int flag, char *str, int symbol, char *value) {
   int err = -1;
-  int len = str.length();
+  int len = strlen(str);
   if (flag == 1 && symbol < len) {
     symbol = symbol + 1;
     // printf("UUUU\n");
@@ -290,7 +269,7 @@ int prev_next_ch(int flag, std::string str, int symbol, std::string value) {
 
 void push(Stack_t *stack, char *value, int pri) {
   // printf("\n~~~~~FUNCTION PUSH~~~~~\n\n");
-  // int err = -1;
+  // int err = FAIL;
   int len = strlen(value);
   if (stack->size >= STACK_MAX_SIZE) {
     exit(STACK_OVERFLOW);
@@ -425,7 +404,7 @@ void matemat_res(Stack_t *numbers, double *res, int tmp) {
 // }
 
 // int parser_check (flags *fl) {
-//   int err = -1;
+//   int err = FAIL;
 //   int len = strlen(fl->str);
 //   if (*fl->val == ' ') {
 //         fl->symbol++;
@@ -481,7 +460,7 @@ void matemat_res(Stack_t *numbers, double *res, int tmp) {
 //         err = TRUE;
 //         if (*fl->data_after == ')' || *fl->data_after == '^' ||
 //         fl->symbol_after == 2) {
-//           err = -1;
+//           err = FAIL;
 //         }
 //       } else if (*fl->val == 'm') {
 //         int symbol_tmp = fl->symbol - 2;
@@ -497,7 +476,7 @@ void matemat_res(Stack_t *numbers, double *res, int tmp) {
 //       } else if (fl->tmp == 5) {
 //         err = TRUE;
 //       } else if (fl->tmp < 6 && fl->tmp > 0) {
-//         err = -1;  // было TRUE
+//         err = FAIL;  // было TRUE
 //       }
 //       return err;
 // }
