@@ -267,7 +267,7 @@ int prev_next_ch(int flag, char *str, int symbol, char *value) {
  * @param pri = Приоритет операнда и операторов
  */
 
-void push(Stack_t *stack, char *value, int pri) {
+void push(Stack_t *stack, std::string value, int pri) {
   // printf("\n~~~~~FUNCTION PUSH~~~~~\n\n");
   // int err = FAIL;
   int len = strlen(value);

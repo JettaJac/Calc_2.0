@@ -42,21 +42,20 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   int err = -1;
   *result = 999.0;
   cout << str_x << endl;
-    if (!str.empty() && !str_x.empty() && result != 0) {
+    if (!str.empty() && !str_x.empty() && result != 0) { // тут должно быть не не пустой, а выделна память
   // if (str != NULL && !str_x.empty() && result != 0) {
   //   // strcpy(stack->x, str_x);
     stack->g = str_x;
-    // // stack.push_back(str_x);
     err = parser(str, stack);
-    // printstack(stack);
-    // if (err == TRUE) {
-    //   err = polish_notation(stack, polish);
-    //   // printstack(polish);
-    //   if (err == TRUE) {
-    //     err = matematika(polish, result);
-    //   }
-    //   // printf("%f\n", *result);
-    // }
+    printstack(stack);
+    if (err == TRUE) {
+      err = polish_notation(stack, polish);
+      printstack(polish);
+      // if (err == TRUE) {
+      //   err = matematika(polish, result);
+      // }
+      // printf("%f\n", *result);
+    }
     // err = 10001; // временно
   } else {
     err = -1;
@@ -93,9 +92,10 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   for (int symbol = 0; symbol < len && err == TRUE; symbol++) {
     err = -1;
     
-    tmp = types(str, &symbol, val);
-    cout << "Test 1 _" << val <<endl;
+    tmp = types(str, &symbol, &val);
+    cout << "Test 1 _" << val << "hh" << endl;
     if (symbol != 0) {
+      // cout << "Test 1_0  _" << val <<endl;
       symbol_before = prev_next_ch(-1, str, symbol, data_before);     
     }
     symbol_after = prev_next_ch(1, str, symbol, data_after);
@@ -105,125 +105,134 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       val = stack->g;
       tmp = 9;
       err = TRUE;
+      // cout<< "Test 3 _" << val << "stack_g_ " << stack->g <<endl;
     }
-    cout<< "Test 2 _" << val <<endl;
-  //   if (tmp != -1 && brackets >= 0) {
-  //     // int res = parser_conditions(&fl);
-  //     if (*val == ' ') {
-  //       symbol++;
-  // // continue;
-  //     } else if (tmp == 9 && check_number(val) == 0) {
-  //       if (*data_after == ')' || symbol_after == 1 || symbol_after == 2 ||
-  //           *data_after == '^' || *data_after == 'm' || symbol == (len - 1)) {
-  //         err = TRUE;
-  //       }
-  //     } else if (symbol == len - 1) {
-  //       if (*val == ')' || (tmp == 9 && check_number(val) == 0) ||
-  //           *val == 'x') {
-  //         err = TRUE;
-  //         if (*val == ')') {
-  //           brackets--;
-  //         }
-  //       }
-  //     } else if (symbol == 0 &&
-  //                (*val == ')' || tmp == 2 || *val == 'm' || *val == '^')) {
-  //     } else if ((symbol == 0 && tmp == 1 &&
-  //                 (symbol_after == 4 || *data_after == '(' ||
-  //                  *data_after == 'x' || symbol_after == 9)) ||
-  //                (tmp == 1 && (*data_before == '(' || *data_before == '^') &&
-  //                 (symbol_after == 9 || symbol_after == 4 ||
-  //                  *data_after == '(' || *data_after == 'x'))) {
-  //       err = TRUE;
-  //       intunar_znak(val, &tmp);
-  //     } else if (tmp == 1 || (tmp == 2 && symbol != 0)) {
-  //       if (symbol_after != 1 && symbol_after != 2 && *data_after != ')') {
-  //         err = TRUE;
-  //       }
-  //     } else if (*val == ')') {
-  //       if (*data_after == '\0' || *data_after == '^' || *data_after == ')' ||
-  //           *data_after == 'm' || symbol_after == 1 || symbol_after == 2) {
-  //         brackets--;
-  //         err = TRUE;
-  //       }
-  //     } else if ((tmp == 4 && *val != 'm') || *val == '(') {
-  //       brackets++;
-  //       err = TRUE;
-  //       if (*data_after == ')' || *data_after == '^' || symbol_after == 2) {
-  //         err = -1;
-  //       }
-  //     } else if (*val == 'm') {
-  //       int symbol_tmp = symbol - 2;
-  //       symbol_before = prev_next_ch(-1, str, symbol_tmp, data_before);
-  //       if (symbol_before == 9 || *data_before == ')' || *data_before == 'x') {
-  //         symbol_after = prev_next_ch(1, str, symbol, data_after);
-  //         if (symbol_after == 9 || *data_after == '(' || *data_after == 'x') {
-  //           err = TRUE;
-  //         }
-  //       }
-  //     } else if (tmp == 5) {
-  //       err = TRUE;
-  //     } else if (tmp < 6 && tmp > 0) {
-  //       err = -1;
-  //     }
-  //     if (err == TRUE) {
-  //       push(stack, val, tmp);
-  //     }
-  //   } else
-  //     err = -1;
+    // cout<< "Test 2 _" << val << "stack_g_ " << stack->g <<endl;
+    if (tmp != -1 && brackets >= 0) {
+      // int res = parser_conditions(&fl);
+      if (val == " ") {
+        symbol++;
+  // continue; // возможно не надо
+      } else if (tmp == 9 && check_number(val) == 0) {
+        if (*data_after == ')' || symbol_after == 1 || symbol_after == 2 ||
+            *data_after == '^' || *data_after == 'm' || symbol == (len - 1)) {
+          err = TRUE;
+           cout<< "parser_N " << val <<endl;
+        }
+      } else if (symbol == len - 1) {
+        if (val == ")" || (tmp == 9 && check_number(val) == 0) ||
+            val == "x") {
+              cout<< "parser_X " << val <<endl;
+
+          err = TRUE;
+          if (val == ")") {
+            brackets--;
+          }
+        }
+      } else if (symbol == 0 &&
+                 (val == ")" || tmp == 2 || val == "m" || val == "^")) {
+      } else if ((symbol == 0 && tmp == 1 &&
+                  (symbol_after == 4 || *data_after == '(' ||
+                   *data_after == 'x' || symbol_after == 9)) ||
+                 (tmp == 1 && (*data_before == '(' || *data_before == '^') &&
+                  (symbol_after == 9 || symbol_after == 4 ||
+                   *data_after == '(' || *data_after == 'x'))) {
+        err = TRUE;
+        intunar_znak(val, &tmp);
+      } else if (tmp == 1 || (tmp == 2 && symbol != 0)) {
+        if (symbol_after != 1 && symbol_after != 2 && *data_after != ')') {
+          err = TRUE;
+        }
+      } else if (val == ")") {
+        if (*data_after == '\0' || *data_after == '^' || *data_after == ')' ||
+            *data_after == 'm' || symbol_after == 1 || symbol_after == 2) {
+          brackets--;
+          err = TRUE;
+        }
+      } else if ((tmp == 4 && val != "m") || val == "(") {
+        brackets++;
+        err = TRUE;
+        if (*data_after == ')' || *data_after == '^' || symbol_after == 2) {
+          err = -1;
+        }
+      } else if (val == "m") {
+        int symbol_tmp = symbol - 2;
+        symbol_before = prev_next_ch(-1, str, symbol_tmp, data_before);
+        if (symbol_before == 9 || *data_before == ')' || *data_before == 'x') {
+          symbol_after = prev_next_ch(1, str, symbol, data_after);
+          if (symbol_after == 9 || *data_after == '(' || *data_after == 'x') {
+            err = TRUE;
+          }
+        }
+      } else if (tmp == 5) {
+        err = TRUE;
+      } else if (tmp < 6 && tmp > 0) {
+        err = -1;
+      }
+      if (err == TRUE) {
+        push(stack, val, tmp);
+      }
+    } else
+      err = -1;
   }
-  // if (types(str, &symbol, val) == -1 || brackets != 0) err = -1;
+  if (types(str, &symbol, &val) == -1 || brackets != 0) err = -1;
   return err;
 }
 
-// // /**
-// //  * @brief          Создаем польскую анотацию из арифмитического выражения
-// //  *
-// //  * @param stack    - Стек из операторов и операндов в арифмитической
-// //  * последовательности
-// //  * @param polish   - Стек из операторов и операндов в польской натации
-// //  * @return         - Вернет 0, если число поданно корректно и 1, если есть
-// //  * ошибки
-// //  */
+// /**
+//  * @brief          Создаем польскую анотацию из арифмитического выражения
+//  *
+//  * @param stack    - Стек из операторов и операндов в арифмитической
+//  * последовательности
+//  * @param polish   - Стек из операторов и операндов в польской натации
+//  * @return         - Вернет 0, если число поданно корректно и 1, если есть
+//  * ошибки
+//  */
 
-// int polish_notation(Stack_t *stack, Stack_t *polish) {
-//   int err = TRUE;
-//   Stack_t znak = {0};
-//   int len = stack->size;
-//   char doub[SIZE];  // Временная переменная для стека знак
+int polish_notation(Stack_t *stack, Stack_t *polish) {
+  printf(" POLISH \n");
+  int err = TRUE;
+  Stack_t znak = {0};
+  int len = stack->size;
+  char doub[SIZE];  // Временная переменная для стека знак
 
-//   for (int count = 1; count <= len; count++) {
-//     if (stack->pri[count] == 9) {
-//       push(polish, stack->data[count], stack->pri[count]);
-//     } else if (*stack->data[count] == '(' || stack->pri[count] == 4) {
-//       push(&znak, stack->data[count], stack->pri[count]);
-//     } else if (*stack->data[count] == ')') {
-//       for (int len = znak.size;
-//            *znak.data[len] != '(' && znak.pri[len] != 4 && err == TRUE; len--) {
-//         strcpy(doub, znak.data[znak.size]);
-//         pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-//         if (len == 0) err = -1;
-//       }
-//       if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
-//         pop(&znak);
-//         strcpy(doub, znak.data[znak.size + 1]);
-//         if (znak.pri[znak.size + 1] == 4) {
-//           push(polish, doub, znak.pri[znak.size + 1]);
-//         }
-//       }
-//     } else if (stack->pri[count]) {
-//       polish_check(&znak, polish, stack, count);
-//     }
-//     if (count == len) {
-//       int len_znak = znak.size;
-//       for (; len_znak > 0; len_znak--) {
-//         strcpy(doub, znak.data[znak.size]);
-//         pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-//         err = TRUE;
-//       }
-//     }
-//   }
-//   return err;
-// }
+  for (int count = 1; count <= len; count++) {
+    if (stack->pri[count] == 9) {
+      // push(polish, stack->data[count], stack->pri[count]);
+      // printf(" ---- ");
+      push(polish, stack->datea[count-1], stack->pri[count-1]); // добавила -1
+    } else if (*stack->data[count] == '(' || stack->pri[count] == 4) {
+      // push(&znak, stack->data[count], stack->pri[count]);
+      // printf(" ************* ");
+      push(&znak, stack->datea[count], stack->pri[count]);
+    } else if (*stack->data[count] == ')') {
+      for (int len = znak.size;
+           *znak.data[len] != '(' && znak.pri[len] != 4 && err == TRUE; len--) {
+        strcpy(doub, znak.data[znak.size]);
+        pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+        if (len == 0) err = -1;
+      }
+      if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
+        pop(&znak);
+        strcpy(doub, znak.data[znak.size + 1]);
+        if (znak.pri[znak.size + 1] == 4) {
+          push(polish, doub, znak.pri[znak.size + 1]);
+        }
+      }
+    } else if (stack->pri[count]) {
+      polish_check(&znak, polish, stack, count);
+    }
+    if (count == len) {
+      int len_znak = znak.size;
+      for (; len_znak > 0; len_znak--) {
+        strcpy(doub, znak.data[znak.size]);
+        pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+        err = TRUE;
+      }
+    }
+  }
+  return err;
+}
 
 // // /**
 // //  * @brief          Создаем польскую анотацию из арифмитического выражения

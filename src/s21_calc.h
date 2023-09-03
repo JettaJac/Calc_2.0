@@ -31,6 +31,7 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include <vector>
 // #include <ostream>
 
 // #include <credit.h>
@@ -72,6 +73,7 @@ using namespace std;
 
 typedef struct stack_tag {
   char data[STACK_MAX_SIZE][SIZE];
+  std::vector<std::string> datea;
   double number[STACK_MAX_SIZE];
   int pri[STACK_MAX_SIZE];  // prioritet
   char x[SIZE];
@@ -95,7 +97,7 @@ typedef struct {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Stack functions
-void push(Stack_t *stack, char *value, int prioritet);
+void push(Stack_t *stack, std::string value, int prioritet);
 void push_num(Stack_t *stack, double *value, int prioritet);
 void pop(Stack_t *stack);
 void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
@@ -127,10 +129,10 @@ int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Parsing
-int types(std::string str, int *lent, std::string value);
+int types(std::string str, int *lent, std::string *value);
 // int types(char *str, int *lent, char *value);
 int pars_baskets(char *val, int tmp, int symbol);
-int unar_znak(char *val, int *tmp);
+int unar_znak(std::string val, int *tmp);
 
 // int parser_conditions(int *symbol, flags *fl);
 // int parser_check (flags *fl);

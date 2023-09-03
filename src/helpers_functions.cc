@@ -12,6 +12,7 @@
 #include "s21_calc.h"
 #include <algorithm>
 
+
 /**
  * @brief           Определяет тип, приоритет операндов и операторов
  *
@@ -22,7 +23,7 @@
  */
 
 // Returning the current value
-int types(std::string str, int *count, std::string valu) {
+int types(std::string str, int *count, std::string *valu) {
   cout << "TYPES" << endl;
   // int types(char *str, int *count, char *valu) {
   int type = -1;
@@ -78,10 +79,11 @@ int types(std::string str, int *count, std::string valu) {
   }
   // strncpy(valu, &str[vr], len);
   // std::copy(str[vr], +len, valu.begin());
-  valu = str.substr(vr, len);
-  cout<< "VALU 22" << valu <<endl;
+  *valu = str.substr(vr, len);
+  cout<< "VALU 22 = " << *valu <<endl;
   // std::copy(source.begin(), source.end(), destination.begin());
-  valu[len] = '\0';
+  // valu[len] = '\0';
+  
   vr += len;
   *count = vr - 1;
   return type;
@@ -94,11 +96,11 @@ int types(std::string str, int *count, std::string valu) {
  * @return        - Вернет 0
  */
 
-int intunar_znak(char *val, int *tmp) {
-  if (*val == '-') {
-    *val = 'u';
+int intunar_znak(std::string val, int *tmp) {
+  if (val == "-") {
+    val = "u";
   } else {
-    *val = 'p';
+    val = "p";
   }
   *tmp = 6;
   return 0;
@@ -121,7 +123,7 @@ int number(std::string str, double *number) {
     double num; 
     try {
         num = std::stod(str); // Преобразование строки в double
-        // std::cout << "Число: " << number << std::endl;
+        std::cout << "Число: " << num << " STR = " << str << endl;
         err = TRUE;
     } catch (const std::invalid_argument& e) {
         std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
@@ -177,6 +179,7 @@ int number(std::string str, double *number) {
       err = -1;
     };
   }
+  cout<< "check_N " << endl;
   return err;
 }
 
@@ -223,25 +226,25 @@ int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
   char doub[SIZE];
   int count = vr;
   if (znak->size == 0) {
-    push(znak, stack->data[count], stack->pri[count]);
-  } else if (stack->pri[count] == znak->pri[znak->size]) {
-    strcpy(doub, znak->data[znak->size]);
-    pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
-    push(znak, stack->data[count], stack->pri[count]);
-  } else if (stack->pri[count] <= znak->pri[znak->size]) {
-    if (znak->pri[znak->size] != 3 && znak->pri[znak->size] != 4) {
-      strcpy(doub, znak->data[znak->size]);
-      pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
-    }
-    if (znak->size > 0 && stack->pri[count] <= znak->pri[znak->size] &&
-        znak->pri[znak->size] < 3) {
-      int tmp = znak->pri[znak->size];
-      strcpy(doub, znak->data[znak->size]);
-      pop_push(znak, polish, doub, tmp);
-    }
-    push(znak, stack->data[count], stack->pri[count]);
-  } else if (stack->pri[count] >= znak->pri[znak->size]) {
-    push(znak, stack->data[count], stack->pri[count]);
+    // push(znak, stack->data[count], stack->pri[count]);
+  // } else if (stack->pri[count] == znak->pri[znak->size]) {
+  //   strcpy(doub, znak->data[znak->size]);
+  //   pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
+  //   push(znak, stack->data[count], stack->pri[count]);
+  // } else if (stack->pri[count] <= znak->pri[znak->size]) {
+  //   if (znak->pri[znak->size] != 3 && znak->pri[znak->size] != 4) {
+  //     strcpy(doub, znak->data[znak->size]);
+  //     pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
+  //   }
+  //   if (znak->size > 0 && stack->pri[count] <= znak->pri[znak->size] &&
+  //       znak->pri[znak->size] < 3) {
+  //     int tmp = znak->pri[znak->size];
+  //     strcpy(doub, znak->data[znak->size]);
+  //     pop_push(znak, polish, doub, tmp);
+  //   }
+  //   push(znak, stack->data[count], stack->pri[count]);
+  // } else if (stack->pri[count] >= znak->pri[znak->size]) {
+  //   push(znak, stack->data[count], stack->pri[count]);
   }
   return 0;
 }
@@ -265,14 +268,14 @@ int prev_next_ch(int flag, std::string str, int symbol, std::string value) {
   if (flag == 1 && symbol < len) {
     symbol = symbol + 1;
     // printf("UUUU\n");
-    err = types(str, &symbol, value);
+    err = types(str, &symbol, &value);
     // strncpy(value, val, 1);
     value[1] = '\0';
   }
 
   if (flag == -1 && symbol > 0) {
     symbol = symbol - 1;
-    err = types(str, &symbol, value);
+    err = types(str, &symbol, &value);
     value[1] = '\0';
   }
   // printf("До после символа_2:  {{%s}}: %c, count: %d, value: '%s'\n", str,
@@ -288,23 +291,28 @@ int prev_next_ch(int flag, std::string str, int symbol, std::string value) {
  * @param pri = Приоритет операнда и операторов
  */
 
-void push(Stack_t *stack, char *value, int pri) {
+void push(Stack_t *stack, std::string value, int pri) {
   // printf("\n~~~~~FUNCTION PUSH~~~~~\n\n");
   // int err = -1;
-  int len = strlen(value);
+  int len = value.length();
   if (stack->size >= STACK_MAX_SIZE) {
     exit(STACK_OVERFLOW);
     // printf("OOOPs\n");
   }
   stack->size++;
-  strcpy(stack->data[stack->size], value);
-  stack->data[stack->size][len] = '\0';
+  
+  // strcpy(stack->data[stack->size], value);
+  stack->datea.push_back(value);
+  // stack->data[stack->size][len] = '\0';
   // stack->number[stack->size]
   // pri = 97;
+  cout << "TERST " << value << endl;
+   
+  
   number(value, &stack->number[stack->size]);
   // if (err == TRUE){
   stack->pri[stack->size] = pri;
-  // printf("Value = %s\n", value);
+ 
   // printf("STACK->DATA[%d]: %s = %s, приоритет - %d = %d, число:  %f\n",
   //        stack->size, stack->data[stack->size], value,
   //        stack->pri[stack->size], pri,
@@ -508,36 +516,42 @@ void matemat_res(Stack_t *numbers, double *res, int tmp) {
 //  */
 
 // void printvalue_stack(char *value) { printf("%s", value); }
+void printvalue_stack(char *value) { cout << value << endl;}
+
 // //// Распечатываем стек
-// void printstack(Stack_t *stack) {
-//   int i;
-//   int len = stack->size;
-//   // printf("stack %d > ", stack->size);
-//   for (i = 1; i < len + 1; i++) {
-//     printvalue_stack(stack->data[i]);
-//     printf(" | ");
-//   }
-//   if (stack->size != 0) {
-//     printvalue_stack(stack->data[i]);
-//   }
-//   // printf("\n");
-// }
+void printstack(Stack_t *stack) {
+  int i;
+  int len = stack->size;
+  printf("stack %d > ", stack->size);
+  for (i = 0; i < len; i++) { // почему то только с -1
+    // printvalue_stack(stack->data[i]);
+    // stack->datea.pop_back();
+    cout << stack->datea[i];
+    printf(" | ");
+  }
+  // if (stack->size != 0) {
+  //   // printvalue_stack(stack->data[i]);
+  //   cout << stack->datea[i] << endl;
+  //   // stack->datea.pop_back();
+  // }
+  printf("\n");
+}
 
 // /**
 //  * @brief           Распечатываем значение в стеке
 //  * @param value     - Указатель на число (дабл)
 //  */
 
-// void printstack_num(Stack_t *stack) {
-//   int i;
-//   int len = stack->size;
-//   // printf("stack %d > ", stack->size);
-//   for (i = 1; i < len + 1; i++) {
-//     printf("%f", (stack->number[i]));
-//     printf(" | ");
-//   }
-//   if (stack->size != 0) {
-//     printf("%f", (stack->number[i]));
-//   }
-//   printf("\n");
-// }
+void printstack_num(Stack_t *stack) {
+  int i;
+  int len = stack->size;
+  // printf("stack %d > ", stack->size);
+  for (i = 1; i < len + 1; i++) {
+    printf("%f", (stack->number[i]));
+    printf(" | ");
+  }
+  if (stack->size != 0) {
+    printf("%f", (stack->number[i]));
+  }
+  printf("\n");
+}
