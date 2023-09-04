@@ -104,7 +104,7 @@ void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
 void printvalue_stack(char *value);
 void printstack(Stack_t *stack);
 
-int prev_next_ch(int flag, std::string str, int symbol, std::string value);
+int prev_next_ch(int flag, std::string str, int symbol, std::string *value);
 // int prev_next_ch(int flag, char *str, int symbol, char *value);
 int number(std::string str, double *number);
 // int number(char *str, double *number);
@@ -125,7 +125,8 @@ int check_number(std::string str);
 // int check_number(char *str);
 int check_funcs(std::string str, int *count);
 // int check_funcs(char *str, int *count);
-int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
+int check_parser(int type, int symbol, std::string value, std::string before_value);
+int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Parsing

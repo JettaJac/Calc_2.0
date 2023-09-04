@@ -3,7 +3,7 @@
  * @author    jettajac
  * @brief
  * @version   0.1
- * @date      2023-03-16
+ * @date      2023-03-16VALU 22
  *
  * @copyright Copyright (c) 2023
  *
@@ -24,7 +24,7 @@
 
 // Returning the current value
 int types(std::string str, int *count, std::string *valu) {
-  cout << "TYPES" << endl;
+  // cout << "TYPES" << endl;
   // int types(char *str, int *count, char *valu) {
   int type = -1;
   int vr = *count;
@@ -80,7 +80,7 @@ int types(std::string str, int *count, std::string *valu) {
   // strncpy(valu, &str[vr], len);
   // std::copy(str[vr], +len, valu.begin());
   *valu = str.substr(vr, len);
-  cout<< "VALU 22 = " << *valu <<endl;
+  // cout<< "VALU 22 = " << *valu <<endl;
   // std::copy(source.begin(), source.end(), destination.begin());
   // valu[len] = '\0';
   
@@ -149,7 +149,7 @@ int number(std::string str, double *number) {
 
 // int check_number(char *str) {
   int check_number(std::string str) {
-  // printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
+  printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
   int err = TRUE;
   int count_p = 0;
   int count_0 = 0;
@@ -222,7 +222,13 @@ int check_funcs(std::string str, int *count) {
  * @return         - Вернет 0
  */
 
-int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
+int check_parser(int type, int symbol, string value, string before_value) {
+int err = -1;
+
+  return err;
+}
+
+int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
   char doub[SIZE];
   int count = vr;
   if (znak->size == 0) {
@@ -261,23 +267,26 @@ int polish_check(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
  * ошибки
  */
 
-int prev_next_ch(int flag, std::string str, int symbol, std::string value) {
+int prev_next_ch(int flag, std::string str, int symbol, std::string *value) { // Переписать без флагов
   // int prev_next_ch(int flag, char *str, int symbol, char *value) {
   int err = -1;
   int len = str.length();
-  if (flag == 1 && symbol < len) {
-    symbol = symbol + 1;
-    // printf("UUUU\n");
-    err = types(str, &symbol, &value);
-    // strncpy(value, val, 1);
-    value[1] = '\0';
-  }
+  // if (flag == 1 && symbol < len) {
+    // symbol = symbol + 1;
+    
+    err = types(str, &symbol, value);
+    // *value = "9";
+   cout << "UUUU " << *value << endl;
+    // value[1] = '\0'; // скорее всего не надо, точнее можно по другому реализовать    
+    
+  // }
 
-  if (flag == -1 && symbol > 0) {
-    symbol = symbol - 1;
-    err = types(str, &symbol, &value);
-    value[1] = '\0';
-  }
+  // if (flag == -1 && symbol > 0) {
+  //   symbol = symbol - 1;
+  //   err = types(str, &symbol, value);
+  //   cout << "GGGG " << *value << endl;
+  //   // value[1] = '\0';
+  // }
   // printf("До после символа_2:  {{%s}}: %c, count: %d, value: '%s'\n", str,
   // err, symbol, value);
 
@@ -299,14 +308,14 @@ void push(Stack_t *stack, std::string value, int pri) {
     exit(STACK_OVERFLOW);
     // printf("OOOPs\n");
   }
-  stack->size++;
+  
   
   // strcpy(stack->data[stack->size], value);
   stack->datea.push_back(value);
   // stack->data[stack->size][len] = '\0';
   // stack->number[stack->size]
   // pri = 97;
-  cout << "TERST " << value << endl;
+  // cout << "TERST " << value << endl;
    
   
   number(value, &stack->number[stack->size]);
@@ -319,7 +328,7 @@ void push(Stack_t *stack, std::string value, int pri) {
   //        stack->number[stack->size]);
   // printf("|\n");
   // }
-
+  stack->size++;
   // return err;
 }
 
