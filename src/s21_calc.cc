@@ -98,16 +98,16 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     err = -1;
     
     tmp = types(str, &symbol, &val);
-    err_2 =  check_parser(tmp, symbol, val, data_befor2);
+    // err_2 =  check_parser(str, tmp, symbol, val);
     cout << "Parser_ " << err_2 << endl;
     // cout << "Types_ " << val << endl;
-    if (symbol != 0) {
-      cout << "Test_val " << val <<endl;
-      // symbol_before = prev_next_ch(-1, str, symbol, data_before);     
-      symbol_before = prev_next_ch(-1, str, symbol - 1, &data_befor2); 
-    }
+    // if (symbol != 0) {
+    //   cout << "Test_val " << val <<endl;
+    //   // symbol_before = prev_next_ch(-1, str, symbol, data_before);     
+    //   symbol_before = prev_next_ch(-1, str, symbol - 1, &data_befor2); 
+    // }
     // symbol_after = prev_next_ch(1, str, symbol, data_after);
-    symbol_after = prev_next_ch(1, str, symbol + 1, &data_afte2);
+    // symbol_after = prev_next_ch(1, str, symbol + 1, &data_afte2);
     // cout << "data_befor2_ " << data_befor2 << endl;
     // data_befor2 = "75";
     cout << "data_befor2_ " << data_befor2 << endl;
@@ -124,7 +124,9 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     }
     // cout<< "Test 2 _" << val << "stack_g_ " << stack->g <<endl;
     if (tmp != -1 && brackets >= 0) {
-      // int res = parser_conditions(&fl);
+      // err_2 =  check_parser(str, tmp, symbol, val);
+      // // !!! сюда б закинуть чек парсинг, а скобки в уже в него проверку кинуть, тип не передавать совсем
+      // int res = parser_conditions(&fl);//
       if (val == " ") { // не раюотает
         symbol++;
         cout<< "Out " << val <<endl;
@@ -195,6 +197,10 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       } else if (tmp < 6 && tmp > 0) {
         err = -1;
       }
+
+
+
+      
       if (err == TRUE) {
         push(stack, val, tmp);
       }

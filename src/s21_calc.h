@@ -125,7 +125,7 @@ int check_number(std::string str);
 // int check_number(char *str);
 int check_funcs(std::string str, int *count);
 // int check_funcs(char *str, int *count);
-int check_parser(int type, int symbol, std::string value, std::string before_value);
+int check_parser(string str, int type, int symbol, string value);
 int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

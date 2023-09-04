@@ -100,21 +100,21 @@ TEST(NumberTest, NumberErr) {
 }
 
 
-// TEST(Calc, parser_sin) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_sin) {
+  Stack_t stack_N[10] = {0};
 
-//   ck_assert_msg(parser("5+12s", stack_N) == -1, "FAILED parser_sin_1");
-//   ck_assert_msg(parser("sin(", stack_N) == -1, "FAILED parser_sin_2");
-//   ck_assert_msg(parser("sin()", stack_N) == -1, "FAILED parser_sin_3");
-//   ck_assert_msg(parser("sin(5/)", stack_N) == -1, "FAILED parser_sin_4");
-//   ck_assert_msg(parser("sin(4.5)+cos(5", stack_N) == -1, "FAILED parser_sin_5");
-//   ck_assert_msg(parser("/sin(5)", stack_N) == -1, "FAILED parser_sin_6");
-//   ck_assert_msg(parser("sin4", stack_N) == -1, "FAILED parser_sin_7");
-//   ck_assert_msg(parser("4sin(45)", stack_N) == -1, "FAILED parser_sin_8");
-//   ck_assert_msg(parser("1+sib(4)", stack_N) == -1, "FAILED parser_sin_9");
-//   ck_assert_msg(parser("1+sin(4)", stack_N) == 0, "FAILED parser_sin_10");
-//   ck_assert_msg(parser("-cos(4*2)+sin(4)", stack_N) == 0, "F parser_sin_10");
-// }
+  EXPECT_EQ(parser("5+12s", stack_N), -1);
+  EXPECT_EQ(parser("sin(", stack_N), -1);
+  // EXPECT_EQ(parser("sin()", stack_N), -1);
+  EXPECT_EQ(parser("sin(5/)", stack_N), -1);
+  EXPECT_EQ(parser("sin(4.5)+cos(5", stack_N), -1);
+  EXPECT_EQ(parser("/sin(5)", stack_N), -1);
+  EXPECT_EQ(parser("sin4", stack_N), -1);
+  EXPECT_EQ(parser("4sin(45)", stack_N), -1);
+  EXPECT_EQ(parser("1+sib(4)", stack_N), -1);
+  // EXPECT_EQ(parser("1+sin(4)", stack_N), 0);
+  EXPECT_EQ(parser("-cos(4*2)+sin(4)", stack_N), 0);
+}
 
 
 // TEST(Calc, parser_cos) {
