@@ -222,12 +222,12 @@ int check_funcs(std::string str, int *count) {
  * @return         - Вернет 0
  */
 
-int check_parser(string str, int type, int symbol, string value) {
+int check_parser(string str, int type, int symbol, string value, int *brackets) {
 int err = -1;
   int symbol_after = 0;
   int symbol_before = 0;
 
-  int brackets = 0;
+  // int brackets = 0;
   int len = str.length();
 
   std::string data_befor2 = {0};
@@ -259,7 +259,7 @@ int err = -1;
               cout<< "last_simlol_good " << value <<endl;
           err = TRUE;
           if (value == ")") {
-            brackets--;
+            *brackets -= 1;
           }
         }
       } else if (symbol == 0 &&
@@ -283,12 +283,12 @@ int err = -1;
         cout << "Brackets )" << endl; 
         if (data_afte2 == "\0" || data_afte2 == "^" || data_afte2 == ")" ||
             data_afte2 == "m" || symbol_after == 1 || symbol_after == 2) {
-          brackets--;
+          *brackets -= 1;
           err = TRUE;
           cout << "Brackets ) Good" << endl; 
         }
       } else if ((type == 4 && value != "m") || value == "(") {
-        brackets++;
+        *brackets += 1;
         cout << "Brackets (" << endl; 
         err = TRUE;
         if (data_afte2 == ")" || data_afte2 == "^" || symbol_after == 2) {
@@ -297,9 +297,9 @@ int err = -1;
       } else if (value == "m") {
         cout << "VAL m" << endl; 
         int symbol_tmp = symbol - 2;
-        // symbol_before = prev_next_ch(-1, str, symbol_tmp, data_before);     // надо
+        symbol_before = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);     // надо
         if (symbol_before == 9 || data_befor2 == ")" || data_befor2 == "x") {
-          // symbol_after = prev_next_ch(1, str, symbol, data_after); // надо
+          symbol_after = prev_next_ch(1, str, symbol + 1, &data_afte2); // надо
           if (symbol_after == 9 || data_afte2 == "(" || data_afte2 == "x") {
             err = TRUE;
           }
@@ -310,20 +310,11 @@ int err = -1;
       } else if (type < 6 && type > 0) {
         err = -1;
       }
+    } else { err = -1;}
 
-
-
-
-
-
-
-
-      }
-
-
-
-  symbol_before = type;
-  data_befor2 = value;
+  // symbol_before = type;
+  // data_befor2 = value;
+  cout << "___ bascets_ " << *brackets << " Code err_  "<< err << endl;
 
   return err;
 }

@@ -38,6 +38,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   // int s21_calc(/*std::string */char * str, char *str_x, double *result) {
   Stack_t stack[STACK_MAX_SIZE] = {0};
   Stack_t polish[STACK_MAX_SIZE] = {0};
+  std::list<Stack_t2> stac2;
   stack->size = 0;
   int err = -1;
   *result = 999.0;
@@ -75,7 +76,8 @@ int s21_calc(std::string str, std::string str_x, double *result) {
 // //  */
 
 // int parser(char *str, Stack_t *stack) {
-  int parser(std::string str, Stack_t *stack) {
+  int parser(std::string str, Stack_t2 stac2) {
+    // int parser(std::string str, Stack_t *stack) {
   // printf("JJJJ\n");
   // flags fl = {0};
   int err = TRUE;
@@ -98,8 +100,9 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     err = -1;
     
     tmp = types(str, &symbol, &val);
-    // err_2 =  check_parser(str, tmp, symbol, val);
-    cout << "Parser_ " << err_2 << endl;
+    // err =  check_parser(str, tmp, symbol, val);
+    // cout << "Parser_ " << err << endl;
+
     // cout << "Types_ " << val << endl;
     // if (symbol != 0) {
     //   cout << "Test_val " << val <<endl;
@@ -117,96 +120,103 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     if (val == "x") {
       // strcpy(val, stack->x);
       cout<< "Test _ X" << val <<endl;
-      val = stack->g;
+      // val = stack->g;
       tmp = 9;
       err = TRUE;
       // cout<< "Test 3 _" << val << "stack_g_ " << stack->g <<endl;
     }
     // cout<< "Test 2 _" << val << "stack_g_ " << stack->g <<endl;
     if (tmp != -1 && brackets >= 0) {
-      // err_2 =  check_parser(str, tmp, symbol, val);
+      err =  check_parser(str, tmp, symbol, val, &brackets);
+      Stack_t2 current;
+      current.dat2 = val;
+      current.type = tmp;
+
+      cout << "Parser_ " << err << endl;
       // // !!! сюда б закинуть чек парсинг, а скобки в уже в него проверку кинуть, тип не передавать совсем
       // int res = parser_conditions(&fl);//
-      if (val == " ") { // не раюотает
-        symbol++;
-        cout<< "Out " << val <<endl;
-  // continue; // возможно не надо
-      } else if (tmp == 9 && check_number(val) == 0) {
-        cout<< "parser_N " << val <<endl;
-        cout<< "parser_a " << symbol_after <<endl;
-        if (data_afte2 == ")" || symbol_after == 1 || symbol_after == 2 ||
-            data_afte2 == "^" || data_afte2 == "m" || symbol == (len - 1)) {
-          err = TRUE;
-           cout<< "parser_N_Good " << val <<endl;
-        }
-      } else if (symbol == len - 1) {
-         cout<< "last_simlol" << val <<endl;
-        if (val == ")" || (tmp == 9 && check_number(val) == 0) ||
-            val == "x") {
-              cout<< "last_simlol_good " << val <<endl;
-          err = TRUE;
-          if (val == ")") {
-            brackets--;
-          }
-        }
-      } else if (symbol == 0 &&
-                 (val == ")" || tmp == 2 || val == "m" || val == "^")) { 
-                  cout << "Nothing" << endl; // ничего нен проиходит
-      } else if ((symbol == 0 && tmp == 1 &&
-                  (symbol_after == 4 || *data_after == '(' ||
-                   *data_after == 'x' || symbol_after == 9)) ||
-                 (tmp == 1 && (*data_before == '(' || *data_before == '^') &&
-                  (symbol_after == 9 || symbol_after == 4 ||
-                   *data_after == '(' || *data_after == 'x'))) {
-        err = TRUE;
-        cout << "UnarZnak" << endl; 
-        intunar_znak(val, &tmp);
-      } else if (tmp == 1 || (tmp == 2 && symbol != 0)) {
-        if (symbol_after != 1 && symbol_after != 2 && *data_after != ')') {
-          err = TRUE;
-          cout << "Znak +/-/*" << endl; 
-        }
-      } else if (val == ")") {
-        cout << "Brackets )" << endl; 
-        if (*data_after == '\0' || *data_after == '^' || *data_after == ')' ||
-            *data_after == 'm' || symbol_after == 1 || symbol_after == 2) {
-          brackets--;
-          err = TRUE;
-          cout << "Brackets ) Good" << endl; 
-        }
-      } else if ((tmp == 4 && val != "m") || val == "(") {
-        brackets++;
-        cout << "Brackets (" << endl; 
-        err = TRUE;
-        if (*data_after == ')' || *data_after == '^' || symbol_after == 2) {
-          err = -1;
-        }
-      } else if (val == "m") {
-        cout << "VAL m" << endl; 
-        int symbol_tmp = symbol - 2;
-        // symbol_before = prev_next_ch(-1, str, symbol_tmp, data_before);     // надо
-        if (symbol_before == 9 || data_befor2 == ")" || data_befor2 == "x") {
-          // symbol_after = prev_next_ch(1, str, symbol, data_after); // надо
-          if (symbol_after == 9 || data_afte2 == "(" || data_afte2 == "x") {
-            err = TRUE;
-          }
-        }
-      } else if (tmp == 5) {
-        err = TRUE;
-        cout << "TMP = 5" << endl; 
-      } else if (tmp < 6 && tmp > 0) {
-        err = -1;
-      }
+  //     if (val == " ") { // не раюотает
+  //       symbol++;
+  //       cout<< "Out " << val <<endl;
+  // // continue; // возможно не надо
+  //     } else if (tmp == 9 && check_number(val) == 0) {
+  //       cout<< "parser_N " << val <<endl;
+  //       cout<< "parser_a " << symbol_after <<endl;
+  //       if (data_afte2 == ")" || symbol_after == 1 || symbol_after == 2 ||
+  //           data_afte2 == "^" || data_afte2 == "m" || symbol == (len - 1)) {
+  //         err = TRUE;
+  //          cout<< "parser_N_Good " << val <<endl;
+  //       }
+  //     } else if (symbol == len - 1) {
+  //        cout<< "last_simlol" << val <<endl;
+  //       if (val == ")" || (tmp == 9 && check_number(val) == 0) ||
+  //           val == "x") {
+  //             cout<< "last_simlol_good " << val <<endl;
+  //         err = TRUE;
+  //         if (val == ")") {
+  //           brackets--;
+  //         }
+  //       }
+  //     } else if (symbol == 0 &&
+  //                (val == ")" || tmp == 2 || val == "m" || val == "^")) { 
+  //                 cout << "Nothing" << endl; // ничего нен проиходит
+  //     } else if ((symbol == 0 && tmp == 1 &&
+  //                 (symbol_after == 4 || *data_after == '(' ||
+  //                  *data_after == 'x' || symbol_after == 9)) ||
+  //                (tmp == 1 && (*data_before == '(' || *data_before == '^') &&
+  //                 (symbol_after == 9 || symbol_after == 4 ||
+  //                  *data_after == '(' || *data_after == 'x'))) {
+  //       err = TRUE;
+  //       cout << "UnarZnak" << endl; 
+  //       intunar_znak(val, &tmp);
+  //     } else if (tmp == 1 || (tmp == 2 && symbol != 0)) {
+  //       if (symbol_after != 1 && symbol_after != 2 && *data_after != ')') {
+  //         err = TRUE;
+  //         cout << "Znak +/-/*" << endl; 
+  //       }
+  //     } else if (val == ")") {
+  //       cout << "Brackets )" << endl; 
+  //       if (*data_after == '\0' || *data_after == '^' || *data_after == ')' ||
+  //           *data_after == 'm' || symbol_after == 1 || symbol_after == 2) {
+  //         brackets--;
+  //         err = TRUE;
+  //         cout << "Brackets ) Good" << endl; 
+  //       }
+  //     } else if ((tmp == 4 && val != "m") || val == "(") {
+  //       brackets++;
+  //       cout << "Brackets (" << endl; 
+  //       err = TRUE;
+  //       if (*data_after == ')' || *data_after == '^' || symbol_after == 2) {
+  //         err = -1;
+  //       }
+  //     } else if (val == "m") {
+  //       cout << "VAL m" << endl; 
+  //       int symbol_tmp = symbol - 2;
+  //       // symbol_before = prev_next_ch(-1, str, symbol_tmp, data_before);     // надо
+  //       if (symbol_before == 9 || data_befor2 == ")" || data_befor2 == "x") {
+  //         // symbol_after = prev_next_ch(1, str, symbol, data_after); // надо
+  //         if (symbol_after == 9 || data_afte2 == "(" || data_afte2 == "x") {
+  //           err = TRUE;
+  //         }
+  //       }
+  //     } else if (tmp == 5) {
+  //       err = TRUE;
+  //       cout << "TMP = 5" << endl; 
+  //     } else if (tmp < 6 && tmp > 0) {
+  //       err = -1;
+  //     }
 
 
 
       
       if (err == TRUE) {
         push(stack, val, tmp);
+        stac2.push_back(current);
       }
     } else 
       err = -1;
-      cout << "___" << endl;
+      cout << "___ bascets " << brackets << endl;
+      
   }
   if (types(str, &symbol, &val) == -1 || brackets != 0) err = -1;
   return err;

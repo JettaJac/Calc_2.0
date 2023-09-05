@@ -105,241 +105,242 @@ TEST(Calc, parser_sin) {
 
   EXPECT_EQ(parser("5+12s", stack_N), -1);
   EXPECT_EQ(parser("sin(", stack_N), -1);
-  // EXPECT_EQ(parser("sin()", stack_N), -1);
+  EXPECT_EQ(parser("sin()", stack_N), -1);
   EXPECT_EQ(parser("sin(5/)", stack_N), -1);
   EXPECT_EQ(parser("sin(4.5)+cos(5", stack_N), -1);
+  EXPECT_EQ(parser("sin(4.5)+cos(5+4", stack_N), -1);
   EXPECT_EQ(parser("/sin(5)", stack_N), -1);
   EXPECT_EQ(parser("sin4", stack_N), -1);
   EXPECT_EQ(parser("4sin(45)", stack_N), -1);
   EXPECT_EQ(parser("1+sib(4)", stack_N), -1);
-  // EXPECT_EQ(parser("1+sin(4)", stack_N), 0);
+  EXPECT_EQ(parser("1+sin(4)", stack_N), 0);
   EXPECT_EQ(parser("-cos(4*2)+sin(4)", stack_N), 0);
 }
 
 
-// TEST(Calc, parser_cos) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_cos) {
+  Stack_t stack_N[10] = {0};
 
-//   char str1[] = "=cos";
-//   char str2[] = "cos(";
-//   char str3[] = "cos()";
-//   char str4[] = "cos(5/)";
-//   char str5[] = "cos(4.5)+cos(5";
-//   char str6[] = "*cos(5)";
-//   char str7[] = "cosn4";
-//   char str8[] = "4cos(45)";
-//   char str9[] = "1+ces(5)";
-//   char str10[] = "1+cos(4)";
+  char str1[] = "=cos";
+  char str2[] = "cos(";
+  char str3[] = "cos()";
+  char str4[] = "cos(5/)";
+  char str5[] = "cos(4.5)+cos(5";
+  char str6[] = "*cos(5)";
+  char str7[] = "cosn4";
+  char str8[] = "4cos(45)";
+  char str9[] = "1+ces(5)";
+  char str10[] = "1+cos(4)";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_1_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_1_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_1_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_1_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_1_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_1_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_1_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_1_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_1_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_1_10");
-// }
-
-
-// TEST(Calc, parser_tan) {
-//   Stack_t stack_N[10] = {0};
-
-//   char str1[] = "=tan";
-//   char str2[] = "tan(";
-//   char str3[] = "tan()";
-//   char str4[] = "tan(5/)";
-//   char str5[] = "tan(4.5)+tan(5";
-//   char str6[] = "*tan(5)";
-//   char str7[] = "tann4";
-//   char str8[] = "4tan(45)";
-//   char str9[] = "1+tas(8)";
-//   char str10[] = "1+tan(4)";
-
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_tan_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_tan_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_tan_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_tan_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_tan_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_tan_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_tan_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_tan_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_tan_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_tan_10");
-// }
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+}
 
 
-// TEST(Calc, parser_asin) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_tan) {
+  Stack_t stack_N[10] = {0};
 
-//   char str1[] = "5+12s";
-//   char str2[] = "asin(";
-//   char str3[] = "asin()";
-//   char str4[] = "asin(5/)";
-//   char str5[] = "asin(4.5)+cos(5";
-//   char str6[] = "*asin(5)";
-//   char str7[] = "asin4";
-//   char str8[] = "4asin(45)";
-//   char str9[] = "1+asik(4)";
-//   char str10[] = "1+asin(4)";
-//   char str11[] = "asin(0.2)";
-//   char str12[] = "asin(8)";
+  char str1[] = "=tan";
+  char str2[] = "tan(";
+  char str3[] = "tan()";
+  char str4[] = "tan(5/)";
+  char str5[] = "tan(4.5)+tan(5";
+  char str6[] = "*tan(5)";
+  char str7[] = "tann4";
+  char str8[] = "4tan(45)";
+  char str9[] = "1+tas(8)";
+  char str10[] = "1+tan(4)";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_asin_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_asin_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_asin_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_asin_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_asin_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_asin_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_asin_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_asin_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_asin_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_asin_10");
-//   ck_assert_msg(parser(str11, stack_N) == 0, "FAILED parser_asin_11");
-//   ck_assert_msg(parser(str12, stack_N) == 0, "FAILED parser_asin_12");
-// }
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+}
 
 
-// TEST(Calc, parser_acos) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_asin) {
+  Stack_t stack_N[10] = {0};
 
-//   char str1[] = "=acos";
-//   char str2[] = "acos(";
-//   char str3[] = "acos()";
-//   char str4[] = "acos(5/)";
-//   char str5[] = "acos(4.5)+acos(5";
-//   char str6[] = "/acos(5)";
-//   char str7[] = "acosn4";
-//   char str8[] = "4acos(45)";
-//   char str9[] = "1+aces(5)";
-//   char str10[] = "acos(8)";
-//   char str11[] = "acos(8)";
+  char str1[] = "5+12s";
+  char str2[] = "asin(";
+  char str3[] = "asin()";
+  char str4[] = "asin(5/)";
+  char str5[] = "asin(4.5)+cos(5";
+  char str6[] = "*asin(5)";
+  char str7[] = "asin4";
+  char str8[] = "4asin(45)";
+  char str9[] = "1+asik(4)";
+  char str10[] = "1+asin(4)";
+  char str11[] = "asin(0.2)";
+  char str12[] = "asin(8)";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_acos_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_acos_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_acos_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_acos_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_acos_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_acos_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_acos_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_acos_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_acos_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_acos_10");
-//   ck_assert_msg(parser(str11, stack_N) == 0, "FAILED parser_acos_11");
-// }
-
-
-// TEST(Calc, parser_atan) {
-//   Stack_t stack_N[10] = {0};
-
-//   char str1[] = "=atan";
-//   char str2[] = "atan(";
-//   char str3[] = "atan()";
-//   char str4[] = "atan(5/)";
-//   char str5[] = "atan(4.5)+atan(5";
-//   char str6[] = "+atan(5x)";
-//   char str7[] = "atann4";
-//   char str8[] = "4atan(45)";
-//   char str9[] = "1+atas(8)";
-//   char str10[] = "atan(8)";
-
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_atan_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_atan_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_atan_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_atan_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_atan_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_atan_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_atan_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_atan_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_atan_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_atan_10");
-// }
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+  EXPECT_EQ(parser(str11, stack_N), 0);
+  EXPECT_EQ(parser(str12, stack_N), 0);
+}
 
 
-// TEST(Calc, parser_sqrt) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_acos) {
+  Stack_t stack_N[10] = {0};
 
-//   char str1[] = "+sqrt";
-//   char str2[] = "sqrt(";
-//   char str3[] = "sqrt()";
-//   char str4[] = "sqrt(5/)";
-//   char str5[] = "sqrtn(4.5)";
-//   char str6[] = "*sqrt(5)";
-//   char str7[] = "sqrt4";
-//   char str8[] = "4sqrt(45)";
-//   char str9[] = "1+sqrt(8)";
-//   char str10[] = "1+(-sqrt(8))";
-//   char str11[] = "sqrt(-4)";
+  char str1[] = "=acos";
+  char str2[] = "acos(";
+  char str3[] = "acos()";
+  char str4[] = "acos(5/)";
+  char str5[] = "acos(4.5)+acos(5";
+  char str6[] = "/acos(5)";
+  char str7[] = "acosn4";
+  char str8[] = "4acos(45)";
+  char str9[] = "1+aces(5)";
+  char str10[] = "acos(8)";
+  char str11[] = "acos(8)";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_sqrt_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_sqrt_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_sqrt_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_sqrt_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_sqrt_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_sqrt_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_sqrt_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_sqrt_8");
-//   ck_assert_msg(parser(str9, stack_N) == 0, "FAILED parser_sqrt_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_sqrt_10");
-//   ck_assert_msg(parser(str11, stack_N) == 0, "FAILED parser_sqrt_10");
-// }
-
-
-// TEST(Calc, parser_log) {
-//   Stack_t stack_N[10] = {0};
-
-//   char str1[] = "+log";
-//   char str2[] = "log(";
-//   char str3[] = "log()";
-//   char str4[] = "log(5/)";
-//   char str5[] = "logn(4.5)";
-//   char str6[] = "/log(5)";
-//   char str7[] = "log4";
-//   char str8[] = "4log(45)";
-//   char str9[] = "1+logt(8)";
-//   char str10[] = "log(5)";
-//   char str11[] = "ln(34)+log(5)";
-
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_log_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_log_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_log_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_log_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_log_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_log_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_log_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_log_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_log_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_log_10");
-//   ck_assert_msg(parser(str11, stack_N) == 0, "FAILED parser_log_11");
-// }
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+  EXPECT_EQ(parser(str11, stack_N), 0);
+}
 
 
-// TEST(Calc, parser_ln) {
-//   Stack_t stack_N[10] = {0};
-//   char str1[] = "+ln";
-//   char str2[] = "ln(";
-//   char str3[] = "ln()";
-//   char str4[] = "ln(5/)";
-//   char str5[] = "lnn(4.5)";
-//   char str6[] = "+ln(5i)";
-//   char str7[] = "ln4";
-//   char str8[] = "4ln(45)";
-//   char str9[] = "1+lnt(8)";
-//   char str10[] = "ln(5)";
+TEST(Calc, parser_atan) {
+  Stack_t stack_N[10] = {0};
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_ln_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_ln_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_ln_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_ln_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_ln_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_ln_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_ln_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED parser_ln_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_ln_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_ln_10");
-// }
+  char str1[] = "=atan";
+  char str2[] = "atan(";
+  char str3[] = "atan()";
+  char str4[] = "atan(5/)";
+  char str5[] = "atan(4.5)+atan(5";
+  char str6[] = "+atan(5x)";
+  char str7[] = "atann4";
+  char str8[] = "4atan(45)";
+  char str9[] = "1+atas(8)";
+  char str10[] = "atan(8)";
+
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+}
+
+
+TEST(Calc, parser_sqrt) {
+  Stack_t stack_N[10] = {0};
+
+  char str1[] = "+sqrt";
+  char str2[] = "sqrt(";
+  char str3[] = "sqrt()";
+  char str4[] = "sqrt(5/)";
+  char str5[] = "sqrtn(4.5)";
+  char str6[] = "*sqrt(5)";
+  char str7[] = "sqrt4";
+  char str8[] = "4sqrt(45)";
+  char str9[] = "1+sqrt(8)";
+  char str10[] = "1+(-sqrt(8))";
+  char str11[] = "sqrt(-4)";
+
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), 0);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+  EXPECT_EQ(parser(str11, stack_N), 0);
+}
+
+
+TEST(Calc, parser_log) {
+  Stack_t stack_N[10] = {0};
+
+  char str1[] = "+log";
+  char str2[] = "log(";
+  char str3[] = "log()";
+  char str4[] = "log(5/)";
+  char str5[] = "logn(4.5)";
+  char str6[] = "/log(5)";
+  char str7[] = "log4";
+  char str8[] = "4log(45)";
+  char str9[] = "1+logt(8)";
+  char str10[] = "log(5)";
+  char str11[] = "ln(34)+log(5)";
+
+  EXPECT_EQ(parser(str1, stack_N),  -1);
+  EXPECT_EQ(parser(str2, stack_N),  -1);
+  EXPECT_EQ(parser(str3, stack_N),  -1);
+  EXPECT_EQ(parser(str4, stack_N),  -1);
+  EXPECT_EQ(parser(str5, stack_N),  -1);
+  EXPECT_EQ(parser(str6, stack_N),  -1);
+  EXPECT_EQ(parser(str7, stack_N),  -1);
+  EXPECT_EQ(parser(str8, stack_N),  -1);
+  EXPECT_EQ(parser(str9, stack_N),  -1);
+  EXPECT_EQ(parser(str10, stack_N),  0);
+  EXPECT_EQ(parser(str11, stack_N),  0);
+}
+
+
+TEST(Calc, parser_ln) {
+  Stack_t stack_N[10] = {0};
+  char str1[] = "+ln";
+  char str2[] = "ln(";
+  char str3[] = "ln()";
+  char str4[] = "ln(5/)";
+  char str5[] = "lnn(4.5)";
+  char str6[] = "+ln(5i)";
+  char str7[] = "ln4";
+  char str8[] = "4ln(45)";
+  char str9[] = "1+lnt(8)";
+  char str10[] = "ln(5)";
+
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), 0);
+}
 
 
 // TEST(Calc, parser_mod) {
@@ -358,55 +359,55 @@ TEST(Calc, parser_sin) {
 //   char str11[] = "(3+4)mod(3+1)";
 //   char str12[] = "7mod3";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED parser_mod_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED parser_mod_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED parser_mod_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED parser_mod_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED parser_mod_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED parser_mod_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED parser_mod_7");
-//   ck_assert_msg(parser(str8, stack_N) == 0, "FAILED parser_mod_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED parser_mod_9");
-//   ck_assert_msg(parser(str10, stack_N) == 0, "FAILED parser_mod_10");
-//   ck_assert_msg(parser(str11, stack_N) == 0, "FAILED parser_mod_11");
-//   ck_assert_msg(parser(str12, stack_N) == 0, "FAILED parser_mod_12");
+//   EXPECT_EQ(parser(str1, stack_N),  -1);
+//   EXPECT_EQ(parser(str2, stack_N),  -1);
+//   EXPECT_EQ(parser(str3, stack_N),  -1);
+//   EXPECT_EQ(parser(str4, stack_N),  -1);
+//   EXPECT_EQ(parser(str5, stack_N),  -1);
+//   EXPECT_EQ(parser(str6, stack_N),  -1);
+//   EXPECT_EQ(parser(str7, stack_N),  -1);
+//   EXPECT_EQ(parser(str8, stack_N),  0);
+//   EXPECT_EQ(parser(str9, stack_N),  -1);
+//   EXPECT_EQ(parser(str10, stack_N),  0);
+//   EXPECT_EQ(parser(str11, stack_N),  0);
+//   EXPECT_EQ(parser(str12, stack_N),  0);
 // }
 
 
-// TEST(Calc, parser_x) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_x) {
+  Stack_t stack_N[10] = {0};
 
-//   ck_assert_msg(parser("+x^", stack_N) == -1, "FAILED parser_x_1");
-//   ck_assert_msg(parser("x(", stack_N) == -1, "FAILED parser_x_2");
-//   ck_assert_msg(parser("mx*5", stack_N) == -1, "FAILED parser_x_3");
-//   ck_assert_msg(parser("5x()", stack_N) == -1, "FAILED parser_x_4");
-//   ck_assert_msg(parser("sinx", stack_N) == -1, "FAILED parser_x_5");
-//   ck_assert_msg(parser("x+", stack_N) == -1, "FAILED parser_x_6");
-//   ck_assert_msg(parser("5+x", stack_N) == 0, "FAILED parser_x_7");
-//   ck_assert_msg(parser("5*x", stack_N) == 0, "FAILED parser_x_8");
-//   ck_assert_msg(parser("5x", stack_N) == -1, "FAILED parser_x_9");
-//   ck_assert_msg(parser("5(-x)", stack_N) == -1, "FAILED parser_x_10");
-//   ck_assert_msg(parser("5*(-x)", stack_N) == 0, "FAILED parser_x_11");
-// }
+  EXPECT_EQ(parser("+x^", stack_N),  -1);
+  EXPECT_EQ(parser("x(", stack_N),  -1);
+  EXPECT_EQ(parser("mx*5", stack_N),  -1);
+  EXPECT_EQ(parser("5x()", stack_N),  -1);
+  EXPECT_EQ(parser("sinx", stack_N),  -1);
+  EXPECT_EQ(parser("x+", stack_N),  -1);
+  EXPECT_EQ(parser("5+x", stack_N),  0);
+  EXPECT_EQ(parser("5*x", stack_N),  0);
+  EXPECT_EQ(parser("5x", stack_N),  -1);
+  EXPECT_EQ(parser("5(-x)", stack_N),  -1);
+  EXPECT_EQ(parser("5*(-x)", stack_N),  0);
+}
 
 
-// TEST(Calc, parser_pow) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, parser_pow) {
+  Stack_t stack_N[10] = {0};
 
-//   ck_assert_msg(parser("x^)", stack_N) == -1, "FAILED parser_pow_1");
-//   ck_assert_msg(parser("5^", stack_N) == -1, "FAILED parser_pow_2");
-//   ck_assert_msg(parser("^", stack_N) == -1, "FAILED parser_pow_3");
-//   ck_assert_msg(parser("^5", stack_N) == -1, "FAILED parser_pow_4");
-//   ck_assert_msg(parser("sin(^5)", stack_N) == -1, "FAILED parser_pow_5");
-//   ck_assert_msg(parser("^+", stack_N) == -1, "FAILED parser_pow_6");
-//   ck_assert_msg(parser("5^2", stack_N) == 0, "FAILED parser_pow_7");
-//   ck_assert_msg(parser("5^(2+1)", stack_N) == 0, "FAILED parser_pow_8");
-//   ck_assert_msg(parser("2^2^2^2", stack_N) == 0, "FAILED parser_pow_9");
-//   ck_assert_msg(parser("5^+4", stack_N) == 0, "FAILED parser_pow_10");
-//   ck_assert_msg(parser("5^-4", stack_N) == 0, "FAILED parser_pow_11");
-//   ck_assert_msg(parser("5^(-4+cos(5))", stack_N) == 0, "FAILED parser_pow_12");
-//   ck_assert_msg(parser("2^(-1+1*3)", stack_N) == 0, "FAILED parser_pow_13");
-// }
+  EXPECT_EQ(parser("x^)", stack_N),  -1);
+  EXPECT_EQ(parser("5^", stack_N),  -1);
+  EXPECT_EQ(parser("^", stack_N),  -1);
+  EXPECT_EQ(parser("^5", stack_N),  -1);
+  EXPECT_EQ(parser("sin(^5)", stack_N),  -1);
+  EXPECT_EQ(parser("^+", stack_N),  -1);
+  EXPECT_EQ(parser("5^2", stack_N),  0);
+  EXPECT_EQ(parser("5^(2+1)", stack_N),  0);
+  EXPECT_EQ(parser("2^2^2^2", stack_N),  0);
+  EXPECT_EQ(parser("5^+4", stack_N),  0);
+  EXPECT_EQ(parser("5^-4", stack_N),  0);
+  EXPECT_EQ(parser("5^(-4+cos(5))", stack_N),  0);
+  EXPECT_EQ(parser("2^(-1+1*3)", stack_N),  0);
+}
 
 
 // TEST(Calc, znak_1) {
@@ -414,14 +415,14 @@ TEST(Calc, parser_sin) {
 //   char x[10] = "2";
 
 //   s21_calc("-(5+6)", x, num);
-//   ck_assert_msg(*num == -11, "FAILED znak_1");
+//   EXPECT_EQ(*num,  -11);
 // }
 
 
 // TEST(Calc, parser_space) {
 //   Stack_t stack_N[10] = {0};
 
-//   ck_assert_msg(parser("(cos(6 4)", stack_N) == -1, "FAILED parser_space_1");
+//   ck_assert_msg(parser("(cos(6 4)", stack_N) == -1, "FAILED parser_space_1);
 //   ck_assert_msg(parser("(cos(6) + sin( 5 )", stack_N) == -1,
 //                 "FAILED parser_space_1");
 //   ck_assert_msg(parser("sin( 5 )", stack_N) == -1, "FAILED parser_space_1");
@@ -431,58 +432,58 @@ TEST(Calc, parser_sin) {
 // }
 
 
-// TEST(Calc, znak_err) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, znak_err) {
+  Stack_t stack_N[10] = {0};
 
-//   char str1[] = "5+*6";
-//   char str2[] = "55+";
-//   char str3[] = "+-6";
-//   char str4[] = "+";
-//   char str5[] = "-";
-//   char str6[] = "*";
-//   char str7[] = "/";
-//   char str8[] = "-/8";
-//   char str9[] = "(sin(1*2*38+))";
-//   char str10[] = "/5";
-//   char str11[] = "+(*5)";
-//   char str12[] = "(5+-5)";
+  char str1[] = "5+*6";
+  char str2[] = "55+";
+  char str3[] = "+-6";
+  char str4[] = "+";
+  char str5[] = "-";
+  char str6[] = "*";
+  char str7[] = "/";
+  char str8[] = "-/8";
+  char str9[] = "(sin(1*2*38+))";
+  char str10[] = "/5";
+  char str11[] = "+(*5)";
+  char str12[] = "(5+-5)";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED znak_err_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED znak_err_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED znak_err_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED znak_err_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED znak_err_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED znak_err_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED znak_err_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED znak_err_8");
-//   ck_assert_msg(parser(str9, stack_N) == -1, "FAILED znak_err_9");
-//   ck_assert_msg(parser(str10, stack_N) == -1, "FAILED znak_err_10");
-//   ck_assert_msg(parser(str11, stack_N) == -1, "FAILED znak_err_11");
-//   ck_assert_msg(parser(str12, stack_N) == -1, "FAILED znak_err_12");
-// }
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str9, stack_N), -1);
+  EXPECT_EQ(parser(str10, stack_N), -1);
+  EXPECT_EQ(parser(str11, stack_N), -1);
+  EXPECT_EQ(parser(str12, stack_N), -1);
+}
 
 
-// TEST(Calc, brackets_err) {
-//   Stack_t stack_N[10] = {0};
+TEST(Calc, brackets_err) {
+  Stack_t stack_N[10] = {0};
 
-//   char str1[] = "sin(2*(2*2)";
-//   char str2[] = "()sin(1*2*3(8)";
-//   char str3[] = "((sin(1*2*3(8))";
-//   char str4[] = "(sin(1*2*38+))";
-//   char str5[] = "(/5)";
-//   char str6[] = "(*5)";
-//   char str7[] = "(5*)";
-//   char str8[] = "1+)*5-4(";
+  char str1[] = "sin(2*(2*2)";
+  char str2[] = "()sin(1*2*3(8)";
+  char str3[] = "((sin(1*2*3(8))";
+  char str4[] = "(sin(1*2*38+))";
+  char str5[] = "(/5)";
+  char str6[] = "(*5)";
+  char str7[] = "(5*)";
+  char str8[] = "1+)*5-4(";
 
-//   ck_assert_msg(parser(str1, stack_N) == -1, "FAILED brackets_err_1");
-//   ck_assert_msg(parser(str2, stack_N) == -1, "FAILED brackets_err_2");
-//   ck_assert_msg(parser(str3, stack_N) == -1, "FAILED brackets_err_3");
-//   ck_assert_msg(parser(str4, stack_N) == -1, "FAILED brackets_err_4");
-//   ck_assert_msg(parser(str5, stack_N) == -1, "FAILED brackets_err_5");
-//   ck_assert_msg(parser(str6, stack_N) == -1, "FAILED brackets_err_6");
-//   ck_assert_msg(parser(str7, stack_N) == -1, "FAILED brackets_err_7");
-//   ck_assert_msg(parser(str8, stack_N) == -1, "FAILED brackets_err_8");
-// }
+  EXPECT_EQ(parser(str1, stack_N), -1);
+  EXPECT_EQ(parser(str2, stack_N), -1);
+  EXPECT_EQ(parser(str3, stack_N), -1);
+  EXPECT_EQ(parser(str4, stack_N), -1);
+  EXPECT_EQ(parser(str5, stack_N), -1);
+  EXPECT_EQ(parser(str6, stack_N), -1);
+  EXPECT_EQ(parser(str7, stack_N), -1);
+  EXPECT_EQ(parser(str8, stack_N), -1);
+}
 
 
 // TEST(Calc, previous_next_ch) {
