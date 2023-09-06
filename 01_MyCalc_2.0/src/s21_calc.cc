@@ -166,44 +166,45 @@ int parser(char *str, Stack_t *stack) {
 //  * ошибки
 //  */
 
-int polish_notation(Stack_t *stack, Stack_t *polish) {
-  int err = TRUE;
-  Stack_t znak = {0};
-  int len = stack->size;
-  char doub[SIZE];  // Временная переменная для стека знак
+int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2) {
+  int polish_notation(Stack_t *stack, Stack_t *polish) {
+  // int err = TRUE;
+  // Stack_t znak = {0};
+  // int len = stack->size;
+  // char doub[SIZE];  // Временная переменная для стека знак
 
-  for (int count = 1; count <= len; count++) {
-    if (stack->pri[count] == 9) {
-      push(polish, stack->data[count], stack->pri[count]);
-    } else if (*stack->data[count] == '(' || stack->pri[count] == 4) {
-      push(&znak, stack->data[count], stack->pri[count]);
-    } else if (*stack->data[count] == ')') {
-      for (int len = znak.size;
-           *znak.data[len] != '(' && znak.pri[len] != 4 && err == TRUE; len--) {
-        strcpy(doub, znak.data[znak.size]);
-        pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-        if (len == 0) err = FAIL;
-      }
-      if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
-        pop(&znak);
-        strcpy(doub, znak.data[znak.size + 1]);
-        if (znak.pri[znak.size + 1] == 4) {
-          push(polish, doub, znak.pri[znak.size + 1]);
-        }
-      }
-    } else if (stack->pri[count]) {
-      polish_check(&znak, polish, stack, count);
-    }
-    if (count == len) {
-      int len_znak = znak.size;
-      for (; len_znak > 0; len_znak--) {
-        strcpy(doub, znak.data[znak.size]);
-        pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-        err = TRUE;
-      }
-    }
-  }
-  return err;
+  // for (int count = 1; count <= len; count++) {
+  //   if (stack->pri[count] == 9) {
+  //     push(polish, stack->data[count], stack->pri[count]);
+  //   } else if (*stack->data[count] == '(' || stack->pri[count] == 4) {
+  //     push(&znak, stack->data[count], stack->pri[count]);
+  //   } else if (*stack->data[count] == ')') {
+  //     for (int len = znak.size;
+  //          *znak.data[len] != '(' && znak.pri[len] != 4 && err == TRUE; len--) {
+  //       strcpy(doub, znak.data[znak.size]);
+  //       pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+  //       if (len == 0) err = FAIL;
+  //     }
+  //     if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
+  //       pop(&znak);
+  //       strcpy(doub, znak.data[znak.size + 1]);
+  //       if (znak.pri[znak.size + 1] == 4) {
+  //         push(polish, doub, znak.pri[znak.size + 1]);
+  //       }
+  //     }
+  //   } else if (stack->pri[count]) {
+  //     polish_check(&znak, polish, stack, count);
+  //   }
+  //   if (count == len) {
+  //     int len_znak = znak.size;
+  //     for (; len_znak > 0; len_znak--) {
+  //       strcpy(doub, znak.data[znak.size]);
+  //       pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+  //       err = TRUE;
+  //     }
+  //   }
+  // }
+  // return err;
 }
 
 // /**

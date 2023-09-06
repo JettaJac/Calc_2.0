@@ -4,7 +4,8 @@
 using namespace std;
 #include <string>
 #include <cstring>
-// #include <ostream>
+#include <ostream>
+#include <iostream>
 
 //g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
 
@@ -34,7 +35,7 @@ int main() {
   stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "sin(4.5)+cos(5)+(5";  // -77.6904761904761905 Работает и так и char str [100]
+  std::string str = "6+5+2";  // -77.6904761904761905 Работает и так и char str [100]
                          // = "4.2001";
   std::string str_ch = "I";                  
   // char *str_ch = "I";

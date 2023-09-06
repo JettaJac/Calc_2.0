@@ -11,6 +11,7 @@
 
 #include "s21_calc.h"
 #include <algorithm>
+// #include <string>
 
 
 /**
@@ -224,8 +225,8 @@ int check_funcs(std::string str, int *count) {
 
 int check_parser(string str, int type, int symbol, string value, int *brackets) {
 int err = -1;
-  int symbol_after = 0;
-  int symbol_before = 0;
+  int symbol_afte2 = 0;
+  int symbol_befor2 = 0;
 
   // int brackets = 0;
   int len = str.length();
@@ -233,10 +234,17 @@ int err = -1;
   std::string data_befor2 = {0};
   std::string data_afte2 = {0};
   if (symbol >= 0 && symbol + 1 < len ) {
-    symbol_after = prev_next_ch(1, str, symbol + 1, &data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
+    symbol_afte2 = prev_next_ch(1, str, symbol + 1, &data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
+    
     cout << "data_befor2_ " << data_befor2 << endl;
     cout << "data_after_ " << data_afte2 << endl;
   }
+  symbol_befor2 = prev_next_ch(1, str, symbol + 1, &data_afte2);
+   // std::list<Stack_t2>::iterator it;
+      // it = stac2.begin(); // Начинаем с начала списка
+      // std::advance(it, symbol - 1);
+      // symbol_befor2 = it->type;
+      // data_befor2 = it->dat2;
 
   if (type != -1 && brackets >= 0) { //type нужен,  проверка на тайп сделать перед запуском чек парсер, тут оставить только скобки
       if (value == " ") { // не раюотает
@@ -246,7 +254,7 @@ int err = -1;
       } else if (type == 9 && check_number(value) == 0) {
         // cout<< "parser_N " << value <<endl;
         // cout<< "parser_a " << symbol_after <<endl;
-        if (data_afte2 == ")" || symbol_after == 1 || symbol_after == 2 ||
+        if (data_afte2 == ")" || symbol_afte2 == 1 || symbol_afte2 == 2 ||
             data_afte2 == "^" || data_afte2 == "m" || symbol == (len - 1)) {
           err = TRUE;
            cout<< "parser_N_Good " << value <<endl;
@@ -266,23 +274,23 @@ int err = -1;
                  (value == ")" || type == 2 || value == "m" || value == "^")) { 
                   cout << "Nothing" << endl; // ничего нен проиходит
       } else if ((symbol == 0 && type == 1 &&
-                  (symbol_after == 4 || data_afte2 == "(" ||
-                   data_afte2 == "x" || symbol_after == 9)) ||
+                  (symbol_afte2 == 4 || data_afte2 == "(" ||
+                   data_afte2 == "x" || symbol_afte2 == 9)) ||
                  (type == 1 && (data_befor2 == ("(") || data_befor2 == "^") &&
-                  (symbol_after == 9 || symbol_after == 4 ||
+                  (symbol_afte2 == 9 || symbol_afte2 == 4 ||
                    data_afte2 == "(" || data_afte2 == "x"))) {
         err = TRUE;
         cout << "UnarZnak" << endl; 
         intunar_znak(value, &type);
       } else if (type == 1 || (type== 2 && symbol != 0)) {
-        if (symbol_after != 1 && symbol_after != 2 && data_afte2 != ")") {
+        if (symbol_afte2 != 1 && symbol_afte2 != 2 && data_afte2 != ")") {
           err = TRUE;
           cout << "Znak +/-/*" << endl; 
         }
       } else if (value == ")") {
         cout << "Brackets )" << endl; 
         if (data_afte2 == "\0" || data_afte2 == "^" || data_afte2 == ")" ||
-            data_afte2 == "m" || symbol_after == 1 || symbol_after == 2) {
+            data_afte2 == "m" || symbol_afte2 == 1 || symbol_afte2 == 2) {
           *brackets -= 1;
           err = TRUE;
           cout << "Brackets ) Good" << endl; 
@@ -291,16 +299,16 @@ int err = -1;
         *brackets += 1;
         cout << "Brackets (" << endl; 
         err = TRUE;
-        if (data_afte2 == ")" || data_afte2 == "^" || symbol_after == 2) {
+        if (data_afte2 == ")" || data_afte2 == "^" || symbol_afte2 == 2) {
           err = -1;
         }
       } else if (value == "m") {
         cout << "VAL m" << endl; 
         int symbol_tmp = symbol - 2;
-        symbol_before = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);     // надо
-        if (symbol_before == 9 || data_befor2 == ")" || data_befor2 == "x") {
-          symbol_after = prev_next_ch(1, str, symbol + 1, &data_afte2); // надо
-          if (symbol_after == 9 || data_afte2 == "(" || data_afte2 == "x") {
+        symbol_befor2 = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);     // надо
+        if (symbol_befor2 == 9 || data_befor2 == ")" || data_befor2 == "x") {
+          symbol_afte2= prev_next_ch(1, str, symbol + 1, &data_afte2); // надо
+          if (symbol_afte2 == 9 || data_afte2 == "(" || data_afte2 == "x") {
             err = TRUE;
           }
         }
@@ -635,6 +643,15 @@ void printstack(Stack_t *stack) {
   //   // stack->datea.pop_back();
   // }
   printf("\n");
+}
+
+void printstack(std::list<Stack_t2> &stac2) {
+
+  cout << "stack_ > " << stac2.size() << endl;
+  for (const Stack_t2& item : stac2) {
+        std::cout << item.dat2 << " | ";
+  }
+  cout << endl;
 }
 
 // /**

@@ -39,6 +39,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   Stack_t stack[STACK_MAX_SIZE] = {0};
   Stack_t polish[STACK_MAX_SIZE] = {0};
   std::list<Stack_t2> stac2;
+  std::list<Stack_t2> polis2;
   stack->size = 0;
   int err = -1;
   *result = 999.0;
@@ -46,23 +47,26 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     if (!str.empty() && !str_x.empty() && result != 0) { // тут должно быть не не пустой, а выделна память
   // if (str != NULL && !str_x.empty() && result != 0) {
   //   // strcpy(stack->x, str_x);
-    stack->g = str_x;
-    err = parser(str, stack);
-    printstack(stack);
-    cout << "___________ " << err << endl;
-  //   if (err == TRUE) {
-  //     err = polish_notation(stack, polish);
-  //     printstack(polish);
-  //     cout << "___________ " << err << endl;
-  //     if (err == TRUE) {
-  //       err = matematika(polish, result);
-  //     }
-  //     printf("%f\n", *result);
-  //   }
-  //   // err = 10001; // временно
-  // } else {
-  //   err = -1;
-  }
+      stack->g = str_x;
+      err = parser(str, stac2);
+      // printstack(stack);
+      printstack(stac2);
+      cout << "___________ " << err << endl;
+      cout << endl;
+      if (err == TRUE) {
+        err = polish_notation(stac2, polis2);
+        printstack(polis2);
+        // cout << "___________ " << err << endl;
+        // cout << endl;
+        // if (err == TRUE) {
+        //   err = matematika(polish, result);
+        // }
+        // printf("%f\n", *result);
+      }
+      // err = 10001; // временно
+    } else {
+        err = -1; 
+    }
   return err;
 }
 
@@ -76,7 +80,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
 // //  */
 
 // int parser(char *str, Stack_t *stack) {
-  int parser(std::string str, Stack_t2 stac2) {
+  int parser(std::string str, std::list<Stack_t2> &stac2) {
     // int parser(std::string str, Stack_t *stack) {
   // printf("JJJJ\n");
   // flags fl = {0};
@@ -131,6 +135,11 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       Stack_t2 current;
       current.dat2 = val;
       current.type = tmp;
+      std::list<Stack_t2>::iterator it;
+      // it = stac2.begin(); // Начинаем с начала списка
+      // std::advance(it, symbol - 1);
+      // symbol_befor2 = it->type;
+      // data_befor2 = it->dat2;
 
       cout << "Parser_ " << err << endl;
       // // !!! сюда б закинуть чек парсинг, а скобки в уже в него проверку кинуть, тип не передавать совсем
@@ -210,8 +219,8 @@ int s21_calc(std::string str, std::string str_x, double *result) {
 
       
       if (err == TRUE) {
-        push(stack, val, tmp);
-        stac2.push_back(current);
+        // push(stack, val, tmp);
+         stac2.push_back(current);
       }
     } else 
       err = -1;
@@ -221,6 +230,8 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   if (types(str, &symbol, &val) == -1 || brackets != 0) err = -1;
   return err;
 }
+
+// int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polish) { return 0; }
 
 // /**
 //  * @brief          Создаем польскую анотацию из арифмитического выражения
@@ -233,50 +244,54 @@ int s21_calc(std::string str, std::string str_x, double *result) {
 //  */
 
 // int polish_notation(Stack_t *stack, Stack_t *polish) {
-//   printf(" POLISH \n");
-//   int err = TRUE;
-//   Stack_t znak = {0};
-//   int len = stack->size;
-//   char doub[SIZE];  // Временная переменная для стека знак
+  int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2) {
+  printf(" POLISH \n");
+  int err = TRUE;
+  std::list<Stack_t2> znak;
+  // int len = stac2.size();
+  char doub[SIZE];  // Временная переменная для стека знак
+  std::list<Stack_t2>::iterator it;
+  for (it = stac2.begin(); it != stac2.end(); /*count*/it++) { // возможно end - 1
+    // Stack_t2 current;
+    if (*it->pri == 9) {
+      // push(polish, stack->data[count], stack->pri[count]);
+      // printf(" ---- ");
+      // push(polish, stack->datea[count], stack->pri[count]); // добавила -1
+        polis2.push_back(*it);
 
-//   for (int count = 0; count < len; count++) {
-//     if (stack->pri[count] == 9) {
-//       // push(polish, stack->data[count], stack->pri[count]);
-//       // printf(" ---- ");
-//       push(polish, stack->datea[count], stack->pri[count]); // добавила -1
-//     } else if (stack->datea[count] == "(" || stack->pri[count] == 4) {
-//       // push(&znak, stack->data[count], stack->pri[count]);
-//       // printf(" ************* ");
-//       push(&znak, stack->datea[count], stack->pri[count]);
-//     } else if (stack->datea[count] == ")") {
-//       for (int len = znak.size;
-//            znak.datea[len] != "(" && znak.pri[len] != 4 && err == TRUE; len--) {
-//         // strcpy(doub, znak.data[znak.size]);
-//         doub = znak.datea[znak.size];
-//         pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-//         if (len == 0) err = -1;
-//       }
-//       if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
-//         pop(&znak);
-//         strcpy(doub, znak.data[znak.size + 1]);
-//         if (znak.pri[znak.size + 1] == 4) {
-//           push(polish, doub, znak.pri[znak.size + 1]);
-//         }
-//       }
-//     } else if (stack->pri[count]) {
-//       check_polish(&znak, polish, stack, count);
-//     }
-//     if (count == len) {
-//       int len_znak = znak.size;
-//       for (; len_znak > 0; len_znak--) {
-//         strcpy(doub, znak.data[znak.size]);
-//         pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-//         err = TRUE;
-//       }
-//     }
-//   }
-//   return err;
-// }
+    // } else if (stack->datea[count] == "(" || stack->pri[count] == 4) {
+    //   // push(&znak, stack->data[count], stack->pri[count]);
+    //   // printf(" ************* ");
+    //   push(&znak, stack->datea[count], stack->pri[count]);
+    // } else if (stack->datea[count] == ")") {
+    //   for (int len = znak.size;
+    //        znak.datea[len] != "(" && znak.pri[len] != 4 && err == TRUE; len--) {
+    //     // strcpy(doub, znak.data[znak.size]);
+    //     doub = znak.datea[znak.size];
+    //     pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+    //     if (len == 0) err = -1;
+    //   }
+    //   if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
+    //     pop(&znak);
+    //     strcpy(doub, znak.data[znak.size + 1]);
+    //     if (znak.pri[znak.size + 1] == 4) {
+    //       push(polish, doub, znak.pri[znak.size + 1]);
+    //     }
+    //   }
+    // } else if (stack->pri[count]) {
+    //   check_polish(&znak, polish, stack, count);
+    // }
+    // if (count == len) {
+    //   int len_znak = znak.size;
+    //   for (; len_znak > 0; len_znak--) {
+    //     strcpy(doub, znak.data[znak.size]);
+    //     pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+    //     err = TRUE;
+    //   }
+    }
+  }
+  return err;
+}
 
 // /**
 //  * @brief          Создаем польскую анотацию из арифмитического выражения
