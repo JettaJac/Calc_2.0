@@ -78,7 +78,7 @@ typedef struct stack_tag {
   char data[STACK_MAX_SIZE][SIZE];
   std::vector<std::string> datea; // не надо вектор, так как будет реализовано через лист структур
   std::string curr = {0};
-  int type = 0;
+  int type = 0; 
   double number[STACK_MAX_SIZE];
   int pri[STACK_MAX_SIZE];  // prioritet
   char x[SIZE];
@@ -121,6 +121,7 @@ void push(Stack_t *stack, std::string value, int prioritet);
 void push_num(Stack_t *stack, double *value, int prioritet);
 void pop(Stack_t *stack);
 void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
+void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator it);
 void printvalue_stack(char *value);
 void printstack(Stack_t *stack);
 void printstack(std::list<Stack_t2> &stac2);
@@ -148,8 +149,8 @@ int check_number(std::string str);
 int check_funcs(std::string str, int *count);
 // int check_funcs(char *str, int *count);
 int check_parser(string str, int type, int symbol, string value, int *brackets);
-int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
-
+// int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
+int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stack, int vr);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Parsing
 int types(std::string str, int *lent, std::string *value);

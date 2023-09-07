@@ -251,26 +251,30 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   // int len = stac2.size();
   char doub[SIZE];  // Временная переменная для стека знак
   std::list<Stack_t2>::iterator it;
+  int count = 0;
   for (it = stac2.begin(); it != stac2.end(); /*count*/it++) { // возможно end - 1
     // Stack_t2 current;
-    if (*it->pri == 9) {
+    // cout << "pri _  " << *it->pri  << endl;
+    if (it->type == 9) {
+      // if (*it->pri == 9) {
       // push(polish, stack->data[count], stack->pri[count]);
-      // printf(" ---- ");
+      // printf("number ---- ");
       // push(polish, stack->datea[count], stack->pri[count]); // добавила -1
         polis2.push_back(*it);
 
-    // } else if (stack->datea[count] == "(" || stack->pri[count] == 4) {
+    } else if (it->dat2 == "(" || it->type == 4) {
     //   // push(&znak, stack->data[count], stack->pri[count]);
     //   // printf(" ************* ");
-    //   push(&znak, stack->datea[count], stack->pri[count]);
-    // } else if (stack->datea[count] == ")") {
-    //   for (int len = znak.size;
+      // push(&znak, stack->datea[count], stack->pri[count]);
+      znak.push_back(*it);
+    } else if (it->dat2 == ")") {
+      // for (int len = znak.size();
     //        znak.datea[len] != "(" && znak.pri[len] != 4 && err == TRUE; len--) {
     //     // strcpy(doub, znak.data[znak.size]);
     //     doub = znak.datea[znak.size];
     //     pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
     //     if (len == 0) err = -1;
-    //   }
+      // }
     //   if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
     //     pop(&znak);
     //     strcpy(doub, znak.data[znak.size + 1]);
@@ -278,17 +282,24 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     //       push(polish, doub, znak.pri[znak.size + 1]);
     //     }
     //   }
-    // } else if (stack->pri[count]) {
-    //   check_polish(&znak, polish, stack, count);
-    // }
-    // if (count == len) {
-    //   int len_znak = znak.size;
-    //   for (; len_znak > 0; len_znak--) {
-    //     strcpy(doub, znak.data[znak.size]);
-    //     pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-    //     err = TRUE;
-    //   }
+    } else if (it->type) {
+      check_polish(znak, polis2, stac2, count);
     }
+    if (it == --stac2.end()) {
+      cout << "UUUU " << endl;
+      int len_znak = znak.size();
+      std::list<Stack_t2>::iterator it_z = --znak.end();
+      // for (; it_z != --znak.end(); it_z--) {
+        for ( ; len_znak > 0; len_znak--) {
+        cout << "eee " << endl;
+        // strcpy(doub, znak.data[znak.size]);
+        // std::string  doub = it_z->dat2; // yt yflj 
+        pop_push(znak, polis2, doub, it_z->type, it_z);
+        err = TRUE;
+        it_z--;
+      }
+    }
+    count++;
   }
   return err;
 }

@@ -327,16 +327,30 @@ int err = -1;
   return err;
 }
 
-int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
-  char doub[SIZE];
+int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stac2, int vr) {
+  // int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
+  // char doub[SIZE];
+  cout << "Check_polish" << endl;
+  std::string doub = {0};
   int count = vr;
-  if (znak->size == 0) {
+  std::list<Stack_t2>::iterator it = stac2.begin(); // Начинаем с начала списка
+      std::advance(it, vr);
+  std::list<Stack_t2>::iterator it_z = --znak.end();
+cout << it->type << " == " << it_z->type << endl;
+  if (znak.size() == 0) {
     // push(znak, stack->data[count], stack->pri[count]);
-  // } else if (stack->pri[count] == znak->pri[znak->size]) {
-  //   strcpy(doub, znak->data[znak->size]);
-  //   pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
-  //   push(znak, stack->data[count], stack->pri[count]);
-  // } else if (stack->pri[count] <= znak->pri[znak->size]) {
+    znak.push_back(*it); // 
+    cout << "znak_ = 0" << endl;
+  } else if (it->type == it_z->type) {
+    cout << "znak_ = znak_str_" << endl;
+    // strcpy(doub, znak->data[znak->size]);
+    doub = it_z->dat2;
+    // pop_push(znak, polish, doub, znak->pri[znak->size + 1]); // надо
+    pop_push(znak, polish, doub, it_z->type, it_z);
+
+    // push(znak, stack->data[count], stack->pri[count]);
+    znak.push_back(*it);
+  } else if (it->type <= it_z->type) {
   //   if (znak->pri[znak->size] != 3 && znak->pri[znak->size] != 4) {
   //     strcpy(doub, znak->data[znak->size]);
   //     pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
@@ -351,6 +365,7 @@ int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
   // } else if (stack->pri[count] >= znak->pri[znak->size]) {
   //   push(znak, stack->data[count], stack->pri[count]);
   }
+  printstack(znak);
   return 0;
 }
 
@@ -487,6 +502,14 @@ void pop(Stack_t *stack) {
 void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp) {
   pop(stack);
   push(stack2, val, tmp);
+}
+
+void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator it) {
+  // pop(stack); // надо
+  // push(stack2, val, tmp);
+  cout << "pop_push" << endl;
+  stac2.pop_back();
+  stac2_2.push_back(*it);
 }
 
 /**
