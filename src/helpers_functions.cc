@@ -97,13 +97,13 @@ int types(std::string str, int *count, std::string *valu) {
  * @return        - Вернет 0
  */
 
-int intunar_znak(std::string val, int *tmp) {
+int intunar_znak(std::string &val, int &tmp) {
   if (val == "-") {
     val = "u";
   } else {
     val = "p";
   }
-  *tmp = 6;
+  tmp = 6;
   return 0;
 }
 
@@ -119,7 +119,7 @@ int intunar_znak(std::string val, int *tmp) {
 int number(std::string str, double *number) {
   // int number(char *str, double *number) {
   int err = -1;
-  // printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
+  printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
   if (check_number(str) == 0) {
     double num; 
     try {
@@ -134,6 +134,7 @@ int number(std::string str, double *number) {
         std::cerr << "Неизвестная ошибка." << std::endl;
     }
     *number = num;
+    cout << *number << " and " << num << endl;
     // printf("!!!!!!!!!!!Number_func - %.8lf - %.8lf - {%s}\n", atof(str),
     //        *number, str);
   }
@@ -223,7 +224,7 @@ int check_funcs(std::string str, int *count) {
  * @return         - Вернет 0
  */
 
-int check_parser(string str, int type, int symbol, string value, int *brackets) {
+int check_parser(string str, int type, int symbol, string &value, int *brackets) {
 int err = -1;
   int symbol_afte2 = 0;
   int symbol_befor2 = 0;
@@ -236,8 +237,8 @@ int err = -1;
   if (symbol >= 0 && symbol + 1 < len ) {
     symbol_afte2 = prev_next_ch(1, str, symbol + 1, &data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
     
-    cout << "data_befor2_ " << data_befor2 << endl;
-    cout << "data_after_ " << data_afte2 << endl;
+    // cout << "data_befor2_ " << data_befor2 << endl;
+    // cout << "data_after_ " << data_afte2 << endl;
   }
   symbol_befor2 = prev_next_ch(1, str, symbol + 1, &data_afte2);
    // std::list<Stack_t2>::iterator it;
@@ -249,7 +250,7 @@ int err = -1;
   if (type != -1 && brackets >= 0) { //type нужен,  проверка на тайп сделать перед запуском чек парсер, тут оставить только скобки
       if (value == " ") { // не раюотает
         symbol++;
-        cout<< "Out " << value <<endl;
+        // cout<< "Out " << value <<endl;
     // continue; // возможно не надо
       } else if (type == 9 && check_number(value) == 0) {
         // cout<< "parser_N " << value <<endl;
@@ -257,11 +258,11 @@ int err = -1;
         if (data_afte2 == ")" || symbol_afte2 == 1 || symbol_afte2 == 2 ||
             data_afte2 == "^" || data_afte2 == "m" || symbol == (len - 1)) {
           err = TRUE;
-           cout<< "parser_N_Good " << value <<endl;
+          //  cout<< "parser_N_Good " << value <<endl;
         }  
 
        } else if (symbol == len - 1) {
-         cout<< "last_simlol" << value <<endl;
+        //  cout<< "last_simlol" << value <<endl;
         if (value == ")" || (type == 9 && check_number(value) == 0) ||
             value == "x") {
               cout<< "last_simlol_good " << value <<endl;
@@ -280,8 +281,9 @@ int err = -1;
                   (symbol_afte2 == 9 || symbol_afte2 == 4 ||
                    data_afte2 == "(" || data_afte2 == "x"))) {
         err = TRUE;
-        cout << "UnarZnak" << endl; 
-        intunar_znak(value, &type);
+        
+        intunar_znak(value, type);
+         cout << "UnarZnak_ " << value << endl; 
       } else if (type == 1 || (type== 2 && symbol != 0)) {
         if (symbol_afte2 != 1 && symbol_afte2 != 2 && data_afte2 != ")") {
           err = TRUE;
@@ -314,7 +316,7 @@ int err = -1;
         }
       } else if (type == 5) {
         err = TRUE;
-        cout << "TMP = 5" << endl; 
+        // cout << "TMP = 5" << endl; 
       } else if (type < 6 && type > 0) {
         err = -1;
       }
@@ -322,7 +324,7 @@ int err = -1;
 
   // symbol_before = type;
   // data_befor2 = value;
-  cout << "___ bascets_ " << *brackets << " Code err_  "<< err << endl;
+  // cout << "___ bascets_ " << *brackets << " Code err_  "<< err << endl;
 
   return err;
 }
@@ -330,13 +332,14 @@ int err = -1;
 int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stac2, int vr) {
   // int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
   // char doub[SIZE];
+  cout  << endl;
   cout << "Check_polish" << endl;
   std::string doub = {0};
   int count = vr;
   std::list<Stack_t2>::iterator it = stac2.begin(); // Начинаем с начала списка
       std::advance(it, vr);
   std::list<Stack_t2>::iterator it_z = --znak.end();
-cout << it->type << " == " << it_z->type << endl;
+  cout << it->type << " == " << it_z->type << endl;
   if (znak.size() == 0) {
     // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it); // 
@@ -351,19 +354,40 @@ cout << it->type << " == " << it_z->type << endl;
     // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it);
   } else if (it->type <= it_z->type) {
-  //   if (znak->pri[znak->size] != 3 && znak->pri[znak->size] != 4) {
-  //     strcpy(doub, znak->data[znak->size]);
-  //     pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
-  //   }
-  //   if (znak->size > 0 && stack->pri[count] <= znak->pri[znak->size] &&
-  //       znak->pri[znak->size] < 3) {
-  //     int tmp = znak->pri[znak->size];
-  //     strcpy(doub, znak->data[znak->size]);
-  //     pop_push(znak, polish, doub, tmp);
-  //   }
+    if (it_z->type != 3 && it_z->type != 4) {
+      printstack(znak);
+      // strcpy(doub, znak->data[znak->size]);
+      doub = it_z->dat2;
+      pop_push(znak, polish, doub, it_z->type, it_z);
+      cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
+      cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl;
+      // pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
+    
+    }
+    if (znak.size() > 0 && it->type <= it_z->type &&
+      it_z->type < 3) {
+          printstack(znak);
+      it_z = --znak.end();
+      cout << "2 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
+      int tmp = it_z->type;
+      // strcpy(doub, znak->data[znak->size]);
+      doub = it_z->dat2;
+      // pop_push(znak, polish, doub, tmp);
+        
+      // cout << "TEST___ " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl;
+      // for (const auto &element : znak) {
+      //   cout << element.dat2 << " x ";
+      // }
+      // cout << znak.size() << endl;
+      pop_push(znak, polish, doub, it_z->type, it_z); // хз в чем разниц а с предыдущим
+    }
   //   push(znak, stack->data[count], stack->pri[count]);
-  // } else if (stack->pri[count] >= znak->pri[znak->size]) {
-  //   push(znak, stack->data[count], stack->pri[count]);
+    znak.push_back(*it);
+  } else if (it->type >= it_z->type) {
+    // } else if (stack->pri[count] >= znak->pri[znak->size]) {
+    // push(znak, stack->data[count], stack->pri[count]);
+    znak.push_back(*it);
+    cout << ">>>>>>>>>>>>>>>>>_" << it_z->dat2 << endl;
   }
   printstack(znak);
   return 0;
@@ -390,7 +414,7 @@ int prev_next_ch(int flag, std::string str, int symbol, std::string *value) { //
     
     err = types(str, &symbol, value);
     // *value = "9";
-   cout << "UUUU " << *value << endl;
+  //  cout << "UUUU " << *value << endl;
     // value[1] = '\0'; // скорее всего не надо, точнее можно по другому реализовать    
     
   // }
@@ -507,7 +531,8 @@ void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp) {
 void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator it) {
   // pop(stack); // надо
   // push(stack2, val, tmp);
-  cout << "pop_push" << endl;
+  std::list<Stack_t2>::iterator it2 = --stac2.end(); // времено для принта
+  // cout << "pop_push____ :   " << "Забрали_ " << it2->dat2 << " Отправили_ "<< it->dat2 << endl;
   stac2.pop_back();
   stac2_2.push_back(*it);
 }

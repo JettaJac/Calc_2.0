@@ -17,6 +17,7 @@
 using namespace std;
 // #include <string>
 // #include <cstring>
+#include <stack>
 
 
 /**
@@ -56,11 +57,12 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       if (err == TRUE) {
         err = polish_notation(stac2, polis2);
         printstack(polis2);
-        // cout << "___________ " << err << endl;
-        // cout << endl;
-        // if (err == TRUE) {
-        //   err = matematika(polish, result);
-        // }
+        cout << "___________ " << err << endl;
+        cout << endl;
+        if (err == TRUE) {
+          err = matematika(polis2, result);
+          // err = matematika(polish, result);
+        }
         // printf("%f\n", *result);
       }
       // err = 10001; // временно
@@ -117,13 +119,13 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     // symbol_after = prev_next_ch(1, str, symbol + 1, &data_afte2);
     // cout << "data_befor2_ " << data_befor2 << endl;
     // data_befor2 = "75";
-    cout << "data_befor2_ " << data_befor2 << endl;
-    cout << "data_after_ " << data_afte2 << endl;
+    // cout << "data_befor2_ " << data_befor2 << endl;
+    // cout << "data_after_ " << data_afte2 << endl;
 
 
     if (val == "x") {
       // strcpy(val, stack->x);
-      cout<< "Test _ X" << val <<endl;
+      // cout<< "Test _ X" << val <<endl;
       // val = stack->g;
       tmp = 9;
       err = TRUE;
@@ -131,11 +133,11 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     }
     // cout<< "Test 2 _" << val << "stack_g_ " << stack->g <<endl;
     if (tmp != -1 && brackets >= 0) {
-      err =  check_parser(str, tmp, symbol, val, &brackets);
+      err =  check_parser(str, tmp, symbol, val, &brackets); // bascet ссылкой
       Stack_t2 current;
       current.dat2 = val;
       current.type = tmp;
-      std::list<Stack_t2>::iterator it;
+      // std::list<Stack_t2>::iterator it;
       // it = stac2.begin(); // Начинаем с начала списка
       // std::advance(it, symbol - 1);
       // symbol_befor2 = it->type;
@@ -220,14 +222,16 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       
       if (err == TRUE) {
         // push(stack, val, tmp);
+         number(val, &current.numbe2);
          stac2.push_back(current);
+         cout << val <<  "  !!!!!!!!!!___ current.numbe2 " << current.numbe2 << endl;
       }
     } else 
       err = -1;
-      cout << "___ bascets " << brackets << endl;
+      // cout << "___ bascets " << brackets << endl;
       
   }
-  if (types(str, &symbol, &val) == -1 || brackets != 0) err = -1;
+  if (types(str, &symbol, &val) == -1 || brackets != 0) err = -1; // возможно оставить только скобки
   return err;
 }
 
@@ -250,6 +254,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   std::list<Stack_t2> znak;
   // int len = stac2.size();
   char doub[SIZE];  // Временная переменная для стека знак
+  std::string dou2 = {0};
   std::list<Stack_t2>::iterator it;
   int count = 0;
   for (it = stac2.begin(); it != stac2.end(); /*count*/it++) { // возможно end - 1
@@ -268,25 +273,35 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       // push(&znak, stack->datea[count], stack->pri[count]);
       znak.push_back(*it);
     } else if (it->dat2 == ")") {
-      // for (int len = znak.size();
-    //        znak.datea[len] != "(" && znak.pri[len] != 4 && err == TRUE; len--) {
-    //     // strcpy(doub, znak.data[znak.size]);
-    //     doub = znak.datea[znak.size];
-    //     pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
-    //     if (len == 0) err = -1;
-      // }
-    //   if (*znak.data[znak.size] == '(' || znak.pri[znak.size] == 4) {
-    //     pop(&znak);
-    //     strcpy(doub, znak.data[znak.size + 1]);
-    //     if (znak.pri[znak.size + 1] == 4) {
-    //       push(polish, doub, znak.pri[znak.size + 1]);
-    //     }
-    //   }
+      std::list<Stack_t2>::iterator it_z1 = --znak.end();
+      
+      for (int len = znak.size(); it_z1->dat2 != "(" && it_z1->type != 4 && err == TRUE; len--) {
+          //  znak.datea[len] != "(" && znak.pri[len] != 4 && err == TRUE; len--) {
+        // strcpy(doub, znak.data[znak.size]);
+        // doub = znak.datea[znak.size];
+        it_z1 = --znak.end(); 
+        dou2 = it_z1->dat2;
+        // pop_push(&znak, polish, doub, znak.pri[znak.size + 1]);
+        cout << "for__________it_z1->dat2  " << it_z1->dat2  << endl;
+        pop_push(znak, polis2, doub, it_z1->type, it_z1);
+        if (len == 0) {err = -1;}
+        // ++it_z1;
+      }
+      if (it_z1->dat2 == "(" || it_z1->type == 4) {
+        // pop(znak);
+        znak.pop_back();
+        // strcpy(doub, znak.data[znak.size + 1]);
+        dou2 = it_z1->dat2;
+        if (it_z1->type == 4) {
+          // push(polis2, doub, znak.pri[znak.size + 1]);
+          polis2.push_back(*it_z1);
+        }
+      }
     } else if (it->type) {
       check_polish(znak, polis2, stac2, count);
     }
     if (it == --stac2.end()) {
-      cout << "UUUU " << endl;
+      // cout << "UUUU " << endl;
       int len_znak = znak.size();
       std::list<Stack_t2>::iterator it_z = --znak.end();
       // for (; it_z != --znak.end(); it_z--) {
@@ -313,106 +328,130 @@ int s21_calc(std::string str, std::string str_x, double *result) {
 //  * ошибки
 //  */
 
-int matematika(Stack_t *polish, double *result) {
-  // printf("JJJJ_2\n");
+int 
+
+
+
+
+
+matematika(list<Stack_t2> &polis2, double *result) {
+  // int matematika(Stack_t *polish, double *result) {
+  printf("Matematika\n");
   int err = TRUE;
   double res = -0;
-  Stack_t num = {0};
-  int size_v = polish->size;
-
-  for (int len = 1; len <= size_v; len++) {
-    if (*polish->data[len] == 'u' || *polish->data[len] == 'p') {
-      if (*polish->data[len] == 'u') {
+  
+  // std::stack<double> num;
+  Stack_t  num = {0};
+  // int size_v = polish->size;
+  std::list<Stack_t2>::iterator it = polis2.begin();
+  // for (size_t len = 1; len <= polis2.size(); len++) {
+    for (; it != polis2.end(); it++) {
+      cout << "__ " << it->dat2 << endl;
+      cout << endl;
+    if (it->dat2 == "u" || it->dat2 == "p") { //можно вывести унарную функцию
+    // if (*polish->data[len] == 'u' || *polish->data[len] == 'p') { //можно вывести унарную функцию
+      printf(" Unar \n");
+      if (it->dat2 == "u") {
+      // // if (*polish->data[len] == 'u') {
         res = -num.number[num.size];
+        
+        // res = -it->numbe2;
       } else {
         res = num.number[num.size];
+        // res = it->numbe2;
       }
-      num.size--;
-      push_num(&num, &res, 9);
-    } else if (polish->pri[len] == 9) {
-      push(&num, polish->datea[len], polish->pri[len]);
-      res = num.number[num.size];
-    } else if (polish->datea[len] == "+") {
-      res = num.number[num.size] + num.number[num.size - 1];
-      num.size = num.size - 2;
-      cout << "Промежуточнв=ый рез-т_ " << res << endl;
-      push_num(&num, &res, 9);
-    } else if (*polish->data[len] == '-') {
-      res = num.number[num.size - 1] - num.number[num.size];
-      num.size = num.size - 2;
-      push_num(&num, &res, 9);
-    } else if (*polish->data[len] == '*') {
-      res = num.number[num.size] * num.number[num.size - 1];
-      num.size = num.size - 2;
-      push_num(&num, &res, 9);
-    } else if (*polish->data[len] == '/') {
-      if (num.number[num.size] != 0) {
-        res = num.number[num.size - 1] / num.number[num.size];
+        // num.size--;
+        push_num(&num, &res, 9);
+    } else if (it->type == 9) {
+        
+        push(&num, it->dat2, it->type);
+        // for (auto &elem : num.number){
+        //   cout << elem<< " x ";          
+        // }
+        // cout << endl;
+        res = num.number[num.size];
+        cout << "Промежуточнв=ый рез-т_1_ " << res << endl;
+    } else if (it->dat2 == "+") {
+        res = num.number[num.size] + num.number[num.size - 1];
+        num.size = num.size - 2;
+        // cout << "Промежуточнв=ый рез-т_ " << res << endl;
+        push_num(&num, &res, 9);
+    } else if (it->dat2 == "-") {
+        res = num.number[num.size - 1] - num.number[num.size];
         num.size = num.size - 2;
         push_num(&num, &res, 9);
-      } else {
-        err = ZERO;
-      }
-    } else if (*polish->data[len] == '^') {
-      res = pow(num.number[num.size - 1], num.number[num.size]);
-      num.size = num.size - 2;
-      push_num(&num, &res, 9);
-    } else if (strncmp(polish->data[len], "cos(", 4) == 0) {
-      res = cos(num.number[num.size]);
-      matemat_res(&num, &res, 1);
-    } else if (strncmp(polish->data[len], "sin(", 4) == 0) {
-      res = sin(num.number[num.size]);
-      matemat_res(&num, &res, 1);
-    } else if (strncmp(polish->data[len], "tan(", 4) == 0) {
-      res = tan(num.number[num.size]);
-      matemat_res(&num, &res, 1);
-    } else if (strncmp(polish->data[len], "acos(", 5) == 0) {
-      if (num.number[num.size] >= -1 && num.number[num.size] <= 1) {
-        res = acos(num.number[num.size]);
-        matemat_res(&num, &res, 1);
-      } else {
-        err = EFUC;
-      }
-    } else if (strncmp(polish->data[len], "asin(", 5) == 0) {
-      if (num.number[num.size] >= -1 && num.number[num.size] <= 1) {
-        res = asin(num.number[num.size]);
-        matemat_res(&num, &res, 1);
-      } else {
-        err = EFUC;
-      }
-    } else if (strncmp(polish->data[len], "atan(", 5) == 0) {
-      res = atan(num.number[num.size]);
-      matemat_res(&num, &res, 1);
-    } else if (strncmp(polish->data[len], "log(", 4) == 0) {
-      if (num.number[num.size] > 0) {
-        res = log10(num.number[num.size]);
-        matemat_res(&num, &res, 1);
-      } else {
-        err = EFUC;
-      }
-    } else if (strncmp(polish->data[len], "ln(", 3) == 0) {
-      if (num.number[num.size] > 0) {
-        res = log(num.number[num.size]);
-        matemat_res(&num, &res, 1);
-      } else {
-        err = EFUC;
-      }
-    } else if (strncmp(polish->data[len], "sqrt(", 5) == 0) {
-      if (num.number[num.size] >= 0) {
-        res = sqrt(num.number[num.size]);
-        matemat_res(&num, &res, 1);
-      } else {
-        err = EFUC;
-      }
-    } else if (strncmp(polish->data[len], "mod", 3) == 0) {
-      if (num.number[num.size] != 0) {
-        res = fmod(num.number[num.size - 1], num.number[num.size]);
-        matemat_res(&num, &res, 2);
-      } else {
-        err = ZERO;
-      }
+    // } else if (it->dat2 == "*") {
+    //     res = num.number[num.size] * num.number[num.size - 1];
+    //     num.size = num.size - 2;
+    //     push_num(&num, &res, 9);
+    // } else if (it->dat2 == "/") {
+    //   if (num.number[num.size] != 0) {
+    //     res = num.number[num.size - 1] / num.number[num.size];
+    //     num.size = num.size - 2;
+    //     push_num(&num, &res, 9);
+    //   } else {
+    //     err = ZERO;
+    //   }
+    // } else if (*polish->data[len] == '^') {
+    //   res = pow(num.number[num.size - 1], num.number[num.size]);
+    //   num.size = num.size - 2;
+    //   push_num(&num, &res, 9);
+    // } else if (strncmp(polish->data[len], "cos(", 4) == 0) {
+    //   res = cos(num.number[num.size]);
+    //   matemat_res(&num, &res, 1);
+    // } else if (strncmp(polish->data[len], "sin(", 4) == 0) {
+    //   res = sin(num.number[num.size]);
+    //   matemat_res(&num, &res, 1);
+    // } else if (strncmp(polish->data[len], "tan(", 4) == 0) {
+    //   res = tan(num.number[num.size]);
+    //   matemat_res(&num, &res, 1);
+    // } else if (strncmp(polish->data[len], "acos(", 5) == 0) {
+    //   if (num.number[num.size] >= -1 && num.number[num.size] <= 1) {
+    //     res = acos(num.number[num.size]);
+    //     matemat_res(&num, &res, 1);
+    //   } else {
+    //     err = EFUC;
+    //   }
+    // } else if (strncmp(polish->data[len], "asin(", 5) == 0) {
+    //   if (num.number[num.size] >= -1 && num.number[num.size] <= 1) {
+    //     res = asin(num.number[num.size]);
+    //     matemat_res(&num, &res, 1);
+    //   } else {
+    //     err = EFUC;
+    //   }
+    // } else if (strncmp(polish->data[len], "atan(", 5) == 0) {
+    //   res = atan(num.number[num.size]);
+    //   matemat_res(&num, &res, 1);
+    // } else if (strncmp(polish->data[len], "log(", 4) == 0) {
+    //   if (num.number[num.size] > 0) {
+    //     res = log10(num.number[num.size]);
+    //     matemat_res(&num, &res, 1);
+    //   } else {
+    //     err = EFUC;
+    //   }
+    // } else if (strncmp(polish->data[len], "ln(", 3) == 0) {
+    //   if (num.number[num.size] > 0) {
+    //     res = log(num.number[num.size]);
+    //     matemat_res(&num, &res, 1);
+    //   } else {
+    //     err = EFUC;
+    //   }
+    // } else if (strncmp(polish->data[len], "sqrt(", 5) == 0) {
+    //   if (num.number[num.size] >= 0) {
+    //     res = sqrt(num.number[num.size]);
+    //     matemat_res(&num, &res, 1);
+    //   } else {
+    //     err = EFUC;
+    //   }
+    // } else if (strncmp(polish->data[len], "mod", 3) == 0) {
+    //   if (num.number[num.size] != 0) {
+    //     res = fmod(num.number[num.size - 1], num.number[num.size]);
+    //     matemat_res(&num, &res, 2);
+    //   } else {
+    //     err = ZERO;
+    //   }
     }
-    // cout << "Промежуточнв=ый рез-т_ " << res << endl;
+    cout << "Промежуточнв=ый рез-т_ " << res << endl;
   }
   *result = res;
   // printf("%f\n", *result);

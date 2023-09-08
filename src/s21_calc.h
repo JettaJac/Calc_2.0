@@ -95,6 +95,7 @@ typedef struct stack_tag {
   std::string dat2;
   int type = 0;
   double number[STACK_MAX_SIZE];
+  double numbe2;
   int pri[STACK_MAX_SIZE];  // prioritet
   char x[SIZE];
   std::string g; //x
@@ -119,6 +120,7 @@ typedef struct {
 //// Stack functions
 void push(Stack_t *stack, std::string value, int prioritet);
 void push_num(Stack_t *stack, double *value, int prioritet);
+// void push_num(stack &stack, double *value, int prioritet);
 void pop(Stack_t *stack);
 void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
 void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator it);
@@ -139,7 +141,8 @@ int s21_calc(std::string str /*char *str*/, std::string str_g, double *result);
 int parser(std::string str, std::list<Stack_t2> &stac2);
 int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2);
 // int polish_notation(Stack_t *stack, Stack_t *polish);
-int matematika(Stack_t *polish, double *result);
+// int matematika(Stack_t *polish, double *result);
+int matematika(list<Stack_t2> &polis2, double *result);
 void matemat_res(Stack_t *number, double *res, int tmp);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -148,7 +151,7 @@ int check_number(std::string str);
 // int check_number(char *str);
 int check_funcs(std::string str, int *count);
 // int check_funcs(char *str, int *count);
-int check_parser(string str, int type, int symbol, string value, int *brackets);
+int check_parser(string str, int type, int symbol, string &value, int *brackets);
 // int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
 int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stack, int vr);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -156,7 +159,7 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
 int types(std::string str, int *lent, std::string *value);
 // int types(char *str, int *lent, char *value);
 int pars_baskets(char *val, int tmp, int symbol);
-int unar_znak(std::string val, int *tmp);
+int unar_znak(std::string &val, int &tmp);
 
 // int parser_conditions(int *symbol, flags *fl);
 // int parser_check (flags *fl);
