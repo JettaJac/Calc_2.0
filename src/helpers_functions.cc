@@ -543,6 +543,47 @@ void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, i
  * @param numbers     - Стек с числами
  * @param tmp         - Сколько убираем чисел из стека
  */
+void matemat_simple(std::list<Stack_t2>::iterator &it, std::stack<double> &st_num, double &res)
+{
+  if (it->dat2 == "+") {
+        // res = num.number[num.size - 1] + num.number[num.size - 2];
+        res = st_num.top();
+        st_num.pop();
+        res += st_num.top();
+        st_num.pop();
+        // num.size = num.size - 2;
+        // cout << "Промежуточнв=ый рез-т_5 " << res << endl;
+        // push_num(&num, &res, 9);
+        st_num.push(res);
+
+    // } else if (it->dat2 == "-") {
+    //   cout << "Промежуточнв=ый рез-т_00 " << res << endl;
+    //     // res = num.number[num.size - 1] - num.number[num.size];
+    //     // num.size = num.size - 2;
+    //     res = st_num.top();
+    //     st_num.pop();
+    //     res -= st_num.top();
+    //     st_num.pop();
+    //     // push_num(&num, &res, 9);
+    //     // cout << "Промежуточнв=ый рез-т_6 " <<  << endl;
+    // // } else if (it->dat2 == "*") {
+    // //     res = num.number[num.size] * num.number[num.size - 1];
+    // //     num.size = num.size - 2;
+    // //     push_num(&num, &res, 9);
+    // // } else if (it->dat2 == "/") {
+    // //   if (num.number[num.size] != 0) {
+    // //     res = num.number[num.size - 1] / num.number[num.size];
+    // //     num.size = num.size - 2;
+    // //     push_num(&num, &res, 9);
+    // //   } else {
+    // //     err = ZERO;
+    // //   }
+    }
+
+}
+
+
+
 
 void matemat_res(Stack_t *numbers, double *res, int tmp) {
   // int vr = *tmp;

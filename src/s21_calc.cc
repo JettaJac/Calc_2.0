@@ -395,14 +395,17 @@ matematika(list<Stack_t2> &polis2, double *result) {
         // res = num.number[num.size]; // добавила -1, но не понятно почему, возможно копиться ошибки будут
         // cout << "Промежуточнв=ый рез-т_1_ " << num.size << " || " << num.number[num.size - 1] << endl;
     } else if (it->dat2 == "+") {
-        // res = num.number[num.size - 1] + num.number[num.size - 2];
-        res = nu2.top();
-        nu2.pop();
-        res += nu2.top();
-        nu2.pop();
-        // num.size = num.size - 2;
+        // // res = num.number[num.size - 1] + num.number[num.size - 2];
+        // res = nu2.top();
+        // nu2.pop();
+        // res += nu2.top();
+        // nu2.pop();
+        // // num.size = num.size - 2;
+
+        // nu2.push(res);
+        // // push_num(&num, &res, 9);
+        matemat_simple(it, nu2, res);
         cout << "Промежуточнв=ый рез-т_5 " << res << endl;
-        push_num(&num, &res, 9);
     } else if (it->dat2 == "-") {
       cout << "Промежуточнв=ый рез-т_00 " << res << endl;
         // res = num.number[num.size - 1] - num.number[num.size];
@@ -486,6 +489,7 @@ matematika(list<Stack_t2> &polis2, double *result) {
     }
     cout << "Промежуточнв=ый рез-т_res " << res << endl;
   }
+  // res = nu2.top();
   *result = res;
   // printf("%f\n", *result);
   return err;
