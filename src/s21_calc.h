@@ -138,7 +138,7 @@ int s21_calc(std::string str /*char *str*/, std::string str_g, double *result);
 // int s21_calc_o(std::string str);
 
 // int parser(/*char *str*/, Stack_t *stack);
-int parser(std::string str, std::list<Stack_t2> &stac2);
+int parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x);
 int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2);
 // int polish_notation(Stack_t *stack, Stack_t *polish);
 // int matematika(Stack_t *polish, double *result);

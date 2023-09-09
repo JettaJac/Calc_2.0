@@ -124,7 +124,7 @@ int number(std::string str, double *number) {
     double num; 
     try {
         num = std::stod(str); // Преобразование строки в double
-        std::cout << "Число: " << num << " STR = " << str << endl;
+        // std::cout << "Число: " << num << " STR = " << str << endl;
         err = TRUE;
     } catch (const std::invalid_argument& e) {
         std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
@@ -181,7 +181,7 @@ int number(std::string str, double *number) {
       err = -1;
     };
   }
-  cout<< "check_N " << endl;
+  // cout<< "check_N " << endl;
   return err;
 }
 

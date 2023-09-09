@@ -27,7 +27,8 @@ using namespace std;
 // exit 1 некорректный ввод
 // Деление на 0;
 // ошибка в передования показателях в функции (ышт)
-
+// "-9-(+7)" - польская не правильно записывается
+// "-9-(-7)"
 int main() {
   int err = -1;
   // Stack_t stack;
@@ -35,7 +36,7 @@ int main() {
   stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "-1+2";  // -77.6904761904761905 Работает и так и char str [100]
+  std::string str = "9-x";  // -77.6904761904761905 Работает и так и char str [100]
                          // = "4.2001";
   std::string str_ch = "I";                  
   // char *str_ch = "I";

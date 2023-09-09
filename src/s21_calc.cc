@@ -49,7 +49,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   // if (str != NULL && !str_x.empty() && result != 0) {
   //   // strcpy(stack->x, str_x);
       stack->g = str_x;
-      err = parser(str, stac2);
+      err = parser(str, stac2, str_x);
       // printstack(stack);
       printstack(stac2);
       cout << "___________ " << err << endl;
@@ -82,7 +82,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
 // //  */
 
 // int parser(char *str, Stack_t *stack) {
-  int parser(std::string str, std::list<Stack_t2> &stac2) {
+  int parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x) {
     // int parser(std::string str, Stack_t *stack) {
   // printf("JJJJ\n");
   // flags fl = {0};
@@ -126,7 +126,7 @@ int s21_calc(std::string str, std::string str_x, double *result) {
     if (val == "x") {
       // strcpy(val, stack->x);
       // cout<< "Test _ X" << val <<endl;
-      // val = stack->g;
+      val = str_x;
       tmp = 9;
       err = TRUE;
       // cout<< "Test 3 _" << val << "stack_g_ " << stack->g <<endl;
@@ -339,47 +339,80 @@ matematika(list<Stack_t2> &polis2, double *result) {
   printf("Matematika\n");
   int err = TRUE;
   double res = -0;
-  
-  // std::stack<double> num;
+  double re2 = -0;
+  std::stack<double> nu2;
   Stack_t  num = {0};
   // int size_v = polish->size;
   std::list<Stack_t2>::iterator it = polis2.begin();
   // for (size_t len = 1; len <= polis2.size(); len++) {
+
+
+     //    if (num_stack.empty()) {
+      //   throw std::runtime_error("Task Error");
+      // }
+      // b = std::stod(num_stack.top().token);
+      // num_stack.pop();
+      // if (num_stack.empty()) {
+      //   throw std::runtime_error("Task Error");
+      // }
+      // a = std::stod(num_stack.top().token);
+      // num_stack.pop();
+
+      
+
     for (; it != polis2.end(); it++) {
       cout << "__ " << it->dat2 << endl;
       cout << endl;
     if (it->dat2 == "u" || it->dat2 == "p") { //можно вывести унарную функцию
     // if (*polish->data[len] == 'u' || *polish->data[len] == 'p') { //можно вывести унарную функцию
       printf(" Unar \n");
+
+ 
+
+
       if (it->dat2 == "u") {
       // // if (*polish->data[len] == 'u') {
-        res = -num.number[num.size];
+        // res = -num.number[num.size];
         
         // res = -it->numbe2;
-      } else {
-        res = num.number[num.size];
-        // res = it->numbe2;
+        nu2.top() *= (-1);
+      // } else { // не надо скорее всего
+      //   // res = num.number[num.size];
+      //   res = it->numbe2;
       }
         // num.size--;
-        push_num(&num, &res, 9);
+        // push_num(&num, &res, 9);
+        cout << "Промежуточнв=ый рез-т_un " << nu2.top() << endl;
     } else if (it->type == 9) {
-        
-        push(&num, it->dat2, it->type);
-        // for (auto &elem : num.number){
-        //   cout << elem<< " x ";          
+        cout << "Нашли число " << it->dat2 << endl;
+        // push(&num, it->dat2, it->type);
+        nu2.push(it->numbe2);
+        // for (int i = 0; i <num.size; i++){
+        //   cout << num.number[i] << " x ";          
         // }
         // cout << endl;
-        res = num.number[num.size];
-        cout << "Промежуточнв=ый рез-т_1_ " << res << endl;
+        // re2 = 
+        // res = num.number[num.size]; // добавила -1, но не понятно почему, возможно копиться ошибки будут
+        // cout << "Промежуточнв=ый рез-т_1_ " << num.size << " || " << num.number[num.size - 1] << endl;
     } else if (it->dat2 == "+") {
-        res = num.number[num.size] + num.number[num.size - 1];
-        num.size = num.size - 2;
-        // cout << "Промежуточнв=ый рез-т_ " << res << endl;
+        // res = num.number[num.size - 1] + num.number[num.size - 2];
+        res = nu2.top();
+        nu2.pop();
+        res += nu2.top();
+        nu2.pop();
+        // num.size = num.size - 2;
+        cout << "Промежуточнв=ый рез-т_5 " << res << endl;
         push_num(&num, &res, 9);
     } else if (it->dat2 == "-") {
-        res = num.number[num.size - 1] - num.number[num.size];
-        num.size = num.size - 2;
+      cout << "Промежуточнв=ый рез-т_00 " << res << endl;
+        // res = num.number[num.size - 1] - num.number[num.size];
+        // num.size = num.size - 2;
+        res = nu2.top();
+        nu2.pop();
+        res -= nu2.top();
+        nu2.pop();
         push_num(&num, &res, 9);
+        // cout << "Промежуточнв=ый рез-т_6 " <<  << endl;
     // } else if (it->dat2 == "*") {
     //     res = num.number[num.size] * num.number[num.size - 1];
     //     num.size = num.size - 2;
@@ -451,7 +484,7 @@ matematika(list<Stack_t2> &polis2, double *result) {
     //     err = ZERO;
     //   }
     }
-    cout << "Промежуточнв=ый рез-т_ " << res << endl;
+    cout << "Промежуточнв=ый рез-т_res " << res << endl;
   }
   *result = res;
   // printf("%f\n", *result);
