@@ -145,7 +145,7 @@ int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2);
 int matematika(list<Stack_t2> &polis2, double *result);
 void matemat_res(Stack_t *number, double *res, int tmp);
 
-void matemat_simple(std::list<Stack_t2>::iterator &it, std::stack<double> &number, double &res);
+int matemat_simple(std::list<Stack_t2>::iterator &it, std::stack<double> &number, double &res);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Check functions

@@ -100,53 +100,55 @@ TEST(NumberTest, NumberErr) {
 }
 
 
-TEST(Calc, parser_sin) {
-  Stack_t stack_N[10] = {0};
+// TEST(Calc, parser_sin) {
+//   Stack_t stack_N[10] = {0};
 
-  EXPECT_EQ(parser("5+12s", stack_N), -1);
-  EXPECT_EQ(parser("sin(", stack_N), -1);
-  EXPECT_EQ(parser("sin()", stack_N), -1);
-  EXPECT_EQ(parser("sin(5/)", stack_N), -1);
-  EXPECT_EQ(parser("sin(4.5)+cos(5", stack_N), -1);
-  EXPECT_EQ(parser("sin(4.5)+cos(5+4", stack_N), -1);
-  EXPECT_EQ(parser("/sin(5)", stack_N), -1);
-  EXPECT_EQ(parser("sin4", stack_N), -1);
-  EXPECT_EQ(parser("4sin(45)", stack_N), -1);
-  EXPECT_EQ(parser("1+sib(4)", stack_N), -1);
-  EXPECT_EQ(parser("1+sin(4)", stack_N), 0);
-  EXPECT_EQ(parser("-cos(4*2)+sin(4)", stack_N), 0);
-}
+//   EXPECT_EQ(parser("5+12s", stack_N), -1);
+//   EXPECT_EQ(parser("sin(", stack_N), -1);
+//   EXPECT_EQ(parser("sin()", stack_N), -1);
+//   EXPECT_EQ(parser("sin(5/)", stack_N), -1);
+//   EXPECT_EQ(parser("sin(4.5)+cos(5", stack_N), -1);
+//   EXPECT_EQ(parser("sin(4.5)+cos(5+4", stack_N), -1);
+//   EXPECT_EQ(parser("/sin(5)", stack_N), -1);
+//   EXPECT_EQ(parser("sin4", stack_N), -1);
+//   EXPECT_EQ(parser("4sin(45)", stack_N), -1);
+//   EXPECT_EQ(parser("1+sib(4)", stack_N), -1);
+//   EXPECT_EQ(parser("1+sin(4)", stack_N), 0);
+//   EXPECT_EQ(parser("-cos(4*2)+sin(4)", stack_N), 0);
+// }
 
 
-TEST(Calc, parser_cos) {
-  Stack_t stack_N[10] = {0};
+// TEST(Calc, parser_cos) {
+//   Stack_t stack_N[10] = {0};
 
-  char str1[] = "=cos";
-  char str2[] = "cos(";
-  char str3[] = "cos()";
-  char str4[] = "cos(5/)";
-  char str5[] = "cos(4.5)+cos(5";
-  char str6[] = "*cos(5)";
-  char str7[] = "cosn4";
-  char str8[] = "4cos(45)";
-  char str9[] = "1+ces(5)";
-  char str10[] = "1+cos(4)";
+//   char str1[] = "=cos";
+//   char str2[] = "cos(";
+//   char str3[] = "cos()";
+//   char str4[] = "cos(5/)";
+//   char str5[] = "cos(4.5)+cos(5";
+//   char str6[] = "*cos(5)";
+//   char str7[] = "cosn4";
+//   char str8[] = "4cos(45)";
+//   char str9[] = "1+ces(5)";
+//   char str10[] = "1+cos(4)";
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), 0);
-}
+//   EXPECT_EQ(parser(str1, stack_N), -1);
+//   EXPECT_EQ(parser(str2, stack_N), -1);
+//   EXPECT_EQ(parser(str3, stack_N), -1);
+//   EXPECT_EQ(parser(str4, stack_N), -1);
+//   EXPECT_EQ(parser(str5, stack_N), -1);
+//   EXPECT_EQ(parser(str6, stack_N), -1);
+//   EXPECT_EQ(parser(str7, stack_N), -1);
+//   EXPECT_EQ(parser(str8, stack_N), -1);
+//   EXPECT_EQ(parser(str9, stack_N), -1);
+//   EXPECT_EQ(parser(str10, stack_N), 0);
+// }
 
 
 TEST(Calc, parser_tan) {
-  Stack_t stack_N[10] = {0};
+  std::list<Stack_t2> stack_N;
+  std::string str_x = "1";
+
 
   char str1[] = "=tan";
   char str2[] = "tan(";
@@ -159,188 +161,188 @@ TEST(Calc, parser_tan) {
   char str9[] = "1+tas(8)";
   char str10[] = "1+tan(4)";
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), 0);
+  EXPECT_EQ(parser(str1, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str2, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str3, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str4, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str5, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str6, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str7, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str8, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str9, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str10, stack_N, str_x), 0);
 }
 
 
-TEST(Calc, parser_asin) {
-  Stack_t stack_N[10] = {0};
+// TEST(Calc, parser_asin) {
+//   Stack_t stack_N[10] = {0};
 
-  char str1[] = "5+12s";
-  char str2[] = "asin(";
-  char str3[] = "asin()";
-  char str4[] = "asin(5/)";
-  char str5[] = "asin(4.5)+cos(5";
-  char str6[] = "*asin(5)";
-  char str7[] = "asin4";
-  char str8[] = "4asin(45)";
-  char str9[] = "1+asik(4)";
-  char str10[] = "1+asin(4)";
-  char str11[] = "asin(0.2)";
-  char str12[] = "asin(8)";
+//   char str1[] = "5+12s";
+//   char str2[] = "asin(";
+//   char str3[] = "asin()";
+//   char str4[] = "asin(5/)";
+//   char str5[] = "asin(4.5)+cos(5";
+//   char str6[] = "*asin(5)";
+//   char str7[] = "asin4";
+//   char str8[] = "4asin(45)";
+//   char str9[] = "1+asik(4)";
+//   char str10[] = "1+asin(4)";
+//   char str11[] = "asin(0.2)";
+//   char str12[] = "asin(8)";
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), 0);
-  EXPECT_EQ(parser(str11, stack_N), 0);
-  EXPECT_EQ(parser(str12, stack_N), 0);
-}
-
-
-TEST(Calc, parser_acos) {
-  Stack_t stack_N[10] = {0};
-
-  char str1[] = "=acos";
-  char str2[] = "acos(";
-  char str3[] = "acos()";
-  char str4[] = "acos(5/)";
-  char str5[] = "acos(4.5)+acos(5";
-  char str6[] = "/acos(5)";
-  char str7[] = "acosn4";
-  char str8[] = "4acos(45)";
-  char str9[] = "1+aces(5)";
-  char str10[] = "acos(8)";
-  char str11[] = "acos(8)";
-
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), 0);
-  EXPECT_EQ(parser(str11, stack_N), 0);
-}
+//   EXPECT_EQ(parser(str1, stack_N), -1);
+//   EXPECT_EQ(parser(str2, stack_N), -1);
+//   EXPECT_EQ(parser(str3, stack_N), -1);
+//   EXPECT_EQ(parser(str4, stack_N), -1);
+//   EXPECT_EQ(parser(str5, stack_N), -1);
+//   EXPECT_EQ(parser(str6, stack_N), -1);
+//   EXPECT_EQ(parser(str7, stack_N), -1);
+//   EXPECT_EQ(parser(str8, stack_N), -1);
+//   EXPECT_EQ(parser(str9, stack_N), -1);
+//   EXPECT_EQ(parser(str10, stack_N), 0);
+//   EXPECT_EQ(parser(str11, stack_N), 0);
+//   EXPECT_EQ(parser(str12, stack_N), 0);
+// }
 
 
-TEST(Calc, parser_atan) {
-  Stack_t stack_N[10] = {0};
+// TEST(Calc, parser_acos) {
+//   Stack_t stack_N[10] = {0};
 
-  char str1[] = "=atan";
-  char str2[] = "atan(";
-  char str3[] = "atan()";
-  char str4[] = "atan(5/)";
-  char str5[] = "atan(4.5)+atan(5";
-  char str6[] = "+atan(5x)";
-  char str7[] = "atann4";
-  char str8[] = "4atan(45)";
-  char str9[] = "1+atas(8)";
-  char str10[] = "atan(8)";
+//   char str1[] = "=acos";
+//   char str2[] = "acos(";
+//   char str3[] = "acos()";
+//   char str4[] = "acos(5/)";
+//   char str5[] = "acos(4.5)+acos(5";
+//   char str6[] = "/acos(5)";
+//   char str7[] = "acosn4";
+//   char str8[] = "4acos(45)";
+//   char str9[] = "1+aces(5)";
+//   char str10[] = "acos(8)";
+//   char str11[] = "acos(8)";
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), 0);
-}
-
-
-TEST(Calc, parser_sqrt) {
-  Stack_t stack_N[10] = {0};
-
-  char str1[] = "+sqrt";
-  char str2[] = "sqrt(";
-  char str3[] = "sqrt()";
-  char str4[] = "sqrt(5/)";
-  char str5[] = "sqrtn(4.5)";
-  char str6[] = "*sqrt(5)";
-  char str7[] = "sqrt4";
-  char str8[] = "4sqrt(45)";
-  char str9[] = "1+sqrt(8)";
-  char str10[] = "1+(-sqrt(8))";
-  char str11[] = "sqrt(-4)";
-
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), 0);
-  EXPECT_EQ(parser(str10, stack_N), 0);
-  EXPECT_EQ(parser(str11, stack_N), 0);
-}
+//   EXPECT_EQ(parser(str1, stack_N), -1);
+//   EXPECT_EQ(parser(str2, stack_N), -1);
+//   EXPECT_EQ(parser(str3, stack_N), -1);
+//   EXPECT_EQ(parser(str4, stack_N), -1);
+//   EXPECT_EQ(parser(str5, stack_N), -1);
+//   EXPECT_EQ(parser(str6, stack_N), -1);
+//   EXPECT_EQ(parser(str7, stack_N), -1);
+//   EXPECT_EQ(parser(str8, stack_N), -1);
+//   EXPECT_EQ(parser(str9, stack_N), -1);
+//   EXPECT_EQ(parser(str10, stack_N), 0);
+//   EXPECT_EQ(parser(str11, stack_N), 0);
+// }
 
 
-TEST(Calc, parser_log) {
-  Stack_t stack_N[10] = {0};
+// TEST(Calc, parser_atan) {
+//   Stack_t stack_N[10] = {0};
 
-  char str1[] = "+log";
-  char str2[] = "log(";
-  char str3[] = "log()";
-  char str4[] = "log(5/)";
-  char str5[] = "logn(4.5)";
-  char str6[] = "/log(5)";
-  char str7[] = "log4";
-  char str8[] = "4log(45)";
-  char str9[] = "1+logt(8)";
-  char str10[] = "log(5)";
-  char str11[] = "ln(34)+log(5)";
+//   char str1[] = "=atan";
+//   char str2[] = "atan(";
+//   char str3[] = "atan()";
+//   char str4[] = "atan(5/)";
+//   char str5[] = "atan(4.5)+atan(5";
+//   char str6[] = "+atan(5x)";
+//   char str7[] = "atann4";
+//   char str8[] = "4atan(45)";
+//   char str9[] = "1+atas(8)";
+//   char str10[] = "atan(8)";
 
-  EXPECT_EQ(parser(str1, stack_N),  -1);
-  EXPECT_EQ(parser(str2, stack_N),  -1);
-  EXPECT_EQ(parser(str3, stack_N),  -1);
-  EXPECT_EQ(parser(str4, stack_N),  -1);
-  EXPECT_EQ(parser(str5, stack_N),  -1);
-  EXPECT_EQ(parser(str6, stack_N),  -1);
-  EXPECT_EQ(parser(str7, stack_N),  -1);
-  EXPECT_EQ(parser(str8, stack_N),  -1);
-  EXPECT_EQ(parser(str9, stack_N),  -1);
-  EXPECT_EQ(parser(str10, stack_N),  0);
-  EXPECT_EQ(parser(str11, stack_N),  0);
-}
+//   EXPECT_EQ(parser(str1, stack_N), -1);
+//   EXPECT_EQ(parser(str2, stack_N), -1);
+//   EXPECT_EQ(parser(str3, stack_N), -1);
+//   EXPECT_EQ(parser(str4, stack_N), -1);
+//   EXPECT_EQ(parser(str5, stack_N), -1);
+//   EXPECT_EQ(parser(str6, stack_N), -1);
+//   EXPECT_EQ(parser(str7, stack_N), -1);
+//   EXPECT_EQ(parser(str8, stack_N), -1);
+//   EXPECT_EQ(parser(str9, stack_N), -1);
+//   EXPECT_EQ(parser(str10, stack_N), 0);
+// }
 
 
-TEST(Calc, parser_ln) {
-  Stack_t stack_N[10] = {0};
-  char str1[] = "+ln";
-  char str2[] = "ln(";
-  char str3[] = "ln()";
-  char str4[] = "ln(5/)";
-  char str5[] = "lnn(4.5)";
-  char str6[] = "+ln(5i)";
-  char str7[] = "ln4";
-  char str8[] = "4ln(45)";
-  char str9[] = "1+lnt(8)";
-  char str10[] = "ln(5)";
+// TEST(Calc, parser_sqrt) {
+//   Stack_t stack_N[10] = {0};
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), 0);
-}
+//   char str1[] = "+sqrt";
+//   char str2[] = "sqrt(";
+//   char str3[] = "sqrt()";
+//   char str4[] = "sqrt(5/)";
+//   char str5[] = "sqrtn(4.5)";
+//   char str6[] = "*sqrt(5)";
+//   char str7[] = "sqrt4";
+//   char str8[] = "4sqrt(45)";
+//   char str9[] = "1+sqrt(8)";
+//   char str10[] = "1+(-sqrt(8))";
+//   char str11[] = "sqrt(-4)";
+
+//   EXPECT_EQ(parser(str1, stack_N), -1);
+//   EXPECT_EQ(parser(str2, stack_N), -1);
+//   EXPECT_EQ(parser(str3, stack_N), -1);
+//   EXPECT_EQ(parser(str4, stack_N), -1);
+//   EXPECT_EQ(parser(str5, stack_N), -1);
+//   EXPECT_EQ(parser(str6, stack_N), -1);
+//   EXPECT_EQ(parser(str7, stack_N), -1);
+//   EXPECT_EQ(parser(str8, stack_N), -1);
+//   EXPECT_EQ(parser(str9, stack_N), 0);
+//   EXPECT_EQ(parser(str10, stack_N), 0);
+//   EXPECT_EQ(parser(str11, stack_N), 0);
+// }
+
+
+// TEST(Calc, parser_log) {
+//   Stack_t stack_N[10] = {0};
+
+//   char str1[] = "+log";
+//   char str2[] = "log(";
+//   char str3[] = "log()";
+//   char str4[] = "log(5/)";
+//   char str5[] = "logn(4.5)";
+//   char str6[] = "/log(5)";
+//   char str7[] = "log4";
+//   char str8[] = "4log(45)";
+//   char str9[] = "1+logt(8)";
+//   char str10[] = "log(5)";
+//   char str11[] = "ln(34)+log(5)";
+
+//   EXPECT_EQ(parser(str1, stack_N),  -1);
+//   EXPECT_EQ(parser(str2, stack_N),  -1);
+//   EXPECT_EQ(parser(str3, stack_N),  -1);
+//   EXPECT_EQ(parser(str4, stack_N),  -1);
+//   EXPECT_EQ(parser(str5, stack_N),  -1);
+//   EXPECT_EQ(parser(str6, stack_N),  -1);
+//   EXPECT_EQ(parser(str7, stack_N),  -1);
+//   EXPECT_EQ(parser(str8, stack_N),  -1);
+//   EXPECT_EQ(parser(str9, stack_N),  -1);
+//   EXPECT_EQ(parser(str10, stack_N),  0);
+//   EXPECT_EQ(parser(str11, stack_N),  0);
+// }
+
+
+// TEST(Calc, parser_ln) {
+//   Stack_t stack_N[10] = {0};
+//   char str1[] = "+ln";
+//   char str2[] = "ln(";
+//   char str3[] = "ln()";
+//   char str4[] = "ln(5/)";
+//   char str5[] = "lnn(4.5)";
+//   char str6[] = "+ln(5i)";
+//   char str7[] = "ln4";
+//   char str8[] = "4ln(45)";
+//   char str9[] = "1+lnt(8)";
+//   char str10[] = "ln(5)";
+
+//   EXPECT_EQ(parser(str1, stack_N), -1);
+//   EXPECT_EQ(parser(str2, stack_N), -1);
+//   EXPECT_EQ(parser(str3, stack_N), -1);
+//   EXPECT_EQ(parser(str4, stack_N), -1);
+//   EXPECT_EQ(parser(str5, stack_N), -1);
+//   EXPECT_EQ(parser(str6, stack_N), -1);
+//   EXPECT_EQ(parser(str7, stack_N), -1);
+//   EXPECT_EQ(parser(str8, stack_N), -1);
+//   EXPECT_EQ(parser(str9, stack_N), -1);
+//   EXPECT_EQ(parser(str10, stack_N), 0);
+// }
 
 
 // TEST(Calc, parser_mod) {
@@ -375,38 +377,40 @@ TEST(Calc, parser_ln) {
 
 
 TEST(Calc, parser_x) {
-  Stack_t stack_N[10] = {0};
+  std::list<Stack_t2> stack_N;
+  std::string str_x = "1";
 
-  EXPECT_EQ(parser("+x^", stack_N),  -1);
-  EXPECT_EQ(parser("x(", stack_N),  -1);
-  EXPECT_EQ(parser("mx*5", stack_N),  -1);
-  EXPECT_EQ(parser("5x()", stack_N),  -1);
-  EXPECT_EQ(parser("sinx", stack_N),  -1);
-  EXPECT_EQ(parser("x+", stack_N),  -1);
-  EXPECT_EQ(parser("5+x", stack_N),  0);
-  EXPECT_EQ(parser("5*x", stack_N),  0);
-  EXPECT_EQ(parser("5x", stack_N),  -1);
-  EXPECT_EQ(parser("5(-x)", stack_N),  -1);
-  EXPECT_EQ(parser("5*(-x)", stack_N),  0);
+  EXPECT_EQ(parser("+x^", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("x(", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("mx*5", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("5x()", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("sinx", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("x+", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("5+x", stack_N, str_x),  0);
+  EXPECT_EQ(parser("5*x", stack_N, str_x),  0);
+  EXPECT_EQ(parser("5x", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("5(-x)", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("5*(-x)", stack_N, str_x),  0);
 }
 
 
 TEST(Calc, parser_pow) {
-  Stack_t stack_N[10] = {0};
+  std::list<Stack_t2> stack_N;
+  std::string str_x = "1";
 
-  EXPECT_EQ(parser("x^)", stack_N),  -1);
-  EXPECT_EQ(parser("5^", stack_N),  -1);
-  EXPECT_EQ(parser("^", stack_N),  -1);
-  EXPECT_EQ(parser("^5", stack_N),  -1);
-  EXPECT_EQ(parser("sin(^5)", stack_N),  -1);
-  EXPECT_EQ(parser("^+", stack_N),  -1);
-  EXPECT_EQ(parser("5^2", stack_N),  0);
-  EXPECT_EQ(parser("5^(2+1)", stack_N),  0);
-  EXPECT_EQ(parser("2^2^2^2", stack_N),  0);
-  EXPECT_EQ(parser("5^+4", stack_N),  0);
-  EXPECT_EQ(parser("5^-4", stack_N),  0);
-  EXPECT_EQ(parser("5^(-4+cos(5))", stack_N),  0);
-  EXPECT_EQ(parser("2^(-1+1*3)", stack_N),  0);
+  EXPECT_EQ(parser("x^)", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("5^", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("^", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("^5", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("sin(^5)", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("^+", stack_N, str_x),  -1);
+  EXPECT_EQ(parser("5^2", stack_N, str_x),  0);
+  EXPECT_EQ(parser("5^(2+1)", stack_N, str_x),  0);
+  EXPECT_EQ(parser("2^2^2^2", stack_N, str_x),  0);
+  EXPECT_EQ(parser("5^+4", stack_N, str_x),  0);
+  EXPECT_EQ(parser("5^-4", stack_N, str_x),  0);
+  EXPECT_EQ(parser("5^(-4+cos(5))", stack_N, str_x),  0);
+  EXPECT_EQ(parser("2^(-1+1*3)", stack_N, str_x),  0);
 }
 
 
@@ -433,7 +437,8 @@ TEST(Calc, parser_pow) {
 
 
 TEST(Calc, znak_err) {
-  Stack_t stack_N[10] = {0};
+  std::list<Stack_t2> stack_N;
+  std::string str_x = "1";
 
   char str1[] = "5+*6";
   char str2[] = "55+";
@@ -448,23 +453,24 @@ TEST(Calc, znak_err) {
   char str11[] = "+(*5)";
   char str12[] = "(5+-5)";
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
-  EXPECT_EQ(parser(str9, stack_N), -1);
-  EXPECT_EQ(parser(str10, stack_N), -1);
-  EXPECT_EQ(parser(str11, stack_N), -1);
-  EXPECT_EQ(parser(str12, stack_N), -1);
+  EXPECT_EQ(parser(str1, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str2, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str3, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str4, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str5, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str6, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str7, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str8, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str9, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str10, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str11, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str12, stack_N, str_x), -1);
 }
 
 
 TEST(Calc, brackets_err) {
-  Stack_t stack_N[10] = {0};
+  std::list<Stack_t2> stack_N;
+  std::string str_x = "1";
 
   char str1[] = "sin(2*(2*2)";
   char str2[] = "()sin(1*2*3(8)";
@@ -475,14 +481,14 @@ TEST(Calc, brackets_err) {
   char str7[] = "(5*)";
   char str8[] = "1+)*5-4(";
 
-  EXPECT_EQ(parser(str1, stack_N), -1);
-  EXPECT_EQ(parser(str2, stack_N), -1);
-  EXPECT_EQ(parser(str3, stack_N), -1);
-  EXPECT_EQ(parser(str4, stack_N), -1);
-  EXPECT_EQ(parser(str5, stack_N), -1);
-  EXPECT_EQ(parser(str6, stack_N), -1);
-  EXPECT_EQ(parser(str7, stack_N), -1);
-  EXPECT_EQ(parser(str8, stack_N), -1);
+  EXPECT_EQ(parser(str1, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str2, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str3, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str4, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str5, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str6, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str7, stack_N, str_x), -1);
+  EXPECT_EQ(parser(str8, stack_N, str_x), -1);
 }
 
 

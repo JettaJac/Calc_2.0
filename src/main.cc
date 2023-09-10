@@ -36,11 +36,11 @@ int main() {
   stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "9+x";  // -77.6904761904761905 Работает и так и char str [100]
+  std::string str = "4mod(45)";  // -77.6904761904761905 Работает и так и char str [100]
                          // = "4.2001";
   std::string str_ch = "I";                  
   // char *str_ch = "I";
-  std::string str_g = "5"; 
+  std::string str_g = "2"; 
   // char str_x[SIZE] = "-5";
 
 

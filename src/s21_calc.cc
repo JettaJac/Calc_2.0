@@ -394,7 +394,7 @@ matematika(list<Stack_t2> &polis2, double *result) {
         // re2 = 
         // res = num.number[num.size]; // добавила -1, но не понятно почему, возможно копиться ошибки будут
         // cout << "Промежуточнв=ый рез-т_1_ " << num.size << " || " << num.number[num.size - 1] << endl;
-    } else if (it->dat2 == "+") {
+    } else if (it->type == 1 || it->type == 2 || it->type == 5) {
         // // res = num.number[num.size - 1] + num.number[num.size - 2];
         // res = nu2.top();
         // nu2.pop();
@@ -404,23 +404,25 @@ matematika(list<Stack_t2> &polis2, double *result) {
 
         // nu2.push(res);
         // // push_num(&num, &res, 9);
-        matemat_simple(it, nu2, res);
+        err = matemat_simple(it, nu2, res);
         cout << "Промежуточнв=ый рез-т_5 " << res << endl;
-    } else if (it->dat2 == "-") {
-      cout << "Промежуточнв=ый рез-т_00 " << res << endl;
+    // } else if (it->dat2 == "-") {
+    //   cout << "Промежуточнв=ый рез-т_00 " << res << endl;
         // res = num.number[num.size - 1] - num.number[num.size];
         // num.size = num.size - 2;
-        res = nu2.top();
-        nu2.pop();
-        res -= nu2.top();
-        nu2.pop();
-        push_num(&num, &res, 9);
+        // res = nu2.top();
+        // nu2.pop();
+        // res -= nu2.top();
+        // nu2.pop();
+        // push_num(&num, &res, 9);
+        // matemat_simple(it, nu2, res);
         // cout << "Промежуточнв=ый рез-т_6 " <<  << endl;
     // } else if (it->dat2 == "*") {
     //     res = num.number[num.size] * num.number[num.size - 1];
     //     num.size = num.size - 2;
     //     push_num(&num, &res, 9);
     // } else if (it->dat2 == "/") {
+    //   matemat_simple(it, nu2, res);
     //   if (num.number[num.size] != 0) {
     //     res = num.number[num.size - 1] / num.number[num.size];
     //     num.size = num.size - 2;
