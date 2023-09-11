@@ -517,6 +517,9 @@ TEST(Calc, brackets_err) {
 //   int tmp = 1;
 //   char x[SIZE] = "1";
 
+//   s21_calc("5", x, res);
+//   ck_assert_msg(*res == 5, "FAILED matematika_simple_0");
+
 //   char str[SIZE] = "0.345+5";
 //   s21_calc(str, x, res);
 //   ck_assert_msg(*res == 5.345, "FAILED matematika_simple_1");

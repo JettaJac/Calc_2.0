@@ -25,11 +25,17 @@
 
 // Returning the current value
 int types(std::string str, int *count, std::string *valu) {
-  // cout << "TYPES" << endl;
+  cout << "TYPES " <<  endl;
   // int types(char *str, int *count, char *valu) {
-  int type = -1;
+  int type = 0;
   int vr = *count;
   int len = 0;
+  // if(str[vr] != ' ') {
+    //   err = TRUE;
+    //     cout << "Parser_1 " << err << endl;
+    //     continue;
+    //     cout << "Parser_2 " << err << endl;   
+    // }
   if (str[vr] == 's' || str[vr] == 'c' || str[vr] == 't' || str[vr] == 'a' ||
       str[vr] == 'l') {
     int res = check_funcs(str, count);
@@ -67,6 +73,7 @@ int types(std::string str, int *count, std::string *valu) {
       len++;
     }
     type = 9;
+    cout<< "VALU 99 = " << type << endl;
   } else if (str[vr] == '+' || str[vr] == '-') {
     len = 1;
     type = 1;
@@ -75,18 +82,22 @@ int types(std::string str, int *count, std::string *valu) {
     type = 2;
   } else if (str[vr] == '\0') {
     type = -1;
+  // } else if (str[vr] == ' ') {
+  //   type = 0;  
+  //   len = 1;
   } else {
     type = -1;
   }
   // strncpy(valu, &str[vr], len);
   // std::copy(str[vr], +len, valu.begin());
   *valu = str.substr(vr, len);
-  // cout<< "VALU 22 = " << *valu <<endl;
+  cout<< "VALU 22 = " << type << endl;
   // std::copy(source.begin(), source.end(), destination.begin());
   // valu[len] = '\0';
   
   vr += len;
   *count = vr - 1;
+  // }
   return type;
 }
 
@@ -119,7 +130,7 @@ int intunar_znak(std::string &val, int &tmp) {
 int number(std::string str, double *number) {
   // int number(char *str, double *number) {
   int err = -1;
-  printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
+  // printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
   if (check_number(str) == 0) {
     double num; 
     try {
@@ -151,7 +162,7 @@ int number(std::string str, double *number) {
 
 // int check_number(char *str) {
   int check_number(std::string str) {
-  printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
+  // printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
   int err = TRUE;
   int count_p = 0;
   int count_0 = 0;
@@ -185,34 +196,6 @@ int number(std::string str, double *number) {
   return err;
 }
 
-/**
- * @brief          Проверяет функции на корректность
- *
- * @param str      - Строка с арифметическим выражением
- * @param count    - Порядковый номер, проверяемого символа
- * @return         - Вернет значение в зависимости от вида функции
- */
-
-int check_funcs(std::string str, int *count) {
-  // int check_funcs(char *str, int *count) {
-  int res = -1;
-  int vr = *count;
-  if ((strncmp(&str[vr], "sin(", 4) == 0 || strncmp(&str[vr], "cos(", 4) == 0 ||
-       strncmp(&str[vr], "tan(", 4) == 0)) {
-    res = 1;
-  } else if (strncmp(&str[vr], "asin(", 5) == 0 ||
-             strncmp(&str[vr], "acos(", 5) == 0 ||
-             strncmp(&str[vr], "atan(", 5) == 0) {
-    res = 2;
-  } else if (strncmp(&str[vr], "log(", 4) == 0) {
-    res = 3;
-  } else if (strncmp(&str[vr], "ln(", 3) == 0) {
-    res = 4;
-  } else if (strncmp(&str[vr], "sqrt(", 5) == 0) {
-    res = 5;
-  }
-  return res;
-}
 
 /**
  * @brief          Обрабатывает польскую нотацию
@@ -226,6 +209,7 @@ int check_funcs(std::string str, int *count) {
 
 int check_parser(string str, int type, int symbol, string &value, int *brackets) {
 int err = -1;
+printf("\n ~~~~~Check_parser~~~~~\n\n");
   int symbol_afte2 = 0;
   int symbol_befor2 = 0;
 
@@ -246,23 +230,25 @@ int err = -1;
       // std::advance(it, symbol - 1);
       // symbol_befor2 = it->type;
       // data_befor2 = it->dat2;
+      // cout<< "L " << value <<endl;
 
   if (type != -1 && brackets >= 0) { //type нужен,  проверка на тайп сделать перед запуском чек парсер, тут оставить только скобки
       if (value == " ") { // не раюотает
-        symbol++;
+        // symbol++;
+        // err = TRUE;
         // cout<< "Out " << value <<endl;
     // continue; // возможно не надо
       } else if (type == 9 && check_number(value) == 0) {
-        // cout<< "parser_N " << value <<endl;
+        cout<< "parser_N " << "\"" << data_afte2 << "\"" << endl;
         // cout<< "parser_a " << symbol_after <<endl;
         if (data_afte2 == ")" || symbol_afte2 == 1 || symbol_afte2 == 2 ||
-            data_afte2 == "^" || data_afte2 == "m" || symbol == (len - 1)) {
+            data_afte2 == "^" || data_afte2 == "mod" || symbol == (len - 1) /*|| data_afte2 == " " *//*возможно не надо*/) {
           err = TRUE;
-          //  cout<< "parser_N_Good " << value <<endl;
+           cout<< "parser_N_Good " << value <<endl;
         }  
 
        } else if (symbol == len - 1) {
-        //  cout<< "last_simlol" << value <<endl;
+         cout<< "last_simlol" << value <<endl;
         if (value == ")" || (type == 9 && check_number(value) == 0) ||
             value == "x") {
               cout<< "last_simlol_good " << value <<endl;
@@ -272,7 +258,7 @@ int err = -1;
           }
         }
       } else if (symbol == 0 &&
-                 (value == ")" || type == 2 || value == "m" || value == "^")) { 
+                 (value == ")" || type == 2 || value == "mod" || value == "^")) { 
                   cout << "Nothing" << endl; // ничего нен проиходит
       } else if ((symbol == 0 && type == 1 &&
                   (symbol_afte2 == 4 || data_afte2 == "(" ||
@@ -292,19 +278,19 @@ int err = -1;
       } else if (value == ")") {
         cout << "Brackets )" << endl; 
         if (data_afte2 == "\0" || data_afte2 == "^" || data_afte2 == ")" ||
-            data_afte2 == "m" || symbol_afte2 == 1 || symbol_afte2 == 2) {
+            data_afte2 == "mod" || symbol_afte2 == 1 || symbol_afte2 == 2) {
           *brackets -= 1;
           err = TRUE;
           cout << "Brackets ) Good" << endl; 
         }
-      } else if ((type == 4 && value != "m") || value == "(") {
+      } else if ((type == 4 && value != "mod") || value == "(") {
         *brackets += 1;
         cout << "Brackets (" << endl; 
         err = TRUE;
         if (data_afte2 == ")" || data_afte2 == "^" || symbol_afte2 == 2) {
           err = -1;
         }
-      } else if (value == "m") {
+      } else if (value == "mod") {
         cout << "VAL m" << endl; 
         int symbol_tmp = symbol - 2;
         symbol_befor2 = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);     // надо
@@ -324,7 +310,7 @@ int err = -1;
 
   // symbol_before = type;
   // data_befor2 = value;
-  // cout << "___ bascets_ " << *brackets << " Code err_  "<< err << endl;
+  cout << "___ bascets_ " << *brackets << " Code err_  "<< err << endl;
 
   return err;
 }
@@ -392,6 +378,37 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
   printstack(znak);
   return 0;
 }
+
+/**
+ * @brief          Проверяет функции на корректность
+ *
+ * @param str      - Строка с арифметическим выражением
+ * @param count    - Порядковый номер, проверяемого символа
+ * @return         - Вернет значение в зависимости от вида функции
+ */
+
+int check_funcs(std::string str, int *count) {
+  // int check_funcs(char *str, int *count) {
+  int res = -1;
+  int vr = *count;
+  if ((strncmp(&str[vr], "sin(", 4) == 0 || strncmp(&str[vr], "cos(", 4) == 0 ||
+       strncmp(&str[vr], "tan(", 4) == 0)) {
+    res = 1;
+  } else if (strncmp(&str[vr], "asin(", 5) == 0 ||
+             strncmp(&str[vr], "acos(", 5) == 0 ||
+             strncmp(&str[vr], "atan(", 5) == 0) {
+    res = 2;
+  } else if (strncmp(&str[vr], "log(", 4) == 0) {
+    res = 3;
+  } else if (strncmp(&str[vr], "ln(", 3) == 0) {
+    res = 4;
+  } else if (strncmp(&str[vr], "sqrt(", 5) == 0) {
+    res = 5;
+  }
+  return res;
+}
+
+
 
 /**
  * @brief          Смотрит какой символ до или после  текущего
@@ -543,9 +560,9 @@ void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, i
  * @param numbers     - Стек с числами
  * @param tmp         - Сколько убираем чисел из стека
  */
-int matemat_simple(std::list<Stack_t2>::iterator &it, std::stack<double> &st_num, double &res)
+int math_simple(list<Stack_t2>::iterator &it, stack<double> &st_num, double &res)
 {
-  int err = 5;  // сделать другое
+  int err = TRUE;  // сделать другое
   double a, b;
   if (st_num.empty()) {
     throw std::runtime_error("Stack Error");
@@ -556,61 +573,90 @@ int matemat_simple(std::list<Stack_t2>::iterator &it, std::stack<double> &st_num
     throw std::runtime_error("Stack Error");
   }
   a = st_num.top(); // можно сразу забирать строку и stod ее преобразовывать
-
   st_num.pop();
   if (it->dat2 == "+") {
-        // res = num.number[num.size - 1] + num.number[num.size - 2];
-        // res = st_num.top();
-        // st_num.pop();
-        // res += st_num.top();
-        // st_num.pop();
-        // // num.size = num.size - 2;
-        // // cout << "Промежуточнв=ый рез-т_5 " << res << endl;
-        // // push_num(&num, &res, 9);
-        res = a + b;
-        st_num.push(res);
-
-
-    } else if (it->dat2 == "-") {
-    //   cout << "Промежуточнв=ый рез-т_00 " << res << endl;
-    //     // res = num.number[num.size - 1] - num.number[num.size];
-    //     // num.size = num.size - 2;
-    //     res = st_num.top();
-    //     st_num.pop();
-    //     res -= st_num.top();
-    //     st_num.pop();
-    //     // push_num(&num, &res, 9);
-    res = a - b;
-        st_num.push(res);
-    //     // cout << "Промежуточнв=ый рез-т_6 " <<  << endl;
-    } else if (it->dat2 == "*") {
-    // //     res = num.number[num.size] * num.number[num.size - 1];
-    // //     num.size = num.size - 2;
-    // //     push_num(&num, &res, 9);
-        res = a * b;
-        st_num.push(res);
-    } else if (it->dat2 == "/") {
-    // //   if (num.number[num.size] != 0) {
-    // //     res = num.number[num.size - 1] / num.number[num.size];
-    // //     num.size = num.size - 2;
-    // //     push_num(&num, &res, 9);
-        res = a / b;
-        st_num.push(res);
-    // //   } else {
-    // //     err = ZERO;
-    // //   }
-    } else if (it->dat2 == "^") {
-        res = pow(a, b); // вохможно надо std
-        st_num.push(res);
-    } else if (it->dat2 == "mod") {
-      if (b != 0) {
-        res = fmod(a, b);
-        // matemat_res(&num, &res, 2);
-        st_num.push(res);
-      } else {
-        err = ZERO;
-      }
+      res = a + b;
+  } else if (it->dat2 == "-") {
+  res = a - b;
+  //     // cout << "Промежуточнв=ый рез-т_6 " <<  << endl;
+  } else if (it->dat2 == "*") {
+  // //     res = num.number[num.size] * num.number[num.size - 1];
+      res = a * b;
+  } else if (it->dat2 == "/") {
+    if (b != 0) {
+      res = a / b;
+    } else {
+      err = ZERO;
     }
+  } else if (it->dat2 == "^") {
+      res = pow(a, b); // вохможно надо std
+  } else if (it->dat2 == "mod") {
+    if (b != 0) {
+      res = fmod(a, b);
+      // matemat_res(&num, &res, 2); // вроде как не надо, так как уже забрала 2 элемента и результат запушила
+    } else {
+      err = ZERO;
+    }
+  }
+  if (err == TRUE) {
+    st_num.push(res);
+  }
+  return err;
+}
+
+int math_function(list<Stack_t2>::iterator &it, stack<double> &st_num, double &res) {
+  int err = TRUE;  // сделать другое
+  double a;
+  if (st_num.empty()) {
+    throw std::runtime_error("Stack Error");
+  }
+  a = st_num.top();
+  st_num.pop();
+
+  if (it->dat2 == "cos(") {
+    res = cos(a);
+  } else if (it->dat2 == "sin(") {
+    res = sin(a);
+  } else if (it->dat2 == "tan(") {
+    res = tan(a);
+  } else if (it->dat2 == "acos(") {
+    if (a >= -1 && a <= 1) {
+      res = acos(a);
+    } else {
+      err = EFUC;
+    }
+  } else if (it->dat2 == "asin(") {
+    if (a >= -1 && a <= 1) {
+      res = asin(a);
+    } else {
+      err = EFUC;
+    }
+  } else if (it->dat2 == "atan(") {
+    res = atan(a);
+  } else if (it->dat2 == "log(") {
+    if (a > 0) {
+      res = log10(a);
+    } else {
+      err = EFUC;
+    }
+  } else if (it->dat2 == "ln(") {
+    if (a > 0) {
+      res = log(a);
+    } else {
+      err = EFUC;
+    }
+  } else if (it->dat2 == "sqrt(") {
+    if (a >= 0) {
+      res = sqrt(a);
+    } else {
+      err = EFUC;
+    }
+  }
+
+  if (err == TRUE) {
+    st_num.push(res);
+  }
+
   return err;
 }
 

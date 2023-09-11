@@ -35,6 +35,18 @@ using namespace std;
 //     return INFINITY;
 //   }
 
+int removes_spaces(std::string &str) { // пока не задействована
+ 
+    // Удаление всех пробелов из строки
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (str[i] == ' ') {
+            str.erase(i, 1);
+            --i; 
+        }
+    }
+    return 0;
+} 
+
 int s21_calc(std::string str, std::string str_x, double *result) {
   // int s21_calc(/*std::string */char * str, char *str_x, double *result) {
   Stack_t stack[STACK_MAX_SIZE] = {0};
@@ -49,15 +61,16 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   // if (str != NULL && !str_x.empty() && result != 0) {
   //   // strcpy(stack->x, str_x);
       stack->g = str_x;
+      removes_spaces(str);
       err = parser(str, stac2, str_x);
       // printstack(stack);
       printstack(stac2);
-      cout << "___________ " << err << endl;
+      cout << "PR___________ " << err << endl;
       cout << endl;
       if (err == TRUE) {
         err = polish_notation(stac2, polis2);
         printstack(polis2);
-        cout << "___________ " << err << endl;
+        cout << "PO___________ " << err << endl;
         cout << endl;
         if (err == TRUE) {
           err = matematika(polis2, result);
@@ -103,11 +116,32 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   int len = str.length();
   // cout<< "LEN " << len <<endl;
   for (int symbol = 0; symbol < len && err == TRUE; symbol++) {
-    err = -1;
+    cout << "Parser_begin " << symbol << " Длина  " << len << endl;
+    err = -1;  
+    
+    
+    // if(str[symbol] == ' ') {
+    //   err = TRUE;
+    //   str.erase(symbol, 1);
+    //   len -= 1;
+    //     // cout << "Parser_1 " << err << endl;
+    //     // continue;
+    //     // cout << "Parser_2 " << err << endl;   
+    // }
+    // if(str[symbol + 1] && str[symbol + 1] == ' ') {
+    //   err = TRUE;
+    //   str.erase(symbol + 1, 1);
+    //   len -= 1;
+    //     // cout << "Parser_1 " << err << endl;
+    //     // continue;
+    //     // cout << "Parser_2 " << err << endl;   
+    // }
+
     
     tmp = types(str, &symbol, &val);
     // err =  check_parser(str, tmp, symbol, val);
-    // cout << "Parser_ " << err << endl;
+    cout << "Parser_val " << val << " TMP " << tmp << endl;
+    // cout << "Parser_)) " << err << endl;
 
     // cout << "Types_ " << val << endl;
     // if (symbol != 0) {
@@ -222,16 +256,18 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       
       if (err == TRUE) {
         // push(stack, val, tmp);
+        // if (tmp != 0 ) {);}
          number(val, &current.numbe2);
          stac2.push_back(current);
          cout << val <<  "  !!!!!!!!!!___ current.numbe2 " << current.numbe2 << endl;
+          cout  << err <<  "  !!!!!!!!!!___ current.numbe2 "  << endl;
       }
     } else 
       err = -1;
-      // cout << "___ bascets " << brackets << endl;
+      cout << "___ bascets " << err << endl;
       
   }
-  if (types(str, &symbol, &val) == -1 || brackets != 0) err = -1; // возможно оставить только скобки
+  if (/*types(str, &symbol, &val) == -1 || */brackets != 0) err = -1; // возможно оставить только скобки
   return err;
 }
 
@@ -260,6 +296,9 @@ int s21_calc(std::string str, std::string str_x, double *result) {
   for (it = stac2.begin(); it != stac2.end(); /*count*/it++) { // возможно end - 1
     // Stack_t2 current;
     // cout << "pri _  " << *it->pri  << endl;
+    // if (it->dat2 == " ") { // попробовать пробелы убирать на уровне польско нотации
+    //     stac2.pop_back();
+    // }
     if (it->type == 9) {
       // if (*it->pri == 9) {
       // push(polish, stack->data[count], stack->pri[count]);
@@ -384,16 +423,21 @@ matematika(list<Stack_t2> &polis2, double *result) {
         // push_num(&num, &res, 9);
         cout << "Промежуточнв=ый рез-т_un " << nu2.top() << endl;
     } else if (it->type == 9) {
-        cout << "Нашли число " << it->dat2 << endl;
+        // cout << "Нашли число " << it->dat2 << endl;
         // push(&num, it->dat2, it->type);
         nu2.push(it->numbe2);
-        // for (int i = 0; i <num.size; i++){
+
+        cout << "Нашли число " << it->dat2 << " Размер стека nu2 " << nu2.size() << endl;
+        // for (int i = 0; i < nu2.size(); i++){
         //   cout << num.number[i] << " x ";          
         // }
         // cout << endl;
         // re2 = 
         // res = num.number[num.size]; // добавила -1, но не понятно почему, возможно копиться ошибки будут
         // cout << "Промежуточнв=ый рез-т_1_ " << num.size << " || " << num.number[num.size - 1] << endl;
+    } else if (it->type == 4) {
+        cout << "Нашли число " << it->dat2 << " Размер стека nu2 " << nu2.size() << endl;
+        err = math_function(it, nu2, res);
     } else if (it->type == 1 || it->type == 2 || it->type == 5) {
         // // res = num.number[num.size - 1] + num.number[num.size - 2];
         // res = nu2.top();
@@ -404,7 +448,7 @@ matematika(list<Stack_t2> &polis2, double *result) {
 
         // nu2.push(res);
         // // push_num(&num, &res, 9);
-        err = matemat_simple(it, nu2, res);
+        err = math_simple(it, nu2, res);
         cout << "Промежуточнв=ый рез-т_5 " << res << endl;
     // } else if (it->dat2 == "-") {
     //   cout << "Промежуточнв=ый рез-т_00 " << res << endl;
@@ -415,14 +459,14 @@ matematika(list<Stack_t2> &polis2, double *result) {
         // res -= nu2.top();
         // nu2.pop();
         // push_num(&num, &res, 9);
-        // matemat_simple(it, nu2, res);
+        // math_simple(it, nu2, res);
         // cout << "Промежуточнв=ый рез-т_6 " <<  << endl;
     // } else if (it->dat2 == "*") {
     //     res = num.number[num.size] * num.number[num.size - 1];
     //     num.size = num.size - 2;
     //     push_num(&num, &res, 9);
     // } else if (it->dat2 == "/") {
-    //   matemat_simple(it, nu2, res);
+    //   math_simple(it, nu2, res);
     //   if (num.number[num.size] != 0) {
     //     res = num.number[num.size - 1] / num.number[num.size];
     //     num.size = num.size - 2;
@@ -491,7 +535,7 @@ matematika(list<Stack_t2> &polis2, double *result) {
     }
     cout << "Промежуточнв=ый рез-т_res " << res << endl;
   }
-  // res = nu2.top();
+  res = nu2.top();
   *result = res;
   // printf("%f\n", *result);
   return err;

@@ -42,7 +42,7 @@ test: $(OBJS2)
 
 main: $(OBJS)	
 #	make clean	
-	$(CCF) $(CHECK_FLAGS) $(OBJS_m) -o s21_calc_2.0
+	$(CCF) $(OBJS_m) -o s21_calc_2.0
 	./s21_calc_2.0
     CK_FORK=no leaks -exclude -s21_calc_2.0 --atExit -- ./s21_calc_2.0  | grep LEAK:	 
 
