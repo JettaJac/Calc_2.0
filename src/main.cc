@@ -42,7 +42,7 @@ int main() {
   stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = " - 4 +     9 ";  // -77.6904761904761905 Работает и так и char str [100]
+  std::string str = "-(5+6)";  // -77.6904761904761905 Работает и так и char str [100]
                          // = "4.2001";
   std::string str_ch = "I";                  
   // char *str_ch = "I";

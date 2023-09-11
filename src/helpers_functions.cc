@@ -60,12 +60,14 @@ int types(std::string str, int *count, std::string *valu) {
   } else if (str[vr] == '(' || str[vr] == ')') {
     len = 1;
     type = 3;
+    
   } else if (str[vr] == 'x' || str[vr] == '^') {
     len = 1;
     type = 5;
   } else if (strncmp(&str[vr], "mod", 3) == 0) {
     len = 3;
     type = 5;
+    cout << "Parser_1 "  << endl;
   } else if ((str[vr] > 47 && str[vr] <= 57) || (str[vr] == 46)) {
     len = 0;
     int n = vr, m = 0;
@@ -293,11 +295,15 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
       } else if (value == "mod") {
         cout << "VAL m" << endl; 
         int symbol_tmp = symbol - 2;
-        symbol_befor2 = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);     // надо
+        cout << "VAL m22 tmp  " << symbol_tmp <<  endl; 
+        symbol_befor2 = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);  
+        cout << "VAL m22b " << symbol_befor2 <<  endl;    // надо
         if (symbol_befor2 == 9 || data_befor2 == ")" || data_befor2 == "x") {
           symbol_afte2= prev_next_ch(1, str, symbol + 1, &data_afte2); // надо
+          cout << "VAL m _ current" << endl; 
           if (symbol_afte2 == 9 || data_afte2 == "(" || data_afte2 == "x") {
             err = TRUE;
+            cout << "VAL m _ GOOD" << endl; 
           }
         }
       } else if (type == 5) {
@@ -426,15 +432,17 @@ int prev_next_ch(int flag, std::string str, int symbol, std::string *value) { //
   // int prev_next_ch(int flag, char *str, int symbol, char *value) {
   int err = -1;
   int len = str.length();
-  // if (flag == 1 && symbol < len) {
+  cout << "UUUU " << len << " symbol " << symbol << endl;
+
+  if (symbol < len && symbol >= 0) {
     // symbol = symbol + 1;
     
     err = types(str, &symbol, value);
     // *value = "9";
-  //  cout << "UUUU " << *value << endl;
+   cout << "UUUU " << *value << endl;
     // value[1] = '\0'; // скорее всего не надо, точнее можно по другому реализовать    
     
-  // }
+  }
 
   // if (flag == -1 && symbol > 0) {
   //   symbol = symbol - 1;

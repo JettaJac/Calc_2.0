@@ -340,11 +340,11 @@ int s21_calc(std::string str, std::string str_x, double *result) {
       check_polish(znak, polis2, stac2, count);
     }
     if (it == --stac2.end()) {
-      // cout << "UUUU " << endl;
+      cout << "UUUU " << endl;
       int len_znak = znak.size();
       std::list<Stack_t2>::iterator it_z = --znak.end();
       // for (; it_z != --znak.end(); it_z--) {
-        for ( ; len_znak > 0; len_znak--) {
+        for ( ; len_znak = 0; len_znak--) {
         cout << "eee " << endl;
         // strcpy(doub, znak.data[znak.size]);
         // std::string  doub = it_z->dat2; // yt yflj 
