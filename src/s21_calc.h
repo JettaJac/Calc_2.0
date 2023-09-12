@@ -1,4 +1,3 @@
-
 /**
  * @file s21__calc.h
  * @author jettajac
@@ -49,6 +48,8 @@
 // #define FAIL -1
 #define ZERO -2
 #define EFUC -3  // неправильно введены значения в функциях
+
+#define ERC 0.00000001
 
 // #define size_t
 // #define STACK_OVERFLOW 10
@@ -124,7 +125,7 @@ void push_num(Stack_t *stack, double *value, int prioritet);
 // void push_num(stack &stack, double *value, int prioritet);
 void pop(Stack_t *stack);
 void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
-void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator it);
+void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator &it);
 void printvalue_stack(char *value);
 void printstack(Stack_t *stack);
 void printstack(std::list<Stack_t2> &stac2);

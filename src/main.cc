@@ -34,6 +34,9 @@ using namespace std;
 // 5 Должно выдавать 5
 // "(5) + 5 "   // Добавить в тесты
 // "- 5 +5 " // Кидает исключения
+// Переделать * в &
+// Переделать возможно в prev_after_ последнее значение в &char ( мод соответственно поправить)
+// Переименовать prev_after
 
 int main() {
   int err = -1;
@@ -42,7 +45,7 @@ int main() {
   stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "-(5+6)";  // -77.6904761904761905 Работает и так и char str [100]
+  std::string str = "3*(5+6)-2*4-(8*9/3-6)/7";  // -77.6904761904761905 Работает и так и char str [100]
                          // = "4.2001";
   std::string str_ch = "I";                  
   // char *str_ch = "I";
@@ -77,6 +80,8 @@ int main() {
   // stro[0] = numb;
   // int fun4 = s21_calc(str, str_x, stro);
   int fun_res = s21_calc(str, str_g, stro);
+  // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
+  // cout << "Значение :  " << str_ch[0] << endl;
   cout << "Резульата работы ф-ии:  " << fun_res << endl;
   // s21_calc(str, str_x, stro);
   // number(str, stro);
