@@ -359,6 +359,7 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
       // pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
     
     }
+    it_z = --znak.end();
     if (znak.size() > 0 && it->type <= it_z->type &&
       it_z->type < 3) {
           printstack(znak);

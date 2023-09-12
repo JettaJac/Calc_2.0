@@ -45,8 +45,8 @@ int main() {
   stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "3*(5+6)-2*4-(8*9/3-6)/7";  // -77.6904761904761905 Работает и так и char str [100]
-                         // = "4.2001";
+  std::string str = "sin(cos(tan(acos(asin(atan(log(1*ln(sqrt(5mod3^(-2)+x)))))))))";  // -77.6904761904761905 Работает и так и char str [100]
+                         // = "4.2001";       2.57
   std::string str_ch = "I";                  
   // char *str_ch = "I";
   std::string str_g = "2"; 

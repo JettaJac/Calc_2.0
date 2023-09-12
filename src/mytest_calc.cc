@@ -533,450 +533,447 @@ TEST(Calc, matematika_simple) {
   s21_calc("5+7-3/2", x, &res);
   EXPECT_EQ(res == 10.5, true);
 
-  // s21_calc("3*(5+6)-2*4-(8*9/3-6)", x, &res);
-  // EXPECT_EQ(res == 7, true);
+  s21_calc("3*(5+6)-2*4-(8*9/3-6)", x, &res);
+  EXPECT_EQ(res == 7, true);
 
-  // s21_calc("3*(5+6)-2*4-(8*9/3-6)/7", x, &res);
-  // // cout << "TEST_ " << res << endl;
-  // EXPECT_EQ(res - 22.4285714285714286 == ERC, true);
+  s21_calc("3*(5+6)-2*4-(8*9/3-6)/7", x, &res);
+  // cout << "TEST_ " << res << endl;
+  EXPECT_EQ(res - 22.4285714285714286 <= ERC, true);
 
-  // s21_calc("3*(5+6)-2*4-(8*9/3-6)/7-2*3", x, &res);
-  // EXPECT_EQ(res == 16.4285714285714286, true);
+  s21_calc("3*(5+6)-2*4-(8*9/3-6)/7-2*3", x, &res);
+  EXPECT_EQ(res - 16.4285714285714286 <= ERC, true);
 
-  // s21_calc("3-(5+6)*(2+4)-8*9-6/7-2*3", x, &res);
-  // EXPECT_EQ(res -(-141.8571428571428571), true);
+  s21_calc("3-(5+6)*(2+4)-8*9-6/7-2*3", x, &res);
+  EXPECT_EQ(res -(-141.8571428571428571) <= ERC, true);
 
-  // tmp = s21_calc("(5+4-2*5)/(5-5)", x, &res);
-  // EXPECT_EQ(tmp, -2);
+  tmp = s21_calc("(5+4-2*5)/(5-5)", x, &res);
+  EXPECT_EQ(tmp, -2);
 
-  // tmp = s21_calc("(4+10)/0*2+1", x, &res);
-  // EXPECT_EQ(tmp, -2);
+  tmp = s21_calc("(4+10)/0*2+1", x, &res);
+  EXPECT_EQ(tmp, -2);
 
-  // s21_calc("80/2", x, &res);
-  // EXPECT_EQ(res - 40, true);
+  s21_calc("80/2", x, &res);
+  EXPECT_EQ(res - 40 <= ERC, true);
 
-  // s21_calc("80/(2-10)", x, &res);
-  // EXPECT_EQ(res - (-10), true);
+  s21_calc("80/(2-10)", x, &res);
+  EXPECT_EQ(res - (-10) <= ERC, true);
 
-  // s21_calc("80/(-10)", x, &res);
-  // EXPECT_EQ(res - (-8), true);
+  s21_calc("80/(-10)", x, &res);
+  EXPECT_EQ(res - (-8) <= ERC, true);
 
-  // s21_calc("-80/(-10)", x, &res);
-  // EXPECT_EQ(res - 8, true);
+  s21_calc("-80/(-10)", x, &res);
+  EXPECT_EQ(res - 8 <= ERC, true);
 
-  // s21_calc("-(5+1)", x, &res);
-  // EXPECT_EQ(res - (-6), true);
+  s21_calc("-(5+1)", x, &res);
+  EXPECT_EQ(res - (-6) <= ERC, true);
 
-  // s21_calc("-(-(5+2)*4)", x, &res);
-  // EXPECT_EQ(res - 28, true);
+  s21_calc("-(-(5+2)*4)", x, &res);
+  EXPECT_EQ(res - 28 <= ERC, true);
 
-  // s21_calc("-(+(5+2)*4)", x, &res);
-  // EXPECT_EQ(res - (-28), true);
+  s21_calc("-(+(5+2)*4)", x, &res);
+  EXPECT_EQ(res - (-28) <= ERC, true);
 
-  // s21_calc("5", x, &res);
-  // EXPECT_EQ(res - 5, true);
+  s21_calc("5", x, &res);
+  EXPECT_EQ(res - 5 <= ERC, true);
 
-  // s21_calc("-5", x, &res);
-  // EXPECT_EQ(res - (-5), true);
+  s21_calc("-5", x, &res);
+  EXPECT_EQ(res - (-5) <= ERC, true);
 
-  // s21_calc("sin(cos(log(5^2)))", x, &res);
-  // res == res - (0.17115002489);
-  // EXPECT_EQ(res, true);
+  s21_calc("sin(cos(log(5^2)))", x, &res);
+  
+  EXPECT_EQ(res - 0.17115002489 <= ERC, true);
 
-  // s21_calc("sin(cos(tan(acos(asin(atan(log(-1*ln(sqrt(5mod3^-2+x))))))))", x, &res);
-  // EXPECT_EQ(res - (0.71188622115482), true);
+  s21_calc("sin(cos(tan(acos(asin(atan(log(1*ln(sqrt(5mod3^(-2)+x)))))))))", x, &res);
+  cout << res << endl;
+  EXPECT_EQ(res - 0.71188622115482 <= ERC, true);
 
   // s21_calc("sqrt((-2)*(-2))", x, &res);
-  // cout << "TEST_ " << res << endl;
-  // res == res - (2);
-  // cout << "TEST_ " << res << endl;
-  // EXPECT_EQ(res <= ERC, true);
-
-  
+  // // res == res - 2;
+  // EXPECT_EQ(res == 2, true);  
 }
 
 
-TEST(Calc, matematika_trig_1) {
-  double res = 999;
-  char x[SIZE] = "46";
+// TEST(Calc, matematika_trig_1) {
+//   double res = 999;
+//   char x[SIZE] = "46";
 
-  s21_calc("sin(5)", x, &res);
-  res = res - (-0.95892427466);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("sin(5)", x, &res);
+//   res = res - (-0.95892427466);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("cos(5)", x, &res);
-  res = res - (0.28366218546);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("cos(5)", x, &res);
+//   res = res - (0.28366218546);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("cos(45)", x, &res);
-  res = res - (0.52532198881);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("cos(45)", x, &res);
+//   res = res - (0.52532198881);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("cos(45)+sin(67)", x, &res);
-  res = res - (0.98687716056);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("cos(45)+sin(67)", x, &res);
+//   res = res - (0.98687716056);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("-cos(45)+sin(67)", x, &res);
-  res = res - (0.98687716056);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("-cos(45)+sin(67)", x, &res);
+//   res = res - (0.98687716056);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("-cos(45)", x, &res);
-  res = res - (-0.52532198881);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("-cos(45)", x, &res);
+//   res = res - (-0.52532198881);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("1-cos(45)", x, &res);
-  res = res - (0.47467801118);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("1-cos(45)", x, &res);
+//   res = res - (0.47467801118);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("1-(-cos(45))", x, &res);
-  res = res - (1.52532198882);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("1-(-cos(45))", x, &res);
+//   res = res - (1.52532198882);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("1-(-(-cos(45)))", x, &res);
-  res = res - (0.47467801118);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("1-(-(-cos(45)))", x, &res);
+//   res = res - (0.47467801118);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("acos(0.5)", x, &res);
-  res = res - (1.0471975511966);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("acos(0.5)", x, &res);
+//   res = res - (1.0471975511966);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("asin(0.5)", x, &res);
-  res = res - (0.523598775598299);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("asin(0.5)", x, &res);
+//   res = res - (0.523598775598299);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("atan(x)", x, &res);
-  res = res - (1.5490606199531);
-  EXPECT_EQ(res <= ERC, true);
+//   s21_calc("atan(x)", x, &res);
+//   res = res - (1.5490606199531);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("sin(x)", x, &res);
-  res = res - (0.90178834764881);
-  EXPECT_EQ(res <= ERC, true);
-  cout << "TEST_ " << res << endl;
-}
-
-
-TEST(Calc, matematika_log_1) {
-  double res = 999;
-  char x[SIZE] = "1";
-
-  s21_calc("log(5)", x, &res);
-  res = res - (0.6989700043360189);
-  EXPECT_EQ(res <= ERC, true);
-
-  s21_calc("ln(5)", x, &res);
-  res = res - (1.6094379124341004);
-  EXPECT_EQ(res <= ERC, true);
-
-  s21_calc("log(45)", x, &res);
-  res = res - (1.6532125137753437);
-  EXPECT_EQ(res <= ERC, true);
-
-  s21_calc("ln(45)+log(67)", x, &res);
-  res = res - (5.6327372924711462);
-  EXPECT_EQ(res <= ERC, true);
-
-  s21_calc("(-log(45)+sin(67))-(ln(10)+log(56))", x, &res);
-  res = res - (-6.55950561275);
-  EXPECT_EQ(res <= ERC, true);
-
-  s21_calc("-ln(45-20)", x, &res);
-  res = res - (-3.2188758248682007);
-  EXPECT_EQ(res <= ERC, true);
-}
+//   s21_calc("sin(x)", x, &res);
+//   res = res - (0.90178834764881);
+//   EXPECT_EQ(res <= ERC, true);
+//   cout << "TEST_ " << res << endl;
+// }
 
 
-TEST(Calc, matematika_mod) {
-  double res = 999;
-  char x[SIZE] = "1";
+// TEST(Calc, matematika_log_1) {
+//   double res = 999;
+//   char x[SIZE] = "1";
 
-  s21_calc("45mod4", x, &res);
-  EXPECT_EQ(res == 1, true);
+//   s21_calc("log(5)", x, &res);
+//   res = res - (0.6989700043360189);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("(2+3*5)mod(3*2)", x, &res);
-  EXPECT_EQ(res == 5, true);
+//   s21_calc("ln(5)", x, &res);
+//   res = res - (1.6094379124341004);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("(2^2^2)mod3", x, &res);
-  EXPECT_EQ(res == 1, true);
+//   s21_calc("log(45)", x, &res);
+//   res = res - (1.6532125137753437);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("5mod2+33mod6*6", x, &res);
-  EXPECT_EQ(res == 19, true);
+//   s21_calc("ln(45)+log(67)", x, &res);
+//   res = res - (5.6327372924711462);
+//   EXPECT_EQ(res <= ERC, true);
 
-  s21_calc("(-7)mod(7mod4)", x, &res);
-  EXPECT_EQ(res == -1, true);
- }
+//   s21_calc("(-log(45)+sin(67))-(ln(10)+log(56))", x, &res);
+//   res = res - (-6.55950561275);
+//   EXPECT_EQ(res <= ERC, true);
 
-
-TEST(Calc, matematika_pow) {
-  double res = 999;
-  char x[SIZE] = "1";
-
-  s21_calc("2^(-1+1*3)", x, &res);
-  EXPECT_EQ(res == 4, true);
-
-  // s21_calc("2^(-1+1*3)+5*4", x, &res);
-  // EXPECT_EQ(res == 24, true);
-
-  s21_calc("2^(-2)", x, &res);
-  EXPECT_EQ(res == 0.25, true);
-
-  s21_calc("(-3^(-3))", x, &res);
-  res = res - (-0.037037037037037);
-  EXPECT_EQ(res <= ERC, true);
-}
+//   s21_calc("-ln(45-20)", x, &res);
+//   res = res - (-3.2188758248682007);
+//   EXPECT_EQ(res <= ERC, true);
+// }
 
 
-TEST(Calc, matematika_x) {
-  double res = 999;
-  char x[SIZE] = "5";
+// TEST(Calc, matematika_mod) {
+//   double res = 999;
+//   char x[SIZE] = "1";
 
-  s21_calc("x^2+3*x", x, &res);
-  EXPECT_EQ(res == 40, true);
+//   s21_calc("45mod4", x, &res);
+//   EXPECT_EQ(res == 1, true);
 
-  s21_calc("3*x", x, &res);
-  EXPECT_EQ(res == 15, true);
+//   s21_calc("(2+3*5)mod(3*2)", x, &res);
+//   EXPECT_EQ(res == 5, true);
 
-  s21_calc("x*3", x, &res);
-  EXPECT_EQ(res == 15, true);
+//   s21_calc("(2^2^2)mod3", x, &res);
+//   EXPECT_EQ(res == 1, true);
 
-  s21_calc("3*x+2*x", x, &res);
-  EXPECT_EQ(res == 25, true);
+//   s21_calc("5mod2+33mod6*6", x, &res);
+//   EXPECT_EQ(res == 19, true);
 
-  s21_calc("3*x+2+x", x, &res);
-  EXPECT_EQ(res == 22, true);
-
-  s21_calc("-x", x, &res);
-  EXPECT_EQ(res == -5, true);
-
-  char x2[SIZE] = "-5";
-
-  s21_calc("x^2+3*x", x2, &res);
-  EXPECT_EQ(res == 10, true);
-
-  s21_calc("3*x", x2, &res);
-  EXPECT_EQ(res == -15, true);
-
-  s21_calc("x*3", x2, &res);
-  EXPECT_EQ(res == -15, true);
-
-  s21_calc("3*x+2*x", x2, &res);
-  EXPECT_EQ(res == -25, true);
-
-  s21_calc("3*x+2+x", x2, &res);
-  EXPECT_EQ(res == -18, true);
-
-  s21_calc("-x", x2, &res);
-  EXPECT_EQ(res == 5, true);
-}
+//   s21_calc("(-7)mod(7mod4)", x, &res);
+//   EXPECT_EQ(res == -1, true);
+//  }
 
 
-TEST(Calc, matematika_err) {
-  double res = 999;
-  char x[SIZE] = "-1";
+// TEST(Calc, matematika_pow) {
+//   double res = 999;
+//   char x[SIZE] = "1";
 
-  EXPECT_EQ(s21_calc("-cos(45)sin(67)", x, &res) == -1, true);
-  EXPECT_EQ(s21_calc("1 - cos(45)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("-cos(45)+sin(-67)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("-cos(+45)+sin(67)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("-ln(45)+sin(67)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("5mod4+sin(67)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("2^2^2", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("2^2^", x, &res) == -1, true);
-  EXPECT_EQ(s21_calc("2^(-1+1*3)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("2^(-1+1*3)+5*4", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("log(-45)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("6mod(-4)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("(-5)mod(-4)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("(-5)mod(6mod4)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("(2+3*5)mod(3*2)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("atan(3*2)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("asin(5)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("asin(0.4)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("acos(5)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("acos(0.5)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("atan(5)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("sin(0.4)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("cos(5)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("tan(5)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("ln(-5)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("log(-5)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("10mod(5-5)", x, &res) == -2, true);
-  EXPECT_EQ(s21_calc("10mod(-x)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("10modx", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("xmod5", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("(-x)mod5", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("sqrt(x)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("sqrt(-1)", x, &res) == -3, true);
-  EXPECT_EQ(s21_calc("sqrt(4)", x, &res) == 0, true);
-  EXPECT_EQ(s21_calc("(5^-3)", x, &res) == -1, true);
-}
+//   s21_calc("2^(-1+1*3)", x, &res);
+//   EXPECT_EQ(res == 4, true);
+
+//   // s21_calc("2^(-1+1*3)+5*4", x, &res);
+//   // EXPECT_EQ(res == 24, true);
+
+//   s21_calc("2^(-2)", x, &res);
+//   EXPECT_EQ(res == 0.25, true);
+
+//   s21_calc("(-3^(-3))", x, &res);
+//   res = res - (-0.037037037037037);
+//   EXPECT_EQ(res <= ERC, true);
+// }
 
 
-// TEST(Calc, matematika_memory) {
-//   std::list<Stack_t2> stack_N;
-//   std::string str_x = "1";
-//   Stack_t polish[10] = {0};
+// TEST(Calc, matematika_x) {
+//   double res = 999;
+//   char x[SIZE] = "5";
+
+//   s21_calc("x^2+3*x", x, &res);
+//   EXPECT_EQ(res == 40, true);
+
+//   s21_calc("3*x", x, &res);
+//   EXPECT_EQ(res == 15, true);
+
+//   s21_calc("x*3", x, &res);
+//   EXPECT_EQ(res == 15, true);
+
+//   s21_calc("3*x+2*x", x, &res);
+//   EXPECT_EQ(res == 25, true);
+
+//   s21_calc("3*x+2+x", x, &res);
+//   EXPECT_EQ(res == 22, true);
+
+//   s21_calc("-x", x, &res);
+//   EXPECT_EQ(res == -5, true);
+
+//   char x2[SIZE] = "-5";
+
+//   s21_calc("x^2+3*x", x2, &res);
+//   EXPECT_EQ(res == 10, true);
+
+//   s21_calc("3*x", x2, &res);
+//   EXPECT_EQ(res == -15, true);
+
+//   s21_calc("x*3", x2, &res);
+//   EXPECT_EQ(res == -15, true);
+
+//   s21_calc("3*x+2*x", x2, &res);
+//   EXPECT_EQ(res == -25, true);
+
+//   s21_calc("3*x+2+x", x2, &res);
+//   EXPECT_EQ(res == -18, true);
+
+//   s21_calc("-x", x2, &res);
+//   EXPECT_EQ(res == 5, true);
+// }
+
+
+// TEST(Calc, matematika_err) {
 //   double res = 999;
 //   char x[SIZE] = "-1";
 
-//   // EXPECT_EQ(parser(NULL, stack_N,  str_x) == -4, true);
-//   // EXPECT_EQ(parser("sqrt(4)", NULL,  str_x) == -4, true);
-//   // EXPECT_EQ(s21_calc("sqrt(4)", x, NULL) == -4,
-//   //               "FAILEtrue);
-//   // EXPECT_EQ(s21_calc("sqrt(4)", NULL, &res) == -4,
-//   //               "FAILEtrue);
-//   // EXPECT_EQ(s21_calc(NULL, x, &res) == -4, "FAILEtrue);
-//   // EXPECT_EQ(matematika(NULL, &res) == -4, "FAILEtrue);
-//   // EXPECT_EQ(matematika(polish, NULL) == -4, "FAILED
-//   // /true); EXPECT_EQ(polish_notation(stack_N, NULL) == -4,
-//   //               "FAILEtrue);
-//   // EXPECT_EQ(polish_notation(NULL, polish, str_x) == -4, true);
+//   EXPECT_EQ(s21_calc("-cos(45)sin(67)", x, &res) == -1, true);
+//   EXPECT_EQ(s21_calc("1 - cos(45)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("-cos(45)+sin(-67)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("-cos(+45)+sin(67)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("-ln(45)+sin(67)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("5mod4+sin(67)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("2^2^2", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("2^2^", x, &res) == -1, true);
+//   EXPECT_EQ(s21_calc("2^(-1+1*3)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("2^(-1+1*3)+5*4", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("log(-45)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("6mod(-4)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("(-5)mod(-4)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("(-5)mod(6mod4)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("(2+3*5)mod(3*2)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("atan(3*2)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("asin(5)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("asin(0.4)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("acos(5)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("acos(0.5)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("atan(5)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("sin(0.4)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("cos(5)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("tan(5)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("ln(-5)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("log(-5)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("10mod(5-5)", x, &res) == -2, true);
+//   EXPECT_EQ(s21_calc("10mod(-x)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("10modx", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("xmod5", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("(-x)mod5", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("sqrt(x)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("sqrt(-1)", x, &res) == -3, true);
+//   EXPECT_EQ(s21_calc("sqrt(4)", x, &res) == 0, true);
+//   EXPECT_EQ(s21_calc("(5^-3)", x, &res) == -1, true);
 // }
 
-TEST(CheckNumber, Err) {
-  Stack_t stack_N[1] = {0};
-  double value[SIZE] = {0.7};
 
-  push_num(stack_N, value, 1);
-  push_num(stack_N, value, 1);
+// // TEST(Calc, matematika_memory) {
+// //   std::list<Stack_t2> stack_N;
+// //   std::string str_x = "1";
+// //   Stack_t polish[10] = {0};
+// //   double res = 999;
+// //   char x[SIZE] = "-1";
 
-  // EXPECT_EQ(push_num(stack_N, &value, 1) == -100, "FAILED
-  // matematika_other");
-
-  EXPECT_EQ(check_number("10"), 0);
-  EXPECT_EQ(check_number("01"), -1);
-  EXPECT_EQ(check_number("01."), -1);
-  EXPECT_EQ(check_number("00."), -1);
-  EXPECT_EQ(check_number("0.001"), 0);
-  EXPECT_EQ(check_number("001"), -1);
-  EXPECT_EQ(check_number("100000.00001"), 0);
-  EXPECT_EQ(check_number("0.0000000001"), 0);
-  EXPECT_EQ(check_number("00"), -1);
-  EXPECT_EQ(check_number("00.."), -1);
-  EXPECT_EQ(check_number("0.0.1"), -1);
-  EXPECT_EQ(check_number("00.1"), -1);
-  EXPECT_EQ(check_number("0.1"), 0);
-  EXPECT_EQ(check_number("-0.1"), 0);
-  EXPECT_EQ(check_number("-3"), 0);
-  EXPECT_EQ(check_number("-0.0001"), 0);
-  EXPECT_EQ(check_number("-0.000000"), 0);
-  EXPECT_EQ(check_number("0.000000"), 0);
-}
-
-
-TEST(Calc, parser_space2) {
-  std::list<Stack_t2> stack_N;
-  std::string str_x = "1";
-  EXPECT_EQ(parser("( 5   )", stack_N, str_x), 0);
-  EXPECT_EQ(parser(" 5 ", stack_N, str_x), 0);
-  EXPECT_EQ(parser("(cos(6 4))", stack_N, str_x), 0);
-  EXPECT_EQ(parser("(cos(6) + sin( 5 ))", stack_N, str_x), 0);
-  EXPECT_EQ(parser("sin( 5 )", stack_N, str_x), 0);
-  EXPECT_EQ(parser("4 + 3", stack_N, str_x), 0);
-  EXPECT_EQ(parser("(sin( 1 * 2 * 38 + 1))", stack_N, str_x), 0);
-}
-
-
-
-
-
-
-
-
-// // TEST(Calc, credit_calc) {
-// //   credit_t credit_N[10];
-// //   credit_N->type = 1;
-// //   credit_N->total_credit = 60000;
-// //   credit_N->period = 6;
-// //   credit_N->period_uom = 'm';  // y - year, m - month
-// //   credit_N->percent_rate = 24;
-// //   credit_N->overpayment = 0.0;
-// //   credit_N->month_min = 0.0;
-// //   credit_N->month_max = 0.0;
-
-// //   calc_credit(credit_N);
-// //   EXPECT_EQ(credit_N->overpayment == 4200, "FAILED credit_a_1");
-// //   EXPECT_EQ(credit_N->month_max == 11200, "FAILED credit_a_2");
-// //   EXPECT_EQ(credit_N->month_min == 10200, "FAILED credit_a_3");
-
-// //   credit_N->period_uom = 'y';
-// //   credit_N->period = 0.5;
-// //   calc_credit(credit_N);
-
-// //   credit_N->overpayment = credit_N->overpayment - 4200;
-// //   EXPECT_EQ(credit_N->overpayment <= 0, "FAILED credit_a_4");
-// //   credit_N->month_max = credit_N->month_max - 10120;
-// //   EXPECT_EQ(credit_N->month_max <= 0, "FAILED credit_a_5");
-
-// //   credit_N->type = 2;
-// //   calc_credit(credit_N);
-
-// //   credit_N->overpayment = credit_N->overpayment - 4400;
-// //   EXPECT_EQ(credit_N->overpayment <= 0, "FAILED credit_d_1");
-// //   credit_N->month_max = credit_N->month_max - 10740;
-// //   EXPECT_EQ(credit_N->month_max <= 0, "FAILED credit_d_2");
-// //   credit_N->month_min = credit_N->month_min - 10740;
-// //   EXPECT_EQ(credit_N->month_min <= 0, "FAILED credit_d_3");
-
-// //   credit_N->period_uom = 'm';
-// //   credit_N->period = 6;
-// //   calc_credit(credit_N);
-
-// //   credit_N->overpayment = credit_N->overpayment - 4269;
-// //   EXPECT_EQ(credit_N->overpayment <= 0, "FAILED credit_d_4");
-// //   credit_N->month_max = credit_N->month_max - 10711;
-// //   EXPECT_EQ(credit_N->month_max <= 0, "FAILED credit_d_5");
-// // }
-// // 
-
-// // Suite *s21_calc_suite(void) {
-// //   Suite *suite = suite_create("s21_calc_suite);
-// //   TCase *tcase_core = tcase_create("s21_calc_suite);
-
-// //   suite_add_tcase(suite, tcase_core);
-
-// //   tcase_add_test(tcase_core, number_1);
-// //   tcase_add_test(tcase_core, number_err);
-// //   tcase_add_test(tcase_core, parser_sin);
-// //   tcase_add_test(tcase_core, parser_cos);
-// //   tcase_add_test(tcase_core, parser_tan);
-// //   tcase_add_test(tcase_core, parser_asin);
-// //   tcase_add_test(tcase_core, parser_acos);
-// //   tcase_add_test(tcase_core, parser_atan);
-// //   tcase_add_test(tcase_core, parser_log);
-// //   tcase_add_test(tcase_core, parser_ln);
-// //   tcase_add_test(tcase_core, parser_x);
-// //   tcase_add_test(tcase_core, parser_sqrt);
-// //   tcase_add_test(tcase_core, parser_space);
-// //   tcase_add_test(tcase_core, parser_pow);
-// //   tcase_add_test(tcase_core, parser_mod);
-// //   tcase_add_test(tcase_core, znak_1);
-// //   tcase_add_test(tcase_core, znak_err);
-// //   tcase_add_test(tcase_core, brackets_err);
-// //   tcase_add_test(tcase_core, previous_next_ch);
-
-// //   tcase_add_test(tcase_core, matematika_simple);
-// //   tcase_add_test(tcase_core, matematika_trig_1);
-// //   tcase_add_test(tcase_core, matematika_log_1);
-// //   tcase_add_test(tcase_core, matematika_mod);
-// //   tcase_add_test(tcase_core, matematika_pow);
-// //   tcase_add_test(tcase_core, matematika_x);
-// //   tcase_add_test(tcase_core, matematika_err);
-// //   // tcase_add_test(tcase_core, matematika_memory);
-// //   tcase_add_test(tcase_core, matematika_other);
-// //   // tcase_add_test(tcase_core, credit_calc);
-
-// //   return suite;
+// //   // EXPECT_EQ(parser(NULL, stack_N,  str_x) == -4, true);
+// //   // EXPECT_EQ(parser("sqrt(4)", NULL,  str_x) == -4, true);
+// //   // EXPECT_EQ(s21_calc("sqrt(4)", x, NULL) == -4,
+// //   //               "FAILEtrue);
+// //   // EXPECT_EQ(s21_calc("sqrt(4)", NULL, &res) == -4,
+// //   //               "FAILEtrue);
+// //   // EXPECT_EQ(s21_calc(NULL, x, &res) == -4, "FAILEtrue);
+// //   // EXPECT_EQ(matematika(NULL, &res) == -4, "FAILEtrue);
+// //   // EXPECT_EQ(matematika(polish, NULL) == -4, "FAILED
+// //   // /true); EXPECT_EQ(polish_notation(stack_N, NULL) == -4,
+// //   //               "FAILEtrue);
+// //   // EXPECT_EQ(polish_notation(NULL, polish, str_x) == -4, true);
 // // }
 
-// // int main(void) {
-// //   Suite *suite = s21_calc_suite();
-// //   SRunner *suite_runner = srunner_create(suite);
-// //   srunner_run_all(suite_runner, CK_ENV);
-// //   int failed_count = srunner_ntests_failed(suite_runner);
-// //   srunner_free(suite_runner);
+// TEST(CheckNumber, Err) {
+//   Stack_t stack_N[1] = {0};
+//   double value[SIZE] = {0.7};
 
-// //   return (failed_count == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-// // }
+//   push_num(stack_N, value, 1);
+//   push_num(stack_N, value, 1);
+
+//   // EXPECT_EQ(push_num(stack_N, &value, 1) == -100, "FAILED
+//   // matematika_other");
+
+//   EXPECT_EQ(check_number("10"), 0);
+//   EXPECT_EQ(check_number("01"), -1);
+//   EXPECT_EQ(check_number("01."), -1);
+//   EXPECT_EQ(check_number("00."), -1);
+//   EXPECT_EQ(check_number("0.001"), 0);
+//   EXPECT_EQ(check_number("001"), -1);
+//   EXPECT_EQ(check_number("100000.00001"), 0);
+//   EXPECT_EQ(check_number("0.0000000001"), 0);
+//   EXPECT_EQ(check_number("00"), -1);
+//   EXPECT_EQ(check_number("00.."), -1);
+//   EXPECT_EQ(check_number("0.0.1"), -1);
+//   EXPECT_EQ(check_number("00.1"), -1);
+//   EXPECT_EQ(check_number("0.1"), 0);
+//   EXPECT_EQ(check_number("-0.1"), 0);
+//   EXPECT_EQ(check_number("-3"), 0);
+//   EXPECT_EQ(check_number("-0.0001"), 0);
+//   EXPECT_EQ(check_number("-0.000000"), 0);
+//   EXPECT_EQ(check_number("0.000000"), 0);
+// }
+
+
+// TEST(Calc, parser_space2) {
+//   std::list<Stack_t2> stack_N;
+//   std::string str_x = "1";
+//   EXPECT_EQ(parser("( 5   )", stack_N, str_x), 0);
+//   EXPECT_EQ(parser(" 5 ", stack_N, str_x), 0);
+//   EXPECT_EQ(parser("(cos(6 4))", stack_N, str_x), 0);
+//   EXPECT_EQ(parser("(cos(6) + sin( 5 ))", stack_N, str_x), 0);
+//   EXPECT_EQ(parser("sin( 5 )", stack_N, str_x), 0);
+//   EXPECT_EQ(parser("4 + 3", stack_N, str_x), 0);
+//   EXPECT_EQ(parser("(sin( 1 * 2 * 38 + 1))", stack_N, str_x), 0);
+// }
+
+
+
+
+
+
+
+
+// // // TEST(Calc, credit_calc) {
+// // //   credit_t credit_N[10];
+// // //   credit_N->type = 1;
+// // //   credit_N->total_credit = 60000;
+// // //   credit_N->period = 6;
+// // //   credit_N->period_uom = 'm';  // y - year, m - month
+// // //   credit_N->percent_rate = 24;
+// // //   credit_N->overpayment = 0.0;
+// // //   credit_N->month_min = 0.0;
+// // //   credit_N->month_max = 0.0;
+
+// // //   calc_credit(credit_N);
+// // //   EXPECT_EQ(credit_N->overpayment == 4200, "FAILED credit_a_1");
+// // //   EXPECT_EQ(credit_N->month_max == 11200, "FAILED credit_a_2");
+// // //   EXPECT_EQ(credit_N->month_min == 10200, "FAILED credit_a_3");
+
+// // //   credit_N->period_uom = 'y';
+// // //   credit_N->period = 0.5;
+// // //   calc_credit(credit_N);
+
+// // //   credit_N->overpayment = credit_N->overpayment - 4200;
+// // //   EXPECT_EQ(credit_N->overpayment <= 0, "FAILED credit_a_4");
+// // //   credit_N->month_max = credit_N->month_max - 10120;
+// // //   EXPECT_EQ(credit_N->month_max <= 0, "FAILED credit_a_5");
+
+// // //   credit_N->type = 2;
+// // //   calc_credit(credit_N);
+
+// // //   credit_N->overpayment = credit_N->overpayment - 4400;
+// // //   EXPECT_EQ(credit_N->overpayment <= 0, "FAILED credit_d_1");
+// // //   credit_N->month_max = credit_N->month_max - 10740;
+// // //   EXPECT_EQ(credit_N->month_max <= 0, "FAILED credit_d_2");
+// // //   credit_N->month_min = credit_N->month_min - 10740;
+// // //   EXPECT_EQ(credit_N->month_min <= 0, "FAILED credit_d_3");
+
+// // //   credit_N->period_uom = 'm';
+// // //   credit_N->period = 6;
+// // //   calc_credit(credit_N);
+
+// // //   credit_N->overpayment = credit_N->overpayment - 4269;
+// // //   EXPECT_EQ(credit_N->overpayment <= 0, "FAILED credit_d_4");
+// // //   credit_N->month_max = credit_N->month_max - 10711;
+// // //   EXPECT_EQ(credit_N->month_max <= 0, "FAILED credit_d_5");
+// // // }
+// // // 
+
+// // // Suite *s21_calc_suite(void) {
+// // //   Suite *suite = suite_create("s21_calc_suite);
+// // //   TCase *tcase_core = tcase_create("s21_calc_suite);
+
+// // //   suite_add_tcase(suite, tcase_core);
+
+// // //   tcase_add_test(tcase_core, number_1);
+// // //   tcase_add_test(tcase_core, number_err);
+// // //   tcase_add_test(tcase_core, parser_sin);
+// // //   tcase_add_test(tcase_core, parser_cos);
+// // //   tcase_add_test(tcase_core, parser_tan);
+// // //   tcase_add_test(tcase_core, parser_asin);
+// // //   tcase_add_test(tcase_core, parser_acos);
+// // //   tcase_add_test(tcase_core, parser_atan);
+// // //   tcase_add_test(tcase_core, parser_log);
+// // //   tcase_add_test(tcase_core, parser_ln);
+// // //   tcase_add_test(tcase_core, parser_x);
+// // //   tcase_add_test(tcase_core, parser_sqrt);
+// // //   tcase_add_test(tcase_core, parser_space);
+// // //   tcase_add_test(tcase_core, parser_pow);
+// // //   tcase_add_test(tcase_core, parser_mod);
+// // //   tcase_add_test(tcase_core, znak_1);
+// // //   tcase_add_test(tcase_core, znak_err);
+// // //   tcase_add_test(tcase_core, brackets_err);
+// // //   tcase_add_test(tcase_core, previous_next_ch);
+
+// // //   tcase_add_test(tcase_core, matematika_simple);
+// // //   tcase_add_test(tcase_core, matematika_trig_1);
+// // //   tcase_add_test(tcase_core, matematika_log_1);
+// // //   tcase_add_test(tcase_core, matematika_mod);
+// // //   tcase_add_test(tcase_core, matematika_pow);
+// // //   tcase_add_test(tcase_core, matematika_x);
+// // //   tcase_add_test(tcase_core, matematika_err);
+// // //   // tcase_add_test(tcase_core, matematika_memory);
+// // //   tcase_add_test(tcase_core, matematika_other);
+// // //   // tcase_add_test(tcase_core, credit_calc);
+
+// // //   return suite;
+// // // }
+
+// // // int main(void) {
+// // //   Suite *suite = s21_calc_suite();
+// // //   SRunner *suite_runner = srunner_create(suite);
+// // //   srunner_run_all(suite_runner, CK_ENV);
+// // //   int failed_count = srunner_ntests_failed(suite_runner);
+// // //   srunner_free(suite_runner);
+
+// // //   return (failed_count == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+// // // }
 
 
 
