@@ -212,7 +212,7 @@ int mathematics(list<Stack_t2> &polis2, double &result) {
   result = -0;
   // double re2 = -0;
   std::stack<double> nu2;
-  Stack_t  num = {0};
+  // Stack_t  num = {0};
   std::list<Stack_t2>::iterator it = polis2.begin();
     for (; it != polis2.end() && err == TRUE; it++) {
       cout << "__ " << it->dat2 << endl;
