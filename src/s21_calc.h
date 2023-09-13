@@ -92,61 +92,51 @@ typedef struct stack_tag {
 
  struct Stack_t2 {
   char data[STACK_MAX_SIZE][SIZE];
-  std::vector<std::string> datea; // не надо вектор, так как будет реализовано через лист структур
+  // std::vector<std::string> datea; // не надо вектор, так как будет реализовано через лист структур
   // std::string data_befor2 = {0};
   std::string dat2;
   int type = 0;
-  double number[STACK_MAX_SIZE];
+  // double number[STACK_MAX_SIZE];
   double numbe2;
-  int pri[STACK_MAX_SIZE];  // prioritet
-  char x[SIZE];
+  // int pri[STACK_MAX_SIZE];  // prioritet
+  // char x[SIZE];
   std::string g; //x
   size_t size;
   // double *x;
   // size_t top;
 };
 
-typedef struct {
-  char str[SIZE];
-  char val[SIZE];
-  int tmp;
-  char data_before[SIZE];
-  char data_after[SIZE];
-  int symbol_after;
-  int symbol_before;
-  int symbol;
-  int brackets;
-} flags;
+// typedef struct {
+//   char str[SIZE];
+//   char val[SIZE];
+//   int tmp;
+//   char data_before[SIZE];
+//   char data_after[SIZE];
+//   int symbol_after;
+//   int symbol_before;
+//   int symbol;
+//   int brackets;
+// } flags;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Stack functions
-void push(Stack_t *stack, std::string value, int prioritet);
-void push_num(Stack_t *stack, double *value, int prioritet);
-// void push_num(stack &stack, double *value, int prioritet);
-void pop(Stack_t *stack);
-void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
-void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator &it);
-void printvalue_stack(char *value);
-void printstack(Stack_t *stack);
+// void push(Stack_t *stack, std::string value, int prioritet);
+// void push_num(Stack_t *stack, double *value, int prioritet);
+// void pop(Stack_t *stack);
+// void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
+void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::list<Stack_t2>::iterator &it);
+// void printvalue_stack(char *value);
+// void printstack(Stack_t *stack);
 void printstack(std::list<Stack_t2> &stac2);
 
-int prev_next_ch(int flag, std::string str, int symbol, std::string *value);
-// int prev_next_ch(int flag, char *str, int symbol, char *value);
-int number(std::string str, double *number);
-// int number(char *str, double *number);
+int prev_next_ch(std::string str, int symbol, std::string &value);
+int number(std::string str, double &number);
 
-int s21_calc(std::string str /*char *str*/, std::string str_g, double *result);
-// int s21_calc(/*std::string */ char *str, char *str_x, double *result);
-// int s21_calc_o(std::string str);
+int s21_calc(std::string str, std::string str_g, double &result);
 
-// int parser(/*char *str*/, Stack_t *stack);
-int removes_spaces(std::string &str);
 int parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x);
 int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2);
-// int polish_notation(Stack_t *stack, Stack_t *polish);
-// int matematika(Stack_t *polish, double *result);
-int matematika(list<Stack_t2> &polis2, double *result);
-void matemat_res(Stack_t *number, double *res, int tmp);
+int mathematics(list<Stack_t2> &polis2, double &result);
 
 int math_simple(list<Stack_t2>::iterator &it, stack<double> &number, double &res);
 int math_function(list<Stack_t2>::iterator &it, stack<double> &st_num, double &res);
@@ -154,22 +144,14 @@ int math_function(list<Stack_t2>::iterator &it, stack<double> &st_num, double &r
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Check functions
 int check_number(std::string str);
-// int check_number(char *str);
-int check_funcs(std::string str, int *count);
-// int check_funcs(char *str, int *count);
-int check_parser(string str, int type, int symbol, string &value, int *brackets);
-// int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int count);
+int check_funcs(std::string str, int &count);
+int check_parser(string str, int type, int symbol, string &value, int &brackets);
 int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stack, int vr);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Parsing
-int types(std::string str, int *lent, std::string *value);
-// int types(char *str, int *lent, char *value);
-int pars_baskets(char *val, int tmp, int symbol);
+int types(std::string str, int &lent, std::string &value);
 int unar_znak(std::string &val, int &tmp);
 
-// int parser_conditions(int *symbol, flags *fl);
-// int parser_check (flags *fl);
-// bool operator!=(const string &other){return (*this) != other;}/*const
-// noexcept*/; // {return compare(other) != 0;}
+int removes_spaces(std::string &str);
 
 #endif  // SRC_S21_calc_H

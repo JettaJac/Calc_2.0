@@ -95,7 +95,7 @@ void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
 void printvalue_stack(char *value);
 void printstack(Stack_t *stack);
 
-int prev_next_ch(int flag, char *str, int symbol, char *value);
+int prev_next_ch(char *str, int symbol, char *value);
 int number(char *str, double *number);
 
 int s21_calc(char *str, char *str_x, double *result);

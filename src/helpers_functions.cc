@@ -14,6 +14,19 @@
 // #include <string>
 
 
+
+int removes_spaces(std::string &str) { // пока не задействована
+    // Удаление всех пробелов из строки
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (str[i] == ' ') {
+            str.erase(i, 1);
+            --i; 
+        }
+    }
+    return 0;
+} 
+
+
 /**
  * @brief           Определяет тип, приоритет операндов и операторов
  *
@@ -24,20 +37,13 @@
  */
 
 // Returning the current value
-int types(std::string str, int *count, std::string *valu) {
+int types(std::string str, int &count, std::string &valu) {
   // cout << "TYPES " <<  endl;
-  // int types(char *str, int *count, char *valu) {
   int type = 0;
-  int vr = *count;
+  // int vr = count;
   int len = 0;
-  // if(str[vr] != ' ') {
-    //   err = TRUE;
-    //     cout << "Parser_1 " << err << endl;
-    //     continue;
-    //     cout << "Parser_2 " << err << endl;   
-    // }
-  if (str[vr] == 's' || str[vr] == 'c' || str[vr] == 't' || str[vr] == 'a' ||
-      str[vr] == 'l') {
+  if (str[count] == 's' || str[count] == 'c' || str[count] == 't' || str[count] == 'a' ||
+      str[count] == 'l') {
     int res = check_funcs(str, count);
     if (res == 1) {
       len = 4;
@@ -57,49 +63,38 @@ int types(std::string str, int *count, std::string *valu) {
     } else {
       type = -1;
     }
-  } else if (str[vr] == '(' || str[vr] == ')') {
+  } else if (str[count] == '(' || str[count] == ')') {
     len = 1;
     type = 3;
     
-  } else if (str[vr] == 'x' || str[vr] == '^') {
+  } else if (str[count] == 'x' || str[count] == '^') {
     len = 1;
     type = 5;
-  } else if (strncmp(&str[vr], "mod", 3) == 0) {
+  } else if (strncmp(&str[count], "mod", 3) == 0) {
     len = 3;
     type = 5;
-    // cout << "Parser_1 "  << endl;
-  } else if ((str[vr] > 47 && str[vr] <= 57) || (str[vr] == 46)) {
+  } else if ((str[count] > 47 && str[count] <= 57) || (str[count] == 46)) {
     len = 0;
-    int n = vr, m = 0;
+    int n = count, m = 0;
     for (; (str[n] > 47 && str[n] <= 57) || str[n] == '.'; n++, m++) {
       len++;
     }
     type = 9;
-    // cout<< "VALU 99 = " << type << endl;
-  } else if (str[vr] == '+' || str[vr] == '-') {
+  } else if (str[count] == '+' || str[count] == '-') {
     len = 1;
     type = 1;
-  } else if (str[vr] == '*' || str[vr] == '/') {
+  } else if (str[count] == '*' || str[count] == '/') {
     len = 1;
     type = 2;
-  } else if (str[vr] == '\0') {
+  } else if (str[count] == '\0') {
     type = -1;
-  // } else if (str[vr] == ' ') {
-  //   type = 0;  
-  //   len = 1;
   } else {
     type = -1;
   }
-  // strncpy(valu, &str[vr], len);
-  // std::copy(str[vr], +len, valu.begin());
-  *valu = str.substr(vr, len);
-  // cout<< "VALU 22 = " << type << endl;
-  // std::copy(source.begin(), source.end(), destination.begin());
-  // valu[len] = '\0';
-  
-  vr += len;
-  *count = vr - 1;
-  // }
+  valu = str.substr(count, len);
+  // vr += len;
+  // count = vr - 1;
+  count += len -1;
   return type;
 }
 
@@ -110,7 +105,7 @@ int types(std::string str, int *count, std::string *valu) {
  * @return        - Вернет 0
  */
 
-int intunar_znak(std::string &val, int &tmp) {
+int unar_znak(std::string &val, int &tmp) {
   if (val == "-") {
     val = "u";
   } else {
@@ -129,15 +124,13 @@ int intunar_znak(std::string &val, int &tmp) {
  * ошибки
  */
 
-int number(std::string str, double *number) {
-  // int number(char *str, double *number) {
+int number(std::string str, double &number) {
   int err = -1;
   // printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
   if (check_number(str) == 0) {
     double num; 
     try {
         num = std::stod(str); // Преобразование строки в double
-        // std::cout << "Число: " << num << " STR = " << str << endl;
         err = TRUE;
     } catch (const std::invalid_argument& e) {
         std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
@@ -146,10 +139,8 @@ int number(std::string str, double *number) {
     } catch (...) {
         std::cerr << "Неизвестная ошибка." << std::endl;
     }
-    *number = num;
-    cout << *number << " and " << num << endl;
-    // printf("!!!!!!!!!!!Number_func - %.8lf - %.8lf - {%s}\n", atof(str),
-    //        *number, str);
+    number = num;
+    cout << &number << " and " << num << endl;
   }
   return err;
 }
@@ -162,7 +153,6 @@ int number(std::string str, double *number) {
  * ошибки
  */
 
-// int check_number(char *str) {
   int check_number(std::string str) {
   // printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
   int err = TRUE;
@@ -194,7 +184,6 @@ int number(std::string str, double *number) {
       err = -1;
     };
   }
-  // cout<< "check_N " << endl;
   return err;
 }
 
@@ -209,38 +198,24 @@ int number(std::string str, double *number) {
  * @return         - Вернет 0
  */
 
-int check_parser(string str, int type, int symbol, string &value, int *brackets) {
+int check_parser(string str, int type, int symbol, string &value, int &brackets) {
 int err = -1;
 // printf("\n ~~~~~Check_parser~~~~~\n\n");
   int symbol_afte2 = 0;
   int symbol_befor2 = 0;
-
-  // int brackets = 0;
   int len = str.length();
 
   std::string data_befor2 = {0};
   std::string data_afte2 = {0};
   if (symbol >= 0 && symbol + 1 < len ) {
-    symbol_afte2 = prev_next_ch(1, str, symbol + 1, &data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
+    symbol_afte2 = prev_next_ch(str, symbol + 1, data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
     
     // cout << "data_befor2_ " << data_befor2 << endl;
     // cout << "data_after_ " << data_afte2 << endl;
   }
-  symbol_befor2 = prev_next_ch(1, str, symbol - 1, &data_befor2);
-   // std::list<Stack_t2>::iterator it;
-      // it = stac2.begin(); // Начинаем с начала списка
-      // std::advance(it, symbol - 1);
-      // symbol_befor2 = it->type;
-      // data_befor2 = it->dat2;
-      // cout<< "L " << value <<endl;
-
+  symbol_befor2 = prev_next_ch(str, symbol - 1, data_befor2);
   if (type != -1 && brackets >= 0) { //type нужен,  проверка на тайп сделать перед запуском чек парсер, тут оставить только скобки
-      /*if (value == " ") { // не раюотает
-        // symbol++;
-        // err = TRUE;
-        // cout<< "Out " << value <<endl;
-    // continue; // возможно не надо
-      } else */if (type == 9 && check_number(value) == 0) {
+      if (type == 9 && check_number(value) == 0) {
         // cout<< "parser_N " << "\"" << data_afte2 << "\"" << endl;
         // cout<< "parser_a " << symbol_after <<endl;
         if (data_afte2 == ")" || symbol_afte2 == 1 || symbol_afte2 == 2 ||
@@ -256,7 +231,7 @@ int err = -1;
               // cout<< "last_simlol_good " << value <<endl;
           err = TRUE;
           if (value == ")") {
-            *brackets -= 1;
+            brackets -= 1;
           }
         }
       } else if (symbol == 0 &&
@@ -270,7 +245,7 @@ int err = -1;
                    data_afte2 == "(" || data_afte2 == "x"))) {
         err = TRUE;
         
-        intunar_znak(value, type);
+        unar_znak(value, type);
         //  cout << "UnarZnak_ " << value << endl; 
       } else if (type == 1 || (type== 2 && symbol != 0)) {
         if (symbol_afte2 != 1 && symbol_afte2 != 2 && data_afte2 != ")" && data_befor2 != "^") {
@@ -281,12 +256,12 @@ int err = -1;
         // cout << "Brackets )" << endl; 
         if (data_afte2 == "\0" || data_afte2 == "^" || data_afte2 == ")" ||
             data_afte2 == "mod" || symbol_afte2 == 1 || symbol_afte2 == 2) {
-          *brackets -= 1;
+          brackets -= 1;
           err = TRUE;
           // cout << "Brackets ) Good" << endl; 
         }
       } else if ((type == 4 && value != "mod") || value == "(") {
-        *brackets += 1;
+        brackets += 1;
         // cout << "Brackets (" << endl; 
         err = TRUE;
         if (data_afte2 == ")" || data_afte2 == "^" || symbol_afte2 == 2) {
@@ -296,10 +271,10 @@ int err = -1;
         // cout << "VAL m" << endl; 
         int symbol_tmp = symbol - 2;
         // cout << "VAL m22 tmp  " << symbol_tmp <<  endl; 
-        symbol_befor2 = prev_next_ch(-1, str, symbol_tmp - 1, &data_befor2);  
+        symbol_befor2 = prev_next_ch(str, symbol_tmp - 1, data_befor2);  
         // cout << "VAL m22b " << symbol_befor2 <<  endl;    // надо
         if (symbol_befor2 == 9 || data_befor2 == ")" || data_befor2 == "x") {
-          symbol_afte2= prev_next_ch(1, str, symbol + 1, &data_afte2); // надо
+          symbol_afte2= prev_next_ch(str, symbol + 1, data_afte2); // надо
           // cout << "VAL m _ current" << endl; 
           if (symbol_afte2 == 9 || data_afte2 == "(" || data_afte2 == "x") {
             err = TRUE;
@@ -316,13 +291,12 @@ int err = -1;
 
   // symbol_before = type;
   // data_befor2 = value;
-  // cout << "___ bascets_ " << *brackets << " Code err_  "<< err << endl;
+  // cout << "___ bascets_ " << brackets << " Code err_  "<< err << endl;
 
   return err;
 }
 
 int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stac2, int vr) {
-  // int check_polish(Stack_t *znak, Stack_t *polish, Stack_t *stack, int vr) {
   // char doub[SIZE];
   cout  << endl;
   cout << "Check_polish" << endl;
@@ -335,15 +309,12 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
   cout << it->type << " == " << it_z->type << endl;
 
   if (znak.size() == 0) {
-    // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it); // 
     cout << "znak_ = 0" << endl;
   } else if (it->type == it_z->type) {
     cout << "znak_ = znak_str_" << endl;
-    // strcpy(doub, znak->data[znak->size]);
     doub = it_z->dat2;
-    // pop_push(znak, polish, doub, znak->pri[znak->size + 1]); // надо
-    pop_push(znak, polish, doub, it_z->type, it_z);
+    pop_push(znak, polish, it_z);
 
     // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it);
@@ -351,13 +322,10 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
     cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
     if (it_z->type != 3 && it_z->type != 4) {
       printstack(znak);
-      // strcpy(doub, znak->data[znak->size]);
       doub = it_z->dat2;
-      pop_push(znak, polish, doub, it_z->type, it_z);
+      pop_push(znak, polish, it_z);
       cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
-      cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl;
-      // pop_push(znak, polish, doub, znak->pri[znak->size + 1]);
-    
+      cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl; 
     }
     it_z = --znak.end();
     if (znak.size() > 0 && it->type <= it_z->type &&
@@ -366,27 +334,11 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
       it_z = --znak.end();
       cout << "2 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
       int tmp = it_z->type;
-      // strcpy(doub, znak->data[znak->size]);
       doub = it_z->dat2;
-      // pop_push(znak, polish, doub, tmp);
-        
-      // cout << "TEST___ " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl;
-      // for (const auto &element : znak) {
-      //   cout << element.dat2 << " x ";
-      // }
-      // cout << znak.size() << endl;
-      pop_push(znak, polish, doub, it_z->type, it_z); // хз в чем разниц а с предыдущим
+      pop_push(znak, polish, it_z); // хз в чем разниц а с предыдущим
     }
-  //   push(znak, stack->data[count], stack->pri[count]);
-  // if (it_z->type == 3)
-  // {
-  //   pop_push(znak, polish, doub, it_z->type, it_z);
-    
-  // }
     znak.push_back(*it);
   } else if (it->type >= it_z->type) {
-    // } else if (stack->pri[count] >= znak->pri[znak->size]) {
-    // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it);
     cout << ">>>>>>>>>>>>>>>>>_" << it_z->dat2 << endl;
   }
@@ -405,27 +357,25 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
  * @return         - Вернет значение в зависимости от вида функции
  */
 
-int check_funcs(std::string str, int *count) {
-  // int check_funcs(char *str, int *count) {
+int check_funcs(std::string str, int &count) {
   int res = -1;
-  int vr = *count;
-  if ((strncmp(&str[vr], "sin(", 4) == 0 || strncmp(&str[vr], "cos(", 4) == 0 ||
-       strncmp(&str[vr], "tan(", 4) == 0)) {
+  // int vr = count;
+  if ((strncmp(&str[count], "sin(", 4) == 0 || strncmp(&str[count], "cos(", 4) == 0 ||
+       strncmp(&str[count], "tan(", 4) == 0)) {
     res = 1;
-  } else if (strncmp(&str[vr], "asin(", 5) == 0 ||
-             strncmp(&str[vr], "acos(", 5) == 0 ||
-             strncmp(&str[vr], "atan(", 5) == 0) {
+  } else if (strncmp(&str[count], "asin(", 5) == 0 ||
+             strncmp(&str[count], "acos(", 5) == 0 ||
+             strncmp(&str[count], "atan(", 5) == 0) {
     res = 2;
-  } else if (strncmp(&str[vr], "log(", 4) == 0) {
+  } else if (strncmp(&str[count], "log(", 4) == 0) {
     res = 3;
-  } else if (strncmp(&str[vr], "ln(", 3) == 0) {
+  } else if (strncmp(&str[count], "ln(", 3) == 0) {
     res = 4;
-  } else if (strncmp(&str[vr], "sqrt(", 5) == 0) {
+  } else if (strncmp(&str[count], "sqrt(", 5) == 0) {
     res = 5;
   }
   return res;
 }
-
 
 
 /**
@@ -440,32 +390,14 @@ int check_funcs(std::string str, int *count) {
  * ошибки
  */
 
-int prev_next_ch(int flag, std::string str, int symbol, std::string *value) { // Переписать без флагов
-  // int prev_next_ch(int flag, char *str, int symbol, char *value) {
+int prev_next_ch(std::string str, int symbol, std::string &value) { // Переписать без флагов
   int err = -1;
   int len = str.length();
   // cout << "UUUU " << len << " symbol " << symbol << endl;
   char *value_c;
   if (symbol < len && symbol >= 0) {
-    // symbol = symbol + 1;
-    
-    err = types(str, &symbol, value);
-    // if (value == "mod"){
-    // value = 'm';}
-  //  cout << "UUUU " << *value << endl;
-    // value[1] = '\0'; // скорее всего не надо, точнее можно по другому реализовать    
-    
+    err = types(str, symbol, value);
   }
-
-  // if (flag == -1 && symbol > 0) {
-  //   symbol = symbol - 1;
-  //   err = types(str, &symbol, value);
-  //   cout << "GGGG " << *value << endl;
-  //   // value[1] = '\0';
-  // }
-  // printf("До после символа_2:  {{%s}}: %c, count: %d, value: '%s'\n", str,
-  // err, symbol, value);
-
   return err;
 }
 
@@ -476,37 +408,16 @@ int prev_next_ch(int flag, std::string str, int symbol, std::string *value) { //
  * @param pri = Приоритет операнда и операторов
  */
 
-void push(Stack_t *stack, std::string value, int pri) {
-  // printf("\n~~~~~FUNCTION PUSH~~~~~\n\n");
-  // int err = -1;
-  int len = value.length();
-  if (stack->size >= STACK_MAX_SIZE) {
-    exit(STACK_OVERFLOW);
-    // printf("OOOPs\n");
-  }
-  
-  
-  // strcpy(stack->data[stack->size], value);
-  stack->datea.push_back(value);
-  // stack->data[stack->size][len] = '\0';
-  // stack->number[stack->size]
-  // pri = 97;
-  // cout << "TERST " << value << endl;
-   
-  
-  number(value, &stack->number[stack->size]);
-  // if (err == TRUE){
-  stack->pri[stack->size] = pri;
- 
-  // printf("STACK->DATA[%d]: %s = %s, приоритет - %d = %d, число:  %f\n",
-  //        stack->size, stack->data[stack->size], value,
-  //        stack->pri[stack->size], pri,
-  //        stack->number[stack->size]);
-  // printf("|\n");
-  // }
-  stack->size++;
-  // return err;
-}
+// void push(Stack_t *stack, std::string value, int pri) {
+//   int len = value.length();
+//   if (stack->size >= STACK_MAX_SIZE) {
+//     exit(STACK_OVERFLOW);
+//   }
+//   stack->datea.push_back(value);
+//   number(value, stack->number[stack->size]);
+//   stack->pri[stack->size] = pri;
+//   stack->size++;
+// }
 
 /**
  * @brief           Кладет в стек число
@@ -515,26 +426,14 @@ void push(Stack_t *stack, std::string value, int pri) {
  * @param pri = Приоритет операнда и операторов
  */
 
-void push_num(Stack_t *stack, double *value, int pri) {
-  // printf("\n~~~~~FUNCTION PUSH NUMBER~~~~~\n\n");
-  // int len=strlen(value);
-  if (stack->size >= STACK_MAX_SIZE) {
-    exit(STACK_OVERFLOW);
-    // printf("OOOPs\n");
-  }
-  stack->size++;
-
-  stack->number[stack->size] = *value;
-  // pri = 97;
-  // number(value, &stack->number[stack->size]);
-  stack->pri[stack->size] = pri;
-  // printf("Value = %s\n", value);
-  // printf("STACK->DATA[%d]: %s = %s, приоритет - %d = %d, число:  %f\n",
-  //        stack->size, stack->data[stack->size], value,
-  //        stack->pri[stack->size], pri,
-  //        stack->number[stack->size]);
-  // printf("|\n");
-}
+// void push_num(Stack_t *stack, double *value, int pri) { // они точно нужны?
+//   if (stack->size >= STACK_MAX_SIZE) {
+//     exit(STACK_OVERFLOW);
+//   }
+//   stack->size++;
+//   stack->number[stack->size] = *value;
+//   stack->pri[stack->size] = pri;
+// }
 
 /**
  * @brief           Забирает верхний элемент из стека
@@ -542,17 +441,11 @@ void push_num(Stack_t *stack, double *value, int pri) {
  * @param stack     - Принимает стек с операндами и операторами
  */
 
-// Returns an element from the top and moves on to the next
 void pop(Stack_t *stack) {
   if (stack->size == 0) {
     exit(STACK_OVERFLOW);
   }
-  // printf("POP1: номер стека_0: %d, DATA: %s \n", stack->size,
-  //        stack->data[stack->size]);
   stack->size--;
-  // printf("POP1_1: номер стека: %d, DATA: %s \n", stack->size,
-  //        stack->data[stack->size]);
-  // *stack->data[stack->size+1];
 }
 
 /**
@@ -561,14 +454,12 @@ void pop(Stack_t *stack) {
  * @param stack     - Принимает стек с операндами и операторами
  */
 
-void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp) {
-  pop(stack);
-  push(stack2, val, tmp);
-}
+// void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp) {
+//   pop(stack);
+//   push(stack2, val, tmp);
+// }
 
-void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::string val, int tmp, std::list<Stack_t2>::iterator &it) {
-  // pop(stack); // надо
-  // push(stack2, val, tmp);
+void pop_push(list<Stack_t2> &stac2, list<Stack_t2> &stac2_2, std::list<Stack_t2>::iterator &it) {
   std::list<Stack_t2>::iterator it2 = --stac2.end(); // времено для принта
   cout << "pop_push____ :   " << "Забрали_ " << it2->dat2 << " Отправили_ "<< it->dat2 << endl;
   stac2.pop_back();
@@ -625,23 +516,23 @@ int math_simple(list<Stack_t2>::iterator &it, stack<double> &st_num, double &res
     }
   }
   if (err == TRUE) {
-    cout << "Згыр " << res << endl;
+    // cout << "Згыр " << res << endl;
 
-    cout << "Size_  " << st_num.size() << endl;
-       for (int i = 0; i < st_num.size(); i++){
-          cout << it->numbe2 << " x ";          
-        }
-        cout << endl;
+    // cout << "Size_  " << st_num.size() << endl;
+      //  for (int i = 0; i < st_num.size(); i++){
+      //     cout << it->numbe2 << " x ";          
+      //   }
+      //   cout << endl;
 
     st_num.push(res);
-    cout << "_________________" << endl;
+    // cout << "_________________" << endl;
   }
 
-    cout << "Size_  " << st_num.size() << endl;
-       for (int i = 0; i < st_num.size(); i++){
-          cout << it->numbe2 << " x ";          
-        }
-        cout << endl;
+    // cout << "Size_  " << st_num.size() << endl;
+    //    for (int i = 0; i < st_num.size(); i++){
+    //       cout << it->numbe2 << " x ";          
+    //     }
+    //     cout << endl;
   return err;
 }
 
@@ -698,134 +589,15 @@ int math_function(list<Stack_t2>::iterator &it, stack<double> &st_num, double &r
     st_num.push(res);
   }
 
- 
-
   return err;
 }
 
 
 
 
-void matemat_res(Stack_t *numbers, double *res, int tmp) {
-  // int vr = *tmp;
-  numbers->size = numbers->size - tmp;
-  push_num(numbers, res, 9);
-}
-
-// int parser_conditions(int *symbol, flags *fl) {
-//   int res = 0;
-//   int len = strlen(fl->str);
-
-//   fl->symbol = *symbol;
-//   if (fl->symbol != 0) {
-//     fl->symbol_before = prev_next_ch(-1, fl->str, fl->symbol,
-//     fl->data_before);
-//   }
-//   fl->symbol_after = prev_next_ch(1, fl->str, fl->symbol, fl->data_after);
-
-//   if (*fl->data_after == ')' || fl->symbol_after == 1 ||
-//       fl->symbol_after == 2 || *fl->data_after == '^' ||
-//       *fl->data_after == 'm' || fl->symbol == (len - 1)) {
-//     res = 1;
-//   } else if ((symbol == 0 && fl->tmp == 1 &&
-//               (fl->symbol_after == 4 || *fl->data_after == '(' ||
-//                *fl->data_after == 'x' || fl->symbol_after == 9)) ||
-//              (fl->tmp == 1 &&
-//               (*fl->data_before == '(' || *fl->data_before == '^') &&
-//               (fl->symbol_after == 9 || fl->symbol_after == 4 ||
-//                *fl->data_after == '(' || *fl->data_after == 'x'))) {
-//     res = 2;
-//   } else if (fl->symbol_after != 1 && fl->symbol_after != 2 &&
-//              *fl->data_after != ')') {
-//     res = 3;
-//   } else if (*fl->data_after == '\0' || *fl->data_after == '^' ||
-//              *fl->data_after == ')' || *fl->data_after == 'm' ||
-//              fl->symbol_after == 1 || fl->symbol_after == 2) {
-//     res = 4;
-
-//   } else if (*fl->data_after == ')' || *fl->data_after == '^' ||
-//              fl->symbol_after == 2) {
-//     res = 5;
-//   }
-//   return res;
-// }
-
-// int parser_check (flags *fl) {
-//   int err = -1;
-//   int len = strlen(fl->str);
-//   if (*fl->val == ' ') {
-//         fl->symbol++;
-//       } else if (fl->tmp == 9 && check_number(fl->val) == 0) {
-//         if (*fl->data_after == ')' || fl->symbol_after == 1 ||
-//         fl->symbol_after == 2 ||
-//             *fl->data_after == '^' || *fl->data_after == 'm' || fl->symbol ==
-//             (len - 1)) {
-//           err = TRUE;
-//         }
-//       } else if (fl->symbol == len - 1) {
-//         if (*fl->val == ')' || (fl->tmp == 9 && check_number(fl->val) == 0)
-//         ||
-//             *fl->val == 'x') {
-//           err = TRUE;
-//           if (*fl->val == ')') {
-//             fl->brackets--;
-//           }
-//         }
-//       } else if (fl->symbol == 0 &&
-//                  (*fl->val == ')' || fl->tmp == 2 || *fl->val == 'm' ||
-//                  *fl->val == '^')) {
-//       } else if ((fl->symbol == 0 && fl->tmp == 1 &&
-//                   (fl->symbol_after == 4 || *fl->data_after == '(' ||
-//                    *fl->data_after == 'x' || fl->symbol_after == 9)) ||
-//                  (fl->tmp == 1 && (*fl->data_before == '(' ||
-//                  *fl->data_before == '^') &&
-//                   (fl->symbol_after == 9 || fl->symbol_after == 4 ||
-//                    *fl->data_after == '(' || *fl->data_after == 'x'))) {
-//         err = TRUE;
-//         if (*fl->val == '-') {
-//           *fl->val = 'u';
-//           fl->tmp = 6;
-//         } else {
-//           *fl->val = 'p';
-//           fl->tmp = 6;
-//         }
-//       } else if (fl->tmp == 1 || (fl->tmp == 2 && fl->symbol != 0)) {
-//         if (fl->symbol_after != 1 && fl->symbol_after != 2 && *fl->data_after
-//         != ')') {
-//           err = TRUE;
-//         }
-//       } else if (*fl->val == ')') {
-//         if (*fl->data_after == '\0' || *fl->data_after == '^' ||
-//         *fl->data_after == ')' ||
-//             *fl->data_after == 'm' || fl->symbol_after == 1 ||
-//             fl->symbol_after == 2) {
-//           fl->brackets--;
-//           err = TRUE;
-//         }
-//       } else if ((fl->tmp == 4 && *fl->val != 'm') || *fl->val == '(') {
-//         fl->brackets++;
-//         err = TRUE;
-//         if (*fl->data_after == ')' || *fl->data_after == '^' ||
-//         fl->symbol_after == 2) {
-//           err = -1;
-//         }
-//       } else if (*fl->val == 'm') {
-//         int symbol_tmp = fl->symbol - 2;
-//         fl->symbol_before = prev_next_ch(-1, fl->str, symbol_tmp,
-//         fl->data_before); if (fl->symbol_before == 9 || *fl->data_before ==
-//         ')' || *fl->data_before == 'x') {
-//           fl->symbol_after = prev_next_ch(1, fl->str, fl->symbol,
-//           fl->data_after); if (fl->symbol_after == 9 || *fl->data_after ==
-//           '(' || *fl->data_after == 'x') {
-//             err = TRUE;
-//           }
-//         }
-//       } else if (fl->tmp == 5) {
-//         err = TRUE;
-//       } else if (fl->tmp < 6 && fl->tmp > 0) {
-//         err = -1;  // было TRUE
-//       }
-//       return err;
+// void matemat_res(Stack_t *numbers, double *res, int tmp) {
+//   numbers->size = numbers->size - tmp;
+//   push_num(numbers, res, 9);
 // }
 
 // /**
@@ -833,31 +605,20 @@ void matemat_res(Stack_t *numbers, double *res, int tmp) {
 //  * @param value     - Указатель на строковое значение
 //  */
 
-// void printvalue_stack(char *value) { printf("%s", value); }
-void printvalue_stack(char *value) { cout << value << endl;}
+// void printvalue_stack(char *value) { cout << value << endl;}
 
-// //// Распечатываем стек
-void printstack(Stack_t *stack) {
-  int i;
-  int len = stack->size;
-  printf("stack %d > ", stack->size);
-  for (i = 0; i < len; i++) { // почему то только с -1
-    // printvalue_stack(stack->data[i]);
-    // stack->datea.pop_back();
-    cout << stack->datea[i];
-    printf(" | ");
-  }
-  // if (stack->size != 0) {
-  //   // printvalue_stack(stack->data[i]);
-  //   cout << stack->datea[i] << endl;
-  //   // stack->datea.pop_back();
-  // }
-  printf("\n");
-}
+
+// void printstack(Stack_t *stack) {
+//   cout << "stack size > " << stack->size << endl;;
+//   for (size_t i = 0; i < stack->size; i++) { 
+//     cout << stack->datea[i] << " | ";
+//   }
+//   cout << endl;
+// }
 
 void printstack(std::list<Stack_t2> &stac2) {
 
-  cout << "stack_ > " << stac2.size() << endl;
+  cout << "Stack_Size > " << stac2.size() << endl;
   for (const Stack_t2& item : stac2) {
         std::cout << item.dat2 << " | ";
   }
@@ -869,16 +630,16 @@ void printstack(std::list<Stack_t2> &stac2) {
 //  * @param value     - Указатель на число (дабл)
 //  */
 
-void printstack_num(Stack_t *stack) {
-  int i;
-  int len = stack->size;
-  // printf("stack %d > ", stack->size);
-  for (i = 1; i < len + 1; i++) {
-    printf("%f", (stack->number[i]));
-    printf(" | ");
-  }
-  if (stack->size != 0) {
-    printf("%f", (stack->number[i]));
-  }
-  printf("\n");
-}
+// void printstack_num(Stack_t *stack) {
+//   int i;
+//   int len = stack->size;
+//   // printf("stack %d > ", stack->size);
+//   for (i = 1; i < len + 1; i++) {
+//     printf("%f", (stack->number[i]));
+//     printf(" | ");
+//   }
+//   if (stack->size != 0) {
+//     printf("%f", (stack->number[i]));
+//   }
+//   printf("\n");
+// }
