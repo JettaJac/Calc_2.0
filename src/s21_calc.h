@@ -91,17 +91,17 @@ typedef struct stack_tag {
 } Stack_t;
 
  struct Stack_t2 {
-  char data[STACK_MAX_SIZE][SIZE];
+  // char data[STACK_MAX_SIZE][SIZE];
   // std::vector<std::string> datea; // не надо вектор, так как будет реализовано через лист структур
   // std::string data_befor2 = {0};
   std::string dat2;
   int type = 0;
   // double number[STACK_MAX_SIZE];
-  double numbe2;
+  // double numbe2;
   // int pri[STACK_MAX_SIZE];  // prioritet
   // char x[SIZE];
-  std::string g; //x
-  size_t size;
+  // std::string g; //x
+  // size_t size;
   // double *x;
   // size_t top;
 };

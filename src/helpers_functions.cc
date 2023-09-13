@@ -310,35 +310,35 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
   std::list<Stack_t2>::iterator it_z = --znak.end();
   // cout << "Check_polish4" << endl;
 
-  cout << it->type << " == " << endl;
-  cout << "Check_polish5" << endl;
+  // cout << it->type << " == " << endl;
+  // cout << "Check_polish5" << endl;
   cout << it_z->type << endl; // что то с этим элементом, если удалить стык_т в основной функции, все падает
 
   if (znak.size() == 0) {
     znak.push_back(*it); // 
-    cout << "znak_ = 0" << endl;
+    // cout << "znak_ = 0" << endl;
   } else if (it->type == it_z->type) {
-    cout << "znak_ = znak_str_" << endl;
+    // cout << "znak_ = znak_str_" << endl;
     // doub = it_z->dat2;
     pop_push(znak, polish, it_z);
 
     // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it);
   } else if (it->type <= it_z->type) {
-    cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
+    // cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
     if (it_z->type != 3 && it_z->type != 4) {
       printstack(znak);
       // doub = it_z->dat2;
       pop_push(znak, polish, it_z);
-      cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
-      cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl; 
+      // cout << "1 <<<<<<<<<<<<<<<_2" << it_z->dat2 << endl;
+      // cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl; 
     }
     it_z = --znak.end();
     if (znak.size() > 0 && it->type <= it_z->type &&
       it_z->type < 3) {
           printstack(znak);
       it_z = --znak.end();
-      cout << "2 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
+      // cout << "2 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
       int tmp = it_z->type;
       // doub = it_z->dat2;
       pop_push(znak, polish, it_z); // хз в чем разниц а с предыдущим
@@ -346,7 +346,7 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
     znak.push_back(*it);
   } else if (it->type >= it_z->type) {
     znak.push_back(*it);
-    cout << ">>>>>>>>>>>>>>>>>_" << it_z->dat2 << endl;
+    // cout << ">>>>>>>>>>>>>>>>>_" << it_z->dat2 << endl;
   }
   cout << "CTECK_ZNAK00  " <<  endl;
   printstack(znak);
@@ -414,16 +414,6 @@ int prev_next_ch(std::string str, int symbol, std::string &value) { // Пере�
  * @param pri = Приоритет операнда и операторов
  */
 
-// void push(Stack_t *stack, std::string value, int pri) {
-//   int len = value.length();
-//   if (stack->size >= STACK_MAX_SIZE) {
-//     exit(STACK_OVERFLOW);
-//   }
-//   stack->datea.push_back(value);
-//   number(value, stack->number[stack->size]);
-//   stack->pri[stack->size] = pri;
-//   stack->size++;
-// }
 
 /**
  * @brief           Кладет в стек число
@@ -432,14 +422,7 @@ int prev_next_ch(std::string str, int symbol, std::string &value) { // Пере�
  * @param pri = Приоритет операнда и операторов
  */
 
-// void push_num(Stack_t *stack, double *value, int pri) { // они точно нужны?
-//   if (stack->size >= STACK_MAX_SIZE) {
-//     exit(STACK_OVERFLOW);
-//   }
-//   stack->size++;
-//   stack->number[stack->size] = *value;
-//   stack->pri[stack->size] = pri;
-// }
+
 
 /**
  * @brief           Забирает верхний элемент из стека
@@ -447,12 +430,12 @@ int prev_next_ch(std::string str, int symbol, std::string &value) { // Пере�
  * @param stack     - Принимает стек с операндами и операторами
  */
 
-void pop(Stack_t *stack) {
-  if (stack->size == 0) {
-    exit(STACK_OVERFLOW);
-  }
-  stack->size--;
-}
+// void pop(Stack_t *stack) {
+//   if (stack->size == 0) {
+//     exit(STACK_OVERFLOW);
+//   }
+//   stack->size--;
+// }
 
 /**
  * @brief           Забирает верхний элемент из стека и пушит в друго стек
@@ -533,12 +516,6 @@ int math_simple(list<Stack_t2>::iterator &it, stack<double> &st_num, double &res
     st_num.push(res);
     // cout << "_________________" << endl;
   }
-
-    // cout << "Size_  " << st_num.size() << endl;
-    //    for (int i = 0; i < st_num.size(); i++){
-    //       cout << it->numbe2 << " x ";          
-    //     }
-    //     cout << endl;
   return err;
 }
 

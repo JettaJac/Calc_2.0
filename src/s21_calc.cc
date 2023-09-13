@@ -37,7 +37,7 @@ using namespace std;
 
 
 int s21_calc(std::string str, std::string str_x, double &result) {
-  Stack_t stack[STACK_MAX_SIZE] = {0};
+  // Stack_t stack[STACK_MAX_SIZE] = {0};
   // Stack_t polish[STACK_MAX_SIZE] = {0};
   std::list<Stack_t2> stac2;
   std::list<Stack_t2> polis2;
@@ -108,7 +108,9 @@ int s21_calc(std::string str, std::string str_x, double &result) {
       if (err == TRUE) {
         // push(stack, val, tmp);
         // if (tmp != 0 ) {);}
-         number(val, current.numbe2); // возможно сделать конкретно для числа, когда пушу.
+        // if (tmp == 9){
+        //  number(val, current.numbe2); // возможно сделать конкретно для числа, когда пушу.
+        // }
          stac2.push_back(current);
         //  cout << val <<  "  !!!!!!!!!!___ current.numbe2 " << current.numbe2 << endl;
         //   cout  << err <<  "  !!!!!!!!!!___ current.numbe2 "  << endl;
@@ -210,7 +212,7 @@ int mathematics(list<Stack_t2> &polis2, double &result) {
   printf("Matematika\n");
   int err = TRUE;
   result = -0;
-  // double re2 = -0;
+  double numbe2 = -0;
   std::stack<double> nu2;
   // Stack_t  num = {0};
   std::list<Stack_t2>::iterator it = polis2.begin();
@@ -225,7 +227,8 @@ int mathematics(list<Stack_t2> &polis2, double &result) {
         cout << "Промежуточнв=ый рез-т_un " << nu2.top() << endl;
     } else if (it->type == 9) {
         // cout << "Нашли число " << it->dat2 << endl;
-        nu2.push(it->numbe2);
+        number(it->dat2, numbe2);
+        nu2.push(numbe2);
         // cout << "Нашли число " << it->dat2 << " Размер стека nu2 " << nu2.size() << endl;
     } else if (it->type == 4) {
         // cout << "Нашли func " << it->dat2 << " Размер стека nu2 " << nu2.size() << endl;

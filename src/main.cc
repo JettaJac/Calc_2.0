@@ -74,7 +74,7 @@ int main() {
   double numb = 98;
   // stro[0] = numb;
   // int fun4 = s21_calc(str, str_x, stro);
-  int fun_res = s21_calc(str, str_g, stro);
+  int fun_res = s21_calc(str, str_g, *stro);
   // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
   // cout << "Значение :  " << str_ch[0] << endl;
   cout << "Резульата работы ф-ии:  " << fun_res << endl;
