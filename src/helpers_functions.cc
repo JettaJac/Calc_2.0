@@ -296,24 +296,30 @@ int err = -1;
   return err;
 }
 
-int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stac2, int vr) {
+int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &stac2, int vr) { // можен сразу принимать интератор
   // char doub[SIZE];
   cout  << endl;
-  cout << "Check_polish" << endl;
-  std::string doub = {0};
-  int count = vr;
+  // cout << "Check_polish1" << endl;
+  // std::string doub = {0};
+  // int count = vr;
   std::list<Stack_t2>::iterator it = stac2.begin(); // Начинаем с начала списка
-      std::advance(it, vr);
+  // cout << "Check_polish2" << endl;
+  std::advance(it, vr);
+  // cout << "Check_polish3" << endl;
+  // if ()
   std::list<Stack_t2>::iterator it_z = --znak.end();
+  // cout << "Check_polish4" << endl;
 
-  cout << it->type << " == " << it_z->type << endl;
+  cout << it->type << " == " << endl;
+  cout << "Check_polish5" << endl;
+  cout << it_z->type << endl; // что то с этим элементом, если удалить стык_т в основной функции, все падает
 
   if (znak.size() == 0) {
     znak.push_back(*it); // 
     cout << "znak_ = 0" << endl;
   } else if (it->type == it_z->type) {
     cout << "znak_ = znak_str_" << endl;
-    doub = it_z->dat2;
+    // doub = it_z->dat2;
     pop_push(znak, polish, it_z);
 
     // push(znak, stack->data[count], stack->pri[count]);
@@ -322,7 +328,7 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
     cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
     if (it_z->type != 3 && it_z->type != 4) {
       printstack(znak);
-      doub = it_z->dat2;
+      // doub = it_z->dat2;
       pop_push(znak, polish, it_z);
       cout << "1 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
       cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << endl; 
@@ -334,7 +340,7 @@ int check_polish(list<Stack_t2> &znak, list<Stack_t2> &polish, list<Stack_t2> &s
       it_z = --znak.end();
       cout << "2 <<<<<<<<<<<<<<<_" << it_z->dat2 << endl;
       int tmp = it_z->type;
-      doub = it_z->dat2;
+      // doub = it_z->dat2;
       pop_push(znak, polish, it_z); // хз в чем разниц а с предыдущим
     }
     znak.push_back(*it);

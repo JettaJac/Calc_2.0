@@ -101,7 +101,7 @@ int s21_calc(std::string str, std::string str_x, double &result) {
     }
     // cout<< "Test 2 _" << val << "stack_g_ " << stack->g <<endl;
     if (tmp != -1 && brackets >= 0) {
-      err =  check_parser(str, tmp, symbol, val, brackets); // bascet ссылкой
+      err = check_parser(str, tmp, symbol, val, brackets); // bascet ссылкой
       Stack_t2 current;
       current.dat2 = val;
       current.type = tmp;
@@ -136,7 +136,7 @@ int s21_calc(std::string str, std::string str_x, double &result) {
     int err = TRUE;
     std::list<Stack_t2> znak;
     // int len = stac2.size();
-    char doub[SIZE];  // Временная переменная для стека знак
+    // char doub[SIZE];  // Временная переменная для стека знак
     // std::string dou2 = {0};
     std::list<Stack_t2>::iterator it;
     int count = 0;
