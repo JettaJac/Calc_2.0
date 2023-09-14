@@ -9,6 +9,9 @@
  *
  */
 
+
+
+/*
 #include "credit.h"
 #include "ui_credit.h"
 
@@ -145,3 +148,4 @@ void Credit::on_checkBox_year_stateChanged(int arg1)
     ui->checkBox_month->setChecked(false);
 }
 
+*/

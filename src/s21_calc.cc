@@ -13,11 +13,12 @@
 
 // #include "credit.c"
 #include "helpers_functions.cc"
+#include <stack> // удалить
 
-using namespace std;
+using namespace s21;
 // #include <string>
 // #include <cstring>
-#include <stack>
+
 
 
 /**
@@ -36,7 +37,7 @@ using namespace std;
 //   }
 
 
-int s21_calc(std::string str, std::string str_x, double &result) {
+int Model::s21_calc(std::string str, std::string str_x, double &result) {
   // Stack_t stack[STACK_MAX_SIZE] = {0};
   // Stack_t polish[STACK_MAX_SIZE] = {0};
   std::list<Stack_t2> stac2;
@@ -44,16 +45,17 @@ int s21_calc(std::string str, std::string str_x, double &result) {
   // stack->size = 0;
   int err = -1;
   result = 999.0;
-  cout << str_x << endl;
+  std::cout << str_x << std::endl;
     if (!str.empty() && !str_x.empty() && result != 0) { 
       // stack->g = str_x;
       err = parser(str, stac2, str_x);
+      printstack(stac2);
       if (err == TRUE) {
         err = polish_notation(stac2, polis2);
-        cout << "CTECK POLISH   " <<  endl;
+        std::cout << "CTECK POLISH   " <<  std::endl;
         printstack(polis2);
-        cout << "PO___________ " << err << endl;
-        cout << endl;
+        std::cout << "PO___________ " << err << std::endl;
+        std::cout << std::endl;
         if (err == TRUE) {
           err = mathematics(polis2, result);
         }
@@ -74,7 +76,7 @@ int s21_calc(std::string str, std::string str_x, double &result) {
 // //  * ошибки
 // //  */
 
-  int parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x) {
+  int Model::parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x) {
   int err = TRUE;
   std::string val = {0};
   int tmp = -1;
@@ -92,32 +94,40 @@ int s21_calc(std::string str, std::string str_x, double &result) {
   int len = str.length();
   for (int symbol = 0; symbol < len && err == TRUE; symbol++) {
     err = -1;  
-    tmp = types(str, symbol, val);
     
+    tmp = types(str, symbol, val);
+    std::cout << "Порядковый символ_  " << symbol << " Значение_" << val << std::endl;
     if (val == "x") {
-      val = str_x;
+      val = str_x;    
       tmp = 9;
       err = TRUE;
     }
-    // cout<< "Test 2 _" << val << "stack_g_ " << stack->g <<endl;
+    std::cout<< "Test 2 _" << tmp <<   std::endl;
     if (tmp != -1 && brackets >= 0) {
       err = check_parser(str, tmp, symbol, val, brackets); // bascet ссылкой
       Stack_t2 current;
-      current.dat2 = val;
-      current.type = tmp;
+      
       if (err == TRUE) {
         // push(stack, val, tmp);
         // if (tmp != 0 ) {);}
         // if (tmp == 9){
         //  number(val, current.numbe2); // возможно сделать конкретно для числа, когда пушу.
         // }
-         stac2.push_back(current);
-        //  cout << val <<  "  !!!!!!!!!!___ current.numbe2 " << current.numbe2 << endl;
-        //   cout  << err <<  "  !!!!!!!!!!___ current.numbe2 "  << endl;
+        if (tmp == 6){
+          std::list<Stack_t2>::iterator it = --stac2.end();
+          val = it->dat2 + val;
+          std::cout << " 66666 _ value2_   " << val  << std::endl;
+          stac2.pop_back();
+        }
+        current.dat2 = val;
+        current.type = tmp;
+        stac2.push_back(current);
+        //  std::cout << val <<  "  !!!!!!!!!!___ current.numbe2 " << current.numbe2 << std::endl;
+        //   std::cout  << err <<  "  !!!!!!!!!!___ current.numbe2 "  << std::endl;
       }
     } else 
       err = -1;
-      // cout << "___ bascets " << err << endl;      
+      // std::cout << "___ bascets " << err << std::endl;      
   }
   if (/*types(str, &symbol, &val) == -1 || */brackets != 0) err = -1; // возможно оставить только скобки
   return err;
@@ -133,7 +143,7 @@ int s21_calc(std::string str, std::string str_x, double &result) {
 //  * ошибки
 //  */
 
-  int polish_notation(list<Stack_t2> &stac2, list<Stack_t2> &polis2) {
+  int Model::polish_notation(std::list<Stack_t2> &stac2, std::list<Stack_t2> &polis2) {
     printf("\nPOLISH \n");
     int err = TRUE;
     std::list<Stack_t2> znak;
@@ -144,51 +154,51 @@ int s21_calc(std::string str, std::string str_x, double &result) {
     int count = 0;
     printstack(znak);
     for (it = stac2.begin(); it != stac2.end(); /*count*/it++) { // возможно end - 1
-    cout << "pri _  " << it->dat2  << endl;
-    if (it->type == 9) {
-      // printf("number ---- \n");
+    std::cout << "pri _  " << it->dat2  << " Type_ " << it->type<< std::endl;
+    if (it->type == 9 || it->type == 6) {
+      printf("number ---- \n");
       polis2.push_back(*it);
     } else if (it->dat2 == "(" || it->type == 4) {
       znak.push_back(*it);
     } else if (it->dat2 == ")") {
       std::list<Stack_t2>::iterator it_z1 = --znak.end();
-      // cout << "Нашли ) " << it->dat2  << endl;      
+      // std::cout << "Нашли ) " << it->dat2  << std::endl;      
       for (; it_z1->dat2 != "(" && it_z1->type != 4 && err == TRUE && --it_z1 != znak.begin(); ) {
-        // cout << "Пред цикл  " << it_z1->dat2  << endl;
+        // std::cout << "Пред цикл  " << it_z1->dat2  << std::endl;
         // it_z1 = --znak.end();  // возможно не надо
         // printstack(znak);
-        // cout << "for__________it_z1->dat2  " << it_z1->dat2  << endl;
+        // std::cout << "for__________it_z1->dat2  " << it_z1->dat2  << std::endl;
         pop_push(znak, polis2, it_z1);
         // if (len == 0) {err = -1;} //  удалила, возможно надо
-        // cout << "После цикл_  " << it_z1->dat2  << endl;
+        // std::cout << "После цикл_  " << it_z1->dat2  << std::endl;
         // ++it_z1;
         it_z1 = --znak.end(); 
       }
       // printstack(polis2);
       it_z1 = --znak.end();// Почему-то в поп не переходит на позицию назад, поэтому делаем так
-      // cout << "После цикл 2 " << it_z1->dat2  << endl;
+      // std::cout << "После цикл 2 " << it_z1->dat2  << std::endl;
       if (it_z1->dat2 == "(" || it_z1->type == 4) {
-        // cout << "for__у  " << it_z1->dat2  << endl;
+        // std::cout << "for__у  " << it_z1->dat2  << std::endl;
         // pop(znak);
-          // cout << "CTECK_ZNAK __ (( " <<  endl;
+          // std::cout << "CTECK_ZNAK __ (( " <<  std::endl;
             printstack(znak);
-          // cout << endl; 
-          // cout << "IIIIII " <<  endl;
+          // std::cout << std::endl; 
+          // std::cout << "IIIIII " <<  std::endl;
           polis2.push_back(*it_z1);
           znak.pop_back();
         // }
       }
     } else if (it->type) {
-      // cout << "for__у22 " << it->dat2  << endl;
+      std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!for__у22 " << it->dat2  << std::endl;
       check_polish(znak, polis2, stac2, count);
     }
     if (it == --stac2.end()) {
-      // cout << "UUUU2 " << endl;      
+      // std::cout << "UUUU2 " << std::endl;      
       int len_znak = znak.size();
-      // cout << "eee " <<  len_znak << endl;
+      // std::cout << "eee " <<  len_znak << std::endl;
       std::list<Stack_t2>::iterator it_z = --znak.end();
         for ( ; len_znak != 0; len_znak--) {
-        // cout << "eee " <<  len_znak << endl;
+        // std::cout << "eee " <<  len_znak << std::endl;
         pop_push(znak, polis2, it_z);
         err = TRUE;
         it_z--;
@@ -208,7 +218,7 @@ int s21_calc(std::string str, std::string str_x, double &result) {
 //  * ошибки
 //  */
 
-int mathematics(list<Stack_t2> &polis2, double &result) {
+int Model::mathematics(std::list<Stack_t2> &polis2, double &result) {
   printf("Matematika\n");
   int err = TRUE;
   result = -0;
@@ -217,31 +227,33 @@ int mathematics(list<Stack_t2> &polis2, double &result) {
   // Stack_t  num = {0};
   std::list<Stack_t2>::iterator it = polis2.begin();
     for (; it != polis2.end() && err == TRUE; it++) {
-      cout << "__ " << it->dat2 << endl;
-      cout << endl;
+      std::cout << "__ " << it->dat2 << " Type_  " << it->type << std::endl;
+      std::cout << std::endl;
     if (it->dat2 == "u" || it->dat2 == "p") { //можно вывести унарную функцию
       printf(" Unar \n");
       if (it->dat2 == "u") {
         nu2.top() *= (-1);
       }
-        cout << "Промежуточнв=ый рез-т_un " << nu2.top() << endl;
-    } else if (it->type == 9) {
-        // cout << "Нашли число " << it->dat2 << endl;
+        std::cout << "Промежуточнв=ый рез-т_un " << nu2.top() << std::endl;
+    } else if (it->type == 9 || it->type == 6) {
+        std::cout << "Нашли число " << it->dat2 << std::endl;
+        std::cout << "Нашли число ex " << numbe2 << std::endl;
+        if (it->type == 6) {numbe2 = -1;}
         number(it->dat2, numbe2);
         nu2.push(numbe2);
-        // cout << "Нашли число " << it->dat2 << " Размер стека nu2 " << nu2.size() << endl;
+        // std::cout << "Нашли число " << it->dat2 << " Размер стека nu2 " << nu2.size() << std::endl;
     } else if (it->type == 4) {
-        // cout << "Нашли func " << it->dat2 << " Размер стека nu2 " << nu2.size() << endl;
+        // std::cout << "Нашли func " << it->dat2 << " Размер стека nu2 " << nu2.size() << std::endl;
         err = math_function(it, nu2, result);
     } else if (it->type == 1 || it->type == 2 || it->type == 5) {
         err = math_simple(it, nu2, result);
-        // cout << "Промежуточнв=ый рез-т_5 " << res << endl;    
+        // std::cout << "Промежуточнв=ый рез-т_5 " << res << std::endl;    
     }
-    // cout << "Промежуточнв=ый рез-т_res " << res << endl;
+    // std::cout << "Промежуточнв=ый рез-т_res " << res << std::endl;
    
   }
   if (err == TRUE){
-    // cout << "UUUUUU " << endl;
+    // std::cout << "UUUUUU " << std::endl;
     result = nu2.top();
     // result = res;
   }

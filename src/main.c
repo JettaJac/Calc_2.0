@@ -22,8 +22,9 @@
 void main() {
   int err = FAIL;
   // Stack_t stack;
-  Stack_t stack = {0};  // Правильно нужно сделать массивом)
-  stack.size = 0;
+  // Stack_t stack = {0};  // Правильно нужно сделать массивом)
+  // stack.size = 0;
+  // 
   // *stack.data = 0;
   char *str = "2+1+x";  // -77.6904761904761905 Работает и так и char str [100]
                         // = "4.2001";

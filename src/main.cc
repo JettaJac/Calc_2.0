@@ -7,6 +7,8 @@ using namespace std;
 #include <ostream>
 #include <iostream>
 
+using namespace s21;
+
 //g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
 
 
@@ -36,20 +38,24 @@ using namespace std;
 // Переименовать prev_after
 
 int main() {
+  Model model;
   int err = -1;
   // Stack_t stack;
-  Stack_t stack = {0};  // Правильно нужно сделать массивом)
-  stack.size = 0;
+  // Stack_t stack = {0};  // Правильно нужно сделать массивом)
+  // stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "(5)+5"; 
+  std::string str = "65e+2"; 
+  std::string str2 = "5e+4";
   std::string str_ch = "I";                  
   std::string str_g = "2"; 
   // char str_x[SIZE] = "-5";
+cout << "Проверяем ф-ю stod  " << std::stod(str) << endl;
+ cout << "Проверяем ф-ю stod  " << std::stod(str2) << endl;
 
 
-  char str_v[SIZE];
-  str_ch = str_v;
+  // char str_v[10];
+  // str_ch = str_v;
   // char *val = "Yrr";
   // val = str_v;
   // str_ch [SIZE] = "4.2001";
@@ -74,9 +80,9 @@ int main() {
   double numb = 98;
   // stro[0] = numb;
   // int fun4 = s21_calc(str, str_x, stro);
-  int fun_res = s21_calc(str, str_g, *stro);
-  // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
-  // cout << "Значение :  " << str_ch[0] << endl;
+  int fun_res = model.s21_calc(str, str_g, *stro);
+  // // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
+  // // cout << "Значение :  " << str_ch[0] << endl;
   cout << "Резульата работы ф-ии:  " << fun_res << endl;
   // s21_calc(str, str_x, stro);
   // number(str, stro);

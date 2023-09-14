@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 extern "C" {
-    #include "../credit.h"
+    // #include "../credit.h"
     #include <string>
 }
 

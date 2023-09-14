@@ -6,9 +6,9 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include <grafic.h>
-#include <credit.h>
+// #include <credit.h>
 
-extern "C" {
+extern "C++" {
     #include "../s21_calc.h"
     #include <string>
 //    #include <stdlib.h>
@@ -31,7 +31,7 @@ protected:
 private:
     Ui::MainWindow *ui;
     Grafic *grafic;
-    Credit *credit;
+    // Credit *credit;
 
     double input_x;
     double num_first;
@@ -53,7 +53,7 @@ private slots:
     void on_pushButton_mult_clicked();
     void on_pushButton_div_clicked();
     void on_pushButton_graph_clicked();
-    void on_pushButton_credit_clicked();
+    // void on_pushButton_credit_clicked();
 
 signals:
     void signal();

@@ -7,7 +7,7 @@
 #include <QtMath>
 #include <iostream>
 
-extern "C" {
+extern "C++" {
     #include "../s21_calc.h"
     #include <string>
 }

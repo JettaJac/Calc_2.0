@@ -1,6 +1,6 @@
 .PHONY: all install uninstall clean dist test gcov_report leaks
 
-CCF=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror #-g -fsanitize=address  -Wextra -Wall -Werror 
+CCF=g++ #-lstdc++ -std=c++17 #-Wextra -Wall -Werror #-g -fsanitize=address  -Wextra -Wall -Werror 
 CC=gcc #-g -fsanitize=address
 CFLAGS=  -Wextra -Wall -Werror
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
@@ -51,7 +51,7 @@ install:
 		rm -rf $(HOME)/Desktop/s21_Calc.app
 		@mkdir -p $(BUILD)
 		@mkdir -p $(BUILD_QT)
-		cp *.c *.h  $(BUILD)
+		cp *.cc *.h  $(BUILD)
 		cmake -S  ./QT_calc/ -B $(BUILD_QT)
 		make -C  $(BUILD_QT)
 		cp -r  $(BUILD_QT)s21_Calc.app $(HOME)/Desktop/
@@ -74,7 +74,7 @@ dist: install
 	rm -fr ./smart_calc_archive/
 
 gcov_report:
-	$(CCF) -o $(NAME) $(SRCS) mytest_calc.c $(GCOV_FLAGS) $(CHECK_FLAGS)
+	$(CCF) -o $(NAME) $(SRCS) mytest_calc.cc $(GCOV_FLAGS) $(CHECK_FLAGS)
 	./$(NAME)
 	lcov -t "gcov_report" -o tests.info -c -d .
 	genhtml -o $(REPORT_NAME) tests.info
