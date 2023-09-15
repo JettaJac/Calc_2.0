@@ -9,7 +9,7 @@ using namespace std;
 
 using namespace s21;
 
-//g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
+//g++ -lstdc++ -std=c++17 main.cc SmartCalc.cc && ./a.out
 
 
 // int *ptr = array;   // указатель ptr хранит адрес первого элемента массива
@@ -44,7 +44,7 @@ int main() {
   // stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "1e+x"; 
+  std::string str = "(1+2)e+6"; 
   std::string str2 = "5e+4";
   std::string str_ch = "I";                  
   std::string str_g = "2"; 
@@ -76,14 +76,14 @@ int main() {
   double stro[10] = {0};
 
   // stro[0] = numb;
-  // int fun4 = s21_calc(str, str_x, stro);
-  int fun_res = model.s21_calc(str, str_g, *stro);
+  // int fun4 = SmartCalc(str, str_x, stro);
+  int fun_res = model.SmartCalc(str, str_g, *stro);
   // // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
   // // cout << "Значение :  " << str_ch[0] << endl;
   cout << "Резульата работы ф-ии:  " << fun_res << endl;
-  // s21_calc(str, str_x, stro);
+  // SmartCalc(str, str_x, stro);
   // number(str, stro);
-  // s21_calc_o(str);
+  // SmartCalc_o(str);
 
   // char val_v[3] ="pop";
   // char *pval = &val_v[3];
@@ -122,7 +122,7 @@ str);
   //   printf("Сумма: %lf", atof(num1) + atof(num2));
   // printf("EXIT - %d\n", err);
 
-  // int fun = s21_calc (str, num);
+  // int fun = SmartCalc (str, num);
 
   // printf("Функция предыдущий следующий символ - %c\n",
   // previous_next_character(1, "2+9", *count, tmp)); types(str, count, str_ch);
@@ -204,7 +204,7 @@ str);
   // int fun = check_number(str);
   // int fun2 = number(str, num);
   // int fun3 = parser(str, &stack);
-  // int fun4 = s21_calc(str, str_x, stro);
+  // int fun4 = SmartCalc(str, str_x, stro);
   // // double test = pow(-3, 3);
   // printf("\nCheck_number - %d - {%s}  ----- %f\n", fun,  str, test);
   // printf("Number - %d  -- XXXX - %s\n", fun2, &stack.x);

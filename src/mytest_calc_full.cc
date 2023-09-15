@@ -155,7 +155,7 @@ TEST(Calc, ParserSin) {
 }
 
 
-TEST(Calc, Parser_cos) {
+TEST(Calc, ParserCos) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -183,7 +183,7 @@ TEST(Calc, Parser_cos) {
 }
 
 
-TEST(Calc, Parser_tan) {
+TEST(Calc, ParserTan) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -212,7 +212,7 @@ TEST(Calc, Parser_tan) {
 }
 
 
-TEST(Calc, Parser_asin) {
+TEST(Calc, ParserAsin) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -244,7 +244,7 @@ TEST(Calc, Parser_asin) {
 }
 
 
-TEST(Calc, Parser_acos) {
+TEST(Calc, ParserAcos) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -274,7 +274,7 @@ TEST(Calc, Parser_acos) {
 }
 
 
-TEST(Calc, Parser_atan) {
+TEST(Calc, ParserAtan) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -302,7 +302,7 @@ TEST(Calc, Parser_atan) {
 }
 
 
-TEST(Calc, Parser_sqrt) {
+TEST(Calc, ParserSqrt) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -332,7 +332,7 @@ TEST(Calc, Parser_sqrt) {
 }
 
 
-TEST(Calc, Parser_log) {
+TEST(Calc, ParserLog) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -362,7 +362,7 @@ TEST(Calc, Parser_log) {
 }
 
 
-TEST(Calc, Parser_ln) {
+TEST(Calc, ParserLn) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
   char str1[] = "+ln";
@@ -389,7 +389,7 @@ TEST(Calc, Parser_ln) {
 }
 
 
-TEST(Calc, Parser_mod) {
+TEST(Calc, ParserMod) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -408,7 +408,7 @@ TEST(Calc, Parser_mod) {
 }
 
 
-TEST(Calc, Parser_x) {
+TEST(Calc, ParserX) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -426,7 +426,7 @@ TEST(Calc, Parser_x) {
 }
 
 
-TEST(Calc, Parser_pow) {
+TEST(Calc, ParserPow) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -445,13 +445,14 @@ TEST(Calc, Parser_pow) {
   EXPECT_EQ(model1->Parser("2^(-1+1*3)", stack_N, str_x),  0);
 }
 
-TEST(Calc, Parser_exp_err) {
+TEST(Calc, ParserExpErr) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
   EXPECT_EQ(model1->Parser("0.5e+x", stack_N, str_x),  0);
-  EXPECT_EQ(model1->Parser("xe+6", stack_N, str_x),  0);
-  EXPECT_EQ(model1->Parser("0.5e+6", stack_N, str_x),  0);
+  EXPECT_EQ(model1->Parser("xe+6", stack_N, str_x),  0);  
+  EXPECT_EQ(model1->Parser("(1+2)e+6", stack_N, str_x),  -1); // потом обработать
+  EXPECT_EQ(model1->Parser("(-2)e+6", stack_N, str_x),  -1); // потом обработать
   EXPECT_EQ(model1->Parser("-0.5e+6", stack_N, str_x),  0);
   EXPECT_EQ(model1->Parser("+0.5e+6", stack_N, str_x),  0);
   EXPECT_EQ(model1->Parser("0.5e-6", stack_N, str_x),  0);
@@ -468,7 +469,7 @@ TEST(Calc, Parser_exp_err) {
 }
 
 
-TEST(Calc, Parser_space2) {
+TEST(Calc, ParserSpace2) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
   EXPECT_EQ(model1->Parser("( 5   )", stack_N, str_x), 0);
@@ -482,7 +483,7 @@ TEST(Calc, Parser_space2) {
 }
 
 
-TEST(Calc, znak_1) {
+TEST(Calc, Znak) {
   double num = 0;
   char x[10] = "2";
   model1->SmartCalc("-(5+6)", x, num);
@@ -490,7 +491,7 @@ TEST(Calc, znak_1) {
 }
 
 
-TEST(Calc, znak_err) {
+TEST(Calc, ZnakErr) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -522,7 +523,7 @@ TEST(Calc, znak_err) {
 }
 
 
-TEST(Calc, brackets_err) {
+TEST(Calc, BracketsErr) {
   std::list<Model::Stack_t2_> stack_N;
   std::string str_x = "1";
 
@@ -546,29 +547,33 @@ TEST(Calc, brackets_err) {
 }
 
 
-TEST(Calc, previous_next_ch) { //работает
-  int tmp = 1;
+TEST(Calc, Types) { //работает
+  int tmp = 0;
   string num;
   char str[] = "0.345";
 
-  model1->CharPrevNext( str, 0, num);
+  model1->Types( str, tmp, num);
   EXPECT_EQ(num[0] == '0', true);
 
-  model1->CharPrevNext(str, 1, num);
+  tmp = 1;
+  model1->Types(str, tmp, num);
   EXPECT_EQ(num[0] == '.', true);
 
-  model1->CharPrevNext(str, 2, num);
+  tmp = 2;
+  model1->Types(str, tmp, num);
   EXPECT_EQ(num[0] == '3', true);
 
-  tmp = model1->CharPrevNext( str, -1, num);
+  tmp = -2;
+  tmp = model1->Types( str, tmp, num);
   EXPECT_EQ(tmp == -1, true);
 
-  tmp = model1->CharPrevNext(str, 5, num);
+  tmp = 5;
+  tmp = model1->Types(str, tmp, num);
   EXPECT_EQ(tmp == -1, true);
 }
 
 
-TEST(Calc, matematika_simple) {
+TEST(Calc, MatematikaSimple) {
   double res = 0;
   int tmp = 1;
   char x[3] = "1";
@@ -660,7 +665,7 @@ TEST(Calc, matematika_simple) {
 }
 
 
-TEST(Calc, matematika_trig_1) {
+TEST(Calc, MatematikaTrig_1) {
   double res = 999;
   char x[3] = "46";
 
@@ -719,7 +724,7 @@ TEST(Calc, matematika_trig_1) {
 }
 
 
-TEST(Calc, matematika_log_1) {
+TEST(Calc, MatematikaLog) {
   double res = 999;
   char x[3] = "1";
 
@@ -749,7 +754,7 @@ TEST(Calc, matematika_log_1) {
 }
 
 
-TEST(Calc, matematika_mod) {
+TEST(Calc, MatematikaMod) {
   double res = 999;
   char x[3] = "1";
 
@@ -770,7 +775,7 @@ TEST(Calc, matematika_mod) {
  }
 
 
-TEST(Calc, matematika_pow) {
+TEST(Calc, MatematikaPow) {
   double res = 999;
   char x[3] = "1";
 
@@ -789,7 +794,7 @@ TEST(Calc, matematika_pow) {
 }
 
 
-TEST(Calc, matematika_x) {
+TEST(Calc, MatematikaX) {
   double res = 999;
   char x[3] = "5";
 
@@ -833,7 +838,7 @@ TEST(Calc, matematika_x) {
 }
 
 
-TEST(Calc, matematika_err) {
+TEST(Calc, MatematikaErr) {
   double res = 999;
   char x[3] = "-1";
 
@@ -877,8 +882,10 @@ TEST(Calc, matematika_err) {
 TEST(Calc, MatematikaExp) {
   std::string str_x = "1";
   double res = 999;
-// "sin(x)e+2"
-// xe-x
+// "sin(x)e+2" // на будушее, что хотелось бы, чтоб обраьатывал
+// "(1+2)e+6"
+// 2e+(6+1)
+
   EXPECT_EQ(model1->SmartCalc("xe+4", str_x, res),  0);
   EXPECT_EQ(res == 10000, true);
   EXPECT_EQ(model1->SmartCalc("65e+x", str_x, res),  0);

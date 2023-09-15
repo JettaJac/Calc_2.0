@@ -24,23 +24,13 @@
 //// Libraries and files used
 #include <errno.h>
 #include <math.h>
-
-// #include <cmath>
-// #include <stdio.h>
-// #include <stdlib.h>
-
 #include <cstring>
-// #include <ostream>
 #include <iostream>
 #include <string>
-// #include <vector>
 #include <list>
 #include <stack>
+// #include <algorithm>
 
-// #include <credit.h>
-// #include <unistd.h>
-// #include <stdnoreturn.h>
-// #include <stdbool.h>
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Error code
@@ -124,7 +114,6 @@ class Model {
   //// Secondary functions
   void PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2,
                 std::list<Stack_t2_>::iterator &it);
-  int CharPrevNext(std::string str, int symbol, std::string &value);
   int Number(std::string str, double &number);
   int UnarZnak(std::string &val);
   void Printstack(std::list<Stack_t2_> &stac2);                 
