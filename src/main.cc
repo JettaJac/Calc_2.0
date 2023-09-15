@@ -39,19 +39,18 @@ using namespace s21;
 
 int main() {
   Model model;
-  int err = -1;
   // Stack_t stack;
   // Stack_t stack = {0};  // Правильно нужно сделать массивом)
   // stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "65e+2"; 
+  std::string str = "1e+x"; 
   std::string str2 = "5e+4";
   std::string str_ch = "I";                  
   std::string str_g = "2"; 
   // char str_x[SIZE] = "-5";
-cout << "Проверяем ф-ю stod  " << std::stod(str) << endl;
- cout << "Проверяем ф-ю stod  " << std::stod(str2) << endl;
+// cout << "Проверяем ф-ю stod  " << std::stod(str) << endl;
+//  cout << "Проверяем ф-ю stod  " << std::stod(str2) << endl;
 
 
   // char str_v[10];
@@ -60,24 +59,22 @@ cout << "Проверяем ф-ю stod  " << std::stod(str) << endl;
   // val = str_v;
   // str_ch [SIZE] = "4.2001";
 
-  double *num;
   // num = 999.9;
   // double  *num5;
   // *num5 = 899.9;
   // char str5[] = "8.255645343";
-  double num_v = 1.1;
+  // double num_v = 1.1;
   // double value = 9666;
-  num = &num_v;
+
   // push(&stack, value);
   // parser(str);
-  int *count;
-  int count_v = 0;
-  count = &count_v;
-  char tmp3;
+
+  // int count_v = 0;
+
   // *count = 1;
   // double *stro;
   double stro[10] = {0};
-  double numb = 98;
+
   // stro[0] = numb;
   // int fun4 = s21_calc(str, str_x, stro);
   int fun_res = model.s21_calc(str, str_g, *stro);

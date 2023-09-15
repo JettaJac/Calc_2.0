@@ -9,7 +9,6 @@
 
 using namespace std;
 using namespace s21;
-// Model model;
 Model *model1;
 
 // Test_t  test;

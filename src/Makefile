@@ -1,7 +1,7 @@
 .PHONY: all install uninstall clean dist test gcov_report leaks
 
-CCF=g++ #-lstdc++ -std=c++17 #-Wextra -Wall -Werror #-g -fsanitize=address  -Wextra -Wall -Werror 
-CC=gcc #-g -fsanitize=address
+CCF=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror -g -fsanitize=address 
+CC=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror -g -fsanitize=address
 CFLAGS=  -Wextra -Wall -Werror
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
 CHECK_FLAGS= -lgtest -lgtest_main -lpthread
@@ -15,6 +15,7 @@ BUILD_QT=$(BUILD)s21_calculator/
 SRCS = s21_calc.cc 
 OBJS = $(SRCS:.c=.o) s21_calc.cc 
 OBJS2 = $(SRCS:.c=.o) mytest_calc.cc
+OBJS3 = $(SRCS:.c=.o) mytest_calc_full.cc
 NAME = s21_calc
 NAME2 = test2
 REPORT_NAME = report
@@ -32,13 +33,17 @@ OBJS_m = $(SRCS:.c=.o) main.cc
 all: install
 
 objs: $(SRCS)
-	$(CC) $(CFLAGS)  $(SRCS) -c
+	$(CCF) $(CFLAGS)  $(SRCS) -c
 
 
 
 test: $(OBJS2)
 	$(CCF) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
 	 ./mytest_calc
+
+testfull: $(OBJS3)
+	$(CC) $(CHECK_FLAGS) $(OBJS3) -o mytest_calc_full
+	 ./mytest_calc_full	 
 
 main: $(OBJS)	
 #	make clean	

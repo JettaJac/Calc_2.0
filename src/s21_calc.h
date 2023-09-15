@@ -68,96 +68,95 @@
 
 namespace s21 {
 
-  class Model {
-
-  public:
+class Model {
+ public:
   // Model();
   int s21_calc(std::string str, std::string str_g, double &result);
 
-  private:
+  // private:
 
+  /**
+   * @brief           Структура стека для записи чисел и операторов
+   *
+   * @param data       - Cтэк чисел в строковом эквиваленте
+   * @param number     - Cтэк чисел в числовом эквиваленте
+   * @param pri  - Приоритет стека
+   * @param x          - Значение Х
+   *@param size       - Количество элементов в стеке
+   */
 
-/**
- * @brief           Структура стека для записи чисел и операторов
- *
- * @param data       - Cтэк чисел в строковом эквиваленте
- * @param number     - Cтэк чисел в числовом эквиваленте
- * @param pri  - Приоритет стека
- * @param x          - Значение Х
- *@param size       - Количество элементов в стеке
- */
+  // typedef struct stack_tag {
+  //   char data[STACK_MAX_SIZE][SIZE];
+  //   std::vector<std::string> datea; // не надо вектор, так как будет
+  //   реализовано через лист структур std::string curr = {0}; int type = 0;
+  //   double number[STACK_MAX_SIZE];
+  //   int pri[STACK_MAX_SIZE];  // prioritet
+  //   char x[SIZE];
+  //   std::string g; //x
+  //   size_t size;
+  //   // double *x;
+  //   // size_t top;
+  // } Stack_t;
 
-// typedef struct stack_tag {
-//   char data[STACK_MAX_SIZE][SIZE];
-//   std::vector<std::string> datea; // не надо вектор, так как будет реализовано через лист структур
-//   std::string curr = {0};
-//   int type = 0; 
-//   double number[STACK_MAX_SIZE];
-//   int pri[STACK_MAX_SIZE];  // prioritet
-//   char x[SIZE];
-//   std::string g; //x
-//   size_t size;
-//   // double *x;
-//   // size_t top;
-// } Stack_t;
+  struct Stack_t2_ {
+    std::string dat2;
+    int type = 0;
+  };
 
-struct Stack_t2 {
-  std::string dat2;
-  int type = 0;
-};
+  // typedef struct {
+  //   char str[SIZE];
+  //   char val[SIZE];
+  //   int tmp;
+  //   char data_before[SIZE];
+  //   char data_after[SIZE];
+  //   int symbol_after;
+  //   int symbol_before;
+  //   int symbol;
+  //   int brackets;
+  // } flags;
+  // protected:
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //// Stack functions
+  // void push(Stack_t *stack, std::string value, int prioritet);
+  // void push_num(Stack_t *stack, double *value, int prioritet);
+  // void pop(Stack_t *stack);
+  // void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
+  void pop_push(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2,
+                std::list<Stack_t2_>::iterator &it);
+  // void printvalue_stack(char *value);
+  // void printstack(Stack_t *stack);
+  void printstack(std::list<Stack_t2_> &stac2);
 
-// typedef struct {
-//   char str[SIZE];
-//   char val[SIZE];
-//   int tmp;
-//   char data_before[SIZE];
-//   char data_after[SIZE];
-//   int symbol_after;
-//   int symbol_before;
-//   int symbol;
-//   int brackets;
-// } flags;
-// protected:
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//// Stack functions
-// void push(Stack_t *stack, std::string value, int prioritet);
-// void push_num(Stack_t *stack, double *value, int prioritet);
-// void pop(Stack_t *stack);
-// void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp);
-void pop_push(std::list<Stack_t2> &stac2, std::list<Stack_t2> &stac2_2, std::list<Stack_t2>::iterator &it);
-// void printvalue_stack(char *value);
-// void printstack(Stack_t *stack);
-void printstack(std::list<Stack_t2> &stac2);
+  int prev_next_ch(std::string str, int symbol, std::string &value);
+  int number(std::string str, double &number);
 
-int prev_next_ch(std::string str, int symbol, std::string &value);
-int number(std::string str, double &number);
+  int parser(std::string str, std::list<Stack_t2_> &stac2, std::string x);
+  int polish_notation(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &polis2);
+  int mathematics(std::list<Stack_t2_> &polis2, double &result);
 
+  int math_simple(std::list<Stack_t2_>::iterator &it, std::stack<double> &number,
+                  double &res);
+  int math_function(std::list<Stack_t2_>::iterator &it,
+                    std::stack<double> &st_num, double &res);
 
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //// Check functions
+  int check_number(std::string str);
+  int check_funcs(std::string str, int &count);
+  int check_parser(std::string str, std::string x,  int type, int &symbol, std::string &value,
+                   int &brackets);
+  int check_polish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish,
+                   std::list<Stack_t2_> &stack, int vr);
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //// Parsing
+  int types(std::string str, int &lent, std::string &value);
+  int unar_znak(std::string &val);
 
-int parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x);
-int polish_notation(std::list<Stack_t2> &stac2, std::list<Stack_t2> &polis2);
-int mathematics(std::list<Stack_t2> &polis2, double &result);
+  int removes_spaces(std::string &str);
 
-int math_simple(std::list<Stack_t2>::iterator &it, std::stack<double> &number, double &res);
-int math_function(std::list<Stack_t2>::iterator &it, std::stack<double> &st_num, double &res);
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//// Check functions
-int check_number(std::string str);
-int check_funcs(std::string str, int &count);
-int check_parser(std::string str, int type, int &symbol, std::string &value, int &brackets);
-int check_polish(std::list<Stack_t2> &znak, std::list<Stack_t2> &polish, std::list<Stack_t2> &stack, int vr);
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//// Parsing
-int types(std::string str, int &lent, std::string &value);
-int unar_znak(std::string &val, int &tmp);
-
-int removes_spaces(std::string &str);
-
-// friend class MyTest;
-
+  // friend class MyTest;
 };
 // class MyTest;
 
-} // namespace s21
-#endif // MODEL_H
+}  // namespace s21
+#endif  // MODEL_H

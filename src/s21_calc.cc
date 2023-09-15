@@ -40,8 +40,8 @@ using namespace s21;
 int Model::s21_calc(std::string str, std::string str_x, double &result) {
   // Stack_t stack[STACK_MAX_SIZE] = {0};
   // Stack_t polish[STACK_MAX_SIZE] = {0};
-  std::list<Stack_t2> stac2;
-  std::list<Stack_t2> polis2;
+  std::list<Stack_t2_> stac2;
+  std::list<Stack_t2_> polis2;
   // stack->size = 0;
   int err = -1;
   result = 999.0;
@@ -76,7 +76,7 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
 // //  * ошибки
 // //  */
 
-  int Model::parser(std::string str, std::list<Stack_t2> &stac2, std::string str_x) {
+  int Model::parser(std::string str, std::list<Stack_t2_> &stac2, std::string str_x) {
   int err = TRUE;
   std::string val = {0};
   int tmp = -1;
@@ -86,7 +86,6 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
   // std::string data_afte2 = {0};
   // int symbol_after = 0;
   // int symbol_before = 0;
-  int symbol = 0;
   int brackets = 0;
   // int err_2 = 0;
   removes_spaces(str);
@@ -104,8 +103,8 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
     }
     std::cout<< "Test 2 _" << tmp <<   std::endl;
     if (tmp != -1 && brackets >= 0) {
-      err = check_parser(str, tmp, symbol, val, brackets); // bascet ссылкой
-      Stack_t2 current;
+      err = check_parser(str, str_x, tmp, symbol, val, brackets); // bascet ссылкой
+      Stack_t2_ current;
       
       if (err == TRUE) {
         // push(stack, val, tmp);
@@ -114,7 +113,7 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
         //  number(val, current.numbe2); // возможно сделать конкретно для числа, когда пушу.
         // }
         if (tmp == 6){
-          std::list<Stack_t2>::iterator it = --stac2.end();
+          std::list<Stack_t2_>::iterator it = --stac2.end();
           val = it->dat2 + val;
           std::cout << " 66666 _ value2_   " << val  << std::endl;
           stac2.pop_back();
@@ -143,14 +142,14 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
 //  * ошибки
 //  */
 
-  int Model::polish_notation(std::list<Stack_t2> &stac2, std::list<Stack_t2> &polis2) {
+  int Model::polish_notation(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &polis2) {
     printf("\nPOLISH \n");
     int err = TRUE;
-    std::list<Stack_t2> znak;
+    std::list<Stack_t2_> znak;
     // int len = stac2.size();
     // char doub[SIZE];  // Временная переменная для стека знак
     // std::string dou2 = {0};
-    std::list<Stack_t2>::iterator it;
+    std::list<Stack_t2_>::iterator it;
     int count = 0;
     printstack(znak);
     for (it = stac2.begin(); it != stac2.end(); /*count*/it++) { // возможно end - 1
@@ -161,7 +160,7 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
     } else if (it->dat2 == "(" || it->type == 4) {
       znak.push_back(*it);
     } else if (it->dat2 == ")") {
-      std::list<Stack_t2>::iterator it_z1 = --znak.end();
+      std::list<Stack_t2_>::iterator it_z1 = --znak.end();
       // std::cout << "Нашли ) " << it->dat2  << std::endl;      
       for (; it_z1->dat2 != "(" && it_z1->type != 4 && err == TRUE && --it_z1 != znak.begin(); ) {
         // std::cout << "Пред цикл  " << it_z1->dat2  << std::endl;
@@ -183,7 +182,7 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
           // std::cout << "CTECK_ZNAK __ (( " <<  std::endl;
             printstack(znak);
           // std::cout << std::endl; 
-          // std::cout << "IIIIII " <<  std::endl;
+          std::cout << "IIIIII " <<  std::endl;
           polis2.push_back(*it_z1);
           znak.pop_back();
         // }
@@ -192,17 +191,25 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
       std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!for__у22 " << it->dat2  << std::endl;
       check_polish(znak, polis2, stac2, count);
     }
+    std::cout << "IIIIII_22 " <<  std::endl;
     if (it == --stac2.end()) {
-      // std::cout << "UUUU2 " << std::endl;      
+      printstack(znak);
+      std::cout << "UUUU2 " << std::endl;      
       int len_znak = znak.size();
       // std::cout << "eee " <<  len_znak << std::endl;
-      std::list<Stack_t2>::iterator it_z = --znak.end();
-        for ( ; len_znak != 0; len_znak--) {
-        // std::cout << "eee " <<  len_znak << std::endl;
-        pop_push(znak, polis2, it_z);
-        err = TRUE;
-        it_z--;
-      }
+      // std::list<Stack_t2_>::iterator it_z = --znak.end();
+        for ( ; len_znak > 0; len_znak--) {
+        // it_z--;
+        std::list<Stack_t2_>::iterator it_z = --znak.end();
+        
+          
+          pop_push(znak, polis2, it_z);
+          err = TRUE;   
+          std::cout << "eee 55_ " <<  len_znak << std::endl;
+          // std::cout << "eee " <<  len_znak <<  " Значение Знак " << --(it_z->dat2)  << std::endl;
+                 
+        }
+      std::cout << "555_IIIIII " <<  std::endl;
     }
     count++;
   }
@@ -218,14 +225,14 @@ int Model::s21_calc(std::string str, std::string str_x, double &result) {
 //  * ошибки
 //  */
 
-int Model::mathematics(std::list<Stack_t2> &polis2, double &result) {
+int Model::mathematics(std::list<Stack_t2_> &polis2, double &result) {
   printf("Matematika\n");
   int err = TRUE;
   result = -0;
   double numbe2 = -0;
   std::stack<double> nu2;
   // Stack_t  num = {0};
-  std::list<Stack_t2>::iterator it = polis2.begin();
+  std::list<Stack_t2_>::iterator it = polis2.begin();
     for (; it != polis2.end() && err == TRUE; it++) {
       std::cout << "__ " << it->dat2 << " Type_  " << it->type << std::endl;
       std::cout << std::endl;

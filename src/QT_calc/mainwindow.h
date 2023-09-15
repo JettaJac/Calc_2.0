@@ -42,6 +42,7 @@ private:
 private slots:
     void digits_functions();
     void digits_numbers();
+    void digits_pov_mod();
     void on_pushButton_dot_clicked();
     void operations();
     void on_pushButton_eq_clicked();
@@ -54,6 +55,8 @@ private slots:
     void on_pushButton_div_clicked();
     void on_pushButton_graph_clicked();
     // void on_pushButton_credit_clicked();
+
+    void on_pushButton_E_clicked();
 
 signals:
     void signal();
