@@ -388,18 +388,20 @@ void Model::PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac22, s
 
 int Model::MathSimple(std::list<Stack_t2_>::iterator &it, std::stack<double> &st_num, double &res)
 {
-  int err = TRUE;  // сделать другое
+  int err = TRUE;  
   double a, b;
   if (st_num.empty()) {
     throw std::runtime_error("Stack Error");
   }
   b = st_num.top();
   st_num.pop();
+
   if (st_num.empty()) {
     throw std::runtime_error("Stack Error");
   }
-  a = st_num.top(); // можно сразу забирать строку и stod ее преобразовывать
+  a = st_num.top(); 
   st_num.pop();
+
   if (it->dat2 == "+") {
       res = a + b;
   } else if (it->dat2 == "-") {
@@ -421,6 +423,7 @@ int Model::MathSimple(std::list<Stack_t2_>::iterator &it, std::stack<double> &st
       err = ZERO;
     }
   }
+
   if (err == TRUE) {
      st_num.push(res);
   }
