@@ -16,7 +16,7 @@
 using namespace std;
 using namespace s21;
 
-int Model::removes_spaces(std::string &str) { // пока не задействована
+int Model::RemovesSpaces(std::string &str) { // пока не задействована
     // Удаление всех пробелов из строки
     for (size_t i = 0; i < str.length(); ++i) {
         if (str[i] == ' ') {
@@ -38,14 +38,14 @@ int Model::removes_spaces(std::string &str) { // пока не задейств�
  */
 
 // Returning the current value
-int Model::types(std::string str, int &count, std::string &valu) {
+int Model::Types(std::string str, int &count, std::string &valu) {
   std::cout << "TYPES " <<  std::endl;
   int type = 0;
   // int vr = count;
   int len = 0;
   if (str[count] == 's' || str[count] == 'c' || str[count] == 't' || str[count] == 'a' ||
       str[count] == 'l') {
-    int res = check_funcs(str, count);
+    int res = CheckFuncs(str, count);
     if (res == 1) {
       len = 4;
       type = 4;
@@ -101,7 +101,7 @@ int Model::types(std::string str, int &count, std::string &valu) {
   valu = str.substr(count, len);
 
   if (type == 9){
-    check_number(valu);
+    CheckNumber(valu);
   }
   // vr += len;
   // count = vr - 1;
@@ -117,7 +117,7 @@ int Model::types(std::string str, int &count, std::string &valu) {
  * @return        - Вернет 0
  */
 
-int Model::unar_znak(std::string &val) { //  tmp здесь лишняя
+int Model::UnarZnak(std::string &val) { //  tmp здесь лишняя
   if (val == "-") {
     val = "u";
   } else {
@@ -136,10 +136,10 @@ int Model::unar_znak(std::string &val) { //  tmp здесь лишняя
  * ошибки
  */
 
-int Model::number(std::string str, double &number) {
+int Model::Number(std::string str, double &number) {
   int err = -1;
-  // printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", check_number(str));
-  if (check_number(str) == 0 || number == -1) {
+  // printf("\n%d ~~~~~FUNCTION NUMBER~~~~~\n\n", CheckNumber(str));
+  if (CheckNumber(str) == 0 || number == -1) {
     double num; 
     try {
         num = std::stod(str); // Преобразование строки в double
@@ -165,7 +165,7 @@ int Model::number(std::string str, double &number) {
  * ошибки
  */
 
-  int Model::check_number(std::string str) {
+  int Model::CheckNumber(std::string str) {
   // printf("\n~~~~~CHECK NUMBER~~~~~\n\n");
   int err = TRUE;
   int count_p = 0;
@@ -210,7 +210,7 @@ int Model::number(std::string str, double &number) {
  * @return         - Вернет 0
  */
 
-int Model::check_parser(std::string str, std::string str_x, int type, int &symbol, std::string &value, int &brackets) { 
+int Model::CheckParser(std::string str, std::string str_x, int type, int &symbol, std::string &value, int &brackets) { 
 int err = -1;
 printf("\n ~~~~~Check_parser~~~~~\n\n");
   int symbol_afte2 = 0;
@@ -220,14 +220,14 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
   std::string data_befor2 = {0};
   std::string data_afte2 = {0};
   if (symbol >= 0 && symbol + 1 < len ) {
-    symbol_afte2 = prev_next_ch(str, symbol + 1, data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
+    symbol_afte2 = CharPrevNext(str, symbol + 1, data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
     
     // std::cout << "data_befor2_ " << data_befor2 << std::endl;
     // std::cout << "data_after_ " << data_afte2 << std::endl;
   }
-  symbol_befor2 = prev_next_ch(str, symbol - 1, data_befor2);
+  symbol_befor2 = CharPrevNext(str, symbol - 1, data_befor2);
   if (type != -1 && brackets >= 0) { //type нужен,  проверка на тайп сделать перед запуском чек парсер, тут оставить только скобки
-      if (type == 9 /*&& check_number(value) == 0*/) {
+      if (type == 9 /*&& CheckNumber(value) == 0*/) {
         // std::cout<< "parser_N " << "\"" << data_afte2 << "\"" << std::endl;
         // std::cout<< "parser_a " << symbol_after <<std::endl;
         if (data_afte2 == ")" || symbol_afte2 == 1 || symbol_afte2 == 2 ||
@@ -242,7 +242,7 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
 
       } else if (symbol == len - 1) {
         //  std::cout<< "last_simlol" << value <<std::endl;
-        if (value == ")" || (type == 9 /*&& check_number(value) == 0*/) ||
+        if (value == ")" || (type == 9 /*&& CheckNumber(value) == 0*/) ||
             value == "x") {
               // std::cout<< "last_simlol_good " << value <<std::endl;
           err = TRUE;
@@ -262,7 +262,7 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
                    data_afte2 == "(" || data_afte2 == "x"))) {
         err = TRUE;
         
-        unar_znak(value);
+        UnarZnak(value);
          std::cout << "UnarZnak_ " << type << std::endl; 
       } else if (type == 1 || (type == 2 && symbol != 0)) {
         if (symbol_afte2 != 1 && symbol_afte2 != 2 && data_afte2 != ")" && data_befor2 != "^") {
@@ -288,10 +288,10 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
         // std::cout << "VAL m" << std::endl; 
         int symbol_tmp = symbol - 2;
         // std::cout << "VAL m22 tmp  " << symbol_tmp <<  std::endl; 
-        symbol_befor2 = prev_next_ch(str, symbol_tmp - 1, data_befor2);  
+        symbol_befor2 = CharPrevNext(str, symbol_tmp - 1, data_befor2);  
         // std::cout << "VAL m22b " << symbol_befor2 <<  std::endl;    // надо
         if (symbol_befor2 == 9 || data_befor2 == ")" || data_befor2 == "x") {
-          symbol_afte2= prev_next_ch(str, symbol + 1, data_afte2); // надо
+          symbol_afte2= CharPrevNext(str, symbol + 1, data_afte2); // надо
           // std::cout << "VAL m _ current" << std::endl; 
           if (symbol_afte2 == 9 || data_afte2 == "(" || data_afte2 == "x") {
             err = TRUE;
@@ -309,8 +309,8 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
           value += data_afte2;
           // std::cout << symbol << "  TTTTT _ value_   " << value  << std::endl;
           symbol += 2;
-          // symbol_afte2 = prev_next_ch(str, symbol + 1, data_afte2); //  оставить это так как крайнее значение смотрит
-          symbol_afte2 = types(str, symbol, data_afte2);
+          // symbol_afte2 = CharPrevNext(str, symbol + 1, data_afte2); //  оставить это так как крайнее значение смотрит
+          symbol_afte2 = Types(str, symbol, data_afte2);
           std::cout << symbol << " SAfter  " << data_afte2 << std::endl;
         
           if (symbol_afte2 == 9 || data_afte2 == "x" ) {
@@ -337,52 +337,52 @@ printf("\n ~~~~~Check_parser~~~~~\n\n");
   return err;
 }
 
-int Model::check_polish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish, std::list<Stack_t2_> &stac2, int vr) { // можен сразу принимать интератор
+int Model::CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish, std::list<Stack_t2_> &stac2, int vr) { // можен сразу принимать интератор
   // char doub[SIZE];
   std::cout  << std::endl;
-  std::cout << "Check_polish1" << std::endl;
+  std::cout << "CheckPolish1" << std::endl;
   // std::string doub = {0};
   // int count = vr;
   std::list<Stack_t2_>::iterator it = stac2.begin(); // Начинаем с начала списка
-  std::cout << "Check_polish2" << std::endl;
+  std::cout << "CheckPolish2" << std::endl;
   std::advance(it, vr);
-  std::cout << "Check_polish3" << std::endl;
+  std::cout << "CheckPolish3" << std::endl;
   // if ()
   std::list<Stack_t2_>::iterator it_z = --znak.end();
-  std::cout << "Check_polish4" << std::endl;
+  std::cout << "CheckPolish4" << std::endl;
 
   // std::cout << it->type << " == " << std::endl;
-  // std::cout << "Check_polish5" << std::endl;
+  // std::cout << "CheckPolish5" << std::endl;
   // std::cout << it_z->type << std::endl; // что то с этим элементом, если удалить стык_т в основной функции, все падает
-  std::cout << "Check_polish5" << std::endl;
+  std::cout << "CheckPolish5" << std::endl;
   if (znak.size() == 0) {
     znak.push_back(*it); // 
     std::cout << "znak_ = 0" << std::endl;
   } else if (it->type == it_z->type) {
     std::cout << "znak_ = znak_str_" << std::endl;
     // doub = it_z->dat2;
-    pop_push(znak, polish, it_z);
+    PopPush(znak, polish, it_z);
 
     // push(znak, stack->data[count], stack->pri[count]);
     znak.push_back(*it);
   } else if (it->type <= it_z->type) {
     std::cout << "1 <<<<<<<<<<<<<<<_" << std::endl;
     if (it_z->type != 3 && it_z->type != 4) {
-      printstack(znak);
+      Printstack(znak);
       // doub = it_z->dat2;
-      pop_push(znak, polish, it_z);
+      PopPush(znak, polish, it_z);
       std::cout << "1 <<<<<<<<<<<<<<<_2"  << std::endl;
       // std::cout << "TEST___0 " << (it_z--)->dat2  << it_z->dat2 << (it_z++)->dat2  << std::endl; 
     }
     it_z = --znak.end();
     if (znak.size() > 0 && it->type <= it_z->type &&
       it_z->type < 3) {
-          printstack(znak);
+          Printstack(znak);
       it_z = --znak.end();
       // std::cout << "2 <<<<<<<<<<<<<<<_" << it_z->dat2 << std::endl;
 
       // doub = it_z->dat2;
-      pop_push(znak, polish, it_z); // хз в чем разниц а с предыдущим
+      PopPush(znak, polish, it_z); // хз в чем разниц а с предыдущим
     }
     znak.push_back(*it);
   } else if (it->type >= it_z->type) {
@@ -390,9 +390,9 @@ int Model::check_polish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish
     // std::cout << ">>>>>>>>>>>>>>>>>_" << it_z->dat2 << std::endl;
   }
   // std::cout << "CTECK_ZNAK00  " <<  std::endl;
-  printstack(znak);
+  Printstack(znak);
   std::cout << std::endl;
-  printstack(polish);
+  Printstack(polish);
   return 0;
 }
 
@@ -404,7 +404,7 @@ int Model::check_polish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish
  * @return         - Вернет значение в зависимости от вида функции
  */
 
-int Model::check_funcs(std::string str, int &count) { // млжно объеединить некоторые позиции
+int Model::CheckFuncs(std::string str, int &count) { // млжно объеединить некоторые позиции
   int res = -1;
   // int vr = count;
   if ((strncmp(&str[count], "sin(", 4) == 0 || strncmp(&str[count], "cos(", 4) == 0 ||
@@ -437,13 +437,13 @@ int Model::check_funcs(std::string str, int &count) { // млжно объеед
  * ошибки
  */
 
-int Model::prev_next_ch(std::string str, int symbol, std::string &value) { // Переписать без флагов
+int Model::CharPrevNext(std::string str, int symbol, std::string &value) { // Переписать без флагов
   int err = -1;
   int len = str.length();
   // std::cout << "UUUU " << len << " symbol " << symbol << std::endl;
 
   if (symbol < len && symbol >= 0) {
-    err = types(str, symbol, value);
+    err = Types(str, symbol, value);
   }
   return err;
 }
@@ -484,15 +484,15 @@ int Model::prev_next_ch(std::string str, int symbol, std::string &value) { // П
  * @param stack     - Принимает стек с операндами и операторами
  */
 
-// void pop_push(Stack_t *stack, Stack_t *stack2, char *val, int tmp) {
+// void PopPush(Stack_t *stack, Stack_t *stack2, char *val, int tmp) {
 //   pop(stack);
 //   push(stack2, val, tmp);
 // }
 
-void Model::pop_push(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2, std::list<Stack_t2_>::iterator &it) {
+void Model::PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2, std::list<Stack_t2_>::iterator &it) {
   std::cout << "POP_PUSH_FUNC "  << std::endl;
   std::list<Stack_t2_>::iterator it2 = --stac2.end(); // времено для принта
-  std::cout << "pop_push____ :   " << "Забрали_ " << it2->dat2 << " Отправили_ "<< it->dat2 << std::endl;
+  std::cout << "PopPush____ :   " << "Забрали_ " << it2->dat2 << " Отправили_ "<< it->dat2 << std::endl;
   stac2_2.push_back(*it2);
   stac2.pop_back();
   std::cout << "jjjjjjjj " << std::endl;
@@ -508,7 +508,7 @@ void Model::pop_push(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2,
  * @param numbers     - Стек с числами
  * @param tmp         - Сколько убираем чисел из стека
  */
-int Model::math_simple(std::list<Stack_t2_>::iterator &it, std::stack<double> &st_num, double &res)
+int Model::MathSimple(std::list<Stack_t2_>::iterator &it, std::stack<double> &st_num, double &res)
 {
   int err = TRUE;  // сделать другое
   double a, b;
@@ -564,7 +564,7 @@ int Model::math_simple(std::list<Stack_t2_>::iterator &it, std::stack<double> &s
   return err;
 }
 
-int Model::math_function(std::list<Stack_t2_>::iterator &it, std::stack<double> &st_num, double &res) {
+int Model::MathFunction(std::list<Stack_t2_>::iterator &it, std::stack<double> &st_num, double &res) {
   int err = TRUE;  // сделать другое
   double a;
   if (st_num.empty()) {
@@ -636,7 +636,7 @@ int Model::math_function(std::list<Stack_t2_>::iterator &it, std::stack<double> 
 // void printvalue_stack(char *value) { std::cout << value << std::endl;}
 
 
-// void printstack(Stack_t *stack) {
+// void Printstack(Stack_t *stack) {
 //   std::cout << "stack size > " << stack->size << std::endl;;
 //   for (size_t i = 0; i < stack->size; i++) { 
 //     std::cout << stack->datea[i] << " | ";
@@ -644,7 +644,7 @@ int Model::math_function(std::list<Stack_t2_>::iterator &it, std::stack<double> 
 //   std::cout << std::endl;
 // }
 
-void Model::printstack(std::list<Stack_t2_> &stac2) {
+void Model::Printstack(std::list<Stack_t2_> &stac2) {
 
   std::cout << "Stack_Size > " << stac2.size() << std::endl;
   for (const Stack_t2_& item : stac2) {

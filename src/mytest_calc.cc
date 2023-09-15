@@ -12,7 +12,7 @@ using namespace s21;
 Model *model1;
 
 // Test_t  test;
-class MyTest : public ::testing::Test, private s21::Model {
+class MyTest : public ::testing::Test, public s21::Model {
   public:
   // void SetUp() override {
   //       // Инициализация объекта класса для тестирования
@@ -24,6 +24,7 @@ class MyTest : public ::testing::Test, private s21::Model {
   //       delete model2;
   //   }
   Model *test;
+  MyTest *test3;
   
   Model model2;
 
@@ -36,14 +37,17 @@ friend class Model;
 
 // TEST(MyTest, matematika_mod55) {
 //   Model  model;
+//   MyTest *test2;
 //   double res = 999;
 //   char x[3] = "1";
-//   // model.s21_calc("45mod4", x, res);
-//   // test.s21_calc("45mod4", x, res);
-//   // model.s21_calc("45mod4", x, res);
+//   std::string d;
+//   test2->unar_znak(d);
+  
+//   model.SmartCalc("45mod4", x, res);
+//   // test.SmartCalc("45mod4", x, res);
+//   // model.SmartCalc("45mod4", x, res);
 //   EXPECT_EQ(res == 1, true);
 // }
-
 
 
 // TEST(MyTest, TestName0) {
@@ -552,9 +556,9 @@ TEST(Calc, znak_1) {
   char x[10] = "2";
   // Model *model;
   // MyTest *test;
-  // test->s21_calc->
-  model1->s21_calc("-(5+6)", x, num);
-  // model->s21_calc("-(5+6)", x, num);
+  // test->SmartCalc->
+  model1->SmartCalc("-(5+6)", x, num);
+  // model->SmartCalc("-(5+6)", x, num);
   EXPECT_EQ(num,  -11);
 }
 
@@ -640,88 +644,88 @@ TEST(Calc, matematika_simple) {
   char x[3] = "1";
   string str;
 
-  model1->s21_calc("5", x, res);  
+  model1->SmartCalc("5", x, res);  
   EXPECT_EQ(res == 5, true);
 
   str = "0.345+5";
-  model1->s21_calc(str, x, res);
+  model1->SmartCalc(str, x, res);
   EXPECT_EQ(res == 5.345, true);
 
-  model1->s21_calc("5+7-3-2", x, res);
+  model1->SmartCalc("5+7-3-2", x, res);
   EXPECT_EQ(res == 7, true);
 
-  model1->s21_calc("5+7-3*2", x, res);
+  model1->SmartCalc("5+7-3*2", x, res);
   EXPECT_EQ(res == 6, true);
 
-  model1->s21_calc("5+7*3-3*2", x, res);
+  model1->SmartCalc("5+7*3-3*2", x, res);
   EXPECT_EQ(res == 20, true);
 
-  model1->s21_calc("5+7-3/2", x, res);
+  model1->SmartCalc("5+7-3/2", x, res);
   EXPECT_EQ(res == 10.5, true);
 
-  model1->s21_calc("3*(5+6)-2*4-(8*9/3-6)", x, res);
+  model1->SmartCalc("3*(5+6)-2*4-(8*9/3-6)", x, res);
   EXPECT_EQ(res == 7, true);
 
-  model1->s21_calc("3*(5+6)-2*4-(8*9/3-6)/7", x, res);
+  model1->SmartCalc("3*(5+6)-2*4-(8*9/3-6)/7", x, res);
   EXPECT_EQ(res - 22.4285714285714286 <= ERC, true);
 
-  model1->s21_calc("3*(5+6)-2*4-(8*9/3-6)/7-2*3", x, res);
+  model1->SmartCalc("3*(5+6)-2*4-(8*9/3-6)/7-2*3", x, res);
   EXPECT_EQ(res - 16.4285714285714286 <= ERC, true);
 
-  model1->s21_calc("3-(5+6)*(2+4)-8*9-6/7-2*3", x, res);
+  model1->SmartCalc("3-(5+6)*(2+4)-8*9-6/7-2*3", x, res);
   EXPECT_EQ(res -(-141.8571428571428571) <= ERC, true);
 
-  tmp = model1->s21_calc("(5+4-2*5)/(5-5)", x, res);
+  tmp = model1->SmartCalc("(5+4-2*5)/(5-5)", x, res);
   EXPECT_EQ(tmp, -2);
 
-  tmp = model1->s21_calc("(4+10)/0*2+1", x, res);
+  tmp = model1->SmartCalc("(4+10)/0*2+1", x, res);
   EXPECT_EQ(tmp, -2);
 
-  model1->s21_calc("80/2", x, res);
+  model1->SmartCalc("80/2", x, res);
   EXPECT_EQ(res - 40 <= ERC, true);
 
-  model1->s21_calc("80/(2-10)", x, res);
+  model1->SmartCalc("80/(2-10)", x, res);
   EXPECT_EQ(res - (-10) <= ERC, true);
 
-  model1->s21_calc("80/(-10)", x, res);
+  model1->SmartCalc("80/(-10)", x, res);
   EXPECT_EQ(res - (-8) <= ERC, true);
 
-  model1->s21_calc("-80/(-10)", x, res);
+  model1->SmartCalc("-80/(-10)", x, res);
   EXPECT_EQ(res - 8 <= ERC, true);
 
-  model1->s21_calc("-(5+1)", x, res);
+  model1->SmartCalc("-(5+1)", x, res);
   EXPECT_EQ(res - (-6) <= ERC, true);
 
-  model1->s21_calc("-(-(5+2)*4)", x, res);
+  model1->SmartCalc("-(-(5+2)*4)", x, res);
   EXPECT_EQ(res - 28 <= ERC, true);
 
-  model1->s21_calc("-(+(5+2)*4)", x, res);
+  model1->SmartCalc("-(+(5+2)*4)", x, res);
   EXPECT_EQ(res - (-28) <= ERC, true);
 
-  model1->s21_calc("5", x, res);
+  model1->SmartCalc("5", x, res);
   EXPECT_EQ(res - 5 <= ERC, true);
 
-  model1->s21_calc("-5", x, res);
+  model1->SmartCalc("-5", x, res);
   EXPECT_EQ(res - (-5) <= ERC, true);
 
-  model1->s21_calc("sin(cos(log(5^2)))", x, res);
+  model1->SmartCalc("sin(cos(log(5^2)))", x, res);
   
   EXPECT_EQ(res - 0.17115002489 <= ERC, true);
 
-  model1->s21_calc("sin(cos(tan(acos(asin(atan(log(1*ln(sqrt(5mod3^(-2)+x)))))))))", x, res);
+  model1->SmartCalc("sin(cos(tan(acos(asin(atan(log(1*ln(sqrt(5mod3^(-2)+x)))))))))", x, res);
   cout << res << endl;
   EXPECT_EQ(res - 0.742174 <= ERC, true);
   
   // 0.71188622115482
-  model1->s21_calc("sin(cos(tan(acos(1))))", x, res);
+  model1->SmartCalc("sin(cos(tan(acos(1))))", x, res);
   cout << res << endl;
   EXPECT_EQ(res - 0.8414709848 <= ERC, true);
 
-  model1->s21_calc("sin(2)", x, res);
+  model1->SmartCalc("sin(2)", x, res);
   cout << res << endl;
   EXPECT_EQ(res - 0.90929742682 <= ERC, true);
 
-  model1->s21_calc("sqrt((-2)*(-2))", x, res);
+  model1->SmartCalc("sqrt((-2)*(-2))", x, res);
   EXPECT_EQ(res == 2, true);  
 }
 
@@ -730,55 +734,55 @@ TEST(Calc, matematika_trig_1) {
   double res = 999;
   char x[3] = "46";
 
-  model1->s21_calc("sin(5)", x, res);
+  model1->SmartCalc("sin(5)", x, res);
   res = res - (-0.95892427466);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("cos(5)", x, res);
+  model1->SmartCalc("cos(5)", x, res);
   res = res - (0.28366218546);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("cos(45)", x, res);
+  model1->SmartCalc("cos(45)", x, res);
   res = res - (0.52532198881);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("cos(45)+sin(67)", x, res);
+  model1->SmartCalc("cos(45)+sin(67)", x, res);
   res = res - (0.98687716056);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("-cos(45)+sin(67)", x, res);
+  model1->SmartCalc("-cos(45)+sin(67)", x, res);
   res = res - (0.98687716056);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("-cos(45)", x, res);
+  model1->SmartCalc("-cos(45)", x, res);
   res = res - (-0.52532198881);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("1-cos(45)", x, res);
+  model1->SmartCalc("1-cos(45)", x, res);
   res = res - (0.47467801118);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("1-(-cos(45))", x, res);
+  model1->SmartCalc("1-(-cos(45))", x, res);
   res = res - (1.52532198882);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("1-(-(-cos(45)))", x, res);
+  model1->SmartCalc("1-(-(-cos(45)))", x, res);
   res = res - (0.47467801118);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("acos(0.5)", x, res);
+  model1->SmartCalc("acos(0.5)", x, res);
   res = res - (1.0471975511966);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("asin(0.5)", x, res);
+  model1->SmartCalc("asin(0.5)", x, res);
   res = res - (0.523598775598299);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("atan(x)", x, res);
+  model1->SmartCalc("atan(x)", x, res);
   res = res - (1.5490606199531);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("sin(x)", x, res);
+  model1->SmartCalc("sin(x)", x, res);
   res = res - (0.90178834764881);
   EXPECT_EQ(res <= ERC, true);
   cout << "TEST_ " << res << endl;
@@ -789,27 +793,27 @@ TEST(Calc, matematika_log_1) {
   double res = 999;
   char x[3] = "1";
 
-  model1->s21_calc("log(5)", x, res);
+  model1->SmartCalc("log(5)", x, res);
   res = res - (0.6989700043360189);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("ln(5)", x, res);
+  model1->SmartCalc("ln(5)", x, res);
   res = res - (1.6094379124341004);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("log(45)", x, res);
+  model1->SmartCalc("log(45)", x, res);
   res = res - (1.6532125137753437);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("ln(45)+log(67)", x, res);
+  model1->SmartCalc("ln(45)+log(67)", x, res);
   res = res - (5.6327372924711462);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("(-log(45)+sin(67))-(ln(10)+log(56))", x, res);
+  model1->SmartCalc("(-log(45)+sin(67))-(ln(10)+log(56))", x, res);
   res = res - (-6.55950561275);
   EXPECT_EQ(res <= ERC, true);
 
-  model1->s21_calc("-ln(45-20)", x, res);
+  model1->SmartCalc("-ln(45-20)", x, res);
   res = res - (-3.2188758248682007);
   EXPECT_EQ(res <= ERC, true);
 }
@@ -819,19 +823,19 @@ TEST(Calc, matematika_mod) {
   double res = 999;
   char x[3] = "1";
 
-  model1->s21_calc("45mod4", x, res);
+  model1->SmartCalc("45mod4", x, res);
   EXPECT_EQ(res == 1, true);
 
-  model1->s21_calc("(2+3*5)mod(3*2)", x, res);
+  model1->SmartCalc("(2+3*5)mod(3*2)", x, res);
   EXPECT_EQ(res == 5, true);
 
-  model1->s21_calc("(2^2^2)mod3", x, res);
+  model1->SmartCalc("(2^2^2)mod3", x, res);
   EXPECT_EQ(res == 1, true);
 
-  model1->s21_calc("5mod2+33mod6*6", x, res);
+  model1->SmartCalc("5mod2+33mod6*6", x, res);
   EXPECT_EQ(res == 19, true);
 
-  model1->s21_calc("(-7)mod(7mod4)", x, res);
+  model1->SmartCalc("(-7)mod(7mod4)", x, res);
   EXPECT_EQ(res == -1, true);
  }
 
@@ -840,16 +844,16 @@ TEST(Calc, matematika_pow) {
   double res = 999;
   char x[3] = "1";
 
-  model1->s21_calc("2^(-1+1*3)", x, res);
+  model1->SmartCalc("2^(-1+1*3)", x, res);
   EXPECT_EQ(res == 4, true);
 
-  model1->s21_calc("2^(-1+1*3)+5*4", x, res);
+  model1->SmartCalc("2^(-1+1*3)+5*4", x, res);
   EXPECT_EQ(res == 24, true);
 
-  model1->s21_calc("2^(-2)", x, res);
+  model1->SmartCalc("2^(-2)", x, res);
   EXPECT_EQ(res == 0.25, true);
 
-  model1->s21_calc("(-3^(-3))", x, res);
+  model1->SmartCalc("(-3^(-3))", x, res);
   res = res - (-0.037037037037037);
   EXPECT_EQ(res <= ERC, true);
 }
@@ -859,42 +863,42 @@ TEST(Calc, matematika_x) {
   double res = 999;
   char x[3] = "5";
 
-  model1->s21_calc("x^2+3*x", x, res);
+  model1->SmartCalc("x^2+3*x", x, res);
   EXPECT_EQ(res == 40, true);
 
-  model1->s21_calc("3*x", x, res);
+  model1->SmartCalc("3*x", x, res);
   EXPECT_EQ(res == 15, true);
 
-  model1->s21_calc("x*3", x, res);
+  model1->SmartCalc("x*3", x, res);
   EXPECT_EQ(res == 15, true);
 
-  model1->s21_calc("3*x+2*x", x, res);
+  model1->SmartCalc("3*x+2*x", x, res);
   EXPECT_EQ(res == 25, true);
 
-  model1->s21_calc("3*x+2+x", x, res);
+  model1->SmartCalc("3*x+2+x", x, res);
   EXPECT_EQ(res == 22, true);
 
-  model1->s21_calc("-x", x, res);
+  model1->SmartCalc("-x", x, res);
   EXPECT_EQ(res == -5, true);
 
   char x2[3] = "-5";
 
-  model1->s21_calc("x^2+3*x", x2, res);
+  model1->SmartCalc("x^2+3*x", x2, res);
   EXPECT_EQ(res == 10, true);
 
-  model1->s21_calc("3*x", x2, res);
+  model1->SmartCalc("3*x", x2, res);
   EXPECT_EQ(res == -15, true);
 
-  model1->s21_calc("x*3", x2, res);
+  model1->SmartCalc("x*3", x2, res);
   EXPECT_EQ(res == -15, true);
 
-  model1->s21_calc("3*x+2*x", x2, res);
+  model1->SmartCalc("3*x+2*x", x2, res);
   EXPECT_EQ(res == -25, true);
 
-  model1->s21_calc("3*x+2+x", x2, res);
+  model1->SmartCalc("3*x+2+x", x2, res);
   EXPECT_EQ(res == -18, true);
 
-  model1->s21_calc("-x", x2, res);
+  model1->SmartCalc("-x", x2, res);
   EXPECT_EQ(res == 5, true);
 }
 
@@ -903,68 +907,68 @@ TEST(Calc, matematika_err) {
   double res = 999;
   char x[3] = "-1";
 
-  EXPECT_EQ(model1->s21_calc("-cos(45)sin(67)", x, res) == -1, true);
-  EXPECT_EQ(model1->s21_calc("1 - cos(45)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("-cos(45)+sin(-67)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("-cos(+45)+sin(67)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("-ln(45)+sin(67)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("5mod4+sin(67)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("2^2^2", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("2^2^", x, res) == -1, true);
-  EXPECT_EQ(model1->s21_calc("2^(-1+1*3)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("2^(-1+1*3)+5*4", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("log(-45)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("6mod(-4)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("(-5)mod(-4)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("(-5)mod(6mod4)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("(2+3*5)mod(3*2)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("atan(3*2)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("asin(5)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("asin(0.4)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("acos(5)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("acos(0.5)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("atan(5)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("sin(0.4)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("cos(5)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("tan(5)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("ln(-5)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("log(-5)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("10mod(5-5)", x, res) == -2, true);
-  EXPECT_EQ(model1->s21_calc("10mod(-x)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("10modx", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("xmod5", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("(-x)mod5", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("sqrt(x)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("sqrt(-1)", x, res) == -3, true);
-  EXPECT_EQ(model1->s21_calc("sqrt(4)", x, res) == 0, true);
-  EXPECT_EQ(model1->s21_calc("(5^-3)", x, res) == -1, true);
+  EXPECT_EQ(model1->SmartCalc("-cos(45)sin(67)", x, res) == -1, true);
+  EXPECT_EQ(model1->SmartCalc("1 - cos(45)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("-cos(45)+sin(-67)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("-cos(+45)+sin(67)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("-ln(45)+sin(67)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("5mod4+sin(67)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("2^2^2", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("2^2^", x, res) == -1, true);
+  EXPECT_EQ(model1->SmartCalc("2^(-1+1*3)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("2^(-1+1*3)+5*4", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("log(-45)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("6mod(-4)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("(-5)mod(-4)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("(-5)mod(6mod4)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("(2+3*5)mod(3*2)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("atan(3*2)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("asin(5)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("asin(0.4)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("acos(5)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("acos(0.5)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("atan(5)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("sin(0.4)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("cos(5)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("tan(5)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("ln(-5)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("log(-5)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("10mod(5-5)", x, res) == -2, true);
+  EXPECT_EQ(model1->SmartCalc("10mod(-x)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("10modx", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("xmod5", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("(-x)mod5", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("sqrt(x)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("sqrt(-1)", x, res) == -3, true);
+  EXPECT_EQ(model1->SmartCalc("sqrt(4)", x, res) == 0, true);
+  EXPECT_EQ(model1->SmartCalc("(5^-3)", x, res) == -1, true);
 }
 
 TEST(Calc, MatematikaExp) {
   std::string str_x = "1";
   double res = 999;
 
-  EXPECT_EQ(model1->s21_calc("65e+4", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("65e+4", str_x, res),  0);
   EXPECT_EQ(res == 650000, true);
-  EXPECT_EQ(model1->s21_calc("0.5e+5", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5e+5", str_x, res),  0);
   EXPECT_EQ(res == 50000, true);
-  EXPECT_EQ(model1->s21_calc("-1.5e+5", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("-1.5e+5", str_x, res),  0);
   EXPECT_EQ(res == -150000, true);
-  EXPECT_EQ(model1->s21_calc("+0.5e+6", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("+0.5e+6", str_x, res),  0);
   EXPECT_EQ(res == 500000, true);
-  EXPECT_EQ(model1->s21_calc("0.5e-6", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5e-6", str_x, res),  0);
   EXPECT_EQ(res == 5e-07, true);
-  EXPECT_EQ(model1->s21_calc("0.5E+6", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5E+6", str_x, res),  0);
   EXPECT_EQ(res == 500000, true);
-  EXPECT_EQ(model1->s21_calc("0.5E-2", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5E-2", str_x, res),  0);
   EXPECT_EQ(res == 0.005, true);
-  EXPECT_EQ(model1->s21_calc("0.5 e+6", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5 e+6", str_x, res),  0);
   EXPECT_EQ(res == 500000, true);
-  EXPECT_EQ(model1->s21_calc("0.5e+6+2", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5e+6+2", str_x, res),  0);
   EXPECT_EQ(res == 500002, true);
-  EXPECT_EQ(model1->s21_calc("0.5e+2*4", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5e+2*4", str_x, res),  0);
   EXPECT_EQ(res == 200, true);
-  EXPECT_EQ(model1->s21_calc("0.5e-3*4", str_x, res),  0);
+  EXPECT_EQ(model1->SmartCalc("0.5e-3*4", str_x, res),  0);
   EXPECT_EQ(res == 0.002, true);
 }
 

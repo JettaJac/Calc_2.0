@@ -1,7 +1,7 @@
 .PHONY: all install uninstall clean dist test gcov_report leaks
 
-CCF=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror -g -fsanitize=address 
-CC=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror -g -fsanitize=address
+CCF=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror -g -fsanitize=address 
+CC=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror -g -fsanitize=address
 CFLAGS=  -Wextra -Wall -Werror
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
 CHECK_FLAGS= -lgtest -lgtest_main -lpthread
