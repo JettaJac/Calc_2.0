@@ -329,7 +329,7 @@ void MainWindow::on_pushButton_eq_clicked()
 
         double result = 0.0;
         ui->err_c->setText("X");
-        err = model.s21_calc(str_pp, str_pp_x, result);
+        err = model.SmartCalc(str_pp, str_pp_x, result);
         if (err == 0){
             new_label = QString::number(result, 'g', 20);
             ui->result_show->setText(new_label);

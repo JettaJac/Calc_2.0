@@ -1,5 +1,5 @@
 /**
- * @file s21__calc.h
+ * @file s21_calc.h
  * @author jettajac
  * @brief
  * @version 0.1
@@ -9,8 +9,10 @@
  *
  */
 
-#ifndef MODEL_H
-#define MODEL_H
+// #ifndef MODEL_H
+// #define MODEL_H
+#ifndef S21_CALC_H
+#define S21_CALC_H
 
 // 9: number
 // 1: + and -
@@ -24,13 +26,13 @@
 //// Libraries and files used
 #include <errno.h>
 #include <math.h>
+
 #include <cstring>
 #include <iostream>
-#include <string>
 #include <list>
 #include <stack>
+#include <string>
 // #include <algorithm>
-
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Error code
@@ -60,7 +62,8 @@ namespace s21 {
 
 class Model {
  public:
-  int SmartCalc(std::string str, std::string str_g, double &result);
+  int SmartCalc(std::string const str, std::string const str_g, double &result);
+
 
   // private:
 
@@ -79,45 +82,45 @@ class Model {
     int type = 0;
   };
 
-  // private:  
+  // private:
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ////Main functions
-  int Parser(std::string str, std::list<Stack_t2_> &stac2, std::string x);
+  int Parser(std::string str, std::list<Stack_t2_> &stac2, std::string const x);
   int PolishNotation(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &polis2);
   int Mathematics(std::list<Stack_t2_> &polis2, double &result);
-  
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //// Parsing
-  int RemovesSpaces(std::string &str);
-  int Types(std::string str, int &lent, std::string &value);
+  int RemovesSpaces(std::string &str) noexcept;
+  int Types(std::string const str, int &lent, std::string &value) noexcept;
 
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //// Check functions
+  int CheckParser(std::string const str, std::string x, int type, int &symbol,
+                  std::string &value, int &brackets) noexcept;
+  int CheckNumber(std::string const str) const noexcept;
+  int CheckFuncs(std::string const str, int &count) noexcept;
+  int CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish,
+                  std::list<Stack_t2_>::iterator it);
+  int CheckExp(std::string const str, std::string x, int &symbol, std::string &value) noexcept;
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //// Arithmetic
   int MathSimple(std::list<Stack_t2_>::iterator &it, std::stack<double> &number,
-                  double &res);
+                 double &res);
   int MathFunction(std::list<Stack_t2_>::iterator &it,
-                    std::stack<double> &st_num, double &res);
-
-
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  //// Check functions
-  int CheckParser(std::string str, std::string x,  int type, int &symbol, std::string &value,
-                   int &brackets);
-  int CheckNumber(std::string str);
-  int CheckFuncs(std::string str, int &count);
-  int CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish,
-                   std::list<Stack_t2_> &stack, int vr);
+                   std::stack<double> &st_num, double &res);
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //// Secondary functions
   void PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2,
-                std::list<Stack_t2_>::iterator &it);
-  int Number(std::string str, double &number);
-  int UnarZnak(std::string &val);
-  void Printstack(std::list<Stack_t2_> &stac2);                 
-  
+               std::list<Stack_t2_>::iterator &it) noexcept;
+  int Number(std::string const str, double &number);
+  int UnarZnak(std::string &val) noexcept;
+  void CharPrevAfter(std::string const str, int &symbol, std::string &prev,
+                     std::string &after, int &p, int &a) noexcept;
+  void Printstack(std::list<Stack_t2_> &stac2);
+
   friend class MyTest;
 };
 }  // namespace s21

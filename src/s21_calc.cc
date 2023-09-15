@@ -28,7 +28,7 @@ using namespace s21;
  */
 
 
-int Model::SmartCalc(std::string str, std::string str_x, double &result) {
+int Model::SmartCalc(std::string const str, std::string const str_x, double &result) {
   std::list<Stack_t2_> stack;
   std::list<Stack_t2_> polish;
   int err = -1;
@@ -57,7 +57,7 @@ int Model::SmartCalc(std::string str, std::string str_x, double &result) {
  * ошибки
  */
 
-  int Model::Parser(std::string str, std::list<Stack_t2_> &stack, std::string str_x) {
+  int Model::Parser(std::string str, std::list<Stack_t2_> &stack, std::string const str_x) {
   int err = TRUE;
   std::string val = {0};
   int tmp = -1;
@@ -75,7 +75,7 @@ int Model::SmartCalc(std::string str, std::string str_x, double &result) {
       err = TRUE;
     }
     if (tmp != -1 && brackets >= 0) {
-      err = CheckParser(str, str_x, tmp, symbol, val, brackets); // bascet ссылкой
+      err = CheckParser(str, str_x, tmp, symbol, val, brackets); 
       Stack_t2_ current;      
       if (err == TRUE) {
         if (tmp == 6){
@@ -110,7 +110,7 @@ int Model::SmartCalc(std::string str, std::string str_x, double &result) {
     std::list<Stack_t2_> znak;
     std::list<Stack_t2_>::iterator it;
     int symbol = 0;
-    for (it = stack.begin(); it != stack.end(); it++) { // возможно end - 1
+    for (it = stack.begin(); it != stack.end(); it++) {
     if (it->type == 9 || it->type == 6) {
       polish.push_back(*it);
     } else if (it->dat2 == "(" || it->type == 4) {
@@ -127,7 +127,7 @@ int Model::SmartCalc(std::string str, std::string str_x, double &result) {
           znak.pop_back();
       }
     } else if (it->type) {
-      CheckPolish(znak, polish, stack, symbol);
+      CheckPolish(znak, polish, it);
     }
     if (it == --stack.end()) {
       int len_znak = znak.size();

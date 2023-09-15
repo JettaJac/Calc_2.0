@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SmartCalc_v2.0: Исходный файл /Users/jettajac/Documents/CPP/calculator/Mycalc/src/model/smartcalc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SmartCalc_v2.0<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('smartcalc_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">smartcalc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="smartcalc_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SRC_MODEL_S21_SMARTCALC_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SRC_MODEL_S21_SMARTCALC_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaces21.html">s21</a> {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">    8</a></span><span class="preprocessor">#define TRUE 0</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#abb508ea8227673f419e9fe3a86c30d8e">    9</a></span><span class="preprocessor">#define FAIL -1</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#ac328e551bde3d39b6d7b8cc9e048d941">   10</a></span><span class="preprocessor">#define ZERO -2</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#afcae4d9ca6871621a835dd35a026e5ee">   11</a></span><span class="preprocessor">#define EFUC -3  </span><span class="comment">// неправильно введены значения в функциях</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// #define size_t</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// #define STACK_OVERFLOW 10</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#a453f07a53194584fd2e0bb720c814c25">   15</a></span><span class="preprocessor">#define STACK_MAX_SIZE 100</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#a7ab9c9406d6e8432e3786bd89ec79695">   16</a></span><span class="preprocessor">#define INIT_SIZE 10</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#ac8c6509988bfa36bde2938343d99c290">   18</a></span><span class="preprocessor">#define STACK_OVERFLOW -100</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#a9fc7324c5d4ced773996c902bf7c82f3">   19</a></span><span class="preprocessor">#define STACK_UNDERFLOW -101</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#a1431a912f82210db685c3b36a768c5ce">   20</a></span><span class="preprocessor">#define OUT_OF_MEMORY -102</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// typedef double T;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">   23</a></span><span class="preprocessor">#define SIZE 300</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="smartcalc_8h.html#ae9028abfd1d8259acfaf76a2a73c9cbf">   24</a></span><span class="preprocessor">#define SIZE_N 100</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classs21_1_1_smart_calc.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classs21_1_1_smart_calc.html">SmartCalc</a>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classs21_1_1_smart_calc.html#a12f7777e126d08b3034d455cf225075c">   28</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classs21_1_1_smart_calc.html#a12f7777e126d08b3034d455cf225075c">s21_calc</a>(<span class="keywordtype">char</span> *str, <span class="keywordtype">char</span> *str_x, <span class="keywordtype">double</span> *result); <span class="comment">// main function</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">typedef</span> <span class="keyword">struct </span>stack_tag {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">char</span> data[<a class="code hl_define" href="smartcalc_8h.html#a453f07a53194584fd2e0bb720c814c25">STACK_MAX_SIZE</a>][<a class="code hl_define" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a>];</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">double</span> number[<a class="code hl_define" href="smartcalc_8h.html#a453f07a53194584fd2e0bb720c814c25">STACK_MAX_SIZE</a>];</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> pri[<a class="code hl_define" href="smartcalc_8h.html#a453f07a53194584fd2e0bb720c814c25">STACK_MAX_SIZE</a>];  <span class="comment">// prioritet</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">char</span> x[<a class="code hl_define" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a>];</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    } Stack_t; <span class="comment">// возможно не надо Stck_t</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">char</span> str[<a class="code hl_define" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a>];</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">char</span> val[<a class="code hl_define" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a>];</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> tmp;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">char</span> data_before[<a class="code hl_define" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a>];</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">char</span> data_after[<a class="code hl_define" href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a>];</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">int</span> symbol_after;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">int</span> symbol_before;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">int</span> symbol;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">int</span> brackets;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    } flags;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif  </span><span class="comment">// SRC_MODEL_S21_SMARTCALC_H_</span></div>
+<div class="ttc" id="aclasss21_1_1_smart_calc_html"><div class="ttname"><a href="classs21_1_1_smart_calc.html">s21::SmartCalc</a></div><div class="ttdef"><b>Definition:</b> smartcalc.h:26</div></div>
+<div class="ttc" id="aclasss21_1_1_smart_calc_html_a12f7777e126d08b3034d455cf225075c"><div class="ttname"><a href="classs21_1_1_smart_calc.html#a12f7777e126d08b3034d455cf225075c">s21::SmartCalc::s21_calc</a></div><div class="ttdeci">int s21_calc(char *str, char *str_x, double *result)</div></div>
+<div class="ttc" id="anamespaces21_html"><div class="ttname"><a href="namespaces21.html">s21</a></div><div class="ttdef"><b>Definition:</b> controller.h:4</div></div>
+<div class="ttc" id="asmartcalc_8h_html_a453f07a53194584fd2e0bb720c814c25"><div class="ttname"><a href="smartcalc_8h.html#a453f07a53194584fd2e0bb720c814c25">STACK_MAX_SIZE</a></div><div class="ttdeci">#define STACK_MAX_SIZE</div><div class="ttdef"><b>Definition:</b> smartcalc.h:15</div></div>
+<div class="ttc" id="asmartcalc_8h_html_a70ed59adcb4159ac551058053e649640"><div class="ttname"><a href="smartcalc_8h.html#a70ed59adcb4159ac551058053e649640">SIZE</a></div><div class="ttdeci">#define SIZE</div><div class="ttdef"><b>Definition:</b> smartcalc.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3f14f6767c31cb4a1d22c13c18cc6fc3.html">model</a></li><li class="navelem"><a class="el" href="smartcalc_8h.html">smartcalc.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+  </ul>
+</div>
+</body>
+</html>

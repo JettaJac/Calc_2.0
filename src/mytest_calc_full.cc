@@ -453,6 +453,7 @@ TEST(Calc, ParserExpErr) {
   EXPECT_EQ(model1->Parser("xe+6", stack_N, str_x),  0);  
   EXPECT_EQ(model1->Parser("(1+2)e+6", stack_N, str_x),  -1); // потом обработать
   EXPECT_EQ(model1->Parser("(-2)e+6", stack_N, str_x),  -1); // потом обработать
+  EXPECT_EQ(model1->Parser("(-2)e+sin(5)", stack_N, str_x),  -1); // потом обработать
   EXPECT_EQ(model1->Parser("-0.5e+6", stack_N, str_x),  0);
   EXPECT_EQ(model1->Parser("+0.5e+6", stack_N, str_x),  0);
   EXPECT_EQ(model1->Parser("0.5e-6", stack_N, str_x),  0);
@@ -841,7 +842,9 @@ TEST(Calc, MatematikaX) {
 TEST(Calc, MatematikaErr) {
   double res = 999;
   char x[3] = "-1";
-
+  
+  EXPECT_EQ(model1->SmartCalc("y", x, res) == -1, true);
+  EXPECT_EQ(model1->SmartCalc("", "", res) == -1, true);
   EXPECT_EQ(model1->SmartCalc("-cos(45)sin(67)", x, res) == -1, true);
   EXPECT_EQ(model1->SmartCalc("1 - cos(45)", x, res) == 0, true);
   EXPECT_EQ(model1->SmartCalc("-cos(45)+sin(-67)", x, res) == 0, true);
@@ -882,10 +885,14 @@ TEST(Calc, MatematikaErr) {
 TEST(Calc, MatematikaExp) {
   std::string str_x = "1";
   double res = 999;
-// "sin(x)e+2" // на будушее, что хотелось бы, чтоб обраьатывал
-// "(1+2)e+6"
-// 2e+(6+1)
 
+  EXPECT_EQ(model1->SmartCalc("(1+2)e+2",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("(-2)e+6",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("sin(x)e+2",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("(-2)e+sin(5)",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("2e+(6+1)",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("xe+x", str_x, res),  0);
+  EXPECT_EQ(res == 10, true);
   EXPECT_EQ(model1->SmartCalc("xe+4", str_x, res),  0);
   EXPECT_EQ(res == 10000, true);
   EXPECT_EQ(model1->SmartCalc("65e+x", str_x, res),  0);

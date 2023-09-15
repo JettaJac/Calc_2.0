@@ -42,8 +42,8 @@ test: $(OBJS2)
 	 ./mytest_calc
 
 testfull: $(OBJS3)
-	$(CC) $(CHECK_FLAGS) $(OBJS3) -o mytest_calc_full
-	 ./mytest_calc_full	 
+	$(CC) $(CHECK_FLAGS) $(OBJS3) -o mytest_calc
+	 ./mytest_calc	 
 
 main: $(OBJS)	
 #	make clean	
@@ -60,13 +60,15 @@ install:
 		cmake -S  ./QT_calc/ -B $(BUILD_QT)
 		make -C  $(BUILD_QT)
 		cp -r  $(BUILD_QT)s21_Calc.app $(HOME)/Desktop/
+		open $(HOME)/Desktop/s21_Calc.app
 
 uninstall:
 	rm -fr $(BUILD)
 	rm -rf $(HOME)/Desktop/s21_Calc.app
 
 dvi:
-	cd doxygen && ./doxygen Doxyfile && open html/index.html
+#	cd doxygen && ./doxygen Doxyfile && open html/index.html
+	cd doxygen && chmod +x doxygen && ./doxygen Doxyfile && open html/index.html
 
 dist: install
 	@rm -rf ./smart_calc_archive
@@ -83,12 +85,12 @@ gcov_report:
 	./$(NAME)
 	lcov -t "gcov_report" -o tests.info -c -d .
 	genhtml -o $(REPORT_NAME) tests.info
-	open report/src/index.html
+	open report/index.html
 	rm $(NAME)
 	rm *.gcno *.gcda
 
 check: 
-#	CK_FORK=no leaks --atExit -- ./s21_calc
+#	CK_FORK=no leaks --atExit -- ./mytest_calc
 	cp ../materials/linters/.clang-format .clang-format
 	clang-format  -n *.c *.h
 	clang-format  -i *.c *.h

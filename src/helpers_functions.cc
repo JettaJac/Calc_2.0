@@ -22,7 +22,7 @@ using namespace s21;
  * @return         - Тип элемента
  */
 
-int Model::RemovesSpaces(std::string &str) { 
+int Model::RemovesSpaces(std::string &str) noexcept { 
     for (size_t i = 0; i < str.length(); ++i) {
         if (str[i] == ' ') {
             str.erase(i, 1);
@@ -42,118 +42,145 @@ int Model::RemovesSpaces(std::string &str) {
  * @return         - Тип элемента
  */
 
-int Model::Types(std::string str, int &symbol, std::string &valu) {
+int Model::Types(std::string const str, int &symbol, std::string &valu) noexcept {
   // std::cout << "TYPES " <<  std::endl;
   int type = -1;
   int len = str.length();
   if (symbol < len && symbol >= 0) {
-  if (str[symbol] == 's' || str[symbol] == 'c' || str[symbol] == 't' || str[symbol] == 'a' ||
-      str[symbol] == 'l') {
-    int res = CheckFuncs(str, symbol);
-    if (res == 1) {
-      len = 4;
-      type = 4;
-    } else if (res == 2) {
-      len = 5;
-      type = 4;
-    } else if (res == 3) {
-      len = 4;
-      type = 4;
-    } else if (res == 4) {
+    if (str[symbol] == 's' || str[symbol] == 'c' || str[symbol] == 't' || str[symbol] == 'a' ||
+        str[symbol] == 'l') {
+      int res = CheckFuncs(str, symbol);
+      if (res == 1) {
+        len = 4;
+        type = 4;
+      } else if (res == 2 ) {
+        len = 5;
+        type = 4;
+      } else if (res == 3) {
+        len = 3;
+        type = 4;
+      }
+    } else if (str[symbol] == '(' || str[symbol] == ')') {
+      len = 1;
+      type = 3;
+      
+    } else if (str[symbol] == 'x' || str[symbol] == '^') {
+      len = 1;
+      type = 5;
+    } else if (strncmp(&str[symbol], "mod", 3) == 0) {
       len = 3;
-      type = 4;
-    } else if (res == 5) {
-      len = 5;
-      type = 4;
-    } else {
-      type = -1;
+      type = 5;
+    } else if ((str[symbol] > 47 && str[symbol] <= 57) || (str[symbol] == 46)) {
+      len = 0;
+      int n = symbol, m = 0;
+      for (; (str[n] > 47 && str[n] <= 57) || str[n] == '.'; n++, m++) {
+        len++;
+      }
+      type = 9;
+    } else if (str[symbol] == '+' || str[symbol] == '-') {
+      len = 1;
+      type = 1;
+    } else if (str[symbol] == '*' || str[symbol] == '/') {
+      len = 1;
+      type = 2;
+    } else if (str[symbol] == 'e' || str[symbol] == 'E') {
+      len = 1;
+      type = 6;
     }
-  } else if (str[symbol] == '(' || str[symbol] == ')') {
-    len = 1;
-    type = 3;
-    
-  } else if (str[symbol] == 'x' || str[symbol] == '^') {
-    len = 1;
-    type = 5;
-  } else if (strncmp(&str[symbol], "mod", 3) == 0) {
-    len = 3;
-    type = 5;
-  } else if ((str[symbol] > 47 && str[symbol] <= 57) || (str[symbol] == 46)) {
-    len = 0;
-    int n = symbol, m = 0;
-    for (; (str[n] > 47 && str[n] <= 57) || str[n] == '.'; n++, m++) {
-      len++;
-    }
-    type = 9;
-  } else if (str[symbol] == '+' || str[symbol] == '-') {
-    len = 1;
-    type = 1;
-  } else if (str[symbol] == '*' || str[symbol] == '/') {
-    len = 1;
-    type = 2;
-  } else if (str[symbol] == 'e' || str[symbol] == 'E') {
-    len = 1;
-    type = 6;
-  } else if (str[symbol] == '\0') {
-    type = -1;
-  } else {
-    type = -1;
-  }
-  valu = str.substr(symbol, len);
+    valu = str.substr(symbol, len);
 
-  if (type == 9){
-    CheckNumber(valu);
-  }
-  symbol += len -1;
+    if (type == 9){
+      CheckNumber(valu);
+    }
+    symbol += len -1;
   }
   return type;
 }
 
 
 /**
- * @brief           Индивицирует унарный минус
- * @param val     - Принимает значение строки
- * @return        - Вернет 0
- */
-
-int Model::UnarZnak(std::string &val) { 
-  if (val == "-") {
-    val = "u";
-  } else if (val == "+"){
-    val = "p";
-  }
-  return 0;
-}
-
-
-/**
- * @brief          Проверяет и преобразует строчку  в дабл
+ * @brief          Проверяет парсер на корректность ввода
  *
  * @param str      - Строка с арифметическим выражением
- * @param number   - Преобразованное число (дабл) из строки
- * @return         - Вернет 0, если число поданно корректно и 1, если есть
- * ошибки
+ * @param str_x    - Принимает значение X
+ * последовательности
+ * @param type     - Принимает тип текущего элемента
+ * @param symbol   - Принимает ссылку на порядковый номер текущего элемента
+ * @param value    - Принимает ссылку на значение текущего элемента
+ * @param brackets - Принимает ссылку на текущее количество скобок в арифмитической строчке
+ * @param polish   - Стек из операторов и операндов в польской натации
+ * @return         - Вернет 0
  */
 
-int Model::Number(std::string str, double &number) {
-  int err = -1;
-  // cout <<  "~~~~~FUNCTION NUMBER~~~~~\n\n";
-  if (CheckNumber(str) == 0 || number == -1) {
-    double num; 
-    try {
-        num = std::stod(str); // Преобразование строки в double
+int Model::CheckParser(std::string const str, std::string const str_x, int type, int &symbol, std::string &value, int &brackets) noexcept { 
+int err = -1;
+  
+  int s_prev = 0;
+  int s_after = 0;
+  int len = str.length();
+
+  std::string d_prev = {0};
+  std::string d_after = {0};
+  CharPrevAfter (str, symbol, d_prev, d_after, s_prev, s_after);
+      if (type == 9) {
+        if (d_after == ")" || s_after == 1 || s_after == 2 ||
+            d_after == "^" || d_after == "mod" || symbol == (len - 1) || s_after == 6) {
+          err = TRUE;
+        }
+      } else if (symbol == len - 1) {
+        if (value == ")" || (type == 9 ) ||
+            value == "x") {
+          err = TRUE;
+          if (value == ")") {brackets -= 1;}
+        }
+      } else if (symbol == 0 &&
+                 (value == ")" || type == 2 || value == "mod" || value == "^")) { 
+                  err = -1;
+      } else if ((symbol == 0 && type == 1 &&
+                  (s_after == 4 || d_after == "(" ||
+                   d_after == "x" || s_after == 9)) ||
+                 (type == 1 && (d_prev == ("(")) &&
+                  (s_after == 9 || s_after == 4 ||
+                   d_after == "(" || d_after == "x"))) {
+        err = TRUE;        
+        UnarZnak(value);
+      } else if (type == 1 || (type == 2 && symbol != 0)) {
+        if (s_after != 1 && s_after != 2 && d_after != ")" && d_prev != "^") {
+          err = TRUE;
+        }
+      } else if (value == ")") {
+        if (d_after == "\0" || d_after == "^" || d_after == ")" ||
+            d_after[2] == 'd' || s_after == 1 || s_after == 2 || s_after == 6) {
+          brackets -= 1;
+          err = TRUE;
+        }
+      } else if ((type == 4 && value != "mod") || value == "(") {
+        brackets += 1;
         err = TRUE;
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
-    } catch (const std::out_of_range& e) {
-        std::cerr << "Ошибка: Выход за пределы диапазона. " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "Неизвестная ошибка." << std::endl;
-    }
-    number = num;
-  }
+        if (d_after == ")" || d_after == "^" || s_after == 2) {
+          err = -1;
+        }
+      } else if (value == "mod") {
+        int symbol_tmp = symbol - 3;
+        s_prev = Types(str, symbol_tmp, d_prev);  
+        if (s_prev == 9 || d_prev == ")" || d_prev == "x") {
+          symbol_tmp = symbol + 1;
+          s_after= Types(str, symbol_tmp, d_after); 
+          if (s_after == 9 || d_after == "(" || d_after == "x") {
+            err = TRUE;
+          }
+        }
+      } else if (value == "^") {
+        err = TRUE;
+      } else if (type == 6) { 
+        err = CheckExp(str, str_x, symbol, value);
+      } else if (type < 6 && type > 0) {
+        err = -1;
+      }
+
   return err;
 }
+
 
 /**
  * @brief           Проверка числа на корректность ввода
@@ -163,7 +190,7 @@ int Model::Number(std::string str, double &number) {
  * ошибки
  */
 
-  int Model::CheckNumber(std::string str) {
+  int Model::CheckNumber(std::string const str) const noexcept {
   // cout  << "\n~~~~~CHECK NUMBER~~~~~\n\n";
   int err = TRUE;
   int count_p = 0;
@@ -199,104 +226,29 @@ int Model::Number(std::string str, double &number) {
 
 
 /**
- * @brief          Проверяет парсер на корректность ввода
+ * @brief          Проверяет функции на корректность
  *
  * @param str      - Строка с арифметическим выражением
- * @param str_x    - Принимает значение X
- * последовательности
- * @param type     - Принимает тип текущего элемента
- * @param symbol   - Принимает ссылку на порядковый номер текущего элемента
- * @param value    - Принимает ссылку на значение текущего элемента
- * @param brackets - Принимает ссылку на текущее количество скобок в арифмитической строчке
- * @param polish   - Стек из операторов и операндов в польской натации
- * @return         - Вернет 0
+ * @param symbol   - Порядковый номер, проверяемого символа
+ * @return         - Вернет значение в зависимости от вида функции
  */
 
-int Model::CheckParser(std::string str, std::string str_x, int type, int &symbol, std::string &value, int &brackets) { 
-int err = -1;
-  int symbol_afte2 = 0;
-  int symbol_befor2 = 0;
-  int len = str.length();
-  int count;
-
-  std::string data_befor2 = {0};
-  std::string data_afte2 = {0};
-  if (symbol >= 0 && symbol + 1 < len ) {
-    count = symbol + 1;
-    symbol_afte2 = Types(str, count, data_afte2); // возможно сразу создавать и присваивать и использовать typeы func
+int Model::CheckFuncs(std::string const str, int &symbol) noexcept { 
+  int res = -1;
+  if ( strncmp(&str[symbol], "sin(", 4) == 0 || 
+       strncmp(&str[symbol], "cos(", 4) == 0 ||
+       strncmp(&str[symbol], "tan(", 4) == 0 || 
+       strncmp(&str[symbol], "log(", 4) == 0) {
+    res = 1;
+  } else if (strncmp(&str[symbol], "asin(", 5) == 0 ||
+             strncmp(&str[symbol], "acos(", 5) == 0 ||
+             strncmp(&str[symbol], "atan(", 5) == 0 ||
+             strncmp(&str[symbol], "sqrt(", 5) == 0) {
+    res = 2;
+  } else if (strncmp(&str[symbol], "ln(", 3) == 0) {
+    res = 3;
   }
-  count = symbol - 1;
-  symbol_befor2 = Types(str, count, data_befor2);
- 
-      if (type == 9) {
-        if (data_afte2 == ")" || symbol_afte2 == 1 || symbol_afte2 == 2 ||
-            data_afte2 == "^" || data_afte2 == "mod" || symbol == (len - 1) || symbol_afte2 == 6) {
-          err = TRUE;
-        }
-      } else if (symbol == len - 1) {
-        if (value == ")" || (type == 9 ) ||
-            value == "x") {
-          err = TRUE;
-          if (value == ")") {brackets -= 1;}
-        }
-      } else if (symbol == 0 &&
-                 (value == ")" || type == 2 || value == "mod" || value == "^")) { 
-                  err = -1;
-      } else if ((symbol == 0 && type == 1 &&
-                  (symbol_afte2 == 4 || data_afte2 == "(" ||
-                   data_afte2 == "x" || symbol_afte2 == 9)) ||
-                 (type == 1 && (data_befor2 == ("(")) &&
-                  (symbol_afte2 == 9 || symbol_afte2 == 4 ||
-                   data_afte2 == "(" || data_afte2 == "x"))) {
-        err = TRUE;        
-        UnarZnak(value);
-      } else if (type == 1 || (type == 2 && symbol != 0)) {
-        if (symbol_afte2 != 1 && symbol_afte2 != 2 && data_afte2 != ")" && data_befor2 != "^") {
-          err = TRUE;
-        }
-      } else if (value == ")") {
-        if (data_afte2 == "\0" || data_afte2 == "^" || data_afte2 == ")" ||
-            data_afte2[2] == 'd' || symbol_afte2 == 1 || symbol_afte2 == 2 || symbol_afte2 == 6) {
-          brackets -= 1;
-          err = TRUE;
-        }
-      } else if ((type == 4 && value != "mod") || value == "(") {
-        brackets += 1;
-        err = TRUE;
-        if (data_afte2 == ")" || data_afte2 == "^" || symbol_afte2 == 2) {
-          err = -1;
-        }
-      } else if (value == "mod") {
-        int symbol_tmp = symbol - 3;
-        symbol_befor2 = Types(str, symbol_tmp, data_befor2);  
-        if (symbol_befor2 == 9 || data_befor2 == ")" || data_befor2 == "x") {
-          symbol_tmp = symbol + 1;
-          symbol_afte2= Types(str, symbol_tmp, data_afte2); 
-          if (symbol_afte2 == 9 || data_afte2 == "(" || data_afte2 == "x") {
-            err = TRUE;
-          }
-        }
-      } else if (value == "^") {
-        err = TRUE;
-      } else if (type == 6) { // можно вывести в отдельную функцию
-        if ((symbol_befor2 == 9 || data_befor2 == "x") && symbol_afte2 == 1) {
-          value += data_afte2;
-          symbol += 2;
-          symbol_afte2 = Types(str, symbol, data_afte2);
-        
-          if (symbol_afte2 == 9 || data_afte2 == "x" ) {
-            if (data_afte2 == "x" ) {
-              data_afte2 = str_x;
-            }
-            value += data_afte2;
-            err = TRUE;
-          }          
-        }  
-      } else if (type < 6 && type > 0) {
-        err = -1;
-      }
-
-  return err;
+  return res;
 }
 
 
@@ -311,12 +263,10 @@ int err = -1;
  * @return         - Вернет 0
  */
 
-int Model::CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish, std::list<Stack_t2_> &stac2, int symbol) { // можен сразу принимать интератор
-  std::list<Stack_t2_>::iterator it = stac2.begin(); // Начинаем с начала списка
-  std::advance(it, symbol);
+int Model::CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish, std::list<Stack_t2_>::iterator it) {
   std::list<Stack_t2_>::iterator it_z = --znak.end();
   if (znak.size() == 0) {
-    znak.push_back(*it); // 
+    znak.push_back(*it); 
   } else if (it->type == it_z->type) {
     PopPush(znak, polish, it_z);
     znak.push_back(*it);
@@ -335,48 +285,38 @@ int Model::CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish,
   return 0;
 }
 
-/**
- * @brief          Проверяет функции на корректность
- *
- * @param str      - Строка с арифметическим выражением
- * @param symbol   - Порядковый номер, проверяемого символа
- * @return         - Вернет значение в зависимости от вида функции
- */
-
-int Model::CheckFuncs(std::string str, int &symbol) { // млжно объеединить некоторые позиции
-  int res = -1;
-  if ((strncmp(&str[symbol], "sin(", 4) == 0 || strncmp(&str[symbol], "cos(", 4) == 0 ||
-       strncmp(&str[symbol], "tan(", 4) == 0)) {
-    res = 1;
-  } else if (strncmp(&str[symbol], "asin(", 5) == 0 ||
-             strncmp(&str[symbol], "acos(", 5) == 0 ||
-             strncmp(&str[symbol], "atan(", 5) == 0) {
-    res = 2;
-  } else if (strncmp(&str[symbol], "log(", 4) == 0) {
-    res = 3;
-  } else if (strncmp(&str[symbol], "ln(", 3) == 0) {
-    res = 4;
-  } else if (strncmp(&str[symbol], "sqrt(", 5) == 0) {
-    res = 5;
-  }
-  return res;
-}
 
 /**
- * @brief           Забирает верхний элемент из стека и пушит в друго стек
+ * @brief             Проверяет корректность ввода кспоненциальной записи
  *
- * @param stack     - Принимает стек с операндами и операторами
- * @param stack2    - Принимает стек с операндами и операторами
- * @param it        - Итератор последнего элемента stac2
+ * @param str         - Строка с арифметическим выражением
+ * @param str_x    - Принимает значение X
+ * @param symbol      - Порядковый номер текущего элемента
+ * @param value       - Принимает ссылку на значение текущего элемента
  */
 
-void Model::PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac22, std::list<Stack_t2_>::iterator &it) {
-  // std::cout << "POP_PUSH_FUNC "  << std::endl;
-  std::list<Stack_t2_>::iterator it2 = --stac2.end();
-  stac22.push_back(*it2);
-  stac2.pop_back();
-  it = --stac2.end();
-}
+int Model::CheckExp(string const str, string const str_x, int &symbol, string &value) noexcept {
+  int err = -1;
+  int s_prev = 0;
+  int s_after = 0;
+  std::string d_prev = {0};
+  std::string d_after = {0};
+  CharPrevAfter (str, symbol, d_prev, d_after, s_prev, s_after);
+  if ((s_prev == 9 || d_prev == "x") && s_after == 1) {
+          value += d_after;
+          symbol += 2;
+          s_after = Types(str, symbol, d_after);
+        
+          if (s_after == 9 || d_after == "x" ) {
+            if (d_after == "x" ) {
+              d_after = str_x;
+            }
+            value += d_after;
+            err = TRUE;
+          }          
+  }  
+  return err;
+} 
 
 
 /**
@@ -440,7 +380,7 @@ int Model::MathSimple(std::list<Stack_t2_>::iterator &it, std::stack<double> &st
  */
 
 int Model::MathFunction(std::list<Stack_t2_>::iterator &it, std::stack<double> &st_num, double &res) {
-  int err = TRUE;  // сделать другое
+  int err = TRUE;  
   double a;
   if (st_num.empty()) {
     throw std::runtime_error("Stack Error");
@@ -492,6 +432,93 @@ int Model::MathFunction(std::list<Stack_t2_>::iterator &it, std::stack<double> &
     st_num.push(res);
   }
   return err;
+}
+
+
+/**
+ * @brief           Забирает верхний элемент из стека и пушит в друго стек
+ *
+ * @param stack     - Принимает стек с операндами и операторами
+ * @param stack2    - Принимает стек с операндами и операторами
+ * @param it        - Итератор последнего элемента stac2
+ */
+
+void Model::PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac22, std::list<Stack_t2_>::iterator &it) noexcept {
+  // std::cout << "POP_PUSH_FUNC "  << std::endl;
+  std::list<Stack_t2_>::iterator it2 = --stac2.end();
+  stac22.push_back(*it2);
+  stac2.pop_back();
+  it = --stac2.end();
+}
+
+
+/**
+ * @brief          Проверяет и преобразует строчку  в дабл
+ *
+ * @param str      - Строка с арифметическим выражением
+ * @param number   - Преобразованное число (дабл) из строки
+ * @return         - Вернет 0, если число поданно корректно и 1, если есть
+ * ошибки
+ */
+
+int Model::Number(std::string const str, double &number) {
+  int err = -1;
+  // cout <<  "~~~~~FUNCTION NUMBER~~~~~\n\n";
+  if (CheckNumber(str) == 0 || number == -1) {
+    double num; 
+    try {
+        num = std::stod(str); // Преобразование строки в double
+        err = TRUE;
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
+    } catch (const std::out_of_range& e) {
+        std::cerr << "Ошибка: Выход за пределы диапазона. " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Неизвестная ошибка." << std::endl;
+    }
+    number = num;
+  }
+  return err;
+}
+
+
+/**
+ * @brief           Индивицирует унарный минус
+ * 
+ * @param val     - Принимает значение строки
+ * @return        - Вернет 0
+ */
+
+int Model::UnarZnak(std::string &val) noexcept { 
+  if (val == "-") {
+    val = "u";
+  } else if (val == "+"){
+    val = "p";
+  }
+  return 0;
+}
+
+
+/**
+ * @brief             Отображает значение и тип элемента до и после текущего
+ *
+ * @param str         - Строка с арифметическим выражением
+ * @param symbol      - Порядковый номер текущего элемента
+ * @param prev        - Значение предыдушего символа от текущего
+ * @param after       - Значение последушего символа от текущего
+ * @param p           - Тип предыдушего символа от текущего
+ * @param a           - Тип последушего символа от текущего
+ */
+
+void Model::CharPrevAfter(std::string const str, int &symbol, std::string &prev, std::string &after, int &p, int &a) noexcept{
+  int count;
+  int len = str.length();
+  if (symbol >= 0 && symbol + 1 < len ) {
+    count = symbol + 1;
+    a = Types(str, count, after); 
+  }
+  count = symbol - 1;
+  p = Types(str, count, prev);
 }
 
 

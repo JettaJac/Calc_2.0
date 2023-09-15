@@ -903,7 +903,7 @@ TEST(Calc, matematika_x) {
 }
 
 
-TEST(Calc, matematika_err) {
+TEST(Calc, matematikaErr) {
   double res = 999;
   char x[3] = "-1";
 
@@ -948,6 +948,13 @@ TEST(Calc, MatematikaExp) {
   std::string str_x = "1";
   double res = 999;
 
+  EXPECT_EQ(model1->SmartCalc("(1+2)e+2",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("(-2)e+6",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("sin(x)e+2",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("(-2)e+sin(5)",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("2e+(6+1)",  str_x, res),  -1); // потом обработать
+  EXPECT_EQ(model1->SmartCalc("xe+x", str_x, res),  0);
+  EXPECT_EQ(res == 10, true);
   EXPECT_EQ(model1->SmartCalc("65e+4", str_x, res),  0);
   EXPECT_EQ(res == 650000, true);
   EXPECT_EQ(model1->SmartCalc("0.5e+5", str_x, res),  0);
