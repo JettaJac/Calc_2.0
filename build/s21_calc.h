@@ -62,8 +62,7 @@ namespace s21 {
 
 class Model {
  public:
-  int SmartCalc(std::string const str, std::string const str_g, double &result);
-
+  int SmartCalc_m(std::string const str, std::string const str_g, double &result);
 
   // private:
 
@@ -102,7 +101,8 @@ class Model {
   int CheckFuncs(std::string const str, int &count) noexcept;
   int CheckPolish(std::list<Stack_t2_> &znak, std::list<Stack_t2_> &polish,
                   std::list<Stack_t2_>::iterator it);
-  int CheckExp(std::string const str, std::string x, int &symbol, std::string &value) noexcept;
+  int CheckExp(std::string const str, std::string x, int &symbol,
+               std::string &value) noexcept;
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //// Arithmetic

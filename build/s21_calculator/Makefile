@@ -142,29 +142,29 @@ s21_Calc_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc_autogen.dir/build.make CMakeFiles/s21_Calc_autogen.dir/build
 .PHONY : s21_Calc_autogen/fast
 
-Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.o: Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o
-.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.o
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.o: Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.o
 
 # target to build an object file
-Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o
-.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o
 
-Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.i: Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i
-.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.i
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.i: Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.i
 
 # target to preprocess a source file
-Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i
-.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i
 
-Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.s: Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s
-.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.s
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.s: Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.s
 
 # target to generate assembly for a file
-Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s
-.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s
 
 grafic.o: grafic.cpp.o
 .PHONY : grafic.o
@@ -296,9 +296,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... s21_Calc_autogen"
 	@echo "... s21_Calc"
-	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.o"
-	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.i"
-	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.s"
+	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.o"
+	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.i"
+	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.s"
 	@echo "... grafic.o"
 	@echo "... grafic.i"
 	@echo "... grafic.s"

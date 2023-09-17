@@ -3,13 +3,15 @@
 // #include "credit.c"
 // #include "credit.h"
 #include "s21_calc.h"
+#include "controller.h"
 #include <array>
 #include <vector>
 // gcc -g -coverage mytest_calc.c s21_calc.c -o test.out -I -l -lcheck
 
 using namespace std;
 using namespace s21;
-Model *model1;
+// Model *model1;
+Controller *model1;
 
 // Test_t  test;
 class MyTest : public ::testing::Test, public s21::Model {

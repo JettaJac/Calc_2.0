@@ -13,7 +13,8 @@
 #include "grafic.h"
 #include "ui_grafic.h"
 
-s21::Model model2;
+// s21::Model controller2;
+s21::Controller controller2;
 
 
 
@@ -61,7 +62,8 @@ void Grafic::TimerSlot()
             strcpy(str_input, str_pp.c_str());
             strcpy(str_x, str_pp_x.c_str());
 
-            err3 = model2.SmartCalc(str_input, str_x, Y);
+            // err3 = model2.SmartCalc(str_input, str_x, Y);
+            err3 = controller2.SmartCalc(str_input, str_x, Y);
 
             if (err3 == 0){
                 x.push_back(X);
@@ -103,7 +105,8 @@ void Grafic::StaticFunc(){
             strcpy(str_input, str_pp.c_str());
             char *str_x = new char[str_pp_x.length() + 1];
             strcpy(str_x, str_pp_x.c_str());
-            err2 = model2.SmartCalc(str_input, str_x, Y);
+            err2 = controller2.SmartCalc(str_input, str_x, Y);
+            // err2 = controller2.SmartCalc(str_input, str_x, Y);
         if (err2 == 0){
             x.push_back(X);
             y.push_back(Y);

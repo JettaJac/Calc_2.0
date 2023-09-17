@@ -9,7 +9,8 @@
 // #include <credit.h>
 
 extern "C++" {
-    #include "../s21_calc.h"
+    // #include "../s21_calc.h"
+    #include "../controller.h"
     #include <string>
 //    #include <stdlib.h>
 }

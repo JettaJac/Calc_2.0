@@ -28,7 +28,7 @@ using namespace s21;
  */
 
 
-int Model::SmartCalc(std::string const str, std::string const str_x, double &result) {
+int Model::SmartCalc_m(std::string const str, std::string const str_x, double &result) {
   std::list<Stack_t2_> stack;
   std::list<Stack_t2_> polish;
   int err = -1;

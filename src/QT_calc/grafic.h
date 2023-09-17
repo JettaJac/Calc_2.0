@@ -8,7 +8,8 @@
 #include <iostream>
 
 extern "C++" {
-    #include "../s21_calc.h"
+    // #include "../s21_calc.h"
+    #include "../controller.h"
     #include <string>
 }
 

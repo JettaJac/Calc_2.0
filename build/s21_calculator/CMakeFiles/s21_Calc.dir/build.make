@@ -139,19 +139,19 @@ CMakeFiles/s21_Calc.dir/grafic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/s21_Calc.dir/grafic.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/grafic.cpp -o CMakeFiles/s21_Calc.dir/grafic.cpp.s
 
-CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o: CMakeFiles/s21_Calc.dir/flags.make
-CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o: /Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc
-CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o: CMakeFiles/s21_Calc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o -MF CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o.d -o CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o -c /Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc
+CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o: CMakeFiles/s21_Calc.dir/flags.make
+CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o: /Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc
+CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o: CMakeFiles/s21_Calc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o -MF CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o.d -o CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o -c /Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc
 
-CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc > CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.i
+CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc > CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.i
 
-CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc -o CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.s
+CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc -o CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s
 
 # Object files for target s21_Calc
 s21_Calc_OBJECTS = \
@@ -160,7 +160,7 @@ s21_Calc_OBJECTS = \
 "CMakeFiles/s21_Calc.dir/mainwindow.cpp.o" \
 "CMakeFiles/s21_Calc.dir/qcustomplot.cpp.o" \
 "CMakeFiles/s21_Calc.dir/grafic.cpp.o" \
-"CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o"
+"CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o"
 
 # External object files for target s21_Calc
 s21_Calc_EXTERNAL_OBJECTS =
@@ -170,7 +170,7 @@ s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/main.cpp.o
 s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/mainwindow.cpp.o
 s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/qcustomplot.cpp.o
 s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/grafic.cpp.o
-s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o
+s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o
 s21_Calc.app/Contents/MacOS/s21_Calc: CMakeFiles/s21_Calc.dir/build.make
 s21_Calc.app/Contents/MacOS/s21_Calc: /usr/local/lib/QtWidgets.framework/Versions/A/QtWidgets
 s21_Calc.app/Contents/MacOS/s21_Calc: /usr/local/lib/QtGui.framework/Versions/A/QtGui

@@ -519,9 +519,9 @@
 			null
 		],
 		[
-			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.h",
+			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.h",
 			"MU",
-			"PR5USNMOZ2/moc_s21_calc.cpp",
+			"PR5USNMOZ2/moc_controller.cpp",
 			null
 		]
 	],
@@ -598,7 +598,7 @@
 			null
 		],
 		[
-			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc",
+			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc",
 			"MU",
 			null
 		]

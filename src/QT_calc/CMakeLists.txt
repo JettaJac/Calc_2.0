@@ -24,8 +24,8 @@ set(PROJECT_SOURCES
         grafic.h
         grafic.cpp
         grafic.ui
-        ../s21_calc.cc
-        ../s21_calc.h
+        ../controller.cc
+        ../controller.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

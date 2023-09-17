@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc" "CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o" "gcc" "CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/s21_calc.cc.o.d"
+  "/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc" "CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o" "gcc" "CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.o.d"
   "/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/grafic.cpp" "CMakeFiles/s21_Calc.dir/grafic.cpp.o" "gcc" "CMakeFiles/s21_Calc.dir/grafic.cpp.o.d"
   "/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/main.cpp" "CMakeFiles/s21_Calc.dir/main.cpp.o" "gcc" "CMakeFiles/s21_Calc.dir/main.cpp.o.d"
   "/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/mainwindow.cpp" "CMakeFiles/s21_Calc.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/s21_Calc.dir/mainwindow.cpp.o.d"

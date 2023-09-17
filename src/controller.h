@@ -6,16 +6,18 @@
 
 // #include
 #include "s21_calc.h"
+#include "controller.cc"
+#include "s21_calc.cc"
 
 namespace s21 {
 
 class Controller {
-public:
+ public:
   int SmartCalc(std::string const str, std::string const str_x, double &result);
 
-//   static ResultCreditData
-//   credit_calculate(const struct InputCreditData &input_values);
+  //   static ResultCreditData
+  //   credit_calculate(const struct InputCreditData &input_values);
 };
-} // namespace s21
+}  // namespace s21
 
-#endif // CONTROLLER_H_
+#endif  // CONTROLLER_H_
