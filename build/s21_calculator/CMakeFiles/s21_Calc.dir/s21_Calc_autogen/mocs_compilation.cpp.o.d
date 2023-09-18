@@ -1,6 +1,6 @@
 CMakeFiles/s21_Calc.dir/s21_Calc_autogen/mocs_compilation.cpp.o: \
   /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/mocs_compilation.cpp \
-  /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/moc_grafic.cpp \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/moc_credit.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/memory \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/pthread.h \
@@ -161,7 +161,7 @@ CMakeFiles/s21_Calc.dir/s21_Calc_autogen/mocs_compilation.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/sched.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/cassert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/assert.h \
-  /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/../../../../src/QT_calc/grafic.h \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/../../../../src/QT_calc/credit.h \
   /usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
   /usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /usr/local/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
@@ -290,12 +290,8 @@ CMakeFiles/s21_Calc.dir/s21_Calc_autogen/mocs_compilation.cpp.o: \
   /usr/local/lib/QtGui.framework/Headers/qkeysequence.h \
   /usr/local/lib/QtWidgets.framework/Headers/qtabwidget.h \
   /usr/local/lib/QtGui.framework/Headers/qicon.h \
-  /usr/local/lib/QtCore.framework/Headers/QVector \
-  /usr/local/lib/QtCore.framework/Headers/qvector.h \
-  /usr/local/lib/QtCore.framework/Headers/QTimer \
-  /usr/local/lib/QtCore.framework/Headers/qtimer.h \
-  /usr/local/lib/QtCore.framework/Headers/qbasictimer.h \
-  /usr/local/lib/QtCore.framework/Headers/QtMath \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/../credit.h \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/../s21_calc.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/__locale \
@@ -350,10 +346,17 @@ CMakeFiles/s21_Calc.dir/s21_Calc_autogen/mocs_compilation.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/bitset \
-  /Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/../controller.h \
-  /Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/../s21_calc.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/stack \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/deque \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/moc_grafic.cpp \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/../../../../src/QT_calc/grafic.h \
+  /usr/local/lib/QtCore.framework/Headers/QVector \
+  /usr/local/lib/QtCore.framework/Headers/qvector.h \
+  /usr/local/lib/QtCore.framework/Headers/QTimer \
+  /usr/local/lib/QtCore.framework/Headers/qtimer.h \
+  /usr/local/lib/QtCore.framework/Headers/qbasictimer.h \
+  /usr/local/lib/QtCore.framework/Headers/QtMath \
+  /Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/../controller.h \
   /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/moc_mainwindow.cpp \
   /Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/s21_Calc_autogen/EWIEGA46WW/../../../../src/QT_calc/mainwindow.h \
   /usr/local/lib/QtGui.framework/Headers/QKeyEvent \

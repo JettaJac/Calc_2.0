@@ -24,6 +24,7 @@
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Libraries and files used
+#pragma once
 #include <errno.h>
 #include <math.h>
 
@@ -32,6 +33,9 @@
 #include <list>
 #include <stack>
 #include <string>
+// #include "helpers_functions.cc"
+// #include "controller.h"
+// #include "controller.cc"
 // #include <algorithm>
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,7 +49,7 @@
 
 // #define size_t
 // #define STACK_OVERFLOW 10
-// #define STACK_MAX_SIZE 100
+// #define STACKAX_SIZE 100
 // #define INIT_SIZE 10
 
 // #define STACK_OVERFLOW -100
@@ -62,7 +66,7 @@ namespace s21 {
 
 class Model {
  public:
-  int SmartCalc_m(std::string const str, std::string const str_g, double &result);
+  int SmartCalc(std::string const str, std::string const str_g, double &result);
 
   // private:
 

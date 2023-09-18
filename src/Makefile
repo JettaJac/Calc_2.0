@@ -1,8 +1,8 @@
 .PHONY: all install uninstall clean dist test gcov_report leaks
 
-CCF=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror -g -fsanitize=address 
-CC=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror -g -fsanitize=address
-CFLAGS=  -Wextra -Wall -Werror
+CCF=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror -g -fsanitize=address 
+CC=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror -g -fsanitize=address
+CFLAGS=  #-Wextra -Wall -Werror
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
 CHECK_FLAGS= -lgtest -lgtest_main -lpthread
 ALL_FLAGS=$(CFLAGS) $(GCOV_FLAGS) $(CHECK_FLAGS)
@@ -35,6 +35,10 @@ all: install
 objs: $(SRCS)
 	$(CCF) $(CFLAGS)  $(SRCS) -c
 
+
+test2: $(OBJS2)
+	$(CCF) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
+	 ./mytest_calc
 
 
 test: $(OBJS2)

@@ -26,6 +26,11 @@ set(PROJECT_SOURCES
         grafic.ui
         ../controller.cc
         ../controller.h
+        credit.h
+        ../credit.h
+        ../credit.cc
+        credit.cpp
+        credit.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -166,6 +166,54 @@ Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s
 .PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc.s
 
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.o: Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.o
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.o
+
+# target to build an object file
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.o
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.o
+
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.i: Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.i
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.i
+
+# target to preprocess a source file
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.i
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.i
+
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.s: Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.s
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.s
+
+# target to generate assembly for a file
+Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.s
+.PHONY : Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc.s
+
+credit.o: credit.cpp.o
+.PHONY : credit.o
+
+# target to build an object file
+credit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/credit.cpp.o
+.PHONY : credit.cpp.o
+
+credit.i: credit.cpp.i
+.PHONY : credit.i
+
+# target to preprocess a source file
+credit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/credit.cpp.i
+.PHONY : credit.cpp.i
+
+credit.s: credit.cpp.s
+.PHONY : credit.s
+
+# target to generate assembly for a file
+credit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/s21_Calc.dir/build.make CMakeFiles/s21_Calc.dir/credit.cpp.s
+.PHONY : credit.cpp.s
+
 grafic.o: grafic.cpp.o
 .PHONY : grafic.o
 
@@ -299,6 +347,12 @@ help:
 	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.o"
 	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.i"
 	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.s"
+	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.o"
+	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.i"
+	@echo "... Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.s"
+	@echo "... credit.o"
+	@echo "... credit.i"
+	@echo "... credit.s"
 	@echo "... grafic.o"
 	@echo "... grafic.i"
 	@echo "... grafic.s"

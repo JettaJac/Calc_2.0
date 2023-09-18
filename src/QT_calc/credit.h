@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 
-extern "C" {
-    // #include "../credit.h"
+extern "C++" {
+    #include "../credit.h"
     #include <string>
 }
 

@@ -9,9 +9,6 @@
  *
  */
 
-
-
-/*
 #include "credit.h"
 #include "ui_credit.h"
 
@@ -95,8 +92,8 @@ void Credit::on_pushButton_clicked()
         err = 1;
     }
     credit_N->percent_rate = ui->doubleSpinBox_precent_rate->value();
-
-    int err2 = calc_credit(credit_N);
+    int err2 = 0; //  временно
+    // int err2 = calc_credit(credit_N); //надо
     if (err == 0 && err2 == 0) {
 
 
@@ -148,4 +145,3 @@ void Credit::on_checkBox_year_stateChanged(int arg1)
     ui->checkBox_month->setChecked(false);
 }
 
-*/

@@ -501,6 +501,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/credit.h",
+			"MU",
+			"EWIEGA46WW/moc_credit.cpp",
+			null
+		],
+		[
 			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/grafic.h",
 			"MU",
 			"EWIEGA46WW/moc_grafic.cpp",
@@ -522,6 +528,12 @@
 			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.h",
 			"MU",
 			"PR5USNMOZ2/moc_controller.cpp",
+			null
+		],
+		[
+			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.h",
+			"MU",
+			"PR5USNMOZ2/moc_credit.cpp",
 			null
 		]
 	],
@@ -578,6 +590,11 @@
 	"SOURCES" : 
 	[
 		[
+			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/credit.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/QT_calc/grafic.cpp",
 			"MU",
 			null
@@ -599,6 +616,11 @@
 		],
 		[
 			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/controller.cc",
+			"MU",
+			null
+		],
+		[
+			"/Users/jettajac/Documents/CPP/calculator/Mycalc/src/credit.cc",
 			"MU",
 			null
 		]

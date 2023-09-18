@@ -1,5 +1,7 @@
 // #include "credit.h"
-#include "s21_calc.h"
+// #include "s21_calc.h"
+#include "controller.h"
+// #include "controller.cc"
 // #include "check_function.c"
 using namespace std;
 #include <string>
@@ -7,9 +9,10 @@ using namespace std;
 #include <ostream>
 #include <iostream>
 
-using namespace s21;
 
-//g++ -lstdc++ -std=c++17 main.cc SmartCalc.cc && ./a.out
+using namespace s21;
+// using namespace std;
+//g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
 
 
 // int *ptr = array;   // указатель ptr хранит адрес первого элемента массива
@@ -38,13 +41,15 @@ using namespace s21;
 // Переименовать prev_after
 
 int main() {
-  Model model;
+  // Model model;
+  Controller model1;
+  
   // Stack_t stack;
   // Stack_t stack = {0};  // Правильно нужно сделать массивом)
   // stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "sin(5)"; 
+  std::string str = "sin(5)+2"; 
   std::string str2 = "5e+4";
   std::string str_ch = "I";                  
   std::string str_g = "2"; 
@@ -74,13 +79,17 @@ int main() {
   // *count = 1;
   // double *stro;
   double stro[10] = {0};
+  double res;
 
   // stro[0] = numb;
   // int fun4 = SmartCalc(str, str_x, stro);
-  int fun_res = model.SmartCalc(str, str_g, *stro);
+  // int fun_res = model.SmartCalc(str, str_g, *stro);
+  int fun_res2 = model1.SmartCalc(str, str_g, res);
+  // model1.SmartCalc_m(str_g, str, res);
+  // model1.Test(str);
   // // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
-  // // cout << "Значение :  " << str_ch[0] << endl;
-  cout << "Резульата работы ф-ии:  " << fun_res << endl;
+  // cout << "Значение :  "<< fun_res2  << endl;
+  cout << "Резульат ф-ии:  " << res << endl;
   // SmartCalc(str, str_x, stro);
   // number(str, stro);
   // SmartCalc_o(str);
@@ -212,6 +221,6 @@ str);
   // printf("%s____ Calc - /*%d  -- XXXX - %s*/.... %f\n", str, /*&stack.x,*/ *stro);
 
   // printf("%s____ Calc\n", str);
-  cout << "Дано: " << str << "  Result: " << *stro << endl;
+  // cout << "Дано: " << str << "  Result: " << *stro << endl;
   // printf("\natof - %f\n", atof(".2"));
 }

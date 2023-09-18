@@ -13,6 +13,8 @@
 #include "grafic.h"
 #include "ui_grafic.h"
 
+using namespace s21;
+
 // s21::Model controller2;
 s21::Controller controller2;
 

@@ -13,6 +13,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+using namespace s21;
+
 // s21::Model controller;
 s21::Controller controller;
 

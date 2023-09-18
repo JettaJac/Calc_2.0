@@ -10,7 +10,7 @@
  *
  */
 
-#include "c_credit.h"
+#include "credit.h"
 
 /**
  * @brief          Кредитный калькулятор
