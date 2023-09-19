@@ -9,9 +9,9 @@
 #include <ostream>
 #include <string>
 
-#include "controller.h"
+#include "./a_controller/controller.h"
 
-// using namespace std;
+using namespace std;
 // using namespace s21;
 // using namespace std;
 // g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
@@ -77,7 +77,7 @@ int main() {
 
   // *count = 1;
   // double *stro;
-  double stro[10] = {0};
+  // double stro[10] = {0};
   double res;
 
   // stro[0] = numb;
@@ -87,7 +87,7 @@ int main() {
   // model1.SmartCalc_m(str_g, str, res);
   // model1.Test(str);
   // // int fun_res = prev_next_ch(1, "0.123", 1, str_ch);
-  // cout << "Значение :  "<< fun_res2  << endl;
+  cout << "Значение :  " << fun_res2 << endl;
   cout << "Резульат ф-ии:  " << res << endl;
   // SmartCalc(str, str_x, stro);
   // number(str, stro);

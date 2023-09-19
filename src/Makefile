@@ -12,10 +12,10 @@ BUILD_QT=$(BUILD)s21_calculator/
 
 # all, install, uninstall, clean, +dvi, dist, test, gcov_report
 
-SRCS = s21_calc.cc controller.cc 
+SRCS = ./a_model/s21_calc.cc ./a_controller/controller.cc ./a_model/credit.cc
 OBJS = $(SRCS:.c=.o) 
-OBJS2 = $(SRCS:.c=.o) mytest_calc.cc credit.cc
-OBJS3 = $(SRCS:.c=.o) mytest_calc_full.cc credit.cc
+OBJS2 = $(SRCS:.c=.o) ./a_test/mytest_calc.cc 
+OBJS3 = $(SRCS:.c=.o) ./a_test/mytest_calc_full.cc 
 NAME = s21_calc
 NAME2 = test2
 REPORT_NAME = report
@@ -60,8 +60,8 @@ install:
 		rm -rf $(HOME)/Desktop/s21_Calc.app
 		@mkdir -p $(BUILD)
 		@mkdir -p $(BUILD_QT)
-		cp *.cc *.h  $(BUILD)
-		cmake -S  ./QT_calc/ -B $(BUILD_QT)
+		cp ./*/*.cc ./*/*.h  $(BUILD)
+		cmake -S  ./a_vier_QT/ -B $(BUILD_QT)
 		make -C  $(BUILD_QT)
 		cp -r  $(BUILD_QT)s21_Calc.app $(HOME)/Desktop/
 		open $(HOME)/Desktop/s21_Calc.app
@@ -96,14 +96,16 @@ gcov_report:
 check: 
 #	CK_FORK=no leaks --atExit -- ./mytest_calc
 	cp ../materials/linters/.clang-format .clang-format
-	clang-format  -n *.cc *.h
-	clang-format  -i *.cc *.h
+	clang-format  -n *.cc
+	clang-format  -i *.cc
+	clang-format  -n ./*/*.cc ./*/*.h
+	clang-format  -i ./*/*.cc ./*/*.h
 
 leaks: test
 	 CK_FORK=no leaks --atExit -- ./mytest_calc	
 
 # val:
-# #   valgrind --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./test
+# #   valgrind --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./a_test
 # 	# leaks --atExit -- ./mytest_calc	
 
 clean:
@@ -117,10 +119,12 @@ clean:
 	rm -rf *.a
 	rm -rf $(REPORT_NAME)
 	rm -rf *.log
-	rm -rf mytest_calc
-	rm -rf mytest_calc_full
+	rm -rf ./a_model/mytest_calc
+	rm -rf ./a_model/mytest_calc_full
 	rm -fr $(BUILD)
 	rm -rf $(HOME)/Desktop/s21_Calc.app
-	rm -rf s21_calc
+	rm -rf ./a_model/s21_calc
 	rm -rf ./smart_calc_archive.tgz
+	rm -rf ./s21_calc_2.0
 	make check
+	rm -rf .clang-format
