@@ -119,7 +119,7 @@ clean:
 	rm -rf *.a
 	rm -rf $(REPORT_NAME)
 	rm -rf *.log
-	rm -rf ./a_model/mytest_calc
+	rm -rf mytest_calc
 	rm -rf ./a_model/mytest_calc_full
 	rm -fr $(BUILD)
 	rm -rf $(HOME)/Desktop/s21_Calc.app

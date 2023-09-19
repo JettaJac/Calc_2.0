@@ -2,9 +2,8 @@
 #define CREDIT_H
 
 #include <QMainWindow>
-
-
 #include <string>
+
 #include "../a_controller/controller.h"
 
 namespace Ui {

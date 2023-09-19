@@ -15,17 +15,17 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
+        main.cc
+        mainwindow.cc
         mainwindow.h
         mainwindow.ui
         qcustomplot.h
-        qcustomplot.cpp
+        qcustomplot.cc
         grafic.h
-        grafic.cpp
+        grafic.cc
         grafic.ui
         credit.h
-        credit.cpp
+        credit.cc
         credit.ui        
         ../a_controller/controller.cc
         ../a_controller/controller.h

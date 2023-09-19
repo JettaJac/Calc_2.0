@@ -8,11 +8,9 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QVector>
-
-
 #include <string>
-#include "../a_controller/controller.h"
 
+#include "../a_controller/controller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -6,12 +6,9 @@
 #include <QVector>
 #include <QtMath>
 #include <iostream>
-
-
-
 #include <string>
-#include "../a_controller/controller.h"
 
+#include "../a_controller/controller.h"
 
 namespace Ui {
 class Grafic;
