@@ -3,10 +3,10 @@
 
 #include <QMainWindow>
 
-extern "C++" {
-    #include "../credit.h"
-    #include <string>
-}
+// #include "../credit.h"
+#include "../controller.h"
+#include <string>
+
 
 namespace Ui {
 class Credit;

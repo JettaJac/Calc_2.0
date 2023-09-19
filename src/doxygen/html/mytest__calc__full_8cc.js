@@ -2,6 +2,7 @@ var mytest__calc__full_8cc =
 [
     [ "main", "mytest__calc__full_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627", null ],
     [ "TEST", "mytest__calc__full_8cc.html#aa3a55067833f6fa335e05a762530a206", null ],
+    [ "TEST", "mytest__calc__full_8cc.html#a5de51bc3cc00ac97f6153a191dfc4a4a", null ],
     [ "TEST", "mytest__calc__full_8cc.html#a54b963e53629a9e0e9192a2509370b13", null ],
     [ "TEST", "mytest__calc__full_8cc.html#a1554a8d5d0105bf921a15051208bab54", null ],
     [ "TEST", "mytest__calc__full_8cc.html#a5f2fea3032ca84962c22f146a6f3c374", null ],
@@ -33,5 +34,6 @@ var mytest__calc__full_8cc =
     [ "TEST", "mytest__calc__full_8cc.html#ac70da4da3f3ac2f1d19330e3f0bdfeb9", null ],
     [ "TEST", "mytest__calc__full_8cc.html#a4225dcff479676dad8d5f8f93d749736", null ],
     [ "TEST", "mytest__calc__full_8cc.html#aa44b3f4e828b5ae09ddaf7939c924b7f", null ],
-    [ "model1", "mytest__calc__full_8cc.html#a09e6a90b610b5e6e07e861a4647d44ee", null ]
+    [ "model1", "mytest__calc__full_8cc.html#afac0617261e46cef4eba80c65b1eef0a", null ],
+    [ "model2", "mytest__calc__full_8cc.html#ae2df3184525d04d7d58027448bedefe0", null ]
 ];

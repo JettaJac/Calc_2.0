@@ -1,7 +1,7 @@
 var dir_2214f18b5a38635c477339fa24d6afe0 =
 [
-    [ "credit.cpp", "credit_8cpp.html", null ],
-    [ "credit.h", "credit_8h.html", "credit_8h" ],
+    [ "credit.cpp", "credit_8cpp.html", "credit_8cpp" ],
+    [ "credit.h", "_q_t__calc_2credit_8h.html", "_q_t__calc_2credit_8h" ],
     [ "grafic.cpp", "grafic_8cpp.html", "grafic_8cpp" ],
     [ "grafic.h", "grafic_8h.html", "grafic_8h" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],

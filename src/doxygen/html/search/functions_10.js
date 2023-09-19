@@ -46,7 +46,7 @@ var searchData=
   ['removelayer_43',['removeLayer',['../class_q_custom_plot.html#a40f75e342c5eaab6a86066a42a0e2a94',1,'QCustomPlot']]],
   ['removeplottable_44',['removePlottable',['../class_q_custom_plot.html#af3dafd56884208474f311d6226513ab2',1,'QCustomPlot::removePlottable(QCPAbstractPlottable *plottable)'],['../class_q_custom_plot.html#afc210e0021480f8119bccf37839dbcc8',1,'QCustomPlot::removePlottable(int index)']]],
   ['removeradialaxis_45',['removeRadialAxis',['../class_q_c_p_polar_axis_angular.html#a4a621a38de7b6d3844b47dd243092958',1,'QCPPolarAxisAngular']]],
-  ['removesspaces_46',['RemovesSpaces',['../classs21_1_1_model.html#af0c8e1e20e4734c897c8e7f214a0f6f3',1,'s21::Model']]],
+  ['removesspaces_46',['RemovesSpaces',['../classs21_1_1_model.html#aab8218ec4110e77e3ec5f56f9002fbd5',1,'s21::Model']]],
   ['replaceunit_47',['replaceUnit',['../class_q_c_p_axis_ticker_time.html#a03b6c980be36f2672e3fc31d109a28a0',1,'QCPAxisTickerTime']]],
   ['replot_48',['replot',['../class_q_c_p_layer.html#adefd53b6db02f470151c416f42e37180',1,'QCPLayer::replot()'],['../class_q_custom_plot.html#aa4bfe7d70dbe67e81d877819b75ab9af',1,'QCustomPlot::replot(QCustomPlot::RefreshPriority refreshPriority=QCustomPlot::rpRefreshHint)']]],
   ['replottime_49',['replotTime',['../class_q_custom_plot.html#ad582e335061a25da006acc58a4009ccc',1,'QCustomPlot']]],

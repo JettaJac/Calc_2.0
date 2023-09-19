@@ -1,5 +1,7 @@
 var namespaces21 =
 [
+    [ "Controller", "classs21_1_1_controller.html", "classs21_1_1_controller" ],
+    [ "CreditM", "classs21_1_1_credit_m.html", "classs21_1_1_credit_m" ],
     [ "Model", "classs21_1_1_model.html", "classs21_1_1_model" ],
     [ "SmartCalc", "classs21_1_1_smart_calc.html", "classs21_1_1_smart_calc" ],
     [ "matematika", "namespaces21.html#ab4fe6cca9a23bf25d124a441c5848f89", null ],

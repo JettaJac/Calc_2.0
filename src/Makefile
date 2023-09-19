@@ -1,8 +1,8 @@
 .PHONY: all install uninstall clean dist test gcov_report leaks
 
-CCF=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror -g -fsanitize=address 
-CC=g++ -lstdc++ -std=c++17 #-Wextra -Wall -Werror -g -fsanitize=address
-CFLAGS=  #-Wextra -Wall -Werror
+CCF=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror #-g -fsanitize=address 
+CC=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror #-g -fsanitize=address
+CFLAGS=  -Wextra -Wall -Werror
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
 CHECK_FLAGS= -lgtest -lgtest_main -lpthread
 ALL_FLAGS=$(CFLAGS) $(GCOV_FLAGS) $(CHECK_FLAGS)
@@ -12,10 +12,10 @@ BUILD_QT=$(BUILD)s21_calculator/
 
 # all, install, uninstall, clean, +dvi, dist, test, gcov_report
 
-SRCS = s21_calc.cc 
-OBJS = $(SRCS:.c=.o) s21_calc.cc 
-OBJS2 = $(SRCS:.c=.o) mytest_calc.cc
-OBJS3 = $(SRCS:.c=.o) mytest_calc_full.cc
+SRCS = s21_calc.cc controller.cc 
+OBJS = $(SRCS:.c=.o) 
+OBJS2 = $(SRCS:.c=.o) mytest_calc.cc credit.cc
+OBJS3 = $(SRCS:.c=.o) mytest_calc_full.cc credit.cc
 NAME = s21_calc
 NAME2 = test2
 REPORT_NAME = report
@@ -85,7 +85,7 @@ dist: install
 	rm -fr ./smart_calc_archive/
 
 gcov_report:
-	$(CCF) -o $(NAME) $(SRCS) mytest_calc.cc $(GCOV_FLAGS) $(CHECK_FLAGS)
+	$(CCF) -o $(NAME) $(SRCS) mytest_calc.cc credit.cc $(GCOV_FLAGS) $(CHECK_FLAGS)
 	./$(NAME)
 	lcov -t "gcov_report" -o tests.info -c -d .
 	genhtml -o $(REPORT_NAME) tests.info
@@ -96,8 +96,8 @@ gcov_report:
 check: 
 #	CK_FORK=no leaks --atExit -- ./mytest_calc
 	cp ../materials/linters/.clang-format .clang-format
-	clang-format  -n *.c *.h
-	clang-format  -i *.c *.h
+	clang-format  -n *.cc *.h
+	clang-format  -i *.cc *.h
 
 leaks: test
 	 CK_FORK=no leaks --atExit -- ./mytest_calc	
@@ -118,6 +118,7 @@ clean:
 	rm -rf $(REPORT_NAME)
 	rm -rf *.log
 	rm -rf mytest_calc
+	rm -rf mytest_calc_full
 	rm -fr $(BUILD)
 	rm -rf $(HOME)/Desktop/s21_Calc.app
 	rm -rf s21_calc

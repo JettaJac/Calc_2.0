@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['unarznak_0',['UnarZnak',['../classs21_1_1_model.html#ad7215c1f3522420061b7f346418b4b71',1,'s21::Model']]],
+  ['unarznak_0',['UnarZnak',['../classs21_1_1_model.html#a3f96cfa919be4a7da1ceaabd60465c7a',1,'s21::Model']]],
   ['undefinepen_1',['undefinePen',['../class_q_c_p_scatter_style.html#acabc2a8c83d650b946f50c3166b6c35e',1,'QCPScatterStyle']]],
   ['unicodefraction_2',['unicodeFraction',['../class_q_c_p_axis_ticker_pi.html#ade6f7e49238e986e9aed74178a78d8d3',1,'QCPAxisTickerPi']]],
   ['unicodesubscript_3',['unicodeSubscript',['../class_q_c_p_axis_ticker_pi.html#a5b3bb340adb888a30a96225e1ca23c7a',1,'QCPAxisTickerPi']]],

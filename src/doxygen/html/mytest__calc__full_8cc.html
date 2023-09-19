@@ -89,9 +89,9 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="s21__calc_8h_source.html">s21_calc.h</a>&quot;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="controller_8h_source.html">controller.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
@@ -159,13 +159,17 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 <tr class="separator:a1554a8d5d0105bf921a15051208bab54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a1ff8cdf68afcc4e01b28ba8f72380b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mytest__calc__full_8cc.html#a5a1ff8cdf68afcc4e01b28ba8f72380b">TEST</a> (Calc, PrintStack)</td></tr>
 <tr class="separator:a5a1ff8cdf68afcc4e01b28ba8f72380b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de51bc3cc00ac97f6153a191dfc4a4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mytest__calc__full_8cc.html#a5de51bc3cc00ac97f6153a191dfc4a4a">TEST</a> (Calc, credit_calc)</td></tr>
+<tr class="separator:a5de51bc3cc00ac97f6153a191dfc4a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mytest__calc__full_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
-<tr class="memitem:a09e6a90b610b5e6e07e861a4647d44ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classs21_1_1_model.html">Model</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mytest__calc__full_8cc.html#a09e6a90b610b5e6e07e861a4647d44ee">model1</a></td></tr>
-<tr class="separator:a09e6a90b610b5e6e07e861a4647d44ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac0617261e46cef4eba80c65b1eef0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classs21_1_1_model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mytest__calc__full_8cc.html#afac0617261e46cef4eba80c65b1eef0a">model1</a></td></tr>
+<tr class="separator:afac0617261e46cef4eba80c65b1eef0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2df3184525d04d7d58027448bedefe0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classs21_1_1_controller.html">s21::Controller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mytest__calc__full_8cc.html#ae2df3184525d04d7d58027448bedefe0">model2</a></td></tr>
+<tr class="separator:ae2df3184525d04d7d58027448bedefe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
 <a id="a3c04138a5bfe5d72780bb7e82a18e627" name="a3c04138a5bfe5d72780bb7e82a18e627"></a>
@@ -197,7 +201,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="aa3a55067833f6fa335e05a762530a206" name="aa3a55067833f6fa335e05a762530a206"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3a55067833f6fa335e05a762530a206">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3a55067833f6fa335e05a762530a206">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,8 +228,36 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 
 </div>
 </div>
+<a id="a5de51bc3cc00ac97f6153a191dfc4a4a" name="a5de51bc3cc00ac97f6153a191dfc4a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de51bc3cc00ac97f6153a191dfc4a4a">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/33]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">Calc&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">credit_calc&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a54b963e53629a9e0e9192a2509370b13" name="a54b963e53629a9e0e9192a2509370b13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54b963e53629a9e0e9192a2509370b13">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a54b963e53629a9e0e9192a2509370b13">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +285,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a1554a8d5d0105bf921a15051208bab54" name="a1554a8d5d0105bf921a15051208bab54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1554a8d5d0105bf921a15051208bab54">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1554a8d5d0105bf921a15051208bab54">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +313,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a5f2fea3032ca84962c22f146a6f3c374" name="a5f2fea3032ca84962c22f146a6f3c374"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f2fea3032ca84962c22f146a6f3c374">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2fea3032ca84962c22f146a6f3c374">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +341,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a27d01aec6109a078c55b2a46eb6e7e25" name="a27d01aec6109a078c55b2a46eb6e7e25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27d01aec6109a078c55b2a46eb6e7e25">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a27d01aec6109a078c55b2a46eb6e7e25">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -337,7 +369,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a1510dc8061afe10813c73372aeeefacd" name="a1510dc8061afe10813c73372aeeefacd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1510dc8061afe10813c73372aeeefacd">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1510dc8061afe10813c73372aeeefacd">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -365,7 +397,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ab4fb624ef3c8a47a79cb2279df322451" name="ab4fb624ef3c8a47a79cb2279df322451"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4fb624ef3c8a47a79cb2279df322451">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4fb624ef3c8a47a79cb2279df322451">&#9670;&nbsp;</a></span>TEST() <span class="overload">[8/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -393,7 +425,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="aa5d199439bb6df7038f4a2a545b175d9" name="aa5d199439bb6df7038f4a2a545b175d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5d199439bb6df7038f4a2a545b175d9">&#9670;&nbsp;</a></span>TEST() <span class="overload">[8/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d199439bb6df7038f4a2a545b175d9">&#9670;&nbsp;</a></span>TEST() <span class="overload">[9/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -421,7 +453,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a76d45dff6869cde4fdd914d2d5c7a13e" name="a76d45dff6869cde4fdd914d2d5c7a13e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76d45dff6869cde4fdd914d2d5c7a13e">&#9670;&nbsp;</a></span>TEST() <span class="overload">[9/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d45dff6869cde4fdd914d2d5c7a13e">&#9670;&nbsp;</a></span>TEST() <span class="overload">[10/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -449,7 +481,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ad4c7688922a0812addedbb878a08142d" name="ad4c7688922a0812addedbb878a08142d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4c7688922a0812addedbb878a08142d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[10/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4c7688922a0812addedbb878a08142d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[11/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,7 +509,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a5bc3c303c2a1f700a4afe376f006053d" name="a5bc3c303c2a1f700a4afe376f006053d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5bc3c303c2a1f700a4afe376f006053d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[11/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc3c303c2a1f700a4afe376f006053d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[12/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -505,7 +537,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a0b081ca0506c065847304ec37fc50c4c" name="a0b081ca0506c065847304ec37fc50c4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b081ca0506c065847304ec37fc50c4c">&#9670;&nbsp;</a></span>TEST() <span class="overload">[12/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b081ca0506c065847304ec37fc50c4c">&#9670;&nbsp;</a></span>TEST() <span class="overload">[13/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -533,7 +565,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a902e0a56cea8439abd479bb4fa3a7705" name="a902e0a56cea8439abd479bb4fa3a7705"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a902e0a56cea8439abd479bb4fa3a7705">&#9670;&nbsp;</a></span>TEST() <span class="overload">[13/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a902e0a56cea8439abd479bb4fa3a7705">&#9670;&nbsp;</a></span>TEST() <span class="overload">[14/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -561,7 +593,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ab217c57d31efd5967325d96ea99cf082" name="ab217c57d31efd5967325d96ea99cf082"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab217c57d31efd5967325d96ea99cf082">&#9670;&nbsp;</a></span>TEST() <span class="overload">[14/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab217c57d31efd5967325d96ea99cf082">&#9670;&nbsp;</a></span>TEST() <span class="overload">[15/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -589,7 +621,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="aee2abf644ac4fcb939327e5524ef52a1" name="aee2abf644ac4fcb939327e5524ef52a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee2abf644ac4fcb939327e5524ef52a1">&#9670;&nbsp;</a></span>TEST() <span class="overload">[15/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aee2abf644ac4fcb939327e5524ef52a1">&#9670;&nbsp;</a></span>TEST() <span class="overload">[16/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -617,7 +649,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ab35cc19f09195bac6d3502fa0cd7d645" name="ab35cc19f09195bac6d3502fa0cd7d645"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab35cc19f09195bac6d3502fa0cd7d645">&#9670;&nbsp;</a></span>TEST() <span class="overload">[16/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab35cc19f09195bac6d3502fa0cd7d645">&#9670;&nbsp;</a></span>TEST() <span class="overload">[17/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -645,7 +677,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a5fbe627caa31b0615a32e6ab8e9369e1" name="a5fbe627caa31b0615a32e6ab8e9369e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fbe627caa31b0615a32e6ab8e9369e1">&#9670;&nbsp;</a></span>TEST() <span class="overload">[17/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fbe627caa31b0615a32e6ab8e9369e1">&#9670;&nbsp;</a></span>TEST() <span class="overload">[18/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -673,7 +705,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a9334a96a540864ca01d0f9ddbee4fad0" name="a9334a96a540864ca01d0f9ddbee4fad0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9334a96a540864ca01d0f9ddbee4fad0">&#9670;&nbsp;</a></span>TEST() <span class="overload">[18/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9334a96a540864ca01d0f9ddbee4fad0">&#9670;&nbsp;</a></span>TEST() <span class="overload">[19/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -701,7 +733,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a105acd62e7cf6e2a47c5125a623debd6" name="a105acd62e7cf6e2a47c5125a623debd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a105acd62e7cf6e2a47c5125a623debd6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[19/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a105acd62e7cf6e2a47c5125a623debd6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[20/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -729,7 +761,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a26dfc9e5c6136f5a5b09e003a1cfd440" name="a26dfc9e5c6136f5a5b09e003a1cfd440"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26dfc9e5c6136f5a5b09e003a1cfd440">&#9670;&nbsp;</a></span>TEST() <span class="overload">[20/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a26dfc9e5c6136f5a5b09e003a1cfd440">&#9670;&nbsp;</a></span>TEST() <span class="overload">[21/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -757,7 +789,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a84053b51d6b64588897e642bad499808" name="a84053b51d6b64588897e642bad499808"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84053b51d6b64588897e642bad499808">&#9670;&nbsp;</a></span>TEST() <span class="overload">[21/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a84053b51d6b64588897e642bad499808">&#9670;&nbsp;</a></span>TEST() <span class="overload">[22/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -785,7 +817,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a067d2fecd9d654fbe531923e8029146f" name="a067d2fecd9d654fbe531923e8029146f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a067d2fecd9d654fbe531923e8029146f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[22/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a067d2fecd9d654fbe531923e8029146f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[23/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -813,7 +845,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ad77e9da3da3cf725bd1a9995d360f046" name="ad77e9da3da3cf725bd1a9995d360f046"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad77e9da3da3cf725bd1a9995d360f046">&#9670;&nbsp;</a></span>TEST() <span class="overload">[23/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad77e9da3da3cf725bd1a9995d360f046">&#9670;&nbsp;</a></span>TEST() <span class="overload">[24/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -841,7 +873,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a5a1ff8cdf68afcc4e01b28ba8f72380b" name="a5a1ff8cdf68afcc4e01b28ba8f72380b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a1ff8cdf68afcc4e01b28ba8f72380b">&#9670;&nbsp;</a></span>TEST() <span class="overload">[24/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a1ff8cdf68afcc4e01b28ba8f72380b">&#9670;&nbsp;</a></span>TEST() <span class="overload">[25/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -869,7 +901,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a81dff3d51ce0fb43cd5f1f80c678e168" name="a81dff3d51ce0fb43cd5f1f80c678e168"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81dff3d51ce0fb43cd5f1f80c678e168">&#9670;&nbsp;</a></span>TEST() <span class="overload">[25/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a81dff3d51ce0fb43cd5f1f80c678e168">&#9670;&nbsp;</a></span>TEST() <span class="overload">[26/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -897,7 +929,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a3a79c16e3265e959e15e76aadd9d854a" name="a3a79c16e3265e959e15e76aadd9d854a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a79c16e3265e959e15e76aadd9d854a">&#9670;&nbsp;</a></span>TEST() <span class="overload">[26/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a79c16e3265e959e15e76aadd9d854a">&#9670;&nbsp;</a></span>TEST() <span class="overload">[27/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -925,7 +957,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ae115bf532d14c0446dee2eac2f4d4938" name="ae115bf532d14c0446dee2eac2f4d4938"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae115bf532d14c0446dee2eac2f4d4938">&#9670;&nbsp;</a></span>TEST() <span class="overload">[27/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae115bf532d14c0446dee2eac2f4d4938">&#9670;&nbsp;</a></span>TEST() <span class="overload">[28/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -953,7 +985,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a046e3f14bc0935f51ff0b5a092b6a007" name="a046e3f14bc0935f51ff0b5a092b6a007"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a046e3f14bc0935f51ff0b5a092b6a007">&#9670;&nbsp;</a></span>TEST() <span class="overload">[28/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a046e3f14bc0935f51ff0b5a092b6a007">&#9670;&nbsp;</a></span>TEST() <span class="overload">[29/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -981,7 +1013,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a2a998376e970c99b9053fd9ea87cfded" name="a2a998376e970c99b9053fd9ea87cfded"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a998376e970c99b9053fd9ea87cfded">&#9670;&nbsp;</a></span>TEST() <span class="overload">[29/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a998376e970c99b9053fd9ea87cfded">&#9670;&nbsp;</a></span>TEST() <span class="overload">[30/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1009,7 +1041,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="ac70da4da3f3ac2f1d19330e3f0bdfeb9" name="ac70da4da3f3ac2f1d19330e3f0bdfeb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac70da4da3f3ac2f1d19330e3f0bdfeb9">&#9670;&nbsp;</a></span>TEST() <span class="overload">[30/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac70da4da3f3ac2f1d19330e3f0bdfeb9">&#9670;&nbsp;</a></span>TEST() <span class="overload">[31/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1037,7 +1069,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="a4225dcff479676dad8d5f8f93d749736" name="a4225dcff479676dad8d5f8f93d749736"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4225dcff479676dad8d5f8f93d749736">&#9670;&nbsp;</a></span>TEST() <span class="overload">[31/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4225dcff479676dad8d5f8f93d749736">&#9670;&nbsp;</a></span>TEST() <span class="overload">[32/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1065,7 +1097,7 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <a id="aa44b3f4e828b5ae09ddaf7939c924b7f" name="aa44b3f4e828b5ae09ddaf7939c924b7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa44b3f4e828b5ae09ddaf7939c924b7f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[32/32]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa44b3f4e828b5ae09ddaf7939c924b7f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[33/33]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1093,14 +1125,28 @@ $(document).ready(function(){initNavTree('mytest__calc__full_8cc.html',''); init
 </div>
 </div>
 <h2 class="groupheader">Переменные</h2>
-<a id="a09e6a90b610b5e6e07e861a4647d44ee" name="a09e6a90b610b5e6e07e861a4647d44ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09e6a90b610b5e6e07e861a4647d44ee">&#9670;&nbsp;</a></span>model1</h2>
+<a id="afac0617261e46cef4eba80c65b1eef0a" name="afac0617261e46cef4eba80c65b1eef0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac0617261e46cef4eba80c65b1eef0a">&#9670;&nbsp;</a></span>model1</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classs21_1_1_model.html">Model</a>* model1</td>
+          <td class="memname"><a class="el" href="classs21_1_1_model.html">Model</a> model1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2df3184525d04d7d58027448bedefe0" name="ae2df3184525d04d7d58027448bedefe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2df3184525d04d7d58027448bedefe0">&#9670;&nbsp;</a></span>model2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classs21_1_1_controller.html">s21::Controller</a> model2</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -9,22 +9,12 @@
  *
  */
 
-// #ifndef MODEL_H
-// #define MODEL_H
 #ifndef S21_CALC_H
 #define S21_CALC_H
 
-// 9: number
-// 1: + and -
-// 2: * and /
-// 3: ()
-// 4: sin, cos, tg, ctg, log, square root,
-// 5:  x, ^, mod
-// 6:  unar, e
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//// Libraries and files used
-#pragma once
+//// Libraries
+#pragma once  // контролирует один вход в систему, подключение
 #include <errno.h>
 #include <math.h>
 
@@ -33,10 +23,6 @@
 #include <list>
 #include <stack>
 #include <string>
-// #include "helpers_functions.cc"
-// #include "controller.h"
-// #include "controller.cc"
-// #include <algorithm>
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Error code
@@ -44,23 +30,19 @@
 // #define FAIL -1
 #define ZERO -2
 #define EFUC -3  // неправильно введены значения в функциях
-
 #define ERC 0.00000001
 
-// #define size_t
-// #define STACK_OVERFLOW 10
-// #define STACKAX_SIZE 100
-// #define INIT_SIZE 10
+// using namespace std;
 
-// #define STACK_OVERFLOW -100
-// #define STACK_UNDERFLOW -101
-// #define OUT_OF_MEMORY -102
-// typedef double T;
-
-// #define SIZE 300
-// #define SIZE_N 100
-
-using namespace std;
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//// Prioritet
+// 9: number
+// 1: + and -
+// 2: * and /
+// 3: ()
+// 4: sin, cos, tg, ctg, log, square root,
+// 5:  x, ^, mod
+// 6:  unar, e
 
 namespace s21 {
 
@@ -68,7 +50,7 @@ class Model {
  public:
   int SmartCalc(std::string const str, std::string const str_g, double &result);
 
-  // private:
+  private:
 
   /**
    * @brief           Структура стека для записи чисел и операторов
@@ -85,7 +67,6 @@ class Model {
     int type = 0;
   };
 
-  // private:
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ////Main functions
   int Parser(std::string str, std::list<Stack_t2_> &stac2, std::string const x);
@@ -127,5 +108,6 @@ class Model {
 
   friend class MyTest;
 };
+
 }  // namespace s21
 #endif  // MODEL_H

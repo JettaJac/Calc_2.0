@@ -2,10 +2,11 @@ var hierarchy =
 [
     [ "QCPAxisPainterPrivate::CachedLabel", "struct_q_c_p_axis_painter_private_1_1_cached_label.html", null ],
     [ "QCPLabelPainterPrivate::CachedLabel", "struct_q_c_p_label_painter_private_1_1_cached_label.html", null ],
+    [ "s21::Controller", "classs21_1_1_controller.html", null ],
+    [ "s21::CreditM::Credit_t", "structs21_1_1_credit_m_1_1_credit__t.html", null ],
+    [ "s21::CreditM", "classs21_1_1_credit_m.html", null ],
     [ "QCPLabelPainterPrivate::LabelData", "struct_q_c_p_label_painter_private_1_1_label_data.html", null ],
-    [ "s21::Model", "classs21_1_1_model.html", [
-      [ "MyTest", "class_my_test.html", null ]
-    ] ],
+    [ "s21::Model", "classs21_1_1_model.html", null ],
     [ "QCPAbstractPaintBuffer", "class_q_c_p_abstract_paint_buffer.html", [
       [ "QCPPaintBufferPixmap", "class_q_c_p_paint_buffer_pixmap.html", null ]
     ] ],
@@ -124,8 +125,5 @@ var hierarchy =
     ] ],
     [ "s21::SmartCalc", "classs21_1_1_smart_calc.html", null ],
     [ "s21::Model::Stack_t2_", "structs21_1_1_model_1_1_stack__t2__.html", null ],
-    [ "testing::Test", null, [
-      [ "MyTest", "class_my_test.html", null ]
-    ] ],
     [ "QCPAxisPainterPrivate::TickLabelData", "struct_q_c_p_axis_painter_private_1_1_tick_label_data.html", null ]
 ];

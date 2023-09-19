@@ -11,6 +11,12 @@
 
 #include "credit.h"
 #include "ui_credit.h"
+using namespace s21;
+// namespace s21 {
+
+// }  // namespace
+
+s21::Controller controller3;
 
 Credit::Credit(QWidget *parent) :
     QMainWindow(parent),
@@ -18,7 +24,7 @@ Credit::Credit(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    credit_t *credit;
+    // s21::Controller *credit;
 }
 
 Credit::~Credit()
@@ -66,12 +72,7 @@ void Credit::on_pushButton_clicked()
 //    char *str_x = new char[str_pp_x.length() + 1];
 //    err2 = s21_calc(str_input, str_x, &Y);
 
-    credit_t *credit_N = new credit_t[1];
-
-
-//    char *str_input = new char[str_pp.length() + 1];
-
-
+   CreditM::Credit_t *credit_N = new CreditM::Credit_t;
 
     credit_N->total_credit = ui->spinBox_totalcredit->value();
 
@@ -92,8 +93,8 @@ void Credit::on_pushButton_clicked()
         err = 1;
     }
     credit_N->percent_rate = ui->doubleSpinBox_precent_rate->value();
-    int err2 = 0; //  временно
-    // int err2 = calc_credit(credit_N); //надо
+    // int err2 = 0; //  временно
+    int err2 = controller3.CalcCreditC(*credit_N); //надо
     if (err == 0 && err2 == 0) {
 
 

@@ -1,19 +1,20 @@
 // #include "credit.h"
 // #include "s21_calc.h"
-#include "controller.h"
+// #include "controller.h"
 // #include "controller.cc"
 // #include "check_function.c"
-using namespace std;
-#include <string>
+
 #include <cstring>
-#include <ostream>
 #include <iostream>
+#include <ostream>
+#include <string>
 
+#include "controller.h"
 
-using namespace s21;
 // using namespace std;
-//g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
-
+// using namespace s21;
+// using namespace std;
+// g++ -lstdc++ -std=c++17 main.cc s21_calc.cc && ./a.out
 
 // int *ptr = array;   // указатель ptr хранит адрес первого элемента массива
 // array
@@ -33,30 +34,28 @@ using namespace s21;
 // Деление на 0;
 // ошибка в передования показателях в функции (ышт)
 
-
 // "(5) + 5 "   // Добавить в тесты
 // "- 5 +5 " // Кидает исключения
 // Переделать * в &
-// Переделать возможно в prev_after_ последнее значение в &char ( мод соответственно поправить)
-// Переименовать prev_after
+// Переделать возможно в prev_after_ последнее значение в &char ( мод
+// соответственно поправить) Переименовать prev_after
 
 int main() {
   // Model model;
-  Controller model1;
-  
+  s21::Controller model1;
+
   // Stack_t stack;
   // Stack_t stack = {0};  // Правильно нужно сделать массивом)
   // stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "sin(5)+2"; 
+  std::string str = "sin(5)+2";
   std::string str2 = "5e+4";
-  std::string str_ch = "I";                  
-  std::string str_g = "2"; 
+  std::string str_ch = "I";
+  std::string str_g = "2";
   // char str_x[SIZE] = "-5";
-// cout << "Проверяем ф-ю stod  " << std::stod(str) << endl;
-//  cout << "Проверяем ф-ю stod  " << std::stod(str2) << endl;
-
+  // cout << "Проверяем ф-ю stod  " << std::stod(str) << endl;
+  //  cout << "Проверяем ф-ю stod  " << std::stod(str2) << endl;
 
   // char str_v[10];
   // str_ch = str_v;
@@ -218,7 +217,8 @@ str);
   // printf("\nCheck_number - %d - {%s}  ----- %f\n", fun,  str, test);
   // printf("Number - %d  -- XXXX - %s\n", fun2, &stack.x);
   // printf("Парсер - %d  -- XXXX - %s\n", fun3, &stack.x);
-  // printf("%s____ Calc - /*%d  -- XXXX - %s*/.... %f\n", str, /*&stack.x,*/ *stro);
+  // printf("%s____ Calc - /*%d  -- XXXX - %s*/.... %f\n", str, /*&stack.x,*/
+  // *stro);
 
   // printf("%s____ Calc\n", str);
   // cout << "Дано: " << str << "  Result: " << *stro << endl;

@@ -24,13 +24,16 @@ set(PROJECT_SOURCES
         grafic.h
         grafic.cpp
         grafic.ui
+        credit.h
+        credit.cpp
+        credit.ui        
         ../controller.cc
         ../controller.h
-        credit.h
+        ../s21_calc.cc
+        ../s21_calc.h
         ../credit.h
         ../credit.cc
-        credit.cpp
-        credit.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

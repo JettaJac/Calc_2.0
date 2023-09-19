@@ -7,7 +7,7 @@ var searchData=
   ['normalize_4',['normalize',['../class_q_c_p_vector2_d.html#ad83268be370685c2a0630acc0fb1a425',1,'QCPVector2D::normalize()'],['../class_q_c_p_range.html#af914a7740269b0604d0827c634a878a9',1,'QCPRange::normalize()']]],
   ['normalized_5',['normalized',['../class_q_c_p_vector2_d.html#a707bb3af3b1f9331a2450ec75eaf7eb0',1,'QCPVector2D']]],
   ['notantialiasedelements_6',['notAntialiasedElements',['../class_q_custom_plot.html#a75571bc5b2167e83def132fc993091b3',1,'QCustomPlot']]],
-  ['number_7',['Number',['../classs21_1_1_model.html#ac45431104095c4d0488f9f3e41dff261',1,'s21::Model']]],
+  ['number_7',['Number',['../classs21_1_1_model.html#a61c2407bcd3ba17a14b1c207dceec922',1,'s21::Model']]],
   ['numberformat_8',['numberFormat',['../class_q_c_p_axis.html#a20cc29c2f282a0e9efd8f32145e47be6',1,'QCPAxis::numberFormat()'],['../class_q_c_p_polar_axis_radial.html#a1ef77b245da003bdac03a9454a8acbaa',1,'QCPPolarAxisRadial::numberFormat()'],['../class_q_c_p_polar_axis_angular.html#adb591c3100c83a1ee8a3dbefa1101fa6',1,'QCPPolarAxisAngular::numberFormat()']]],
   ['numberprecision_9',['numberPrecision',['../class_q_c_p_axis.html#a2562b6f3a4a01c7ed83a388042664998',1,'QCPAxis::numberPrecision()'],['../class_q_c_p_polar_axis_radial.html#a200f201bce09c3da15996cafd3cb08d0',1,'QCPPolarAxisRadial::numberPrecision()'],['../class_q_c_p_polar_axis_angular.html#a39cc9d4e46111db83639f79b910d26c6',1,'QCPPolarAxisAngular::numberPrecision()']]]
 ];

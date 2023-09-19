@@ -1,13 +1,14 @@
 var annotated_dup =
 [
     [ "s21", "namespaces21.html", [
+      [ "Controller", "classs21_1_1_controller.html", "classs21_1_1_controller" ],
+      [ "CreditM", "classs21_1_1_credit_m.html", "classs21_1_1_credit_m" ],
       [ "Model", "classs21_1_1_model.html", "classs21_1_1_model" ],
       [ "SmartCalc", "classs21_1_1_smart_calc.html", "classs21_1_1_smart_calc" ]
     ] ],
     [ "Credit", "class_credit.html", "class_credit" ],
     [ "Grafic", "class_grafic.html", "class_grafic" ],
     [ "MainWindow", "class_main_window.html", "class_main_window" ],
-    [ "MyTest", "class_my_test.html", "class_my_test" ],
     [ "QCPAbstractItem", "class_q_c_p_abstract_item.html", "class_q_c_p_abstract_item" ],
     [ "QCPAbstractLegendItem", "class_q_c_p_abstract_legend_item.html", "class_q_c_p_abstract_legend_item" ],
     [ "QCPAbstractPaintBuffer", "class_q_c_p_abstract_paint_buffer.html", "class_q_c_p_abstract_paint_buffer" ],

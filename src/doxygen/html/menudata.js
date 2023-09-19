@@ -179,7 +179,6 @@ var menudata={children:[
 {text:"t",url:"globals.html#index_t"},
 {text:"z",url:"globals.html#index_z"}]},
 {text:"Функции",url:"globals_func.html",children:[
-{text:"c",url:"globals_func.html#index_c"},
 {text:"m",url:"globals_func.html#index_m"},
 {text:"o",url:"globals_func.html#index_o"},
 {text:"q",url:"globals_func.html#index_q"},

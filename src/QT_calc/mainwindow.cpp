@@ -299,11 +299,11 @@ void MainWindow::on_pushButton_graph_clicked()
 }
 
 
-// void MainWindow::on_pushButton_credit_clicked()
-// {
-//     credit = new Credit(nullptr);
-//     credit->show();
-// }
+void MainWindow::on_pushButton_credit_clicked()
+{
+    credit = new Credit(nullptr);
+    credit->show();
+}
 
 
 void MainWindow::on_pushButton_eq_clicked()
@@ -320,7 +320,6 @@ void MainWindow::on_pushButton_eq_clicked()
     }  else {
 
         QString input = ui->result_show->text();
-        //std::stod(label);
 
         std::string str_pp = input.toStdString();
         std::string str_pp_x = std::to_string(input_x);
