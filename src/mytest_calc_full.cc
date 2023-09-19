@@ -66,7 +66,6 @@ TEST(NumberTest, InvalidInput) {
   EXPECT_EQ(err, -1);  // Ожидаем ошибку
 }
 
-
 TEST(NumberTest, NumberErr) {
   double num = {0};
 
@@ -953,7 +952,6 @@ TEST(Calc, credit_calc) {
   credit_N.month_max = credit_N.month_max - 10711;
   EXPECT_EQ(credit_N.month_max <= 0, true);
 }
-
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

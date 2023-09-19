@@ -12,8 +12,6 @@ Controller model1;
 
 // _________________________________ BEGIN
 
-
-
 TEST(Calc, MatematikaSimple) {
   double res = 0;
   int tmp = 1;

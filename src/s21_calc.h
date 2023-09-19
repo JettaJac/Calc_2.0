@@ -50,8 +50,7 @@ class Model {
  public:
   int SmartCalc(std::string const str, std::string const str_g, double &result);
 
-  private:
-
+ private:
   /**
    * @brief           Структура стека для записи чисел и операторов
    *
