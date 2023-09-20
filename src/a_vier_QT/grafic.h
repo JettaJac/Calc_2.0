@@ -36,9 +36,6 @@ class Grafic : public QMainWindow {
   void ChangeFunc();
   void StaticFunc();
 
-  // public slots:
-  //     void slot();
-
  private slots:
   void TimerSlot();
   void on_pushButton_gr_clicked();

@@ -13,52 +13,17 @@
 
 #include "ui_credit.h"
 using namespace s21;
-// namespace s21 {
-
-// }  // namespace
 
 s21::Controller controller3;
 
 Credit::Credit(QWidget *parent) : QMainWindow(parent), ui(new Ui::Credit) {
   ui->setupUi(this);
-
-  // s21::Controller *credit;
 }
 
 Credit::~Credit() { delete ui; }
 
-// typedef struct credit {
-//     int type;               // Payment type Annuity or Differentiated
-//     int total_credit;
-//     double period;             // Loan period
-//     char period_uom;        // Period: months or years
-//     double month_min;
-//     double month_max;
-//     double percent_rate;
-//     double overpayment;     // Loan repayment (interest)
-//     double total_overpayment;
-// } credit_t;
-
-// void Credit::on_doubleSpinBox_2_textChanged(const QString &arg1)
-//{
-//     QString total_credit = arg1;
-// }
-
-// void Credit::on_spinBox_totalcredit_textChanged(const QString &arg1)
-//{
-//     QString total_credit_q = arg1;
-////    total_credit
-////    credit_N->total_credit = ui->spinBox_totalcredit->value();;
-//}
-
 void Credit::on_pushButton_clicked() {
-  int err = 0;
-  //    QString input = str;
-  //    std::string str_pp = input.toStdString();
-  //    char *str_input = new char[str_pp.length() + 1];
-  //    strcpy(str_input, str_pp.c_str());
-  //    char *str_x = new char[str_pp_x.length() + 1];
-  //    err2 = s21_calc(str_input, str_x, &Y);
+  int err = -1;
 
   CreditM::Credit_t *credit_N = new CreditM::Credit_t;
 
@@ -81,11 +46,10 @@ void Credit::on_pushButton_clicked() {
     err = 1;
   }
   credit_N->percent_rate = ui->doubleSpinBox_precent_rate->value();
-  // int err2 = 0; //  временно
-  int err2 = controller3.CalcCreditC(*credit_N);  // надо
+
+  int err2 = controller3.CalcCreditC(*credit_N);  
   if (err == 0 && err2 == 0) {
-    //    QString m_min =
-    //    QString::fromStdString(std::to_string(credit_N->month_min));;
+
     QString m_min =
         QString("%1").arg(QString::number(credit_N->month_min, 'f', 0));
     ui->month_min->setText(m_min);

@@ -105,7 +105,7 @@ class Model {
                      std::string &after, int &p, int &a) noexcept;
   void Printstack(std::list<Stack_t2_> &stac2);
 
-  friend class MyTest;
+  // friend class MyTest;
 };
 
 }  // namespace s21

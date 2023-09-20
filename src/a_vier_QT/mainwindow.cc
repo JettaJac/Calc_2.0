@@ -20,7 +20,6 @@ s21::Controller controller;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
-  // customPlot = new QCustomPlot(this);
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(digits_numbers()));
