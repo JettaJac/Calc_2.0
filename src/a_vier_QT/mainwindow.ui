@@ -1209,7 +1209,7 @@ border-radius: 8px;
      <double>10000000.000000000000000</double>
     </property>
     <property name="value">
-     <double>0.000000000000000</double>
+     <double>1.000000000000000</double>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_graph">

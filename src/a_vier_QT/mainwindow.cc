@@ -71,6 +71,10 @@ void MainWindow::keyPressEvent(QKeyEvent *e) {
 void MainWindow::digits_functions() {
   QPushButton *button = (QPushButton *)sender();
   QString new_label;
+  if (ui->pushButton_eq->isChecked()){
+          ui->pushButton_eq->setChecked(false);
+          on_pushButton_clear_clicked();
+    }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -86,7 +90,10 @@ void MainWindow::digits_numbers() {
   QPushButton *button = (QPushButton *)sender();
   double all_numbers;
   QString new_label;
-
+  if (ui->pushButton_eq->isChecked()){
+          ui->pushButton_eq->setChecked(false);
+          on_pushButton_clear_clicked();
+  }
   if (ui->err_c->text() == "" && !(ui->pushButton_eq->isChecked()) &&
       ui->data_x->text() == "X") {
     if (ui->result_show->text().contains(".") && button->text() == "0") {
@@ -128,6 +135,12 @@ void MainWindow::digits_numbers() {
 
 void MainWindow::digits_pov_mod() {
   QPushButton *button = (QPushButton *)sender();
+  if (ui->pushButton_eq->isChecked()){
+          ui->pushButton_eq->setChecked(false);
+          ui->err_x->setText("");
+          ui->err_c->setText("");
+          ui->result_show->text() + button->text();
+  }
   if (!(ui->pushButton_eq->isChecked())) {
     if ((ui->result_show->text().back() >= QChar(48) &&
          ui->result_show->text().back() <= QChar(63)) ||
@@ -140,10 +153,18 @@ void MainWindow::digits_pov_mod() {
   }
 }
 
-void MainWindow::operations() {
+void MainWindow::operations() { // в QT нет отрисовки
   QPushButton *button = (QPushButton *)sender();
   double all_numbers;
   QString new_label;
+//  if (ui->pushButton_eq->isChecked()){
+//          ui->pushButton_eq->setChecked(false);
+//          ui->err_x->setText("");
+//          ui->err_c->setText("");
+//          ui->result_show->text() +"1" + button->text();
+
+////          ui->result_show->setText(new_label);
+//  }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -162,6 +183,10 @@ void MainWindow::operations() {
 }
 
 void MainWindow::on_pushButton_dot_clicked() {
+    if (ui->pushButton_eq->isChecked()){
+            ui->pushButton_eq->setChecked(false);
+            on_pushButton_clear_clicked();
+    }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -182,6 +207,13 @@ void MainWindow::on_pushButton_dot_clicked() {
 }
 
 void MainWindow::on_pushButton_E_clicked() {
+    QPushButton *button = (QPushButton *)sender();
+    if (ui->pushButton_eq->isChecked()){
+            ui->pushButton_eq->setChecked(false);
+            ui->err_x->setText("");
+            ui->err_c->setText("");
+            ui->result_show->text() + button->text();
+  }
   if (!(ui->pushButton_eq->isChecked())) {
     if ((ui->result_show->text().back() >= QChar(48) &&
          ui->result_show->text().back() <= QChar(63)) ||
@@ -211,6 +243,13 @@ void MainWindow::on_pushButton_clear_clicked() {
 }
 
 void MainWindow::on_pushButton_del_clicked() {
+//    QPushButton *button = (QPushButton *)sender();
+//    if (ui->pushButton_eq->isChecked()){
+//            ui->pushButton_eq->setChecked(false);
+//            ui->err_x->setText("");
+//            ui->err_c->setText("");
+//            ui->result_show->text() + button->text();
+//  }
   if (!(ui->pushButton_eq->isChecked())) {
     QString new_label = ui->result_show->text();
     new_label.chop(1);
@@ -223,6 +262,13 @@ void MainWindow::on_doubleSpinBox_x_valueChanged(double arg1) {
 }
 
 void MainWindow::on_pushButton_plus_clicked() {
+   QPushButton *button = (QPushButton *)sender();
+   if (ui->pushButton_eq->isChecked()){
+            ui->pushButton_eq->setChecked(false);
+            ui->err_x->setText("");
+            ui->err_c->setText("");
+            ui->result_show->text() + button->text();
+  }
   if (!(ui->pushButton_eq->isChecked())) {
     if (ui->result_show->text().back() == '+' ||
         ui->result_show->text().back() == '-' ||
@@ -242,6 +288,13 @@ void MainWindow::on_pushButton_plus_clicked() {
 }
 
 void MainWindow::on_pushButton_minus_clicked() {
+    QPushButton *button = (QPushButton *)sender();
+    if (ui->pushButton_eq->isChecked()){
+            ui->pushButton_eq->setChecked(false);
+            ui->err_x->setText("");
+            ui->err_c->setText("");
+            ui->result_show->text() + button->text();
+  }
   if (!(ui->pushButton_eq->isChecked())) {
     if (ui->result_show->text().back() == '+' ||
         ui->result_show->text().back() == '-' ||
@@ -261,6 +314,13 @@ void MainWindow::on_pushButton_minus_clicked() {
 }
 
 void MainWindow::on_pushButton_mult_clicked() {
+    QPushButton *button = (QPushButton *)sender();
+    if (ui->pushButton_eq->isChecked()){
+            ui->pushButton_eq->setChecked(false);
+            ui->err_x->setText("");
+            ui->err_c->setText("");
+            ui->result_show->text() + button->text();
+  }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -285,6 +345,13 @@ void MainWindow::on_pushButton_mult_clicked() {
 }
 
 void MainWindow::on_pushButton_div_clicked() {
+   QPushButton *button = (QPushButton *)sender();
+   if (ui->pushButton_eq->isChecked()){
+            ui->pushButton_eq->setChecked(false);
+            ui->err_x->setText("");
+            ui->err_c->setText("");
+            ui->result_show->text() + button->text();
+  }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -317,8 +384,8 @@ void MainWindow::on_pushButton_graph_clicked() {
 
 void MainWindow::on_pushButton_credit_clicked() {
   credit = new Credit(nullptr);
-  credit->setAttribute(
-      Qt::WA_DeleteOnClose);  // для принудительного удаления виджита из памяти
+  // для принудительного удаления виджита из памяти
+  credit->setAttribute(Qt::WA_DeleteOnClose);
   credit->show();
 }
 
