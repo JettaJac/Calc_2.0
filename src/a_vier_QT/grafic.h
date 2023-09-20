@@ -24,6 +24,8 @@ class Grafic : public QMainWindow {
 
  private:
   Ui::Grafic *ui;
+  s21::Controller *controller_;
+
 
   double xBegin, xEnd, h, X;
   double yBegin, yEnd, Y;

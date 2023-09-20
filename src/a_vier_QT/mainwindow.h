@@ -32,6 +32,7 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
   Grafic *grafic;
   Credit *credit;
+  s21::Controller *controller_;
 
   double input_x;
   double num_first;

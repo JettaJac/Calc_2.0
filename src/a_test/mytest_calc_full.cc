@@ -555,6 +555,9 @@ TEST(Calc, MatematikaSimple) {
   model1.SmartCalc("5", x, res);
   EXPECT_EQ(res == 5, true);
 
+    model1.SmartCalc("(-5)^2", x, res);
+  EXPECT_EQ(res == pow((-5),2), true);
+
   str = "0.345+5";
   model1.SmartCalc(str, x, res);
   EXPECT_EQ(res == 5.345, true);
@@ -810,6 +813,8 @@ TEST(Calc, MatematikaErr) {
   double res = 999;
   char x[3] = "-1";
 
+  EXPECT_EQ(model1.SmartCalc("3e+314", x, res) == -1, true);
+  EXPECT_EQ(model1.SmartCalc("0.9.8+6", x, res) == -1, true);
   EXPECT_EQ(model1.SmartCalc("y", x, res) == -1, true);
   EXPECT_EQ(model1.SmartCalc("", "", res) == -1, true);
   EXPECT_EQ(model1.SmartCalc("-cos(45)sin(67)", x, res) == -1, true);

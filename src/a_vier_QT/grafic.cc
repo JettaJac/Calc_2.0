@@ -13,9 +13,9 @@
 
 #include "ui_grafic.h"
 
-using namespace s21;
+// using namespace s21;
 
-s21::Controller controller2;
+
 
 Grafic::Grafic(QWidget *parent, QString str_out)
     : QMainWindow(parent), ui(new Ui::Grafic) {
@@ -52,7 +52,7 @@ void Grafic::TimerSlot() {
       strcpy(str_input, str_pp.c_str());
       strcpy(str_x, str_pp_x.c_str());
 
-      err3 = controller2.SmartCalc(str_input, str_x, Y);
+      err3 = controller_->SmartCalc(str_input, str_x, Y);
 
       if (err3 == 0) {
         x.push_back(X);
@@ -95,7 +95,7 @@ void Grafic::StaticFunc() {
     strcpy(str_input, str_pp.c_str());
     char *str_x = new char[str_pp_x.length() + 1];
     strcpy(str_x, str_pp_x.c_str());
-    err2 = controller2.SmartCalc(str_input, str_x, Y);
+    err2 = controller_->SmartCalc(str_input, str_x, Y);
     if (err2 == 0) {
       x.push_back(X);
       y.push_back(Y);

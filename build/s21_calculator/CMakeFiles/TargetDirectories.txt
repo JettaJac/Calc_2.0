@@ -1,0 +1,4 @@
+/Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/CMakeFiles/s21_Calc.dir
+/Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/CMakeFiles/edit_cache.dir
+/Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/CMakeFiles/rebuild_cache.dir
+/Users/jettajac/Documents/CPP/calculator/Mycalc/build/s21_calculator/CMakeFiles/s21_Calc_autogen.dir

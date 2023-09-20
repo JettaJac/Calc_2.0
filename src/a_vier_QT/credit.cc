@@ -14,7 +14,7 @@
 #include "ui_credit.h"
 using namespace s21;
 
-s21::Controller controller3;
+
 
 Credit::Credit(QWidget *parent) : QMainWindow(parent), ui(new Ui::Credit) {
   ui->setupUi(this);
@@ -25,7 +25,8 @@ Credit::~Credit() { delete ui; }
 void Credit::on_pushButton_clicked() {
   int err = -1;
 
-  CreditM::Credit_t *credit_N = new CreditM::Credit_t;
+  s21::CreditM::Credit_t *credit_N = new CreditM::Credit_t;
+
 
   credit_N->total_credit = ui->spinBox_totalcredit->value();
 
@@ -47,9 +48,8 @@ void Credit::on_pushButton_clicked() {
   }
   credit_N->percent_rate = ui->doubleSpinBox_precent_rate->value();
 
-  int err2 = controller3.CalcCreditC(*credit_N);  
+  int err2 = controller_->CalcCreditC(*credit_N);
   if (err == 0 && err2 == 0) {
-
     QString m_min =
         QString("%1").arg(QString::number(credit_N->month_min, 'f', 0));
     ui->month_min->setText(m_min);

@@ -15,10 +15,10 @@
 
 using namespace s21;
 
-s21::Controller controller;
+
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow) {
+    : QMainWindow(parent), ui(new Ui::MainWindow)  {
   ui->setupUi(this);
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));
@@ -70,10 +70,10 @@ void MainWindow::keyPressEvent(QKeyEvent *e) {
 void MainWindow::digits_functions() {
   QPushButton *button = (QPushButton *)sender();
   QString new_label;
-  if (ui->pushButton_eq->isChecked()){
-          ui->pushButton_eq->setChecked(false);
-          on_pushButton_clear_clicked();
-    }
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    on_pushButton_clear_clicked();
+  }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -89,9 +89,9 @@ void MainWindow::digits_numbers() {
   QPushButton *button = (QPushButton *)sender();
   double all_numbers;
   QString new_label;
-  if (ui->pushButton_eq->isChecked()){
-          ui->pushButton_eq->setChecked(false);
-          on_pushButton_clear_clicked();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    on_pushButton_clear_clicked();
   }
   if (ui->err_c->text() == "" && !(ui->pushButton_eq->isChecked()) &&
       ui->data_x->text() == "X") {
@@ -134,11 +134,11 @@ void MainWindow::digits_numbers() {
 
 void MainWindow::digits_pov_mod() {
   QPushButton *button = (QPushButton *)sender();
-  if (ui->pushButton_eq->isChecked()){
-          ui->pushButton_eq->setChecked(false);
-          ui->err_x->setText("");
-          ui->err_c->setText("");
-          ui->result_show->text() + button->text();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    ui->err_x->setText("");
+    ui->err_c->setText("");
+    ui->result_show->text() + button->text();
   }
   if (!(ui->pushButton_eq->isChecked())) {
     if ((ui->result_show->text().back() >= QChar(48) &&
@@ -152,18 +152,18 @@ void MainWindow::digits_pov_mod() {
   }
 }
 
-void MainWindow::operations() { // в QT нет отрисовки
+void MainWindow::operations() {  // в QT нет отрисовки
   QPushButton *button = (QPushButton *)sender();
   double all_numbers;
   QString new_label;
-//  if (ui->pushButton_eq->isChecked()){
-//          ui->pushButton_eq->setChecked(false);
-//          ui->err_x->setText("");
-//          ui->err_c->setText("");
-//          ui->result_show->text() +"1" + button->text();
+  //  if (ui->pushButton_eq->isChecked()){
+  //          ui->pushButton_eq->setChecked(false);
+  //          ui->err_x->setText("");
+  //          ui->err_c->setText("");
+  //          ui->result_show->text() +"1" + button->text();
 
-////          ui->result_show->setText(new_label);
-//  }
+  ////          ui->result_show->setText(new_label);
+  //  }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -182,10 +182,10 @@ void MainWindow::operations() { // в QT нет отрисовки
 }
 
 void MainWindow::on_pushButton_dot_clicked() {
-    if (ui->pushButton_eq->isChecked()){
-            ui->pushButton_eq->setChecked(false);
-            on_pushButton_clear_clicked();
-    }
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    on_pushButton_clear_clicked();
+  }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
         ui->result_show->text().back() == 'E')) {
@@ -206,12 +206,12 @@ void MainWindow::on_pushButton_dot_clicked() {
 }
 
 void MainWindow::on_pushButton_E_clicked() {
-    QPushButton *button = (QPushButton *)sender();
-    if (ui->pushButton_eq->isChecked()){
-            ui->pushButton_eq->setChecked(false);
-            ui->err_x->setText("");
-            ui->err_c->setText("");
-            ui->result_show->text() + button->text();
+  QPushButton *button = (QPushButton *)sender();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    ui->err_x->setText("");
+    ui->err_c->setText("");
+    ui->result_show->text() + button->text();
   }
   if (!(ui->pushButton_eq->isChecked())) {
     if ((ui->result_show->text().back() >= QChar(48) &&
@@ -242,13 +242,13 @@ void MainWindow::on_pushButton_clear_clicked() {
 }
 
 void MainWindow::on_pushButton_del_clicked() {
-//    QPushButton *button = (QPushButton *)sender();
-//    if (ui->pushButton_eq->isChecked()){
-//            ui->pushButton_eq->setChecked(false);
-//            ui->err_x->setText("");
-//            ui->err_c->setText("");
-//            ui->result_show->text() + button->text();
-//  }
+  //    QPushButton *button = (QPushButton *)sender();
+  //    if (ui->pushButton_eq->isChecked()){
+  //            ui->pushButton_eq->setChecked(false);
+  //            ui->err_x->setText("");
+  //            ui->err_c->setText("");
+  //            ui->result_show->text() + button->text();
+  //  }
   if (!(ui->pushButton_eq->isChecked())) {
     QString new_label = ui->result_show->text();
     new_label.chop(1);
@@ -261,12 +261,12 @@ void MainWindow::on_doubleSpinBox_x_valueChanged(double arg1) {
 }
 
 void MainWindow::on_pushButton_plus_clicked() {
-   QPushButton *button = (QPushButton *)sender();
-   if (ui->pushButton_eq->isChecked()){
-            ui->pushButton_eq->setChecked(false);
-            ui->err_x->setText("");
-            ui->err_c->setText("");
-            ui->result_show->text() + button->text();
+  QPushButton *button = (QPushButton *)sender();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    ui->err_x->setText("");
+    ui->err_c->setText("");
+    ui->result_show->text() + button->text();
   }
   if (!(ui->pushButton_eq->isChecked())) {
     if (ui->result_show->text().back() == '+' ||
@@ -287,12 +287,12 @@ void MainWindow::on_pushButton_plus_clicked() {
 }
 
 void MainWindow::on_pushButton_minus_clicked() {
-    QPushButton *button = (QPushButton *)sender();
-    if (ui->pushButton_eq->isChecked()){
-            ui->pushButton_eq->setChecked(false);
-            ui->err_x->setText("");
-            ui->err_c->setText("");
-            ui->result_show->text() + button->text();
+  QPushButton *button = (QPushButton *)sender();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    ui->err_x->setText("");
+    ui->err_c->setText("");
+    ui->result_show->text() + button->text();
   }
   if (!(ui->pushButton_eq->isChecked())) {
     if (ui->result_show->text().back() == '+' ||
@@ -313,12 +313,12 @@ void MainWindow::on_pushButton_minus_clicked() {
 }
 
 void MainWindow::on_pushButton_mult_clicked() {
-    QPushButton *button = (QPushButton *)sender();
-    if (ui->pushButton_eq->isChecked()){
-            ui->pushButton_eq->setChecked(false);
-            ui->err_x->setText("");
-            ui->err_c->setText("");
-            ui->result_show->text() + button->text();
+  QPushButton *button = (QPushButton *)sender();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    ui->err_x->setText("");
+    ui->err_c->setText("");
+    ui->result_show->text() + button->text();
   }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
@@ -344,12 +344,12 @@ void MainWindow::on_pushButton_mult_clicked() {
 }
 
 void MainWindow::on_pushButton_div_clicked() {
-   QPushButton *button = (QPushButton *)sender();
-   if (ui->pushButton_eq->isChecked()){
-            ui->pushButton_eq->setChecked(false);
-            ui->err_x->setText("");
-            ui->err_c->setText("");
-            ui->result_show->text() + button->text();
+  QPushButton *button = (QPushButton *)sender();
+  if (ui->pushButton_eq->isChecked()) {
+    ui->pushButton_eq->setChecked(false);
+    ui->err_x->setText("");
+    ui->err_c->setText("");
+    ui->result_show->text() + button->text();
   }
   if (!(ui->pushButton_eq->isChecked()) &&
       !(ui->result_show->text().back() == 'e' ||
@@ -410,7 +410,7 @@ void MainWindow::on_pushButton_eq_clicked() {
 
     double result = 0.0;
     ui->err_c->setText("X");
-    err = controller.SmartCalc(str_pp, str_pp_x, result);
+    err = controller_->SmartCalc(str_pp, str_pp_x, result);
     // err = controller.SmartCalc(str_pp, str_pp_x, result);
     // std:: cout << result << std::endl;
     if (err == 0) {

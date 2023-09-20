@@ -42,8 +42,14 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-background-color: #FFFAFA;
-}</string>
+qproperty-aligment: 'AlignVCenter | AlignRight';
+border-botton: 5px solid green;
+background-color : #FFFAFA;
+border-radius: 8px;
+}
+
+
+background-color : #FFFAFA;</string>
   </property>
   <property name="iconSize">
    <size>
@@ -89,9 +95,11 @@ background-color: #FFFAFA;
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
+background-color: white;
 padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
+color: black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -114,6 +122,17 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <height>271</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QCustomPlot {
+qproperty-aligment: 'AlignVCenter | AlignRight';
+border-botton: 5px solid green;
+background-color : white;
+border-radius: 8px;
+color: black;
+}
+
+background-color : #FFFAFA;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_gr">
     <property name="geometry">
@@ -134,6 +153,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 background-color: #F8F8FF;
 border: 1px solid gray;
 border-radius: 8px;
+color:black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -156,6 +176,13 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+background-color: white;
+
+color: black;
+}</string>
+    </property>
     <property name="minimum">
      <number>-1000000</number>
     </property>
@@ -174,6 +201,13 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <width>105</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+background-color: white;
+
+color: black;
+}</string>
     </property>
     <property name="minimum">
      <number>-1000000</number>
@@ -194,6 +228,13 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+background-color: white;
+
+color: black;
+}</string>
+    </property>
     <property name="minimum">
      <number>-1000000</number>
     </property>
@@ -212,6 +253,13 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <width>105</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+background-color: white;
+
+color: black;
+}</string>
     </property>
     <property name="minimum">
      <number>-1000000</number>
@@ -242,6 +290,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 background-color: #FFF5EE;
 border: 1px solid gray;
 border-radius: 8px;
+color:black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -274,6 +323,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 background-color: #FFF5EE;
 border: 1px solid gray;
 border-radius: 8px;
+color:black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -301,11 +351,18 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton {
+	color: black;
+}
+
+background-color : #FFFAFA;</string>
+    </property>
     <property name="text">
      <string>Динамический график</string>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QRadioButton" name="staticButton">
@@ -322,8 +379,18 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton {
+	color: black;
+}
+
+background-color : #FFFAFA;</string>
+    </property>
     <property name="text">
      <string>Статичный график</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

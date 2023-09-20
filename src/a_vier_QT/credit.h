@@ -20,14 +20,14 @@ class Credit : public QMainWindow {
  private slots:
 
   void on_pushButton_clicked();
-   void on_checkBox_aunt_stateChanged(int arg1);
+  void on_checkBox_aunt_stateChanged(int arg1);
   void on_checkBox_diff_stateChanged(int arg1);
   void on_checkBox_month_stateChanged(int arg1);
   void on_checkBox_year_stateChanged(int arg1);
 
  private:
   Ui::Credit *ui;
-
+  s21::Controller *controller_;
 };
 
 #endif  // CREDIT_H

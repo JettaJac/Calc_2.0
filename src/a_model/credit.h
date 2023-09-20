@@ -1,3 +1,4 @@
+/// \file
 #ifndef MY_CREDIT_H
 #define MY_CREDIT_H
 

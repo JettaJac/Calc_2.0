@@ -53,6 +53,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Кредитный калькулятор</string>
     </property>
@@ -71,6 +76,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Общая сумма кредита</string>
@@ -91,6 +101,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Срок кредита</string>
     </property>
@@ -109,6 +124,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Процентная ставка</string>
@@ -129,6 +149,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Тип платежей</string>
     </property>
@@ -147,6 +172,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Ежемесячный платеж:</string>
@@ -167,6 +197,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Переплаты по кредиту (%)</string>
     </property>
@@ -185,6 +220,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Общая выплата по кредиту</string>
@@ -210,6 +250,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color: black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -246,6 +287,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color: black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -276,6 +318,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color: black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -306,6 +349,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color: black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -336,6 +380,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color:  black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -369,6 +414,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color: black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -399,6 +445,7 @@ padding: 9px;
 border: 1px solid gray;
 border-radius: 8px;
 background-color:white;
+color:  black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -441,6 +488,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 border: 1px solid gray;
 background-color: #FFFAFA;
 border-radius: 8px;
+color:  black;
 }
 QPushButton:pressed {
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -466,6 +514,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Мин.платеж</string>
     </property>
@@ -484,6 +537,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Макс.платеж</string>
@@ -506,6 +564,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Аннуитетный</string>
     </property>
@@ -527,6 +590,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox{
+	color:  black;
+}</string>
+    </property>
     <property name="text">
      <string>Дифференцированный</string>
     </property>
@@ -544,6 +612,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
      <font>
       <pointsize>15</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Месяцев</string>
@@ -565,6 +638,11 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
      <font>
       <pointsize>15</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox{
+	color:  black;
+}</string>
     </property>
     <property name="text">
      <string>Лет</string>

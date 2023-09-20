@@ -1,4 +1,4 @@
-
+/// \file
 /**
  * @file      credit.c
  * @author    jettajac

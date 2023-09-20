@@ -1,11 +1,12 @@
 .PHONY: all install uninstall clean dist test gcov_report leaks
 
-CCF=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror #-g -fsanitize=address 
-CC=g++ -lstdc++ -std=c++17 -Wextra -Wall -Werror #-g -fsanitize=address
-CFLAGS=  -Wextra -Wall -Werror
+CXX=g++ 
+CC=g++ 
+CCXXFLAGS_C=  -Wextra -Wall -Werror #-g -fsanitize=address 
+CXXFLAGS=  -lstdc++ -std=c++17
 GCOV_FLAGS=-fprofile-arcs -ftest-coverage -lgcov
 CHECK_FLAGS= -lgtest -lgtest_main -lpthread
-ALL_FLAGS=$(CFLAGS) $(GCOV_FLAGS) $(CHECK_FLAGS)
+ALL_FLAGS=$(CXXFLAGS) $(GCOV_FLAGS) $(CHECK_FLAGS)
 # OS=$(shell uname)
 BUILD=../build/
 BUILD_QT=$(BUILD)s21_calculator/
@@ -33,16 +34,16 @@ OBJS_m = $(SRCS:.c=.o) main.cc
 all: install
 
 objs: $(SRCS)
-	$(CCF) $(CFLAGS)  $(SRCS) -c
+	$(CXX) $(CXXFLAGS) $(CXXFLAGS_C)  $(SRCS) -c
 
 
 test2: $(OBJS2)
-	$(CCF) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
+	$(CXX) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
 	 ./mytest_calc
 
 
 test: $(OBJS2)
-	$(CCF) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
+	$(CXX) $(CHECK_FLAGS) $(OBJS2) -o mytest_calc
 	 ./mytest_calc
 
 testfull: $(OBJS3)
@@ -51,7 +52,7 @@ testfull: $(OBJS3)
 
 main: $(OBJS)	
 #	make clean	
-	$(CCF) $(OBJS_m) -o s21_calc_2.0
+	$(CXX) $(OBJS_m) -o s21_calc_2.0
 	./s21_calc_2.0
     CK_FORK=no leaks -exclude -s21_calc_2.0 --atExit -- ./s21_calc_2.0  | grep LEAK:	 
 
@@ -60,7 +61,7 @@ install:
 		rm -rf $(HOME)/Desktop/s21_Calc.app
 		@mkdir -p $(BUILD)
 		@mkdir -p $(BUILD_QT)
-		cp ./*/*.cc ./*/*.h  $(BUILD)
+		#cp ./*/*.cc ./*/*.h  $(BUILD)
 		cmake -S  ./a_vier_QT/ -B $(BUILD_QT)
 		make -C  $(BUILD_QT)
 		cp -r  $(BUILD_QT)s21_Calc.app $(HOME)/Desktop/
@@ -85,7 +86,7 @@ dist: install
 	rm -fr ./smart_calc_archive/
 
 gcov_report:
-	$(CCF) -o $(NAME) $(SRCS) mytest_calc.cc credit.cc $(GCOV_FLAGS) $(CHECK_FLAGS)
+	$(CXX) -o $(NAME) $(SRCS) mytest_calc.cc credit.cc $(GCOV_FLAGS) $(CHECK_FLAGS)
 	./$(NAME)
 	lcov -t "gcov_report" -o tests.info -c -d .
 	genhtml -o $(REPORT_NAME) tests.info

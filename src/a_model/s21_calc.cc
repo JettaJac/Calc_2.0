@@ -1,3 +1,4 @@
+/// \file
 /**
  * @file      s21_calc.cc
  * @author    jettajac
@@ -637,11 +638,14 @@ int Model::Number(std::string const str, double &number) {
       err = TRUE;
     } catch (const std::invalid_argument &e) {
       std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
+      err = FAIL;
     } catch (const std::out_of_range &e) {
       std::cerr << "Ошибка: Выход за пределы диапазона. " << e.what()
                 << std::endl;
+      err = FAIL;          
     } catch (...) {
       std::cerr << "Неизвестная ошибка." << std::endl;
+      err = FAIL;
     }
     number = num;
   }

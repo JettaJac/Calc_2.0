@@ -1,3 +1,5 @@
+/// \file
+
 /**
  * @file s21_calc.h
  * @author jettajac
@@ -27,7 +29,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Error code
 #define TRUE 0
-// #define FAIL -1
+#define FAIL -1
 #define ZERO -2
 #define EFUC -3  // неправильно введены значения в функциях
 #define ERC 0.00000001

@@ -1,4 +1,4 @@
-
+/// \file
 #include "controller.h"
 
 #include <iostream>
