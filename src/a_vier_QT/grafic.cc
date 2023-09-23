@@ -15,8 +15,6 @@
 
 // using namespace s21;
 
-
-
 Grafic::Grafic(QWidget *parent, QString str_out)
     : QMainWindow(parent), ui(new Ui::Grafic) {
   ui->setupUi(this);

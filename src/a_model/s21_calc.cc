@@ -642,7 +642,7 @@ int Model::Number(std::string const str, double &number) {
     } catch (const std::out_of_range &e) {
       std::cerr << "Ошибка: Выход за пределы диапазона. " << e.what()
                 << std::endl;
-      err = FAIL;          
+      err = FAIL;
     } catch (...) {
       std::cerr << "Неизвестная ошибка." << std::endl;
       err = FAIL;

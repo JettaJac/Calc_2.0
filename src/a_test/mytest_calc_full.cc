@@ -11,6 +11,8 @@ using namespace s21;
 Model model1;
 s21::Controller model2;
 
+const double ERC = 0.00000001;
+
 // _________________________________ BEGIN
 
 //// Тест для double number
@@ -555,8 +557,8 @@ TEST(Calc, MatematikaSimple) {
   model1.SmartCalc("5", x, res);
   EXPECT_EQ(res == 5, true);
 
-    model1.SmartCalc("(-5)^2", x, res);
-  EXPECT_EQ(res == pow((-5),2), true);
+  model1.SmartCalc("(-5)^2", x, res);
+  EXPECT_EQ(res == pow((-5), 2), true);
 
   str = "0.345+5";
   model1.SmartCalc(str, x, res);

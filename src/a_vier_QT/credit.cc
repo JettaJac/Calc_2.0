@@ -14,8 +14,6 @@
 #include "ui_credit.h"
 using namespace s21;
 
-
-
 Credit::Credit(QWidget *parent) : QMainWindow(parent), ui(new Ui::Credit) {
   ui->setupUi(this);
 }
@@ -26,7 +24,6 @@ void Credit::on_pushButton_clicked() {
   int err = -1;
 
   s21::CreditM::Credit_t *credit_N = new CreditM::Credit_t;
-
 
   credit_N->total_credit = ui->spinBox_totalcredit->value();
 

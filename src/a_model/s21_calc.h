@@ -27,12 +27,13 @@
 #include <string>
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 //// Error code
-#define TRUE 0
-#define FAIL -1
-#define ZERO -2
-#define EFUC -3  // неправильно введены значения в функциях
-#define ERC 0.00000001
+// #define TRUE 0
+// #define FAIL -1
+// #define ZERO -2
+// #define EFUC -3  // неправильно введены значения в функциях
+// #define ERC 0.00000001
 
 // using namespace std;
 
@@ -51,8 +52,17 @@ namespace s21 {
 class Model {
  public:
   int SmartCalc(std::string const str, std::string const str_g, double &result);
+  // using int TRU  TRUE;
+  enum {
+    TRUE = 0,
+    FAIL = -1,
+    ZERO = -2,
+    EFUC = -3,
+    //  ERC = 0.00000001
+  };
 
   //  private:
+  // protected:
   /**
    * @brief           Структура стека для записи чисел и операторов
    *

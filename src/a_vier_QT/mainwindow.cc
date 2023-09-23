@@ -15,10 +15,8 @@
 
 using namespace s21;
 
-
-
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow)  {
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));

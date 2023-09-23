@@ -9,6 +9,8 @@
 using namespace std;
 using namespace s21;
 Controller model1;
+const double ERC = 0.00000001;
+class Test2 : public Model {};
 
 // _________________________________ BEGIN
 
@@ -17,6 +19,9 @@ TEST(Calc, MatematikaSimple) {
   int tmp = 1;
   char x[3] = "1";
   string str;
+
+  Test2 TTT;
+  TTT.SmartCalc("5", x, res);
 
   model1.SmartCalc("5", x, res);
   EXPECT_EQ(res == 5, true);
