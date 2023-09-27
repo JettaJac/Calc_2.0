@@ -29,24 +29,32 @@ void Credit::on_pushButton_clicked() {
 
   if (ui->checkBox_diff->isChecked()) {
     credit_N->type = 1;
+    err = 0;
   } else if (ui->checkBox_aunt->isChecked()) {
     credit_N->type = 2;
+    err = 0;
   } else {
     err = 1;
   }
-  credit_N->period = ui->doubleSpinBox_period->value();
-  ;
-  if (ui->checkBox_year->isChecked()) {
-    credit_N->period_uom = 'y';
-  } else if (ui->checkBox_month->isChecked()) {
-    credit_N->period_uom = 'm';
-  } else {
-    err = 1;
+  if (err == 0) {
+    credit_N->period = ui->doubleSpinBox_period->value();
+
+    if (ui->checkBox_year->isChecked()) {
+      credit_N->period_uom = 'y';
+      err = 0;
+    } else if (ui->checkBox_month->isChecked()) {
+      credit_N->period_uom = 'm';
+      err = 0;
+    } else {
+      err = 1;
+    }
   }
   credit_N->percent_rate = ui->doubleSpinBox_precent_rate->value();
 
   int err2 = controller_->CalcCreditC(*credit_N);
+
   if (err == 0 && err2 == 0) {
+    std::cout << credit_N->month_min << std::endl;
     QString m_min =
         QString("%1").arg(QString::number(credit_N->month_min, 'f', 0));
     ui->month_min->setText(m_min);

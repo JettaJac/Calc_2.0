@@ -49,7 +49,7 @@ int main() {
   // stack.size = 0;
   // *stack.data = 0;
   // char str [SIZE] = "2+2";
-  std::string str = "sin(5)+2";
+  std::string str = "sin(x)";
   std::string str2 = "5e+4";
   std::string str_ch = "I";
   std::string str_g = "2";

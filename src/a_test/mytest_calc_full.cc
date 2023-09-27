@@ -647,6 +647,23 @@ TEST(Calc, MatematikaTrig_1) {
   double res = 999;
   char x[3] = "46";
 
+  model1.SmartCalc("atan(tan(x))", x, res);
+  res = res - (-1.1238898038);
+  cout << res << endl;
+  EXPECT_EQ(res <= ERC, true);
+
+  model1.SmartCalc("cos(sin(x))", x, res);
+  res = res - (0.62020811416);
+  EXPECT_EQ(res <= ERC, true);
+
+  model1.SmartCalc("cos(sin(x))", x, res);
+  res = res - (0.62020811416);
+  EXPECT_EQ(res <= ERC, true);
+
+  model1.SmartCalc("tan(tan(x))", x, res);
+  res = res - (1.76360299229);
+  EXPECT_EQ(res <= ERC, true);
+
   model1.SmartCalc("sin(5)", x, res);
   res = res - (-0.95892427466);
   EXPECT_EQ(res <= ERC, true);
@@ -814,7 +831,7 @@ TEST(Calc, MatematikaX) {
 TEST(Calc, MatematikaErr) {
   double res = 999;
   char x[3] = "-1";
-
+  EXPECT_EQ(model1.SmartCalc("sin(cos(x))", x, res) == 0, true);
   EXPECT_EQ(model1.SmartCalc("3e+314", x, res) == -1, true);
   EXPECT_EQ(model1.SmartCalc("0.9.8+6", x, res) == -1, true);
   EXPECT_EQ(model1.SmartCalc("y", x, res) == -1, true);

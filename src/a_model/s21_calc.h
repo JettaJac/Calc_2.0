@@ -11,8 +11,8 @@
  *
  */
 
-#ifndef S21_CALC_H
-#define S21_CALC_H
+#ifndef S21_SMARTCALC_MODEL_S21_CALC_H
+#define S21_SMARTCALC_MODEL_S21_CALC_H
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //// Libraries
@@ -45,7 +45,8 @@
 // 3: ()
 // 4: sin, cos, tg, ctg, log, square root,
 // 5:  x, ^, mod
-// 6:  unar, e
+// 6: e
+// 7: unar
 
 namespace s21 {
 
@@ -91,7 +92,7 @@ class Model {
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //// Check functions
-  int CheckParser(std::string const str, std::string x, int type, int &symbol,
+  int CheckParser(std::string const str, std::string x, int &type, int &symbol,
                   std::string &value, int &brackets) noexcept;
   int CheckNumber(std::string const str) const noexcept;
   int CheckFuncs(std::string const str, int &count) noexcept;
@@ -112,7 +113,7 @@ class Model {
   void PopPush(std::list<Stack_t2_> &stac2, std::list<Stack_t2_> &stac2_2,
                std::list<Stack_t2_>::iterator &it) noexcept;
   int Number(std::string const str, double &number);
-  int UnarZnak(std::string &val) noexcept;
+  int UnarZnak(std::string &val, int &tmp) noexcept;
   void CharPrevAfter(std::string const str, int &symbol, std::string &prev,
                      std::string &after, int &p, int &a) noexcept;
   void Printstack(std::list<Stack_t2_> &stac2);
@@ -121,4 +122,4 @@ class Model {
 };
 
 }  // namespace s21
-#endif  // MODEL_H
+#endif  // S21_SMARTCALC_MODEL_S21_CALC_H

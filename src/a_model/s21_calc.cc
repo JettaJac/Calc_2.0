@@ -32,8 +32,10 @@ int Model::SmartCalc(std::string const str, std::string const str_x,
   result = 999.0;
   if (!str.empty() && !str_x.empty() && result != 0) {
     err = Parser(str, stack, str_x);
+    Printstack(stack);
     if (err == TRUE) {
       err = PolishNotation(stack, polish);
+      Printstack(polish);
       if (err == TRUE) {
         err = Mathematics(polish, result);
       }
@@ -74,6 +76,7 @@ int Model::Parser(std::string str, std::list<Stack_t2_> &stack,
     }
     if (tmp != -1 && brackets >= 0) {
       err = CheckParser(str, str_x, tmp, symbol, val, brackets);
+      // std::cout << val << " @@and!! " << tmp << std::endl;
       Stack_t2_ current;
       if (err == TRUE) {
         if (tmp == 6) {
@@ -84,6 +87,7 @@ int Model::Parser(std::string str, std::list<Stack_t2_> &stack,
         current.dat2 = val;
         current.type = tmp;
         stack.push_back(current);
+        // std::cout << val << " and!! " << tmp << std::endl;
       }
     } else
       err = -1;
@@ -110,6 +114,7 @@ int Model::PolishNotation(std::list<Stack_t2_> &stack,
   std::list<Stack_t2_>::iterator it;
   int symbol = 0;
   for (it = stack.begin(); it != stack.end(); it++) {
+    std::cout << it->type << " and " << it->dat2 << std::endl;
     if (it->type == 9 || it->type == 6) {
       polish.push_back(*it);
     } else if (it->dat2 == "(" || it->type == 4) {
@@ -160,6 +165,7 @@ int Model::Mathematics(std::list<Stack_t2_> &polish, double &result) {
   std::stack<double> nu2;
   std::list<Stack_t2_>::iterator it = polish.begin();
   for (; it != polish.end() && err == TRUE; it++) {
+    // std::cout << "**********************  " << it->type << std::endl;
     if (it->dat2 == "u" || it->dat2 == "p") {
       if (it->dat2 == "u") {
         nu2.top() *= (-1);
@@ -168,7 +174,8 @@ int Model::Mathematics(std::list<Stack_t2_> &polish, double &result) {
       if (it->type == 6) {
         numbe2 = -1;
       }
-      Number(it->dat2, numbe2);
+      err = Number(it->dat2, numbe2);
+      // std::cout << "^^^^^^^^ " << err << std::endl;
       nu2.push(numbe2);
     } else if (it->type == 4) {
       err = MathFunction(it, nu2, result);
@@ -281,8 +288,8 @@ int Model::Types(std::string const str, int &symbol,
  * @return         - Вернет 0
  */
 
-int Model::CheckParser(std::string const str, std::string const str_x, int type,
-                       int &symbol, std::string &value,
+int Model::CheckParser(std::string const str, std::string const str_x,
+                       int &type, int &symbol, std::string &value,
                        int &brackets) noexcept {
   int err = -1;
 
@@ -315,7 +322,9 @@ int Model::CheckParser(std::string const str, std::string const str_x, int type,
               (s_after == 9 || s_after == 4 || d_after == "(" ||
                d_after == "x"))) {
     err = TRUE;
-    UnarZnak(value);
+    UnarZnak(value, type);
+    std::cout << value << "   !!!!!!!!!!!!!!!!!!!!!!!!!!!   " << type
+              << std::endl;
   } else if (type == 1 || (type == 2 && symbol != 0)) {
     if (s_after != 1 && s_after != 2 && d_after != ")" && d_prev != "^") {
       err = TRUE;
@@ -637,18 +646,21 @@ int Model::Number(std::string const str, double &number) {
       num = std::stod(str);  // Преобразование строки в double
       err = TRUE;
     } catch (const std::invalid_argument &e) {
-      std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
       err = FAIL;
+      std::cerr << "Ошибка: Неверный аргумент. " << e.what() << std::endl;
     } catch (const std::out_of_range &e) {
+      err = -1;
+      // std::cout << "$$$$$$$$$$$$$$$ " << err << std::endl;
       std::cerr << "Ошибка: Выход за пределы диапазона. " << e.what()
                 << std::endl;
-      err = FAIL;
+
     } catch (...) {
-      std::cerr << "Неизвестная ошибка." << std::endl;
       err = FAIL;
+      std::cerr << "Неизвестная ошибка." << std::endl;
     }
     number = num;
   }
+  // std::cout << "$$$$$$$$$$$$$$$ " << err << std::endl;
   return err;
 }
 
@@ -659,12 +671,13 @@ int Model::Number(std::string const str, double &number) {
  * @return        - Вернет 0
  */
 
-int Model::UnarZnak(std::string &val) noexcept {
+int Model::UnarZnak(std::string &val, int &tmp) noexcept {
   if (val == "-") {
     val = "u";
   } else if (val == "+") {
     val = "p";
   }
+  tmp = 7;
   return 0;
 }
 

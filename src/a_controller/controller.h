@@ -1,6 +1,6 @@
 /// \file
-#ifndef CONTROLLER_H_
-#define CONTROLLER_H_
+#ifndef S21_SMARTCALC_CONTROLLER_CONTROLLER_H_
+#define S21_SMARTCALC_CONTROLLER_CONTROLLER_H_
 
 #pragma once  // контролирует один вход в систему, подключение
 
@@ -23,4 +23,4 @@ class Controller {
 };
 }  // namespace s21
 
-#endif  // CONTROLLER_H_
+#endif  // S21_SMARTCALC_CONTROLLER_CONTROLLER_H_
