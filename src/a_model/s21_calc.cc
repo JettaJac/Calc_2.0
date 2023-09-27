@@ -32,10 +32,10 @@ int Model::SmartCalc(std::string const str, std::string const str_x,
   result = 999.0;
   if (!str.empty() && !str_x.empty() && result != 0) {
     err = Parser(str, stack, str_x);
-    Printstack(stack);
+    // Printstack(stack);
     if (err == TRUE) {
       err = PolishNotation(stack, polish);
-      Printstack(polish);
+      // Printstack(polish);
       if (err == TRUE) {
         err = Mathematics(polish, result);
       }
@@ -81,10 +81,10 @@ int Model::Parser(std::string str, std::list<Stack_t2_> &stack,
       if (err == TRUE) {
         if (tmp == 6) {
           std::list<Stack_t2_>::iterator it = --stack.end();
-          val = it->dat2 + val;
+          val = it->data + val;
           stack.pop_back();
         }
-        current.dat2 = val;
+        current.data = val;
         current.type = tmp;
         stack.push_back(current);
         // std::cout << val << " and!! " << tmp << std::endl;
@@ -114,20 +114,20 @@ int Model::PolishNotation(std::list<Stack_t2_> &stack,
   std::list<Stack_t2_>::iterator it;
   int symbol = 0;
   for (it = stack.begin(); it != stack.end(); it++) {
-    std::cout << it->type << " and " << it->dat2 << std::endl;
+    // std::cout << it->type << " and " << it->data << std::endl;
     if (it->type == 9 || it->type == 6) {
       polish.push_back(*it);
-    } else if (it->dat2 == "(" || it->type == 4) {
+    } else if (it->data == "(" || it->type == 4) {
       znak.push_back(*it);
-    } else if (it->dat2 == ")") {
+    } else if (it->data == ")") {
       std::list<Stack_t2_>::iterator it_z1 = --znak.end();
-      for (; it_z1->dat2 != "(" && it_z1->type != 4 && err == TRUE &&
+      for (; it_z1->data != "(" && it_z1->type != 4 && err == TRUE &&
              --it_z1 != znak.begin();) {
         PopPush(znak, polish, it_z1);
         it_z1 = --znak.end();
       }
       it_z1 = --znak.end();
-      if (it_z1->dat2 == "(" || it_z1->type == 4) {
+      if (it_z1->data == "(" || it_z1->type == 4) {
         polish.push_back(*it_z1);
         znak.pop_back();
       }
@@ -166,15 +166,15 @@ int Model::Mathematics(std::list<Stack_t2_> &polish, double &result) {
   std::list<Stack_t2_>::iterator it = polish.begin();
   for (; it != polish.end() && err == TRUE; it++) {
     // std::cout << "**********************  " << it->type << std::endl;
-    if (it->dat2 == "u" || it->dat2 == "p") {
-      if (it->dat2 == "u") {
+    if (it->data == "u" || it->data == "p") {
+      if (it->data == "u") {
         nu2.top() *= (-1);
       }
     } else if (it->type == 9 || it->type == 6) {
       if (it->type == 6) {
         numbe2 = -1;
       }
-      err = Number(it->dat2, numbe2);
+      err = Number(it->data, numbe2);
       // std::cout << "^^^^^^^^ " << err << std::endl;
       nu2.push(numbe2);
     } else if (it->type == 4) {
@@ -323,8 +323,6 @@ int Model::CheckParser(std::string const str, std::string const str_x,
                d_after == "x"))) {
     err = TRUE;
     UnarZnak(value, type);
-    std::cout << value << "   !!!!!!!!!!!!!!!!!!!!!!!!!!!   " << type
-              << std::endl;
   } else if (type == 1 || (type == 2 && symbol != 0)) {
     if (s_after != 1 && s_after != 2 && d_after != ")" && d_prev != "^") {
       err = TRUE;
@@ -519,21 +517,21 @@ int Model::MathSimple(std::list<Stack_t2_>::iterator &it,
   a = st_num.top();
   st_num.pop();
 
-  if (it->dat2 == "+") {
+  if (it->data == "+") {
     res = a + b;
-  } else if (it->dat2 == "-") {
+  } else if (it->data == "-") {
     res = a - b;
-  } else if (it->dat2 == "*") {
+  } else if (it->data == "*") {
     res = a * b;
-  } else if (it->dat2 == "/") {
+  } else if (it->data == "/") {
     if (b != 0) {
       res = a / b;
     } else {
       err = ZERO;
     }
-  } else if (it->dat2 == "^") {
+  } else if (it->data == "^") {
     res = pow(a, b);
-  } else if (it->dat2 == "mod") {
+  } else if (it->data == "mod") {
     if (b != 0) {
       res = fmod(a, b);
     } else {
@@ -565,39 +563,39 @@ int Model::MathFunction(std::list<Stack_t2_>::iterator &it,
   a = st_num.top();
   st_num.pop();
 
-  if (it->dat2 == "cos(") {
+  if (it->data == "cos(") {
     res = cos(a);
-  } else if (it->dat2 == "sin(") {
+  } else if (it->data == "sin(") {
     res = sin(a);
-  } else if (it->dat2 == "tan(") {
+  } else if (it->data == "tan(") {
     res = tan(a);
-  } else if (it->dat2 == "acos(") {
+  } else if (it->data == "acos(") {
     if (a >= -1 && a <= 1) {
       res = acos(a);
     } else {
       err = EFUC;
     }
-  } else if (it->dat2 == "asin(") {
+  } else if (it->data == "asin(") {
     if (a >= -1 && a <= 1) {
       res = asin(a);
     } else {
       err = EFUC;
     }
-  } else if (it->dat2 == "atan(") {
+  } else if (it->data == "atan(") {
     res = atan(a);
-  } else if (it->dat2 == "log(") {
+  } else if (it->data == "log(") {
     if (a > 0) {
       res = log10(a);
     } else {
       err = EFUC;
     }
-  } else if (it->dat2 == "ln(") {
+  } else if (it->data == "ln(") {
     if (a > 0) {
       res = log(a);
     } else {
       err = EFUC;
     }
-  } else if (it->dat2 == "sqrt(") {
+  } else if (it->data == "sqrt(") {
     if (a >= 0) {
       res = sqrt(a);
     } else {
@@ -713,7 +711,7 @@ void Model::CharPrevAfter(std::string const str, int &symbol, std::string &prev,
 void Model::Printstack(std::list<Stack_t2_> &stac2) {
   std::cout << "Stack_Size > " << stac2.size() << std::endl;
   for (const Stack_t2_ &item : stac2) {
-    std::cout << item.dat2 << " | ";
+    std::cout << item.data << " | ";
   }
   std::cout << std::endl;
 }

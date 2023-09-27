@@ -627,16 +627,13 @@ TEST(Calc, MatematikaSimple) {
 
   model1.SmartCalc(
       "sin(cos(tan(acos(asin(atan(log(1*ln(sqrt(5mod3^(-2)+x)))))))))", x, res);
-  cout << res << endl;
   EXPECT_EQ(res - 0.742174 <= ERC, true);
 
   // 0.71188622115482
   model1.SmartCalc("sin(cos(tan(acos(1))))", x, res);
-  cout << res << endl;
   EXPECT_EQ(res - 0.8414709848 <= ERC, true);
 
   model1.SmartCalc("sin(2)", x, res);
-  cout << res << endl;
   EXPECT_EQ(res - 0.90929742682 <= ERC, true);
 
   model1.SmartCalc("sqrt((-2)*(-2))", x, res);
@@ -649,7 +646,6 @@ TEST(Calc, MatematikaTrig_1) {
 
   model1.SmartCalc("atan(tan(x))", x, res);
   res = res - (-1.1238898038);
-  cout << res << endl;
   EXPECT_EQ(res <= ERC, true);
 
   model1.SmartCalc("cos(sin(x))", x, res);
@@ -715,7 +711,6 @@ TEST(Calc, MatematikaTrig_1) {
   model1.SmartCalc("sin(x)", x, res);
   res = res - (0.90178834764881);
   EXPECT_EQ(res <= ERC, true);
-  cout << "TEST_ " << res << endl;
 }
 
 TEST(Calc, MatematikaLog) {
@@ -917,15 +912,15 @@ TEST(Calc, MatematikaExp) {
 TEST(Calc, PrintStack) {
   std::list<Model::Stack_t2_> stack_N;
   Model::Stack_t2_ current;
-  current.dat2 = "1";
+  current.data = "1";
   current.type = 9;
   stack_N.push_back(current);
 
-  current.dat2 = "+";
+  current.data = "+";
   current.type = 1;
   stack_N.push_back(current);
 
-  current.dat2 = "3";
+  current.data = "3";
   current.type = 9;
   stack_N.push_back(current);
 

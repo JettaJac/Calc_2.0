@@ -364,15 +364,15 @@ TEST(Calc, MatematikaExp) {
 // TEST(Calc, PrintStack) {
 //   std::list<Model::Stack_t2_> stack_N;
 //   Model::Stack_t2_ current;
-//   current.dat2 = "1";
+//   current.data = "1";
 //   current.type = 9;
 //   stack_N.push_back(current);
 
-//   current.dat2 = "+";
+//   current.data = "+";
 //   current.type = 1;
 //   stack_N.push_back(current);
 
-//   current.dat2 = "3";
+//   current.data = "3";
 //   current.type = 9;
 //   stack_N.push_back(current);
 

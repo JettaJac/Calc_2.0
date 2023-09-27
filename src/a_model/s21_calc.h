@@ -53,17 +53,14 @@ namespace s21 {
 class Model {
  public:
   int SmartCalc(std::string const str, std::string const str_g, double &result);
-  // using int TRU  TRUE;
   enum {
     TRUE = 0,
     FAIL = -1,
     ZERO = -2,
     EFUC = -3,
-    //  ERC = 0.00000001
   };
 
   //  private:
-  // protected:
   /**
    * @brief           Структура стека для записи чисел и операторов
    *
@@ -75,7 +72,7 @@ class Model {
    */
 
   struct Stack_t2_ {
-    std::string dat2;
+    std::string data;
     int type = 0;
   };
 

@@ -70,11 +70,12 @@ install:
 uninstall:
 	rm -fr $(BUILD)
 	rm -rf $(HOME)/Desktop/s21_Calc.app
-	rm -rf $(HOME)/doxygen
+	rm -rf docs/doxygen
+	rm -rf docs/html
 
 dvi:
 	curl -L -o $(CURDIR)/docs/doxygen 'https://drive.google.com/uc?export=download&id=1arycp6Hm-ORDZnD5xodBwSoyUyNSao6p'
-   cd docs && chmod +x doxygen && ./doxygen Doxyfile && open html/index.html
+	cd docs && chmod +x doxygen && ./doxygen Doxyfile && open html/index.html
 
 dist: install
 	@rm -rf ./smart_calc_archive
