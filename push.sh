@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd ..
 if [[ $# = 1 ]] 
 then 
 # cd ..

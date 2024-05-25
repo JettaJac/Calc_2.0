@@ -86,8 +86,6 @@ void Grafic::StaticFunc() {
     QString input = str;
     std::string str_pp = input.toStdString();
     std::string str_pp_x = std::to_string(X);
-    //            QString input_x = QString::fromStdString(std::to_string(X));;
-    //            std::string str_pp_x = input_x.toStdString();
 
     char *str_input = new char[str_pp.length() + 1];
     strcpy(str_input, str_pp.c_str());

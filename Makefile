@@ -1,4 +1,4 @@
-.PHONY: all install uninstall clean dist test gcov_report leaks
+.PHONY: all objs install uninstall clean dist test test2 gcov_report leaks testfull main
 
 CXX=g++ 
 CC=g++ 
@@ -10,8 +10,6 @@ ALL_FLAGS=$(CXXFLAGS) $(GCOV_FLAGS) $(CHECK_FLAGS)
 # OS=$(shell uname)
 BUILD=../build/
 BUILD_QT=$(BUILD)s21_calculator/
-
-# all, install, uninstall, clean, +dvi, dist, test, gcov_report
 
 SRCS = ./a_model/s21_calc.cc ./a_controller/controller.cc ./a_model/credit.cc
 OBJS = $(SRCS:.c=.o) 
@@ -51,7 +49,6 @@ testfull: $(OBJS3)
 	 ./mytest_calc	 
 
 main: $(OBJS)	
-#	make clean	
 	$(CXX) $(OBJS_m) -o s21_calc_2.0
 	./s21_calc_2.0
     CK_FORK=no leaks -exclude -s21_calc_2.0 --atExit -- ./s21_calc_2.0  | grep LEAK:	 

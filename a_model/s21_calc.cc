@@ -76,7 +76,6 @@ int Model::Parser(std::string str, std::list<Stack_t2_> &stack,
     }
     if (tmp != -1 && brackets >= 0) {
       err = CheckParser(str, str_x, tmp, symbol, val, brackets);
-      // std::cout << val << " @@and!! " << tmp << std::endl;
       Stack_t2_ current;
       if (err == TRUE) {
         if (tmp == 6) {
@@ -87,7 +86,6 @@ int Model::Parser(std::string str, std::list<Stack_t2_> &stack,
         current.data = val;
         current.type = tmp;
         stack.push_back(current);
-        // std::cout << val << " and!! " << tmp << std::endl;
       }
     } else
       err = -1;
@@ -114,7 +112,6 @@ int Model::PolishNotation(std::list<Stack_t2_> &stack,
   std::list<Stack_t2_>::iterator it;
   int symbol = 0;
   for (it = stack.begin(); it != stack.end(); it++) {
-    // std::cout << it->type << " and " << it->data << std::endl;
     if (it->type == 9 || it->type == 6) {
       polish.push_back(*it);
     } else if (it->data == "(" || it->type == 4) {
